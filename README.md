@@ -10,7 +10,7 @@ All student documents for the [HEI-Vs](https://hevs.ch/synd) Engineering Course 
 * [Scripts](course/)
 * [Presentations](slides/)
 * [Labo](labo)
-* [Projectdocuments](project)
+* [Projects](project)
 * [Exercises](exercises)
 
 ## How to use
