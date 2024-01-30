@@ -9,7 +9,7 @@
 All student documents for the [HEI-Vs](https://hevs.ch/synd) Engineering Course Basic Automation Autb
 * [Scripts](course/)
 * [Presentations](slides/)
-* [Labordocuments](labo)
+* [Labo](labo)
 * [Projectdocuments](project)
 * [Exercises](exercises)
 
