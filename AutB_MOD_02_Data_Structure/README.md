@@ -1,16 +1,16 @@
-<h1 align="center">
+<h1 align="left">
   <br>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
   <br>
-  HEI-Vs Engineering School - Industrial Automation Base
+  Industrial Automation Base
   <br>
 </h1>
 
 Cours AutB
 
-# Structures de données
-
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
+
+# Module 02 Structures de données.
 
 *Keywords:* **DUT Type Conversion  ARRAY STRUCT **
 

@@ -1,18 +1,18 @@
-<h1 align="center">
+<h1 align="left">
   <br>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
   <br>
-  HEI-Vs Engineering School - Industrial Automation Base
+  Industrial Automation Base
   <br>
 </h1>
 
 Cours AutB
 
-# OPC UA
-
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-*Keywords:* **OPC UA **
+# Module 10 OPC Unified Architecture (UA)
+
+*Keywords:* [OPC UA](https://opcfoundation.org/)
 
 # OpcUa_AutB
 

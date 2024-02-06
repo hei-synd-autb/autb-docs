@@ -1,18 +1,19 @@
-<h1 align="center">
+<h1 align="left">
   <br>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
   <br>
-  HEI-Vs Engineering School - Industrial Automation Base
+  Industrial Automation Base
   <br>
 </h1>
 
 Cours AutB
 
-# Synchronized Motion with Ethernet Real-Time 
-
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-*Keywords:* **SYNCHRONIZATION POLYNOMIAL**
+# Module 08 Synchronized Motion with Ethernet Real-Time 
+
+
+*Keywords: SYNCHRONIZATION POLYNOMIAL*
 
 [Accès rapide]()
 

@@ -1,19 +1,18 @@
-<h1 align="center">
+<h1 align="left">
   <br>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
   <br>
-  HEI-Vs Engineering School - Industrial Automation Base
+  Industrial Automation Base
   <br>
 </h1>
 
 Cours AutB
 
-
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 *Keywords:* **IF ELSE FOR WHILE REPEAT CASE**
 
-# Operations and Instructions
+# Module 03 Operations and Instructions
 
 # Les opérations de base
 |Operation        |Symbol              |Niveau de priorité              |

@@ -1,16 +1,16 @@
-<h1 align="center">
+<h1 align="left">
   <br>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
   <br>
-  HEI-Vs Engineering School - Industrial Automation Base
+  Industrial Automation Base
   <br>
 </h1>
 
 Cours AutB
 
-# PLCopen Motion Control
-
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
+
+# Module 09 PLCopen Motion Control
 
 *Keywords:* **PLCopen MC_Power MC_MoveAbsolute MC_Stop**
 
