@@ -100,7 +100,7 @@ La raison principale pour l'utilisation d'une trajectoire d'ordre 5 est la suiva
 
 > Même en dérivant 2 fois un trajectoire en position d'ordre 5, il nous reste la possibilité de passer par zéro au départ et à la fin du mouvement avec la trajectoire de l'accélération.
 
--   $\ P’‘(t) = 20 a_5 t^3 + 12 a_4 t^2 + 6 a_3 t + 2 a_2 $
+-   $\ P’’(t) = 20 a_5 t^3 + 12 a_4 t^2 + 6 a_3 t + 2 a_2 $
 
 > On pourra montrer que si l'on cherche le mouvememnt qui demande le minimum d'énergie, le polynôme n'est pas la meilleure solution, mais l'expérience montre que le poylnôme d'ordre 5 est un bon compromis entre faible excitation mécanique et efficicience énergétique.
 
