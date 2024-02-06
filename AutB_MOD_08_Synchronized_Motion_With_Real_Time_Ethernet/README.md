@@ -49,7 +49,7 @@ Soit finalement, l'ensemble des commandes d'axe étaient regroupées sur un seul
 Une trajectoire, pour une commande d'axe, doit finalement être vue comme une simple liste de points.
 
 
-- $P_1 , P_2, P_3 ... P_N$
+- $\ P_1 , P_2, P_3 ... P_N$
 
 ```iecst
   reMyTrajectory  : ARRAY[1..N] OF REAL;
@@ -60,9 +60,9 @@ Une trajectoire, pour une commande d'axe, doit finalement être vue comme une si
 ## Résolution de la trajectoire
 La résolution en temps de la trajectoire est limitée par les performances du bus Ethernet Real-Time. Sauf exception rare, comme Profinet IO qui n'est pas conçu pour le Motion Control, les bus temps réels sont développés dans ce but et la précision de chaque cycle, **jitter**, gigue et inférieure à:
 
-$ jitter < 1[\mu s]$
+$\ jitter < 1[\mu s]$
 
-$ \delta t  \approx 1 [ms]$
+$\ \delta t  \approx 1 [ms]$
 
 > Si la plupart des commandes d'axe peuvent descendre en dessous de la ms. cette valeur est souvent suffisante. Les axes des cellules d'automation sont limitées à 2[ms]. Cette limitation n'est pas toujours technique, elle peut être une volonté du fournisseur de réserver les cadences les plus rapides pour les systèmes haut de gamme.
 
@@ -78,29 +78,29 @@ L'erreur de poursuite est la différence entre la **position commandée** et la 
 > Problème pour l'ingénieur: **la différence de position entre deux points de la trajectoires est limitée**.
 
 ### Limite de vitesse
-$v = dp/dt$ La vitesse de l'axe est limitée. Il existe plusieurs types de limites, cela est décrit dans un chapitre précédent. Ici, il faut ajouter la restriction due à la précision souhaitée. Si l'on veut améliore la résolution, on utilisera la formule précédente sous sa forme $dp = v * dt$ et on limitera la vitesse.
+$\ v = dp/dt$ La vitesse de l'axe est limitée. Il existe plusieurs types de limites, cela est décrit dans un chapitre précédent. Ici, il faut ajouter la restriction due à la précision souhaitée. Si l'on veut améliore la résolution, on utilisera la formule précédente sous sa forme $\ dp = v * dt$ et on limitera la vitesse.
 
 ### Limite de couple/force
-$ F = dv/dt$ ou $dp / {dt}^2 $ le profil sera contraint par le couple ou la force maximal admissible par la machine, l'axe ou le moteur.
+$\ F = dv/dt$ ou $dp / {dt}^2 $ le profil sera contraint par le couple ou la force maximal admissible par la machine, l'axe ou le moteur.
 
 ## Type de trajectoire
 Il existe plusieurs type de trajectoires. Dans le cadre de ce module, nous nous limitons aux trajectoires polynomial car leur forme s'adapte bien à ce que nous pouvons calculer facilement et rapidement dans un automtate.
 
-$q = q(t)$, $t \in [t_0, t_1]$
+$\ q = q(t)$, $t \in [t_0, t_1]$
 
-$q(t) = a_0 + a_1t + a_2t^2+...+a_nt^n$
+$\ q(t) = a_0 + a_1t + a_2t^2+...+a_nt^n$
 
 Il existe ensuite passablement de littérure qui concerne les trajectoires et en particulier les trajectoires polynômiales. Cela dépasse le cadre de ce module dont l'objet est l'utilisation de ces trajectoires. Mais il nous semble important de montrer une fois, comment il est possible de déterminer une trajectoire utilisable à partir d'une feuille blanche.
 
 ## Trajectoire selon polynôme d'ordre 5
 
--   $ P = a_5 t^5 + a_4 t^4 + a_3 t^3 + a_2 t^2 + a_1 t + a_0 $
+-   $\ P = a_5 t^5 + a_4 t^4 + a_3 t^3 + a_2 t^2 + a_1 t + a_0 $
 
 La raison principale pour l'utilisation d'une trajectoire d'ordre 5 est la suivante:
 
 > Même en dérivant 2 fois un trajectoire en position d'ordre 5, il nous reste la possibilité de passer par zéro au départ et à la fin du mouvement avec la trajectoire de l'accélération.
 
--   $ P’‘(t) = 20 a_5 t^3 + 12 a_4 t^2 + 6 a_3 t + 2 a_2 $
+-   $\ P’‘(t) = 20 a_5 t^3 + 12 a_4 t^2 + 6 a_3 t + 2 a_2 $
 
 > On pourra montrer que si l'on cherche le mouvememnt qui demande le minimum d'énergie, le polynôme n'est pas la meilleure solution, mais l'expérience montre que le poylnôme d'ordre 5 est un bon compromis entre faible excitation mécanique et efficicience énergétique.
 
@@ -110,14 +110,14 @@ Il est possible d'effectuer plusieurs types d'opérations sur les trajectoires. 
 ### Transformation géométrique de mise à l'échelle sur l'axe y.
 Concrètement, si l'on reprend l'exemple du polynôme d'ordre 5, cela signifie que pour modifier la longueur du déplacement d'un facteur, coefficient **c** , il suffit de modifier chaque paramètre a_n par le même coefficient **c**.
 
-$ P *c = (c*a_5) t^5 + (c*a_4) t^4 + (c*a_3) t^3 + (c*a_2) t^2 + (c*a_1) t + (c*a_0) $
+$\ P *c = (c*a_5) t^5 + (c*a_4) t^4 + (c*a_3) t^3 + (c*a_2) t^2 + (c*a_1) t + (c*a_0) $
 
 > Cette particularité simplifie encore le calcul d'une trajectoire polynômiale. Un type de trajectoire comme celui d'ordre 5 ne doit être calclulé qu'une seule fois, il suffit ensuite de le mettre à l'échelle.
 
 ### Mise à l'échelle du temps.
 en d'autres termes, si on considère:
 
-$q = q(t)$ on peut être amené à considérer $t = \sigma(t')  $
+$\ q = q(t)$ on peut être amené à considérer $t = \sigma(t')  $
 
 > Exemple: si $\sigma(t') = 2t'$ alors cela  correspondra à effectuer le mouvement deux fois plus vite. A l'inverse, si $\sigma(t') = 0.5t'$ alors le mouvement sera effectuer deux fois plus lentement.
 
