@@ -1,0 +1,33 @@
+@startuml
+binary  "IN" as B
+binary  "Q"  as C
+
+@0
+B is low
+C is low
+
+@10
+B is high
+C is high
+
+@20
+B is high
+C is low
+
+@30
+B is low
+C is low
+
+@50
+B is high
+C is high
+
+@55
+B is low
+C is high
+
+@60
+B is low
+C is low
+
+@enduml

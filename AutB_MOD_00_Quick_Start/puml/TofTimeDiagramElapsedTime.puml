@@ -1,0 +1,21 @@
+@startuml
+binary  "IN" as B
+binary  "Q"  as C
+analog "ET" as D
+
+@0
+B is high
+C is high
+D is 0
+
+@10
+B is low
+C is high
+D is 0
+
+@20
+B is low
+C is low
+D is 10
+
+@enduml

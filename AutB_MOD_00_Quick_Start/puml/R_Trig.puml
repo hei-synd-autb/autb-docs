@@ -1,0 +1,23 @@
+@startuml
+clock   "CycleTime_10ms" as C0 with period 10
+binary  "Input"  as B
+binary  "Output"  as C
+
+
+@0
+B is Idle
+C is Idle
+
+
+@30
+B is high
+C is high
+
+@40
+B is high
+C is Idle
+
+@100
+B is Idle
+C is Idle
+@enduml
