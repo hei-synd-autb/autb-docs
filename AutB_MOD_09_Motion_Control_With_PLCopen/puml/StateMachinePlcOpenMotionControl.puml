@@ -1,0 +1,22 @@
+@startuml
+
+[*] --> Disabled : No Error and no MC_Power
+[*] --> ErrorStop : Error
+ErrorStop --> Standstill : MC_Reset and No Error
+ErrorStop --> Disabled
+Disabled --> Standstill : MC_Power
+Standstill --> Homing
+Stopping --> Standstill
+Standstill --> DiscreteMotion
+Standstill --> SynchronizedMotion
+Standstill --> ContinuousMotion
+
+Homing -[dashed]-> Standstill : Done
+Homing --> Stopping
+
+DiscreteMotion --> Stopping
+DiscreteMotion -[dashed]-> Standstill : Done
+SynchronizedMotion --> Stopping
+ContinuousMotion --> Stopping
+
+@enduml

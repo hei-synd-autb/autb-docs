@@ -1,0 +1,56 @@
+Asynchronous Motor(Rotary)
+Token,Name,Symbol,Value,Unit
+0,Motor type,--,Fischer_FEZ-830/60/3 V3,
+1,Principle,--,Rotary,
+2,Rated power,Pn,,kW
+3,Rated torque,Mn,,Nm
+4,Rated current,In,,A
+5,Power factor,cos ?,,cos ?
+6,Magnetizing current,Imag,,A
+7,Rated speed,nN,,min-1
+8,Rated frequency,fN,,Hz
+9,Rated voltage,Un,,V
+10,Inertia,J,,kgm²
+11,Maximum speed,nmax,,min-1
+12,Number of pole pairs,NPP,,--
+13,Insulation class,Insul.Cl,,--
+14,Motor inductance (minimum value),Lu-v(min),,mH
+15,Motor inductance (maximum value),Lu-v(max),,mH
+16,Motor inductance (average value),Lu-v,,mH
+17,Stator leakage inductance,Lss(Al-St),,mH
+18,Rotor leakage inductance,Lss(Al-St),,mH
+19,Motor magnetizing inductance,Lh(Al-St),,mH
+20,Stator resistance (20°C),Rs(Al-St),,O
+21,Rotor resistance (20°C),Rr(Al-St),,O
+22,Rotor time constant,Tr,,ms
+23,Winding resistance (20°C),Ru-v,,O
+24,Allowed periodic peak voltage,ûmax_alll,,Vpp/2
+25,Allowed rise of voltage,dv/dtall,,kV/µs
+26,Cooling type (without/with fan; liquid cooling),--,,--
+27,Thermal time constant of motor,Tmotor,,min
+28,Thermal time constant of winding,Twinding,,s
+29,Thermal short-time overload of winding,koverload,,--
+30,Motor type,rotary/linear,,--
+31,Rotor/secondary part with closed slots?,--,,yes/no
+60,PTC/NTC/switch contact,PTC/NTC/switch contact,,
+61,Type designation,Type designation,,
+62,How many and where installed?,How many and where installed?,,
+63,Characteristics available,Characteristics available,,
+70,Type/standard,Type/standard,,
+71,Signal amplitude,Signal amplitude,,
+72,Signal shape,Signal shape,,
+73,Cycles/revolution/division period/µm,Cycles/revolution/division period/µm,,
+74,Manufacturer/type of construction,Manufacturer/type of construction,,
+80,Manufacturer,Manufacturer,,
+81,Type designation,Type designation,,
+82,Holding torque,Nm/N,,Nm/N
+83,Rated voltage,V,,V
+84,Rated current,A,,A
+85,Inertia,kgm²/kg,,kgm²/kg
+86,Clamping delay,ms,,ms
+87,Release delay,ms,,ms
+88,Mass,kg,,kg
+89,Holding force,N,,
+90,Moved mass,kg,,
+100,Phase resistance of a possibly required choke at 20°C (Rdr),,,ohm
+101,Resistance of a power cable strand at 20°C,,,ohm

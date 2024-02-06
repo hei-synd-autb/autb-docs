@@ -1,0 +1,16 @@
+@startuml
+clock   "CycleTime_20ms" as C0 with period 20
+binary  "Signal"  as C
+
+@0
+C is Idle
+
+@100
+C is high
+
+@200
+C is Idle
+
+@300
+C is High
+@enduml

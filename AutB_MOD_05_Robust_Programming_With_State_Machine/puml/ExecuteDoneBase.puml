@@ -1,0 +1,43 @@
+@startuml
+
+[*] --> Idle
+Idle --> Init : Execute↑
+note left of Idle
+    Done := FALSE
+    Active := FALSE
+    Error := FALSE
+end note
+
+Init --> Init : Execute↑
+Init --> Error : SetError
+Init --> InOp
+note left of Init
+    Done := FALSE
+    Active := TRUE
+    Error := FALSE
+end note
+
+
+InOp --> Init : Execute↑
+InOp --> Done 
+InOp --> Error : SetError
+note right of InOp
+    Done := FALSE
+    Active := TRUE
+    Error := FALSE
+end note
+
+Error --> Idle : Execute⓪
+note left of Error
+    Done := FALSE
+    Active := FALSE
+    Error := TRUE
+end note
+
+Done --> Idle : Execute⓪
+note right of Done
+    Done := TRUE
+    Active := FALSE
+    Error := FALSE
+end note
+@enduml

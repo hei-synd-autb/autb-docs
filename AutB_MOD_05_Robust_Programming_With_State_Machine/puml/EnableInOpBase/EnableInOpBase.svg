@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="527px" preserveAspectRatio="none" style="width:509px;height:527px;background:#FFFFFF;" version="1.1" viewBox="0 0 509 527" width="509px" zoomAndPan="magnify"><defs/><g><ellipse cx="318.5" cy="16" fill="#222222" rx="10" ry="10" style="stroke:none;stroke-width:1.0;"/><g id="Idle"><rect fill="#F1F1F1" height="50" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="50" x="293.5" y="87"/><line style="stroke:#181818;stroke-width:0.5;" x1="293.5" x2="343.5" y1="114.6094" y2="114.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="22" x="307.5" y="106.5332">Idle</text></g><g id="Init"><rect fill="#F1F1F1" height="50" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="50" x="65.5" y="215"/><line style="stroke:#181818;stroke-width:0.5;" x1="65.5" x2="115.5" y1="242.6094" y2="242.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="18" x="81.5" y="234.5332">Init</text></g><g id="elem_GMN7"><path d="M109,90.5 L109,133.2031 A0,0 0 0 0 109,133.2031 L258,133.2031 A0,0 0 0 0 258,133.2031 L258,116 L293.5,112 L258,108 L258,100.5 L248,90.5 L109,90.5 A0,0 0 0 0 109,90.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M248,90.5 L248,100.5 L258,100.5 L248,90.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="128" x="115" y="108.9951">InOperation := FALSE</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="90" x="115" y="125.3467">Error := FALSE</text></g><g id="Error"><rect fill="#F1F1F1" height="50" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="52" x="190.5" y="471"/><line style="stroke:#181818;stroke-width:0.5;" x1="190.5" x2="242.5" y1="498.6094" y2="498.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="200.5" y="490.5332">Error</text></g><g id="InOp"><rect fill="#F1F1F1" height="50" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="50" x="191.5" y="343"/><line style="stroke:#181818;stroke-width:0.5;" x1="191.5" x2="241.5" y1="370.6094" y2="370.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="30" x="201.5" y="362.5332">InOp</text></g><g id="elem_GMN15"><path d="M151,218.5 L151,236 L115.55,240 L151,244 L151,261.2031 A0,0 0 0 0 151,261.2031 L300,261.2031 A0,0 0 0 0 300,261.2031 L300,228.5 L290,218.5 L151,218.5 A0,0 0 0 0 151,218.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M290,218.5 L290,228.5 L300,228.5 L290,218.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="128" x="157" y="236.9951">InOperation := FALSE</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="90" x="157" y="253.3467">Error := FALSE</text></g><g id="elem_GMN20"><path d="M277,346.5 L277,364 L241.57,368 L277,372 L277,389.2031 A0,0 0 0 0 277,389.2031 L418,389.2031 A0,0 0 0 0 418,389.2031 L418,356.5 L408,346.5 L277,346.5 A0,0 0 0 0 277,346.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M408,346.5 L408,356.5 L418,356.5 L408,346.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="120" x="283" y="364.9951">InOperation := TRUE</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="90" x="283" y="381.3467">Error := FALSE</text></g><g id="elem_GMN24"><path d="M6,474.5 L6,517.2031 A0,0 0 0 0 6,517.2031 L155,517.2031 A0,0 0 0 0 155,517.2031 L155,500 L190.13,496 L155,492 L155,484.5 L145,474.5 L6,474.5 A0,0 0 0 0 6,474.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M145,474.5 L145,484.5 L155,484.5 L145,474.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="128" x="12" y="492.9951">InOperation := FALSE</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="82" x="12" y="509.3467">Error := TRUE</text></g><!--MD5=[38f1f8b7f214ff6bc6d4b705f682283d]
+link *start to Idle--><g id="link_*start_Idle"><path d="M318.5,26.01 C318.5,38.7 318.5,62.41 318.5,81.57 " fill="none" id="*start-to-Idle" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="318.5,86.84,322.5,77.84,318.5,81.84,314.5,77.84,318.5,86.84" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[c483c4ae74fec926d59f0822b1f495e5]
+link Idle to Init--><g id="link_Idle_Init"><path d="M293.06,128.46 C287.4,131.54 281.34,134.57 275.5,137 C230.68,155.62 212.96,143.5 170.5,167 C149.85,178.43 130.11,196.11 115.4,211.08 " fill="none" id="Idle-to-Init" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="111.77,214.83,120.8966,211.1279,115.2407,211.2308,115.1378,205.5749,111.77,214.83" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51" x="171.5" y="181.4951">Enable①</text></g><!--MD5=[4cf3ed16f9df6a98504c3b6d2576f49d]
+link Init to Idle--><g id="link_Init_Idle"><path d="M115.54,223.92 C121.33,220.75 127.54,217.58 133.5,215 C173.74,197.56 188.79,205.61 227.5,185 C249.98,173.03 272.46,155.32 289.44,140.46 " fill="none" id="Init-to-Idle" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="293.2,137.14,283.7983,140.0739,289.4433,140.4396,289.0776,146.0846,293.2,137.14" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51" x="255.5" y="181.4951">Enable⓪</text></g><!--MD5=[9b2089483e046c7da07ed58cc10578b5]
+link Init to Error--><g id="link_Init_Error"><path d="M91.88,265.21 C94.49,296.35 102.01,351.37 123.5,393 C139.02,423.07 165.72,451 186.54,470 " fill="none" id="Init-to-Error" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="190.35,473.45,186.3362,464.4561,186.6335,470.1052,180.9845,470.4025,190.35,473.45" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="124.5" y="373.4951">SetError</text></g><!--MD5=[f440e933f9adc1f3fb1d6aa11db3ea69]
+link Init to InOp--><g id="link_Init_InOp"><path d="M114.79,265.29 C135.89,286.39 166.43,316.93 188.53,339.03 " fill="none" id="Init-to-InOp" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="192.28,342.78,188.7445,333.5876,188.7445,339.2445,183.0876,339.2445,192.28,342.78" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[1200c82a96c19d207352e5539b3ae2a9]
+link InOp to Idle--><g id="link_InOp_Idle"><path d="M241.55,350.59 C266.13,332.85 302.12,302.06 317.5,265 C334.1,225.03 329.84,173.88 324.63,142.29 " fill="none" id="InOp-to-Idle" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="323.73,137.01,321.3043,146.5555,324.5728,141.9385,329.1899,145.2069,323.73,137.01" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51" x="328.5" y="245.4951">Enable⓪</text></g><!--MD5=[5d13da41f4a119d5370f98a57bc14637]
+link InOp to Error--><g id="link_InOp_Error"><path d="M216.5,393.29 C216.5,413.95 216.5,443.67 216.5,465.65 " fill="none" id="InOp-to-Error" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="216.5,470.78,220.5,461.78,216.5,465.78,212.5,461.78,216.5,470.78" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="217.5" y="437.4951">SetError</text></g><!--MD5=[7d364e43dace9a2f8df92504d800134c]
+link Error to Idle--><g id="link_Error_Idle"><path d="M242.6,491.8 C290.67,484.33 392.22,460.91 435.5,393 C489.84,307.75 396.97,192.98 347.06,140.84 " fill="none" id="Error-to-Idle" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="343.54,137.2,346.9078,146.4551,347.0107,140.7992,352.6666,140.9021,343.54,137.2" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51" x="450.5" y="309.4951">Enable⓪</text></g><!--MD5=[a82e0c2e1757ef1e0f96ef7882ac3232]
+@startuml
+
+[*] - -> Idle
+Idle - -> Init : Enable①
+note left of Idle
+    InOperation := FALSE
+    Error := FALSE
+end note
+
+Init - -> Idle : Enable⓪
+Init - -> Error : SetError
+Init - -> InOp
+note right of Init
+    InOperation := FALSE
+    Error := FALSE
+end note
+
+InOp - -> Idle : Enable⓪
+InOp - -> Error : SetError
+note right of InOp
+    InOperation := TRUE
+    Error := FALSE
+end note
+
+Error - -> Idle : Enable⓪
+note left of Error
+    InOperation := FALSE
+    Error := TRUE
+end note
+
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 19:01:30 CEST 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: US
+--></g></svg>

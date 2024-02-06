@@ -1,0 +1,33 @@
+@startuml
+object PRG_Unit_Filler
+object EM_WeigthScale
+object EM_BagForming
+object EM_FeedRoller
+object EM_Sealer
+object CM_InfeedGate
+object CM_Scale
+object CM_DumpGate
+object CM_LeftServo
+object CM_RightServo
+object CM_LeftServoFeed
+object CM_RightServoFeed
+object CM_ServoCutter
+
+PRG_Unit_Filler *-- EM_WeigthScale
+PRG_Unit_Filler *-- EM_BagForming
+PRG_Unit_Filler *-- EM_FeedRoller
+PRG_Unit_Filler *-- EM_Sealer
+
+EM_WeigthScale *-- CM_InfeedGate
+EM_WeigthScale *-- CM_Scale
+EM_WeigthScale *-- CM_DumpGate
+
+EM_BagForming *-- CM_LeftServo
+EM_BagForming *-- CM_RightServo
+
+EM_FeedRoller *-- CM_LeftServoFeed
+EM_FeedRoller *-- CM_RightServoFeed
+
+EM_Sealer *-- CM_ServoCutter
+
+@enduml
