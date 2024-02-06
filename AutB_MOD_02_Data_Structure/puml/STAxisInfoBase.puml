@@ -1,0 +1,19 @@
+ @startuml
+object ST_AxisInfo
+ST_AxisInfo : AxisId : UDINT;
+ST_AxisInfo : AxisName : STRING := 'Axe de base';
+ST_AxisInfo : SetVelocity : REAL;
+ST_AxisInfo : SetDeceleration : REAL;
+ST_AxisInfo : ActualPosition : REAL;
+ST_AxisInfo : ActualVelocity : REAL := 0;
+ST_AxisInfo : bAxisStopped : BOOL;
+ST_AxisInfo : DigitalInput_1 : BOOL;
+
+object ST_AxisLimits
+ST_AxisLimits : Positive_mm : REAL := 100;
+ST_AxisLimits : Negative_mm : REAL := -100;
+ST_AxisLimits : MaxVelocity_m_s : REAL := 1000;
+
+ST_AxisInfo *-- "stAxisLimits" ST_AxisLimits 
+
+@enduml

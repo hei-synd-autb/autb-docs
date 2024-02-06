@@ -1,0 +1,18 @@
+@startuml
+
+[*] --> CLOSE_DOOR : Door open
+CLOSE_DOOR : xMyCondition := TRUE; 
+CLOSE_DOOR : xMyThirdCondition := FALSE; 
+CLOSE_DOOR -> WAIT_DOOR_CLOSED : Closing 
+WAIT_DOOR_CLOSED : xMySecondCondition := FALSE; 
+WAIT_DOOR_CLOSED : xMyThirdCondition := TRUE; 
+WAIT_DOOR_CLOSED -> DOOR_CLOSED : Locked
+DOOR_CLOSED : xMyCondition := TRUE; 
+DOOR_CLOSED : xMyThirdCondition= TRUE; 
+CLOSE_DOOR -> DOOR_POSITION_UNKNOWN : Sensor Error
+WAIT_DOOR_CLOSED -> DOOR_POSITION_UNKNOWN : Sensor Error
+DOOR_CLOSED -> DOOR_POSITION_UNKNOWN : Sensor Error
+DOOR_POSITION_UNKNOWN : xMyCondition := NOT xMyCondition; 
+DOOR_POSITION_UNKNOWN : xMySecondCondition := xMyCondition OR xMySecondCondition; 
+DOOR_POSITION_UNKNOWN --> [*]
+@enduml

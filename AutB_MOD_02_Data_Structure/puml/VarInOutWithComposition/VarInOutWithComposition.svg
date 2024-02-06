@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="157px" preserveAspectRatio="none" style="width:353px;height:157px;background:#FFFFFF;" version="1.1" viewBox="0 0 353 157" width="353px" zoomAndPan="magnify"><defs/><g><g id="elem_FB_StopAxis"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="161" x="7" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80" x="47.5" y="23.5332">FB_StopAxis</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="167" y1="28.6094" y2="28.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="149" x="13" y="47.1426">ioAxisInfo : ST_AxisInfo;</text></g><g id="elem_ST_AxisInfo"><rect fill="#F1F1F1" height="37.6094" style="stroke:#181818;stroke-width:0.5;" width="88" x="62.5" y="114"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="69.5" y="130.5332">ST_AxisInfo</text><line style="stroke:#181818;stroke-width:0.5;" x1="63.5" x2="149.5" y1="135.6094" y2="135.6094"/></g><g id="elem_ST_AxisTwoEncoder"><rect fill="#F1F1F1" height="37.6094" style="stroke:#181818;stroke-width:0.5;" width="144" x="203.5" y="11.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="130" x="210.5" y="28.0332">ST_AxisTwoEncoder</text><line style="stroke:#181818;stroke-width:0.5;" x1="204.5" x2="346.5" y1="33.1094" y2="33.1094"/></g><g id="elem_ST_SecondEncoder"><rect fill="#F1F1F1" height="37.6094" style="stroke:#181818;stroke-width:0.5;" width="141" x="205" y="114"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="127" x="212" y="130.5332">ST_SecondEncoder</text><line style="stroke:#181818;stroke-width:0.5;" x1="206" x2="345" y1="135.6094" y2="135.6094"/></g><!--MD5=[2c75de1086f3cb6167c432a413e32898]
+reverse link FB_StopAxis to ST_AxisInfo--><g id="link_FB_StopAxis_ST_AxisInfo"><path codeLine="8" d="M94.25,67.22 C97.24,83.01 100.62,100.9 103.07,113.88 " fill="none" id="FB_StopAxis-backto-ST_AxisInfo" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="91.76,54.05,88.9441,60.6886,93.989,65.8412,96.8049,59.2026,91.76,54.05" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[4e05d762484f79c31f56e85cba317785]
+reverse link ST_AxisTwoEncoder to ST_AxisInfo--><g id="link_ST_AxisTwoEncoder_ST_AxisInfo"><path codeLine="10" d="M233.51,56.47 C203.51,74.31 163.84,97.9 136.88,113.94 " fill="none" id="ST_AxisTwoEncoder-backto-ST_AxisInfo" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="244.9,49.7,237.6987,49.3245,234.5823,55.8274,241.7836,56.2029,244.9,49.7" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[67c3874a4a7ee6f34c1c8a8a554adf28]
+reverse link ST_AxisTwoEncoder to ST_SecondEncoder--><g id="link_ST_AxisTwoEncoder_ST_SecondEncoder"><path codeLine="11" d="M275.5,62.98 C275.5,79.66 275.5,99.55 275.5,113.68 " fill="none" id="ST_AxisTwoEncoder-backto-ST_SecondEncoder" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="275.5,49.93,271.5,55.93,275.5,61.93,279.5,55.93,275.5,49.93" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[74b0208481f3ba8a0ada7d481a3dacd0]
+@startuml
+object FB_StopAxis
+FB_StopAxis : ioAxisInfo : ST_AxisInfo;
+object ST_AxisInfo
+object ST_AxisTwoEncoder
+object ST_SecondEncoder
+
+FB_StopAxis o- - ST_AxisInfo
+
+ST_AxisTwoEncoder *- - ST_AxisInfo
+ST_AxisTwoEncoder *- - ST_SecondEncoder
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 19:01:30 CEST 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: US
+--></g></svg>

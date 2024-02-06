@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="291px" preserveAspectRatio="none" style="width:607px;height:291px;background:#FFFFFF;" version="1.1" viewBox="0 0 607 291" width="607px" zoomAndPan="magnify"><defs/><g><g id="elem_EM_ConveyorThreeStations_typ"><rect fill="#F1F1F1" height="135.2656" style="stroke:#181818;stroke-width:0.5;" width="249" x="246" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="205" x="268" y="23.5332">EM_ConveyorThreeStations_typ</text><line style="stroke:#181818;stroke-width:0.5;" x1="247" x2="494" y1="28.6094" y2="28.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="230" x="252" y="47.1426">StationInput : CM_ActiveSensor_typ;</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="234" x="252" y="64.752">StationOne   : CM_ActiveSensor_typ;</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="233" x="252" y="82.3613">StationTwo   : CM_ActiveSensor_typ;</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="237" x="252" y="99.9707">StationThree : CM_ActiveSensor_typ;</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="252" y="117.5801">Motor        : CM_Motor_typ;</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="180" x="252" y="135.1895">Buzzer       : CM_Buzzer_typ;</text></g><g id="elem_CM_Motor_typ"><rect fill="#F1F1F1" height="64.8281" style="stroke:#181818;stroke-width:0.5;" width="245" x="7" y="210.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92" x="83.5" y="227.0332">CM_Motor_typ</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="251" y1="232.1094" y2="232.1094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="227" x="13" y="250.6426">K_ActivatePositiveDirection : BOOL;</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="233" x="13" y="268.252">K_ActivateNegativeDirection : BOOL;</text></g><g id="elem_CM_ActiveSensor_typ"><rect fill="#F1F1F1" height="82.4375" style="stroke:#181818;stroke-width:0.5;" width="167" x="287" y="202"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="139" x="301" y="218.5332">CM_ActiveSensor_typ</text><line style="stroke:#181818;stroke-width:0.5;" x1="288" x2="453" y1="223.6094" y2="223.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="153" x="293" y="242.1426">S_PushButon    : BOOL;</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="155" x="293" y="259.752">B_SensorActive : BOOL;</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="148" x="293" y="277.3613">H_LedStation   : BOOL;</text></g><g id="elem_CM_Buzzer_typ"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="112" x="489.5" y="219.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="496.5" y="236.0332">CM_Buzzer_typ</text><line style="stroke:#181818;stroke-width:0.5;" x1="490.5" x2="600.5" y1="241.1094" y2="241.1094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="93" x="495.5" y="259.6426">Active : BOOL;</text></g><!--MD5=[71245602853256e2228fdb9323094143]
+link EM_ConveyorThreeStations_typ to CM_Motor_typ--><g id="link_EM_ConveyorThreeStations_typ_CM_Motor_typ"><path codeLine="22" d="M274.21,142.02 C240.12,165.57 203.34,190.99 175.39,210.3 " fill="none" id="EM_ConveyorThreeStations_typ-CM_Motor_typ" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/></g><!--MD5=[3e8aa9b682f9ae7adec33444f5b17c86]
+link EM_ConveyorThreeStations_typ to CM_ActiveSensor_typ--><g id="link_EM_ConveyorThreeStations_typ_CM_ActiveSensor_typ"><path codeLine="23" d="M370.5,142.26 C370.5,162.35 370.5,183.77 370.5,201.59 " fill="none" id="EM_ConveyorThreeStations_typ-CM_ActiveSensor_typ" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/></g><!--MD5=[516f6a2493c4628119fffd96839d3cd8]
+link EM_ConveyorThreeStations_typ to CM_Buzzer_typ--><g id="link_EM_ConveyorThreeStations_typ_CM_Buzzer_typ"><path codeLine="24" d="M440.42,142.02 C469.17,169.38 500.56,199.25 521.48,219.15 " fill="none" id="EM_ConveyorThreeStations_typ-CM_Buzzer_typ" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/></g><!--MD5=[c3b9c8538414d3cbffb585c8c44d5b30]
+@startuml
+object EM_ConveyorThreeStations_typ
+EM_ConveyorThreeStations_typ : StationInput : CM_ActiveSensor_typ; 
+EM_ConveyorThreeStations_typ : StationOne   : CM_ActiveSensor_typ; 
+EM_ConveyorThreeStations_typ : StationTwo   : CM_ActiveSensor_typ; 
+EM_ConveyorThreeStations_typ : StationThree : CM_ActiveSensor_typ;
+EM_ConveyorThreeStations_typ : Motor        : CM_Motor_typ;
+EM_ConveyorThreeStations_typ : Buzzer       : CM_Buzzer_typ; 
+
+object CM_Motor_typ
+CM_Motor_typ : K_ActivatePositiveDirection : BOOL;
+CM_Motor_typ : K_ActivateNegativeDirection : BOOL;
+
+object CM_ActiveSensor_typ
+CM_ActiveSensor_typ : S_PushButon    : BOOL;
+CM_ActiveSensor_typ : B_SensorActive : BOOL;
+CM_ActiveSensor_typ : H_LedStation   : BOOL;
+
+object CM_Buzzer_typ
+CM_Buzzer_typ : Active : BOOL;
+
+EM_ConveyorThreeStations_typ .. CM_Motor_typ 
+EM_ConveyorThreeStations_typ .. CM_ActiveSensor_typ 
+EM_ConveyorThreeStations_typ .. CM_Buzzer_typ 
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 19:01:30 CEST 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: US
+--></g></svg>

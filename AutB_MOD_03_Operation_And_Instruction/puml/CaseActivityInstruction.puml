@@ -1,0 +1,17 @@
+@startuml
+start
+if ((diCounter = 1,5) then (yes)
+  : xMyCondition := TRUE; 
+  : xMyThirdCondition := FALSE;
+elseif (diCounter = 2) then (yes)
+  : xMyCondition := FALSE; 
+  : xMyThirdCondition := TRUE;
+elseif (diCounter = 10..20) then (yes)
+  : xMyCondition := TRUE; 
+  : xMyThirdCondition := TRUE;
+else ( else)
+  : xMyCondition := NOT xMyCondition; 
+  : xMySecondCondition := xMyCondition OR xMySecondCondition;
+endif
+stop
+@enduml

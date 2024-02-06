@@ -1,0 +1,73 @@
+ @startuml
+object Unit
+Unit : Energy Drink Preparation
+
+object EM01
+EM01    :   Prepare Product 1
+
+object EM01_CM01
+EM01_CM01    :   XV11
+
+object EM01_CM02
+EM01_CM02    :   XV12
+
+object EM02
+EM02    :   Prepare Product 2
+
+object EM02_CM01
+EM02_CM01    :   XV21
+
+object EM02_CM02
+EM02_CM02    :   XV22
+
+object EM02_CM03
+EM02_CM03    :   XV23
+
+object EM03
+EM03    :   Temperature Control
+
+object EM03_CM01
+EM03_CM01    :   XV31
+
+object EM03_CM02
+EM03_CM02    :   XV32
+
+object EM04
+EM04    :   Agitator
+
+object EM04_CM01
+EM04_CM01    :   SIC41
+
+
+object EM05
+EM05    :   Transfer to bottle
+
+object EM05_CM01
+EM05_CM01    :   M51
+
+object EM05_CM02
+EM05_CM02    :   M52
+
+
+Unit *-- EM01
+Unit *-- EM02
+Unit *-- EM03
+Unit *-- EM04
+Unit *-- EM05
+
+EM01 *-- EM01_CM01
+EM01 *-- EM01_CM02
+
+EM02 *-- EM02_CM01
+EM02 *-- EM02_CM02
+EM02 *-- EM02_CM03
+
+EM03 *-- EM03_CM01
+EM03 *-- EM03_CM02
+
+EM04 *-- EM04_CM01
+
+EM05 *-- EM05_CM01
+EM05 *-- EM05_CM02
+
+@enduml

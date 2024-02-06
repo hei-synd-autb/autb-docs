@@ -4,6 +4,33 @@
   <br>
 </h1>
 
+# Industrial Automation Base AutB List of Modules
+[Module 00 Quick Start](./AutB_MOD_00_Quick_Start/README.md) Une brève introduction au monde du PLC
+
+[Module 01 Interface](./AutB_MOD_01_Interface/README.md) Gestion des interfaces de l'automate.
+
+[Module 02 Data Structure](./AutB_MOD_02_Data_Structure/README.md)
+
+[Module 03 Operation and Instruction](./AutB_MOD_03_Operation_And_Instruction/README.md) Les opération et instructions de base du langage IEC-61131-3.
+
+[Module 04 Program Organisation Unit]
+
+[Module 05 Robust Programming with State Machine]
+
+[Module 06 Mechatronics Hard]
+
+[Module 07 Mechatronics Soft]
+
+[Module 08 Synchronized Motion with Real-Time Ethernet]
+
+[Module 09 Motion Control with PLCopen]
+
+[Module 10 OPC-UA]
+
+# Industrial Automation Labs
+...
+
+
 ## Description
 
 All student documents for the [HEI-Vs](https://hevs.ch/synd) Engineering Course Basic Automation Autb

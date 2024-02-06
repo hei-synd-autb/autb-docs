@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="168px" preserveAspectRatio="none" style="width:308px;height:168px;background:#FFFFFF;" version="1.1" viewBox="0 0 308 168" width="308px" zoomAndPan="magnify"><defs/><g><g id="elem_FB_StopAxis"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="161" x="7" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80" x="47.5" y="23.5332">FB_StopAxis</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="167" y1="28.6094" y2="28.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="149" x="13" y="47.1426">ioAxisInfo : ST_AxisInfo;</text></g><g id="elem_ST_AxisInfo"><rect fill="#F1F1F1" height="37.6094" style="stroke:#181818;stroke-width:0.5;" width="88" x="203.5" y="11.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="210.5" y="28.0332">ST_AxisInfo</text><line style="stroke:#181818;stroke-width:0.5;" x1="204.5" x2="290.5" y1="33.1094" y2="33.1094"/></g><g id="elem_ST_AxisTwoEncoder"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="267" x="34" y="114"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="130" x="102.5" y="130.5332">ST_AxisTwoEncoder</text><line style="stroke:#181818;stroke-width:0.5;" x1="35" x2="300" y1="135.6094" y2="135.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="255" x="40" y="154.1426">stSecondEncoder : ST_SecondEncoder;</text></g><!--MD5=[2250e1ed00ee8bc84930e9b9a54f97a5]
+reverse link FB_StopAxis to ST_AxisTwoEncoder--><g id="link_FB_StopAxis_ST_AxisTwoEncoder"><path codeLine="8" d="M112.68,64.55 C124.85,80.52 139.15,99.29 150.09,113.65 " fill="none" id="FB_StopAxis-backto-ST_AxisTwoEncoder" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="104.66,54.03,105.1106,61.227,111.9274,63.5791,111.4767,56.3821,104.66,54.03" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[acbeca8c050a91d7b9c28ef77c21d178]
+reverse link ST_AxisInfo to ST_AxisTwoEncoder--><g id="link_ST_AxisInfo_ST_AxisTwoEncoder"><path codeLine="9" d="M221.35,65.82 C209.4,81.51 195.56,99.67 184.9,113.66 " fill="none" id="ST_AxisInfo-backto-ST_AxisTwoEncoder" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="215.88,61.46,233.57,49.79,227.01,69.94,215.88,61.46" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[c8120fe9c817365d187346014c31dd66]
+@startuml
+object FB_StopAxis
+FB_StopAxis : ioAxisInfo : ST_AxisInfo;
+object ST_AxisInfo
+object ST_AxisTwoEncoder
+ST_AxisTwoEncoder : stSecondEncoder : ST_SecondEncoder;
+
+FB_StopAxis o- - ST_AxisTwoEncoder
+ST_AxisInfo <|- - ST_AxisTwoEncoder
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 19:01:30 CEST 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: US
+--></g></svg>

@@ -1,0 +1,13 @@
+@startuml
+
+start
+: diNumber  := 2;
+: diCounter := 21;
+repeat :diNumber1 := diNumber1 * 2;
+       :diCounter := diCounter - 1;  
+repeat while (diCounter = 0)  is (no) not (yes)
+: diResult := diNumber;
+stop
+
+@enduml
+

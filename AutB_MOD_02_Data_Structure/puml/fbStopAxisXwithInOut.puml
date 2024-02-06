@@ -1,0 +1,6 @@
+ @startuml
+object FB_StopAxis
+object ST_AxisInfo
+
+FB_StopAxis o-- ST_AxisInfo
+@enduml

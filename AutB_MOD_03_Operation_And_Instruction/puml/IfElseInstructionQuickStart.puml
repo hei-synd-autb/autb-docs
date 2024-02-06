@@ -1,0 +1,15 @@
+@startuml
+start
+if (xMyCondition) then (yes)
+  :diToRegister := 7;
+elseif (xMySecondCondition) then (yes)
+  :diToRegister := 14;
+else
+  :diToRegister := 0;
+endif
+stop
+@enduml
+
+
+
+

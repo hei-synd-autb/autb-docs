@@ -1,0 +1,16 @@
+@startuml
+
+start
+: diCounter := 5;
+
+while (diCounter >= 1) is (yes)
+    : diCounter := diCounter - 1;
+    : diNumber1 := diNumber1 * 2;
+endwhile (no)
+
+stop
+
+@enduml
+
+
+

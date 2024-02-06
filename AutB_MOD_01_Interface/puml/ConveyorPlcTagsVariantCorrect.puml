@@ -1,0 +1,26 @@
+ @startuml
+object EM_ConveyorThreeStations_typ
+EM_ConveyorThreeStations_typ : StationInput : CM_ActiveSensor_typ; 
+EM_ConveyorThreeStations_typ : StationOne   : CM_ActiveSensor_typ; 
+EM_ConveyorThreeStations_typ : StationTwo   : CM_ActiveSensor_typ; 
+EM_ConveyorThreeStations_typ : StationThree : CM_ActiveSensor_typ;
+EM_ConveyorThreeStations_typ : Motor        : CM_Motor_typ;
+EM_ConveyorThreeStations_typ : Buzzer       : CM_Buzzer_typ; 
+
+object CM_Motor_typ
+CM_Motor_typ : K_ActivatePositiveDirection : BOOL;
+CM_Motor_typ : K_ActivateNegativeDirection : BOOL;
+
+object CM_ActiveSensor_typ
+CM_ActiveSensor_typ : S_PushButon    : BOOL;
+CM_ActiveSensor_typ : B_SensorActive : BOOL;
+CM_ActiveSensor_typ : H_LedStation   : BOOL;
+
+object CM_Buzzer_typ
+CM_Buzzer_typ : Active : BOOL;
+
+EM_ConveyorThreeStations_typ .. CM_Motor_typ 
+EM_ConveyorThreeStations_typ .. CM_ActiveSensor_typ 
+EM_ConveyorThreeStations_typ .. CM_Buzzer_typ 
+
+@enduml

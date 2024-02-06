@@ -1,0 +1,19 @@
+ @startuml
+object ST_AxisInfo
+ST_AxisInfo : AxisId : UDINT;
+ST_AxisInfo : AxisName : STRING := 'Axe de base';
+ST_AxisInfo : SetVelocity : REAL;
+ST_AxisInfo : SetDeceleration : REAL;
+ST_AxisInfo : ActualPosition : REAL;
+ST_AxisInfo : ActualVelocity : REAL := 0;
+ST_AxisInfo : bAxisStopped : BOOL;
+ST_AxisInfo : DigitalInput_1 : BOOL;
+
+object ST_AxisInfo_MoreInputs 
+ST_AxisInfo_MoreInputs : DigitalInput_2 : BOOL;
+ST_AxisInfo_MoreInputs : DigitalInput_3 : BOOL;
+ST_AxisInfo_MoreInputs : DigitalInput_4 : BOOL;
+
+ST_AxisInfo <|-- ST_AxisInfo_MoreInputs 
+
+@enduml

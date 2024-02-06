@@ -1,0 +1,13 @@
+ @startuml
+object FB_StopAxis
+FB_StopAxis : ioAxisInfo : ST_AxisInfo;
+object ST_AxisInfo
+object ST_AxisTwoEncoder
+object ST_SecondEncoder
+
+FB_StopAxis o-- ST_AxisInfo
+
+ST_AxisTwoEncoder *-- ST_AxisInfo
+ST_AxisTwoEncoder *-- ST_SecondEncoder
+
+@enduml
