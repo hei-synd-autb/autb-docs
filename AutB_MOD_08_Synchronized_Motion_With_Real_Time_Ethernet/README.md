@@ -110,7 +110,7 @@ Il est possible d'effectuer plusieurs types d'opérations sur les trajectoires. 
 ### Transformation géométrique de mise à l'échelle sur l'axe y.
 Concrètement, si l'on reprend l'exemple du polynôme d'ordre 5, cela signifie que pour modifier la longueur du déplacement d'un facteur, coefficient **c** , il suffit de modifier chaque paramètre a_n par le même coefficient **c**.
 
-$\ P*c = (c*a_5) t^5 + (c*a_4) t^4 + (c*a_3) t^3 + (c*a_2) t^2 + (c*a_1) t + (c*a_0) $
+$\ P\times c = (c\times a_5) t^5 + (c\times a_4) t^4 + (c\times a_3) t^3 + (c\times a_2) t^2 + (c\times a_1) t + (c\times a_0) $
 
 > Cette particularité simplifie encore le calcul d'une trajectoire polynômiale. Un type de trajectoire comme celui d'ordre 5 ne doit être calclulé qu'une seule fois, il suffit ensuite de le mettre à l'échelle.
 
