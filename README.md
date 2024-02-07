@@ -10,6 +10,10 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
+# Repositories
+- **This** repository contains all module for theory.
+- The **LAB 0X** laboratories are all in separated repositories. [See links below on List of Labs](#industrial-automation-labs).
+
 # List of Modules
 [Module 00 Quick Start](./AutB_MOD_00_Quick_Start/README.md): Une brève introduction au monde du PLC
 
@@ -34,17 +38,22 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 [Module 10 OPC-UA](./AutB_MOD_10_OPC_UA/README.md): Une architecture de communication unifiée pour l'automation industrielle.
 
 # Industrial Automation Labs
-...
 
+- [autb-lab-01](https://github.com/hei-synd-autb/autb-lab-01) Quick Start, a kind of Hello PLC World!
+- [autb-lab-02](https://github.com/hei-synd-autb/autb-lab-02) A data structure to manage a conveyor
+- [autb-lab-03](https://github.com/hei-synd-autb/autb-lab-03) A function block for a sensor
+- [autb-lab-04](https://github.com/hei-synd-autb/autb-lab-04) A function block for an actuator
+- [autb-lab-05](https://github.com/hei-synd-autb/autb-lab-05) Mise en service d'un axe électrique couplé à un entraînement mécanique
+- [autb-lab-06](https://github.com/hei-synd-autb/autb-lab-06) Gestion d'un mouvement discret, MC_MoveAbsolute, basé sur PLCopen motion control.
+- [autb-lab-07](https://github.com/hei-synd-autb/autb-lab-07) Gestion d'un mouvement basé sur un polynôme d'ordre 5.
+
+# List of software for the automation lab.
+La plupart des logiciels utilisés dans le laboratoire d'automation sont libres ou disponibles en version limitée.
+[La page suivante fournit la liste des logiciels et la manière de relier votre PC à la cellule automation](./AutB_LAB/ListOfSoftwareForBoxProgramming.md).
 
 ## Description
 
 All student documents for the [HEI-Vs](https://hevs.ch/synd) Engineering Course Basic Automation Autb
-* [Scripts](course/)
-* [Presentations](slides/)
-* [Labo](labo)
-* [Projects](project)
-* [Exercises](exercises)
 
 ## How to use
 
