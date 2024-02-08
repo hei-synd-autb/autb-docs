@@ -18,6 +18,7 @@ You need a RJ45 port port TCP/IP.
 You must configure this port with the same subnet as the ctrlX Core: 192.168.0.200.
 These ports are reserved:
 -   192.168.0.1
+-   192.168.0.2
 -   192.168.0.33
 -   192.168.0.10
 
