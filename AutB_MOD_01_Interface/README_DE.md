@@ -133,4 +133,4 @@ Eine Operation könnte zum Beispiel sein:
     <figcaption>Relation entre les différents éléments ISA-88</figcaption>
 </figure
 
-[2. Teil, Eingabe-Ausgabe-Module](./README_DE_part_2.md), 
+[2. Teil, Eingabe-Ausgabe-Module](./README_DE_part_2.md, 
