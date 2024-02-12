@@ -42,23 +42,23 @@ L’instruction ```ELSIF```
 ELSIF <Anoter Condition> THEN
    <Instruction>
 ```
-optionnel est exécutée si IF est faux avec une nouvelle condition.
+optionnel est exécutée si ``IF`` est faux avec une nouvelle condition.
 
 L’instruction ```ELSE``` *optionnelle et sans condition*
 ```iecst
 ELSE
    <Instruction>
 ```
-Est exécutée uniquement si les conditions précédentes sont fausses.
+est exécutée uniquement si les conditions précédentes sont fausses.
 
-Les instructions IF et ELSIF se terminent obligatoirement par
+Les instructions ``IF`` et ``ELSIF`` se terminent obligatoirement par
 ```iecst
 END_IF
 ```
 
 Si cela n'est pas le cas, le compilateur refusera de terminer le travail.
 
-> Le compilateur refuse une instruction **IF** ou **ELSIF** vide. Mais un simple ```;``` suffira.
+> Le compilateur refuse une instruction ``IF`` ou ``ELSIF`` vide. Mais un simple ```;``` suffira.
 ```iecst 
 IF xMyCondition THEN
     // Erreur de compilation
@@ -70,12 +70,12 @@ IF xMyCondition THEN
 END_IF
 ```
 
-Plusieurs instructions **ELSIF** sont possibles, mais cela est déconseillé au niveau de la qualité de programmation, dans ce cas, mieux vaut utiliser une instruction **CASE**.
+Plusieurs instructions ``ELSIF`` sont possibles, mais cela est déconseillé au niveau de la qualité de programmation, dans ce cas, mieux vaut utiliser une instruction ``CASE``.
 
-L’instruction **ELSE** est exécutée si toutes les conditions précédentes sont fausses. Elle est conseillée, l’absence du **ELSE** est considérée comme un oubli du programmeur, quitte à insérer un commentaire.
+L’instruction ``ELSE`` est exécutée si toutes les conditions précédentes sont fausses. Elle est conseillée, l’absence du `ELSE` est considérée comme un oubli du programmeur, quitte à insérer un commentaire.
 Le point-virgule
  
-On notera ci-dessous que le code se termine sans « ; », c’est le style **Codesys**, en **SCL Siemens**, il ne faudra pas l’oublier.
+On notera ci-dessous que le code se termine sans ``;``, c’est le style **Codesys**, en **SCL Siemens**, il ne faudra pas l’oublier.
 ```iecst 
 (*
     Example of Instruction IF 
@@ -99,7 +99,7 @@ END_IF
     <figcaption>If Elsif Else Instruction</figcaption>
 </figure>
 
-> Le language Structured Text admet deux types de commentaires. // *commentaire* en début de ligne ou (* *commentaire* *) avant et après le commentaire.
+> Le langage Structured Text admet deux types de commentaires. ``//`` commentaire en début de ligne ou ``(* commentaire *)`` avant et après le commentaire.
 
 ```iecst  
 //
@@ -144,7 +144,7 @@ FOR diCounter := 5 TO 1 BY -1 DO
    diNumber1 := diNumber1 * 2;
 END_FOR
 ``` 
-### Diagrame d'activité de l'instruction ```FOR```
+### Diagramme d'activité de l'instruction ```FOR```
 <figure>
     <img src="./puml/ForInstructionQuickStart/ForInstructionQuickStart.svg"
          alt="For Loop Instruction">
