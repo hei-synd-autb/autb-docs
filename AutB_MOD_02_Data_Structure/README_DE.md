@@ -450,6 +450,24 @@ Persönlich nie benutzt.
 ### Erweitert Enum
 **Unmöglich**. Es ist nicht möglich, eine Aufzählung zu erweitern, wie dies bei einer Struktur möglich ist.
 
+## Zweites Beispiel
+```iecst
+TYP EN_TrafficLight_typ:
+(
+     Idle   := 99,
+     Rot    := 1,
+     Orange := 2,
+     Grün   := 3
+) WORT := Rot;
+END_TYPE
+```
+
+> Beachten Sie, dass der Leerlauf bei 99 liegt. Dies bedeutet, dass die Enum nicht funktioniert, wenn sie nicht initialisiert ist.
+
+> Hinweis) ``WORD`` := Rot; **WORD** ermöglicht es hier, die Verwendung des Basistyps für das Enum zu erzwingen, beispielsweise für numerische oder logische Verarbeitung.
+
+> Beachten Sie, dass es möglich ist, einen Initialisierungswert für die Enum festzulegen. Hier: **Rot**.
+
 # Alias
 Ein Alias ​​ist ein benutzerdefinierter Datentyp, der zum Erstellen eines alternativen Namens für einen Datentyp oder Funktionsblock verwendet werden kann.
 
@@ -474,7 +492,7 @@ Verwenden
 sMessageA := 'This is a message';
 ```
 
-> Das ist interessant, wenn wir häufig eine bestimmte Konstruktion verwenden, hier die Zeichenfolge. Denke immer daran
+> Das ist interessant, wenn wir häufig eine bestimmte Konstruktion verwenden, hier die Zeichenfolge.
 
 # Union
 Eine UNION ist eine Datenstruktur, die normalerweise verschiedene Datentypen enthält. In einer Union haben alle Komponenten den gleichen Offset, belegen also den gleichen Speicherplatz.

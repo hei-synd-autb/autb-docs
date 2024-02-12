@@ -451,6 +451,24 @@ Personnellement jamais utilisé.
 ### Extends Enum
 **Impossible**. Il n'est pas possible d'étendre un Enum comme il est possible de le faire avec une structure.
 
+## Deuxième exemple
+```iecst
+TYPE EN_TrafficLight_typ :
+(
+    Idle   := 99,
+    Rouge  := 1,
+    Orange := 2,
+    Vert   := 3
+) WORD := Rouge;
+END_TYPE
+```
+
+> Noter Idle à 99, c'est que si l'Enum n'est pas initalisé, il ne fonctionnera pas.
+
+> Noter ) ``WORD`` := Rouge; **WORD** permet ici de forcer le type de base à utiliser pour l'Enum, par exemple pour un traitement numérique ou logique.
+
+> Noter qu'il est possible de fixer une valeur d'initilisation pour l'Enum. Ici: **Rouge**.
+
 # Alias
 Un alias est un type de données défini par l'utilisateur qui peut être utilisé pour créer un nom alternatif pour un type de données ou un bloc fonctionnel.
 
@@ -474,7 +492,7 @@ Utilisation
 sMessageA := 'This is a message';
 ```
 
-> Ceci est intéressant si on utilise souvent une certaine construction, ici la chaine de caractères. Toujours se rappeler qu'
+> Ceci est intéressant si on utilise souvent une certaine construction, ici la chaine de caractères.
 
 # Union
 Une UNION est une structure de données qui contient généralement différents types de données. Dans une union, tous les composants ont le même décalage, ce qui signifie qu'ils occupent le même espace mémoire.
