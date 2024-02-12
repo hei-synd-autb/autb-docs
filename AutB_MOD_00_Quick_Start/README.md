@@ -26,9 +26,11 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 ## Abstract (www.iec.ch)
 IEC 61131-1:2003 applies to programmable controllers (**PLC**) and their associated peri-pherals such as programming and debugging tools (PADTs), human-machine interfaces (HMIs), etc., which have as their intended use the control and command of machines and industrial processes. It gives the definitions of terms used in this standard. It identifies the principal functional characteristics of programmable controller systems. This second edition cancels and replaces the first edition published in 1992 and constitutes a technical revision. *This bilingual version (2012-05) corresponds to the monolingual English version, published in 2003-05*.
 
+> Les citations en anglais ne sont pas traduite.
+
 # Objectif
 
-Ce module est simplement destiné à présenter les notions de base qui permettrons de travailler dès les premiers travaux pratiques.
+Ce module est destiné à présenter les notions de base nécessaires pour aborder le premier travail pratique.
 - [Système Cyclique](#principe-de-base)
 - [Variables](#les-variables)
 - [Les types de base](#les-types-de-base)
@@ -40,14 +42,14 @@ Ce module est simplement destiné à présenter les notions de base qui permettr
 <figure>
     <img src="./img/Application Example 5 Axis Handling Solution.png"
          alt="Application Example 5 Axis Handling Solution">
-    <figcaption>Application Example 5 Axis Handling Solution, Source: Bosch Rexroth</figcaption>
+    <figcaption>Application Example, 5 Axis Handling Solution, Source: Bosch Rexroth</figcaption>
 </figure>
 
 # Les langages de IEC 61131-3
 Ce paragraphe sur les langages est donné à titre d'information. Nous n'utiliserons que le langage **Structured Text** qui sera largement détaillé dans la suite de ce cours.
 
-## La norme défini plusieurs types de langage
-### Le Ladder diagram LD
+## La norme définit plusieurs types de langage
+### Le Ladder Diagram LD
 Pour la représentation de contacts physiques. Typiquement pour représenter, par exemple, l’état de nombreux disjoncteurs et contacteurs électriques pour l'alimentation électrique d'un bâtiment. **Ce langage est inutilisable, ou presque, pour exécuter des algorithmes et du traitement du signal**. Nous ne l'utiliserons pas.
 
 <figure>
@@ -58,7 +60,7 @@ Pour la représentation de contacts physiques. Typiquement pour représenter, pa
 
 > Le ladder est encore très répandu dans certaines industries.
 
-### Le Sequential function chart SFC
+### Le Sequential Function Chart SFC
 **Dérivé du modèle mathématique des réseaux de Petri**. Peut être utile pour la représentation d’un processus qui se déroule selon une liste de séquences bien définies et peu compliquée. Devient vite ingérable si le nombre de séquences augmente. Son utilisation est anecdotique. Nous ne l'utiliserons pas.
 
 <figure>
@@ -67,7 +69,7 @@ Pour la représentation de contacts physiques. Typiquement pour représenter, pa
     <figcaption>Ladder Programming Source: <a href="https://www.beckhoff.com/fr-ch/">Beckhoff</a></figcaption>
 </figure>
 
-### Le Function block diagram FBD
+### Le Function Block Diagram FBD
 Comme son nom l’indique, il est dédié à la représentation de **Function Blocks, FB**. Il est utile pour représenter une chaîne de régulateurs. Il est aussi utilisé pour la programmation de relais de sécurité pour lequels on utilise principalement une série de block paramétrable. Convient pour représenter des algorithmes au niveau macroscopique, mais pas pour écrire l'algorithme lui-même. **Nous l'utiliserons parfois pour modéliser un programme, mais pas pour l'écriture de programmes.** 
 
 <figure>
@@ -79,6 +81,8 @@ Comme son nom l’indique, il est dédié à la représentation de **Function Bl
 ### Le Structured Text
 Le texte structuré est inspiré du langage Pascal développé dans les années septante par le professeur Niklaus Wirth à l’EPFZ dans les années 70. C’est un langage fortement typé et relativement robuste.
 Depuis 2013, *third edition*, le texte structuré existe avec une extension orientée objet. Il n’existe pas actuellement d’information faisant penser à une réelle transformation du langage dans les années à venir, au même titre que le langage C pour les systèmes embarqués, il est fort probable qu’il reste longtemps le langage de base pour la programmation des automates.
+
+> On ne peut citer Niklaus Wirth sans citer sa loi empirique: **les programmes ralentissent plus vite que le matériel accélère**.
 
 # Principe de base
 Ce qui différencie principalement un automate programmable, PLC ou Programmable Logic Controller est son fonctionnement purement cyclique.
@@ -106,13 +110,17 @@ Ce genre de boucle, ne garantit toutefois pas que la durée de chaque boucle soi
 
 > La condition nécessaire et suffisante pour échantillonner un signal sans perte d'information est que la fréquence d'échantillonnage **Fs** soit supérieure ou égale au double de la fréquence maximale du signal analogique. Ce principe fonctionne pour autant que la période d'échantionnage soit autant régulière que possible.
 
--   $ f_s \geq 2f_{max} $
+-   $\ f_s \geq 2f_{max} $
 
 >  En régulation, on préférera même:
 
--   $ f_s \geq 10f_{max} $
+-   $\ f_s \geq 10f_{max} $
 
 Afin de pouvoir profiter de la puissance de calcul des automates pour faire de la commande numérique, nous exigeons de notre système qu'il travaille avec un temps de cycle fixe.
+
+> A ma connaissance, la première application concrête de la technique d'échantillonage utilisait une fréquence de l'ordre de 16 à 18 $\ image/s $ et date de 1895.
+
+*C'est le cinéma...*
 
 ### Système minimum
 Dans de nombreux cas, cette architecture est suffisante.
@@ -190,7 +198,7 @@ VAR_IN_OUT
     aMyBuffer   : ARRAY[1..10000] OF DINT;
 END_VAR
 ```
-> La notion de VAR_IN_OUT est de mes aspects préférés du language IEC 61131-3, nous auront l'occasion d'y revenir plus en détail.
+> La notion de VAR_IN_OUT est l'un de mes aspects préférés du language IEC 61131-3, nous auront l'occasion d'y revenir plus en détail.
 
 ## Les variables simples
 Les variables simples sont accessibles uniquement dans le block dans lequel elles ont été déclarées.
@@ -202,6 +210,7 @@ END_VAR
 
 ## Les variables globales
 Les variables sont accessibles partout dans le programme.
+*Elles sont a utiliser avec parcimonie car elles sont un obstactle à la modularité du code. Un module de code qui utilise une variable globale ne pourra être réutiliser sans ajouts ou modifications dans un autre programme*.
 ```iecst
 VAR_GLOBAL
     iMyProgramParameter   : INT;
@@ -222,7 +231,7 @@ END_VAR
 ## *Variables* Pointeurs
 > Le traitment des pointeurs ne fait en principe pas partie des objectifs de ce cours.
 
-Ci dessous, pMonAge contient l’adresse d’une variable INT.
+Ci-dessous, pMonAge contient l’adresse d’une variable INT.
 Exemple
 ```iecst
 VAR
@@ -234,13 +243,13 @@ END_VAR
 # Les types de base
 Il y a encore quelques années, on prenait garde à utiliser des variables *courtes* afin d'économiser de la place en mémoire et/ou de réduire le temps de calcul. C'est de moins en moins le cas aujourd'hui. La plupart des processeurs sur les PLC travaillent sur 32 ou 64 bits.
 
-Par contre, connaitre la taille et le type de donnée reste souvent très important. 
+Par contre, connaitre la taille et le type de donnée reste important. 
 
 ## Exemple 1
 Le PLC va communiquer avec des capteurs qui eux, sont équipés de petits microcontrôleurs dont la taille est limitée. Si l'on veut écrire sur un registre de 8 bits à partir d'un REAL de 32 bits, on aura un problème.
 
 ## Exemple 2
-Malgré son grand âge, le Modbus reste un protocol de communication très répendu qui travaille par défaut sur 8 bits. Si l'on veut transférer un nombre précis sur 64 bits, LREAL, il faudra coder, puis décoder le nombres de bytes nécessaires, mais aussi dans le bon ordre. Une mauvaise interprétation pourrait conduire à un nombre inconnu qui provoque le même type de problème qu'une division par 0, à savoir, un crash du PLC.
+Malgré son grand âge, le Modbus reste un protocol de communication très répendu qui travaille par défaut sur 16 bits. Si l'on veut transférer un nombre précis sur 64 bits, LREAL, il faudra coder, puis décoder le nombres de bytes nécessaires, mais aussi dans le bon ordre. Une mauvaise interprétation pourrait conduire à un nombre inconnu qui provoque le même type de problème qu'une division par 0, à savoir, un crash du PLC.
 
 ## Binaire
 |Data type|Range|Size|
@@ -360,7 +369,6 @@ prResult_32 := ADR(ForCheck_32);
 F_ModbusRegisterTo_FLOAT32 := prResult_32^;
 ```
 
-
 ## Datatype selon PLCopen
 On peut être un supporter de PLCopen sans pour autant être d’accord avec tout.
 Dans son document PLCopen Coding Guidelines V1.0, § 5.23. Select Appropriate Data Type.
@@ -458,7 +466,7 @@ Détecte un flanc montant et reste active pendant exactement un cycle automate.
 
 > C'est l'exemple typique d'un bloque fonctionnel, car, comparé à une fonction ```FC``` qui n'a pas de mémoire interne, ```R_TRIG``` doit mémoriser l'état précédent.
 
-### Paramètres du bloque fonctionnel ```R_TRIG```
+### Paramètres du bloc fonctionnel ```R_TRIG```
 |Parameters|Declaration|Data type|Description|
 |----------|-----------|---------|-----------|
 |CLK       |Input      |BOOL     |Incoming signal, the edge of which is to be queried|
@@ -579,7 +587,7 @@ Au contraire du TON, le TOF commence à incrémenter ET, Ellapsed Time quand le 
 </figure>
 
 ### ``TP``
-TP est un gérérateur d'impulsions, quelle que soit la durée du signal en entrée, la durée du signal de sortie sera identique.
+TP est un générateur d'impulsions, quelle que soit la durée du signal en entrée, la durée du signal de sortie sera identique.
 
 <figure>
     <img src="./puml/TpTimeDiagram/TpTimeDiagram.svg"
