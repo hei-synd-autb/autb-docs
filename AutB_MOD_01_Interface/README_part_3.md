@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1 align="left">
   <br>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
   <br>
@@ -8,12 +8,11 @@
 
 Cours AutB
 
-Module MOD-01-Interfaces_AutB
-
-# Module 01 Interfaces
-## *3ème partie, I/O mapping*
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
+
+# MOD 01 Interfaces
+## *3ème partie, I/O mapping*
 
 *Keywords:* **TAG HDS SDS**
 
@@ -80,7 +79,8 @@ Un projet d'automation n'est pas terminé sans une gestion complète des alarmes
 |Un03Em01Id0001|Medium|The motor current is high|> 75[A]|I1_MotorCurrent|Unit01_C23_2|Reduce conveyor speed.|
 
 # Utilisation des ```tags``` au niveau du programme.
-Dans la préhistoire des automates, on utilisait parfois, les tags directement dans le programme en ```Ladder```. En structured Text:
+Dans la préhistoire des automates, on utilisait parfois, les tags directement dans le programme en ```Ladder```.
+**En structured Text:**
 ```iecst
 IF I1_Pb_Station_1 THEN
     K1_DirectionOutput := TRUE;

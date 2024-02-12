@@ -10,7 +10,6 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-
 # Module 00 Quick Start
 
 *Keywords:* **Variables / Instructions / Cycle Time / Types / Triggers / Timers**

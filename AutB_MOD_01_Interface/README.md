@@ -31,6 +31,8 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 IEC 61131-2:2017 specifies functional and electromagnetic compatibility requirements and related verification tests for any product where the primary purpose is performing the function of industrial control equipment, including PLC and/or PAC, and/or their associated peripherals which have as their intended use the control and command of machines, automated manufacturing and industrial processes, e.g. **discrete**, **batch** and **continuous control**.
 This fourth edition cancels and replaces the third edition published in 2007. This edition constitutes a technical revision.
 
+> Les citations en anglais ne sont pas traduite.
+
 # Classes de processus industriels
 
 ## Pourquoi parler des types de processus ?
