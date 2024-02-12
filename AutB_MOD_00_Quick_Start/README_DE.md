@@ -69,7 +69,7 @@ Zur Darstellung körperlicher Kontakte. Typischerweise zur Darstellung beispiels
     <figcaption>Ladder Programming Source: <a href="https://www.beckhoff.com/fr-ch/">Beckhoff</a></figcaption>
 </figure>
 
-### Le Function Block Diagram FBD
+### Ders Function Block Diagram FBD
 Wie der Name schon sagt, dient es der Darstellung von **Funktionsblöcken, FB**. Es eignet sich zur Darstellung einer Kette von Regulierungsbehörden. Es wird auch zur Programmierung von Sicherheitsrelais verwendet, wofür wir hauptsächlich eine Reihe konfigurierbarer Blöcke verwenden. Geeignet zur Darstellung von Algorithmen auf makroskopischer Ebene, jedoch nicht zum Schreiben des Algorithmus selbst. **Wir verwenden es manchmal zum Modellieren eines Programms, aber nicht zum Schreiben von Programmen.**
 
 <figure>
