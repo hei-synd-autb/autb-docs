@@ -160,7 +160,7 @@ Im Fall des Compilers/der IDE, den wir in diesem Kurs verwenden werden, sind die
 <figure>
     <img src="./img/VariablesAvantLeCode.png"
          alt="Variables Avant Le Code">
-    <figcaption>Variables Avant Le Code</figcaption>
+    <figcaption>Variablen vor dem Code</figcaption>
 </figure>
 
 Grundsätzlich gibt es in einer in IEC 61131-3 codierten SPS keine oder nur eine geringe dynamische Speicherzuweisung. Auch hier ist es eine Frage der **Robustheit**. Dies war auch der Fall, trifft aber heute weniger zu, um den begrenzten Speicherplatz besser kontrollieren zu können.
@@ -337,7 +337,8 @@ Base 16
 |ROR |ROR(nInWord,nPos) |Verschiebt *nInWord* um *nPos* Bits nach rechts, Bits, die nach rechts ausgehen, kommen nach links zurück. |
 
 ### Ein Beispiel für die Verwendung von WORD und DWORD
-In der Branche gibt es noch viele alte Kommunikationsprotokolle wie **Modbus**. Dieses Protokoll überträgt Informationen in 16-Bit-Registern, „WORD“. Wenn Sie ein auf Modbus codiertes „REAL“ lesen möchten, müssen Sie zwei „WORD“ lesen und diese beiden Register dann in ein REAL umwandeln.
+In der Branche gibt es noch viele alte Kommunikationsprotokolle wie **Modbus**. Dieses Protokoll überträgt Informationen in 16-Bit-Registern, ``WORD``. Wenn Sie ein auf Modbus codiertes ``REAL`` lesen möchten, müssen Sie zwei ``WORD`` lesen und diese beiden Register dann in ein REAL umwandeln.
+
 Hier ist ein Beispielcode.
 ```iecst
 //	Most Significant Word First
@@ -466,7 +467,7 @@ Erkennt eine steigende Flanke und bleibt genau einen SPS-Zyklus lang aktiv.
     <figcaption>R_TRIG Trigger auf der steigenden Seite</figcaption>
 </figure>
 
-> Dies ist das typische Beispiel eines Funktionsblocks, da „R_TRIG“ im Vergleich zu einer „FC“-Funktion, die keinen internen Speicher hat, den vorherigen Zustand speichern muss.
+> Dies ist das typische Beispiel eines Funktionsblocks, da ``R_TRIG`` im Vergleich zu einer „FC“-Funktion, die keinen internen Speicher hat, den vorherigen Zustand speichern muss.
 
 ### Funktionsblockparameter ```R_TRIG```
 |Parameters|Declaration|Data type|Description|
