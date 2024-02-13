@@ -171,22 +171,21 @@ CASE eEnableInOperation OF
 END_CASE
 ```
 
-#### Pragma
+### Pragma
 Les pragma sont des directives de compilation qui ne font pas partie de la norme de programmation mais imposent des conditions particulières, des options, de la part du compilateur.
 
-La définition du compilateur Codesys traduite:
+*La définition du compilateur Codesys traduite:*
 
-> Un pragma est une instruction spéciale dans le code source d'une application qui influence les propriétés des variables lors de la précompilation ou de la compilation (génération de code).
+> *Un pragma est une instruction spéciale dans le code source d'une application qui influence les propriétés des variables lors de la précompilation ou de la compilation (génération de code).*
 
 > Il existe différents pragmas pour différents usages (exemple : initialisation d'une variable, surveillance d'une variable, ajout d'une variable à la configuration des symboles, forcer l'affichage des messages lors du processus de compilation, et comportement d'une variable sous certaines conditions)
 
-
-Dans l'exemple mentionné ci-dessous:
-
-Elles ici ajoutées par défaut lorsque l'on créer un Enum à l'aide des menus contextuels.
+Dans l'exemple mentionné ci-dessus, ajoutés par défaut lorsque l'on ajoute un ENUM à l'aide du menu contextuel.
+``{attribute 'qualified_only'}``
+``{attribute 'strict'}``.
 
 #### Attribute qualified_only
-Dans le cas d'un ENUM, impose l'écriture du nom de l'ENUM pour l'utilisatino de ces composantes.
+Dans le cas d'un ENUM, impose l'écriture du nom de l'ENUM pour l'utilisation de ces composantes.
 ```iecst
     // This statement cause an error @ compilation if {attribute 'qualified_only'} is used.
     eEnableInOperation := STATE_INIT;
@@ -194,7 +193,7 @@ Dans le cas d'un ENUM, impose l'écriture du nom de l'ENUM pour l'utilisatino de
     eEnableInOperation := E_EnableInOperation.STATE_INIT;
 ```
 
-> Privilégier l'écriture du style ``E_EnableInOperation.STATE_INIT`` qui est toujours accepée.
+> Privilégier l'écriture du style ``E_EnableInOperation.STATE_INIT`` qui est toujours acceptée.
 
 #### Attribute strict
 Interdit l'écriture sur la variable d'état avec un type différent.
