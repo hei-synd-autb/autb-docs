@@ -14,9 +14,6 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 ## *1. Teil, Prinzip*
 
 
-Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
-
-
 *Keywords:* **61131-2 hardware tags**
 
 <figure>
@@ -130,7 +127,7 @@ Eine Operation könnte zum Beispiel sein:
 <figure>
     <img src="./img/S88_Relations.svg"
          alt="Lost image S88_Relations">
-    <figcaption>Relation entre les différents éléments ISA-88</figcaption>
+    <figcaption>Beziehung zwischen verschiedenen ISA-88-Elementen</figcaption>
 </figure
 
 [2. Teil, Eingabe-Ausgabe-Module](./README_DE_part_2.md), 

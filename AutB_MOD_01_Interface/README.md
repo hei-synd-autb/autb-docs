@@ -13,10 +13,6 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 # Module 01 Interfaces,
 ## *1ère partie, principe*
 
-
-Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
-
-
 *Keywords:* **61131-2 hardware tags**
 
 <figure>
