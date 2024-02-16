@@ -1,0 +1,3 @@
+@startuml TestDiagram
+User->World : Hello UML!
+@enduml

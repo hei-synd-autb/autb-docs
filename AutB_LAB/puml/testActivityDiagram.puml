@@ -1,0 +1,12 @@
+@startuml
+start
+:Init Axis;
+:Move Axis **Up**;
+repeat
+    :Axis Sychronized;
+repeat while (Still synchronized?) is (yes)
+->no;
+: Emergency Stop;
+stop
+@enduml
+

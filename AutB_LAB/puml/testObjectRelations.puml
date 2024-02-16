@@ -1,0 +1,14 @@
+@startuml
+object BaseObject
+object Composition
+object Agregation
+object Inheritance
+Inheritance : encoder_2 : ST_ENCODER;
+object AddSomeInfo
+AddSomeInfo : digitalInput_2 : BOOL;
+object IN_OUT
+
+BaseObject <|-- Inheritance
+Composition *-- AddSomeInfo
+IN_OUT o-- Agregation
+@enduml

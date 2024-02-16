@@ -1,0 +1,11 @@
+@startuml
+[*] --> Clearing
+Clearing --> Resetting
+Clearing : Clearing_SC := TRUE
+
+Resetting --> [*]
+Resetting : Resetting_SC := TRUE
+
+Clearing -> Stopping
+Stopping --> [*]
+@enduml

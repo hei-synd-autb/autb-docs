@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-Cours AutB
+Course AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
@@ -55,12 +55,20 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 - [autb-lab-06](https://github.com/hei-synd-autb/autb-lab-06) Gestion d'un mouvement discret, MC_MoveAbsolute, basé sur PLCopen motion control.
 - [autb-lab-07](https://github.com/hei-synd-autb/autb-lab-07) Gestion d'un mouvement basé sur un polynôme d'ordre 5.
 
-# List of software for the automation lab.
+# The LAB.
+<figure>
+    <img src="./img/OneUnit.jpg"
+         alt="Image Lost One Unit">
+    <figcaption>One Unit</figcaption>
+</figure>
+
+*English version only*
+
 La plupart des logiciels utilisés dans le laboratoire d'automation sont libres ou disponibles en version limitée.
-[La page suivante fournit la liste des logiciels et la manière de relier votre PC à la cellule automation](./AutB_LAB/ListOfSoftwareForBoxProgramming.md).
+[La page suivante fournit la liste des logiciels et la manière de relier votre PC à la cellule automation](./AutB_LAB/readme.md).
 
 Die meiste im Automatisierungslabor verwendete Software ist kostenlos oder in begrenzten Versionen verfügbar.
-[Auf der folgenden Seite finden Sie eine Liste der Software und wie Sie Ihren PC mit der Automatisierungszelle verbinden](./AutB_LAB/ListOfSoftwareForBoxProgramming.md).
+[Auf der folgenden Seite finden Sie eine Liste der Software und wie Sie Ihren PC mit der Automatisierungszelle verbinden](./AutB_LAB/readme.md).
 
 ## Description
 

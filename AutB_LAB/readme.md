@@ -2,13 +2,18 @@
   <br>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
   <br>
-  Industrial Automation Base
+  Industrial Automation Base - the Automation Boxes
   <br>
 </h1>
 
-Cours AutB
+# Tools for the lab
+> This section is a help for students, not part of the course.
 
-Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
+- [List Of Software For Box Programming](ListOfSoftwareForBoxProgramming.md)
+
+- [Some Git Tools](SomeGitTools.md)
+
+- [Create UML using PlantUML with some examples](CreateUMLwithExamples.md)
 
 # The lab
 

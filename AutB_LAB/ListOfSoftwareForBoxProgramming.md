@@ -2,27 +2,40 @@
   <br>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
   <br>
-  Industrial Automation Base
+  Industrial Automation Base Software
   <br>
 </h1>
 
-Cours AutB
+> Most of software on this page are not only dedicated to this course and can be useful for usage in the real life automation.
 
-Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
+Links on this page
+-   [Connect to the box](#connect-your-pc-to-the-automation-box)
+-   [GIT](#git) with a short introduction to GIT on [another page](SomeGitTools.md).
+-   [Tortoise Git](#tortoise-git)
+-   [CtrlX Works](#ctrlx-works)
+-   [Visual Studio Code](#visual-studio-code)
+-   [Notepad++](#notepad)
+-   [UA Expert](#ua-expert)
+-   [Prosys Monitor](#prosys-opc-ua-monitor)
 
 
 *Keywords:* **GIT TortoiseGIT ctrlX Codesys VSCode Notepad++ UAExpert**
 
 # Connect your PC to the automation box
 You need a RJ45 port port TCP/IP.
-You must configure this port with the same subnet as the ctrlX Core: 192.168.0.200.
+You must configure this port with the same subnet as the ctrlX Core: ###.###.#.200.
 These ports are reserved:
--   192.168.0.1
--   192.168.0.2
--   192.168.0.33
--   192.168.0.10
+-   ###.###.#.1
+-   ###.###.#.2
+-   ###.###.#.33
+-   ###.###.#.10
 
-For exemple: 192.168.0.**61**
+For exemple: ###.###.#.**61**
+
+Type **ipconfig** in Command Prompt, *press task Window, type cmd*, to find ip connection of the lab PC.
+```
+C:\Users\firstname.surname>ipconfig
+```
 
 > Connection of your PC to a device is a basic knowledge. If you do not know the commands **ping** and **ipconfig** learn them by heart.
 
@@ -52,7 +65,7 @@ git --version
 </figure>
 
 ## Tortoise GIT
-*Version of TortoiseGIT while writing this document:* **2.14.0**
+*Version of [TortoiseGIT](https://tortoisegit.org/) while writing this document:* **2.14.0**
 
 > TortoiseGit provides overlay icons showing the file status.
 
@@ -174,7 +187,7 @@ Notepad++ includes for example an Hex editor.
 </figure>
 
 # UA Expert
-*Version of TortoiseGIT while writing this document:* **1.7.0**
+*Version of UA Expert while writing this document:* **1.7.0**
 Automation Box is a highly connected system. The core of this connectivity is OPC UA.
 
 > OPC Unified Architecture **OPC UA** is a machine-to-machine communication protocol used for industrial automation and developed by the [OPC Foundation](https://opcfoundation.org/about/opc-technologies/opc-ua/).
@@ -202,7 +215,9 @@ A free test version is available and used as **No code** HMI for some practical 
 [Prosys OPC UA Monitor](https://www.prosysopc.com/products/opc-ua-monitor/)
 
 
-## TwinCAT 3 XAE
+## *TwinCAT 3 XAE*
+> TwinCAT **is not part of this course**, but it can be usefull if you want to learn IEC-61131 coding.
+
 *Version of TwinCAT XAE when writing this document:* **4.24.47**
 
 > TwinCAT XAE e**X**tended **A**utomation **E**ngineering) allows hardware to be programmed and configured in a single engineering tool. 
