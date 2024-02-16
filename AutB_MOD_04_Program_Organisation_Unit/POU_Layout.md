@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1 align="left">
   <br>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
   <br>
@@ -7,7 +7,6 @@
 </h1>
 
 Cours AutB
-
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
@@ -20,7 +19,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 [Function Layout](#function-layout)
 
 ## Program Layout
-Exemple de structure d'un programme.
+Exemple de structure d'un programme / Beispiel einer Programmstruktur..
 ```iecst
 (*
     Some information about the program here...
@@ -69,7 +68,7 @@ END_IF
 ```
 
 ## Function Block Layout
-Exemple de structure du code d'un Function Block
+Exemple de structure du code d'un Function Block / Beispiel für die Codestruktur eines Funktionsblocks
 
 ```iecst
 (*
@@ -128,7 +127,7 @@ END_FOR
 ```
 
 ## Function Layout
-Exemple de structure du code d'une fonction.
+Exemple de structure du code d'une fonction / Beispiel für die Codestruktur einer Funktion..
 
 ```iecst
 (*

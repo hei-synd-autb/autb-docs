@@ -15,9 +15,9 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 *Keywords:* **DUT Type Conversion  ARRAY STRUCT**
 
 # Type conversion
-Le Structured Text (du moins son compilateur) est exigeant et contraignant en terme de conversion de types. **A raison !**
+Strukturierter Text (zumindest sein Compiler) ist hinsichtlich der Typkonvertierung anspruchsvoll und restriktiv. **Ist richtig !**
 
-Exemple
+Beispiel
 ```iecst
    iSignal_2  : INT := 0;
    iSignal_3  : INT := 0;
@@ -33,15 +33,16 @@ Exemple
     <figcaption>Implicit conversion from unsigned Type 'UINT' to signed Type 'INT' : possible change of sign</figcaption>
 </figure>
 
-> Dans les deux cas, le résultat sera ```-1```. Dans le premier cas, le compilateur met en garde contre le risque. Dans le deuxième cas, le résultat sera le même, mais on peut supposer que le programmeur en implémentant explicitement la fonction de conversion aura pris conscience du risque d'un résultat qui pourrait être non désiré.
+> In beiden Fällen ist das Ergebnis ```-1```. Im ersten Fall warnt der Compiler vor dem Risiko. Im zweiten Fall ist das Ergebnis dasselbe, wir können jedoch davon ausgehen, dass der Programmierer durch die explizite Implementierung der Konvertierungsfunktion auf das Risiko eines unerwünschten Ergebnisses aufmerksam geworden ist.
 
-L'environnement de développement propose des fonctions de conversion pour presque toutes les figures de conversion de données. C'est une bonne pratique de les utiliser systématiquement afin d'éviter une mulitplications des **Warning**.
+Die Entwicklungsumgebung stellt Konvertierungsfunktionen für nahezu alle Datenkonvertierungszahlen zur Verfügung. Es empfiehlt sich, sie systematisch zu verwenden, um mehrere **Warnungen** zu vermeiden.
 
-> Il n'est pas rare, et même très courant de constater que certains programmes génèrent beaucoup de **Warning**. Dans la plupart des cas, aucun ne sera critique. Le risque est toutefois de laisser passer **celui qui provoquera un crash**.
+> Es ist nicht ungewöhnlich und sogar sehr häufig, dass bestimmte Programme viele **Warnungen** generieren. In den meisten Fällen wird keine davon kritisch sein. Das Risiko besteht jedoch darin, **denjenigen passieren zu lassen, der einen Absturz verursacht**.
 
-# ARRAY, les tableaux de données
-On peut utiliser des données de 1, 2 voir 3 dimensions.
-> Les trois dimensions sont valables pour le compilateur Codesys. Pour d'autres types de compilateurs, ceci demande à être vérifié.
+# ARRAY, Datentabellen
+Wir können Daten in 1, 2 oder sogar 3 Dimensionen verwenden.
+
+> Alle drei Dimensionen gelten für den Codesys-Compiler. Für andere Compilertypen muss dies überprüft werden.
 
 ```iecst
 VAR
@@ -51,7 +52,7 @@ VAR
 END_VAR
 ```
 
-Une manière classique d'utiliser les tableaux est dans une boucle ```for```
+Eine klassische Art, Arrays zu verwenden, ist eine ```FOR```-Schleife.
 ```iecst
 VAR
     iMyLoop     : DINT := 0;
@@ -62,11 +63,11 @@ FOR iMyLoop := 1 TO 10 BY 1 DO
     i_Array[iMyLoop] := iMyLoop;
 END_FOR
 ```
-> Le code ci-dessus, si il est parfaitement correct, ne devrait pas être utilisé, il n'est pas robuste ! Une bonne pratique consiste à utiliser des ```VAR GLOBAL CONSTANT``` pour les dimensions des tableaux, celles-ci seront réutilisées dans les boucles.
+> Der obige Code sollte, wenn er vollkommen korrekt ist, nicht verwendet werden, er ist nicht robust! Eine gute Vorgehensweise besteht darin, „VAR GLOBAL CONSTANT“ für die Dimensionen der Arrays zu verwenden. Diese werden in den Schleifen wiederverwendet.
 
-> Remarquez que, même pour une tâche autant simple qu'une boucle, on évite un variable du type **i**. Il s'agit ici d'une bonne pratique, et non d'une obligation. Raison: un variable i est compliquée à identifier dans le code.
+> Beachten Sie, dass wir selbst für eine so einfache Aufgabe wie eine Schleife eine Variable vom Typ ```i``` vermeiden. Dies ist eine gute Praxis, keine Verpflichtung. Grund: Eine Variable ``i`` ist im Code schwer zu identifizieren.
 
-### Définir les constantes dans: ```GVL_ARRAY_SIZE```.
+### Definieren Sie Konstanten in: ```GVL_ARRAY_SIZE```.
 ```iecst
 VAR_GLOBAL CONSTANT
     I_MAX_SIZE	:	UDINT := 10;
@@ -74,7 +75,7 @@ VAR_GLOBAL CONSTANT
     K_MAX_SIZE	:	UDINT := 5;
 END_VAR
 ```
-### Définir les tableaux à l'aide des constantes.
+### Definieren Sie Arrays mithilfe von Konstanten.
 ```iecst
 VAR
     iMyLoop     : DINT := 0;
@@ -85,9 +86,9 @@ VAR
     ij_Array    : ARRAY [1..GVL_ARRAY_SIZE.I_MAX_SIZE, 1..GVL_ARRAY_SIZE.J_MAX_SIZE] OF DINT;
     ijk_Array   : ARRAY [1..GVL_ARRAY_SIZE.I_MAX_SIZE, 1..GVL_ARRAY_SIZE.J_MAX_SIZE, 1..GVL_ARRAY_SIZE.K_MAX_SIZE] OF DINT;
 ```
-> Les constantes sont définies dans un fichier séparé ```GVL_ARRAY_SIZE``` et demandent un accès sous la forme ```GVL_ARRAY_SIZE.MY_CONSTANT```. C'est un peu plus long à écrire, mais cela améliore la robustesse et la structure du programme.
+> Konstanten werden in einer separaten Datei ``GVL_ARRAY_SIZE`` definiert und fordern den Zugriff in der Form ``GVL_ARRAY_SIZE.MY_CONSTANT`` an. Das Schreiben dauert etwas länger, verbessert aber die Robustheit und Struktur des Programms.
 
-### Utilser les boucles avec les constantes.
+### Verwenden Sie Schleifen mit Konstanten.
 ```iecst
 FOR iMyLoop := 1 TO GVL_ARRAY_SIZE.I_MAX_SIZE BY 1 DO
     i_Array[iMyLoop] := iMyLoop;
@@ -107,12 +108,12 @@ FOR iMyLoop := 1 TO GVL_ARRAY_SIZE.I_MAX_SIZE BY 1 DO
     END_FOR
 END_FOR
 ```
-> Attention au **temps de cylce** ! Une boucle **trop longue** peut provoque le **crash** du PLC. Si la marge est relativement élévé pour un processeur puissant, la limite peut être rapidement atteinte sur un PLC d'entrée de gamme.
+> Achten Sie auf die **Zykluszeit**! Eine **zu lange** Schleife kann zum **Absturz** der SPS führen. Ist der Spielraum für einen leistungsstarken Prozessor relativ hoch, kann man bei einer Einsteiger-SPS schnell an die Grenze stoßen.
 
-## Dans la pratique
-Je n'utiliser presque jamais de tableaux à plusieurs dimensions, je privilégie les ```STRUCT``` qui sont développés un peu plus loin dans le cours.
+## In der Praxis
+Ich verwende fast nie mehrdimensionale Tabellen, ich bevorzuge ``STRUCT``, die etwas später im Kurs entwickelt werden.
 
-### Définir un tableau sous forme de type utilisateur.
+### Definieren Sie ein Array als Benutzertyp.
 
 ```iecst
 TYPE stArrayOfDint :
@@ -121,14 +122,14 @@ STRUCT
 END_STRUCT
 END_TYPE
 ```
-### Définir un tableau de types
+### Definieren Sie ein Array von Typen
 ```iecst
 VAR
     ijStArray   : ARRAY [1..GVL_ARRAY_SIZE.I_MAX_SIZE] OF stArrayOfDint;
 END_VAR
 ```
 
-### Utiliser un tableau de types
+### Verwenden Sie ein Array von Typen
 ```iecst
 FOR iMyLoop := 1 TO GVL_ARRAY_SIZE.I_MAX_SIZE BY 1 DO
     FOR jMyLoop := 1 TO GVL_ARRAY_SIZE.J_MAX_SIZE BY 1 DO
@@ -136,10 +137,10 @@ FOR iMyLoop := 1 TO GVL_ARRAY_SIZE.I_MAX_SIZE BY 1 DO
     END_FOR
 END_FOR
 ```
-> Ce type de construction rend le nombre de dimensions du tableau théoriquement **infinie**. Le nombre de boucles encapsulée les unes dans les autres est probablement limitée.
+> Diese Art der Konstruktion macht die Anzahl der Dimensionen der Tabelle theoretisch **unendlich**. Die Anzahl der ineinander gekapselten Schleifen ist wahrscheinlich begrenzt.
 
 # Data User Type, DUT
-Quel que soit l'environnement dans lequel est intégré un compilateur Codesys, on a la posibilité de sélection un **Add DUT**
+Unabhängig von der Umgebung, in die ein Codesys-Compiler integriert ist, haben Sie die Möglichkeit, ein **DUT hinzufügen** auszuwählen.
 - Structure
 - Enumeration
 - Alias
@@ -151,12 +152,12 @@ Quel que soit l'environnement dans lequel est intégré un compilateur Codesys, 
     <figcaption>Create a new data unit type</figcaption>
 </figure>
 
-# Structure
-Une structure permet d'organiser les variables par sujet de manière hiérarchiques.
-Contrairement à un **ARRAY** qui est une liste d'objets identiques, un structure peut contenir des variables différentes.
+# Struktur
+Mit einer Struktur können Sie Variablen nach Themen hierarchisch organisieren.
+Im Gegensatz zu einem **ARRAY**, bei dem es sich um eine Liste identischer Objekte handelt, kann eine Struktur verschiedene Variablen enthalten.
 
-## Forme simple d'une structure pour un axe.
-### Définition de la structure
+## Einfache Form einer Struktur für eine Achse.
+### Strukturdefinition
 ```iecst
 TYPE ST_AxisInfo :
 STRUCT
@@ -172,15 +173,15 @@ END_STRUCT
 END_TYPE
 ```
 
-### Valeur initiale
+### Ursprünglicher Wert
 
-> Si la grandeur est pertinente il est conseillé de donner une grandeur intiale. Une information du type **'Axe de base'** sera préférable à **' '**.
+> Wenn die Größe relevant ist, empfiehlt es sich, eine Anfangsgröße anzugeben. Informationen wie **'Basisachse'** sind **' '** vorzuziehen.
 
 ```iecst
 TYPE ST_AxisInfo :
 STRUCT
    AxisId          : UDINT;
-   AxisName        : STRING := 'Axe de base';
+   AxisName        : STRING := 'Grundachse';
    SetVelocity     : REAL;
    SetDeceleration : REAL;
    ActualPosition  : REAL;
@@ -190,7 +191,7 @@ STRUCT
 END_STRUCT
 END_TYPE
 ```
-### Instanciation
+### Instanziierung
 ```iecst
 VAR
    getVelocity : REAL;
@@ -198,21 +199,21 @@ VAR
 END_VAR
 ```
 
-### Codage
+### Codierung
 ```iecst
 getVelocity := stAxisInfo.ActualVelocity;
 ```
 
-> L'aide à la saisie, IntelliSense, combiné à une structure facilite grandement l'écriture de code complexe sans qu'il soit constamment nécessaire de se référer à la liste des variables. L'IDE affiche automatiquement la liste des variables de la structure après l'écriture du point.
+> Die Eingabehilfe IntelliSense in Kombination mit einer Struktur erleichtert das Schreiben von komplexem Code erheblich, ohne dass ständig auf die Variablenliste zurückgegriffen werden muss. Die IDE zeigt nach dem Schreiben des Punktes automatisch die Liste der Strukturvariablen an.
 
 <figure>
     <img src="img/AxisLimit IntelliSense.png"
          alt="AxisLimit IntelliSense">
-    <figcaption>ST_AxisInfo combiné à IntelliSense</figcaption>
+    <figcaption>ST_AxisInfo kombiniert mit IntelliSense</figcaption>
 </figure>
 
-### Structure dans une structure
-On peut placer des variables simples dans une structure, mais aussi d'autres variables composées telles que ```STRUCT``` ou ```ARRAY```.
+### Struktur innerhalb einer Struktur
+Sie können einfache Variablen in einer Struktur platzieren, aber auch andere zusammengesetzte Variablen wie ``STRUCT`` oder ``ARRAY``.
 ```iecst
 TYPE ST_AxisLimits :
 STRUCT
@@ -227,7 +228,7 @@ END_TYPE
 TYPE ST_AxisInfo :
 STRUCT
 	AxisId          : UDINT;
-	AxisName        : STRING := 'Axe de base';
+	AxisName        : STRING := 'Grundachse';
 	SetVelocity     : REAL;
 	SetDeceleration : REAL;
 	ActualPosition  : REAL;
@@ -238,14 +239,14 @@ STRUCT
 END_STRUCT
 END_TYPE
 ```
-Ci dessous, la représentation UML de ```ST_AxisInfo``` **composé** avec ```ST_AxisLimits```.
+Unten die UML-Darstellung von ``ST_AxisInfo`` **zusammengesetzt** mit ``ST_AxisLimits``.
 <figure>
     <img src="./puml/STAxisInfoBase/STAxisInfoBase.svg"
          alt="ST_AxisInfo with ST_AxisLimits">
-    <figcaption>ST_AxisInfo avec ST_AxisLimits en composition</figcaption>
+    <figcaption>ST_AxisInfo mit ST_AxisLimits in der Komposition</figcaption>
 </figure>
 
-### Codage
+### Codierung
 ```iecst
     stAxisInfo.stAxisLimit.Positive_mm := 500;
 ```
@@ -256,13 +257,13 @@ Ci dessous, la représentation UML de ```ST_AxisInfo``` **composé** avec ```ST_
     <figcaption>ST_AxisInfo.stAxisLimit.PositiveLimit IntelliSense</figcaption>
 </figure>
 
-> La définition des structures doit être une des premières étapes de tout programme PLC.
-- Cela permet de fixer rapidement la structure du programme. *Phase de spécification*
-- Cela accélére la phase de codage *Gain en productivité*
-- Cela simplifie la lisibilité du programme *Phase de maintenance*.
+> Die Definition von Strukturen muss einer der ersten Schritte in jedem SPS-Programm sein.
+- Dadurch können Sie schnell den Aufbau des Programms ermitteln. *Spezifikationsphase*
+- Dies beschleunigt die Codierungsphase *Produktivitätsgewinn*
+- Dies vereinfacht die Lesbarkeit des Programms *Wartungsphase*.
 
-## Structure Extends
-La notion de Structure Extends appartient à la spécification Object-Oriented Programming **OOP** du IEC 61131-3. *Certaines plateformes importantes comme Siemens ne la supportent pas en 2023*.
+## Struktur erstreckt sich
+Der Begriff „Structure Extends“ gehört zur objektorientierten Programmierung **OOP**-Spezifikation der IEC 61131-3. *Einige große Plattformen wie Siemens unterstützen es im Jahr 2023 nicht*.
 
 
 <figure>
@@ -271,13 +272,12 @@ La notion de Structure Extends appartient à la spécification Object-Oriented P
     <figcaption>ST_AxisInfo_Base MoreInputs Extends ST_AxisInfo</figcaption>
 </figure>
 
-La notion de Structure Extends permet de créer une structure existante à partir d'une nouvelle. En termes de programmation Orientée Objet, **OOP**, on parle d'héritage.
+Das Konzept von Structure Extends ermöglicht es Ihnen, eine bestehende Struktur aus einer neuen zu erstellen. In Bezug auf die objektorientierte Programmierung (OOP) sprechen wir von Vererbung.
 
-Le but de cours n'est pas de rentrer dans les subtilités de l'approche orientée objet, mais d'en mentionner certaines caractéristiques quand elle facilite un programmation **Classique**.
+Ziel des Kurses ist es nicht, auf die Feinheiten des objektorientierten Ansatzes einzugehen, sondern bestimmte Merkmale zu erwähnen, wenn er die **klassische** Programmierung erleichtert.
 
-### Définition de la structure
-Dans l'exemple ci-dessous, le programmeur veut utiliser la structure ```ST_AxisInfo```, mais il veut simplement plus d'entrées à disposition et les ajoute à une nouvelle structure ```ST_AxisInfo_MoreInputs```.
-
+### Strukturdefinition
+Im folgenden Beispiel möchte der Programmierer die Struktur ``ST_AxisInfo`` verwenden, möchte aber einfach mehr Eingänge zur Verfügung haben und fügt diese einer neuen Struktur ``ST_AxisInfo_MoreInputs`` hinzu.
 ```iecst
 TYPE ST_AxisInfo_MoreInputs EXTENDS ST_AxisInfo :
 STRUCT
@@ -288,9 +288,8 @@ END_STRUCT
 END_TYPE
 ```
 
-
-### Codage de structures avec Extends
-L'utilisation de Extends ne change strictement rien en termes de codage.
+### Strukturen mit Extends kodieren
+Die Verwendung von Extends ändert absolut nichts an der Codierung.
 
 ```iecst
 VAR
@@ -301,23 +300,23 @@ END_VAR
 lrActualPosition := stAxisInfoMoreInputs.ActualPosition;
 ```
 
-### Avantage principal de la notion de *Extends*
-Dans les exemples ci-dessus, nous avons 3 structures différentes, ```ST_AxisInfo``` et ```ST_AxisInfo_MoreInputs```. Supponsons qu'il soit nécessaire d'ajouter une information générale pour chaque type.
+### Hauptvorteil des Konzepts von *Extends*
+In den obigen Beispielen haben wir drei verschiedene Strukturen, ``ST_AxisInfo`` und ``ST_AxisInfo_MoreInputs``. Angenommen, es ist notwendig, für jeden Typ allgemeine Informationen hinzuzufügen.
 
 ```iecst
-   AxisStopped : BOOL;
+    AxisStopped: BOOL;
 ```
-En programmation classique, *sans extends*, il sera nécessaire d'ajouter la variable à **deux endroit dans le code**.
+Bei der klassischen Programmierung *ohne Extends* ist es notwendig, die Variable an **zwei Stellen im Code** hinzuzufügen.
 
-Avec l'utilisation de ```EXTENDS```, il suffira d'ajouter la variable dans la structure de base, soit à **un seul endroit dans le code**.
+Bei der Verwendung von ```EXTENDS``` reicht es aus, die Variable in der Grundstruktur oder an **einer einzelnen Stelle im Code** hinzuzufügen.
 
-> En général, même si c'est possible, on ne passe pas les ```STRUCT``` par ```VAR_IN``` ou ```VAR_OUT```. d'une ```Function``` ou d'un ```Function Block``` Ceci afin d'éviter le temps perdu à faire des copies de variables de la structure vers le block et vice versa.
+> Im Allgemeinen übergeben wir ``STRUCT`` nicht über ``VAR_IN`` oder ``VAR_OUT``, auch wenn dies möglich ist. einer ``FUNCION`` oder eines ``FUNCTION_BLOCK`` Dies dient dazu, Zeitverschwendung beim Erstellen von Variablenkopien von der Struktur in den Block und umgekehrt zu vermeiden.
 
-De préférence on utilise ```VAR_IN_OUT```, qui passe l'adresse de la structure, on travaillera donc sur les valeurs d'origine
+Vorzugsweise verwenden wir ``VAR_IN_OUT``, das die Adresse der Struktur übergibt, daher arbeiten wir mit den Originalwerten
 
 ## FB avec ```VAR_IN_OUT```
 
-### Déclaration d'un FB avec ```VAR_IN_OUT```
+### Deklaration eines FB mit```VAR_IN_OUT```
 ```iecst
 FUNCTION_BLOCK FB_StopAxis
 VAR_IN_OUT
@@ -332,7 +331,7 @@ END_VAR
     <figcaption>ST_AxisInfo with FB_StopAxis</figcaption>
 </figure>
 
-Ce qu'il est **très important de comprendre** dans cette construction, c'est que ```stAxisInfo``` et ```fbStopAxis_X``` sont deux entités qui sont déclarées séparément. Une structure pour un axes complet contient parfois plusieurs dizaines de variables, il serait au niveau codage et à lors de l'exécution du code, absolument contre-productif de copier chaque valeur de ```stAxisInfo``` dans ```fbStopAxis_X```.
+Was in diesem Konstrukt **sehr wichtig zu verstehen** ist, ist, dass ``stAxisInfo`` und ``fbStopAxis_X`` zwei Entitäten sind, die separat deklariert werden. Da eine Struktur für eine komplette Achse manchmal mehrere Dutzend Variablen enthält, wäre es auf der Codierungsebene und bei der Ausführung des Codes absolut kontraproduktiv, jeden Wert von ``stAxisInfo`` in ``fbStopAxis_X`` zu kopieren.
 
 ```iecst
 VAR
@@ -340,20 +339,20 @@ VAR
    fbStopAxis_X : FB_StopAxis;
 END_VAR
 ```
-> La structure ```ST_AxisInfo``` doit être instanciée: ```stAxisInfo``` et ```FB_StopAxis``` travaillera avec les valeurs mémorisées dans ```stAxisInfo```.
+> Die Struktur ``ST_AxisInfo`` muss instanziiert werden: ``stAxisInfo`` und ``FB_StopAxis`` funktionieren mit den in ``stAxisInfo`` gespeicherten Werten.
 
-### Codage d'un FB avec une structure en ```IN_OUT```
+### Codierung eines FB mit einer ``IN_OUT``-Struktur
 ```iecst
  (* With ST_AxisInfo *)
  fbStopAxis_X(ioAxisInfo := stAxisInfo);
 ```
 
-## Structure ```EXTENDS``` avec ```VAR_IN_OUT```
+## Struktur ```EXTENDS``` mit ```VAR_IN_OUT```
 
-### Un peu d'abstraction avec ```EXTENDS```
-> Ceci dépasse un peu le cadre *basic* de ce cours, mais cela permet d'illustrer l'intérêt de l'extension **OOP**.
+### UEine kleine Abstraktion mit ```EXTENDS```
+> Dies geht ein wenig über den *grundlegenden* Umfang dieses Kurses hinaus, hilft aber, das Interesse der **OOP**-Erweiterung zu veranschaulichen.
 
-Dans l'exemple ci-dessous, nous avons créé une structure d'axe **spéciale** avec **deux codeurs**.
+Im folgenden Beispiel haben wir eine **spezielle** Achsstruktur mit **zwei Encodern** erstellt.
 
 <figure>
     <img src="./puml/VarInOutWithExtends/VarInOutWithExtends.svg"
@@ -361,7 +360,7 @@ Dans l'exemple ci-dessous, nous avons créé une structure d'axe **spéciale** a
     <figcaption>VAR_IN_OUT with Extends</figcaption>
 </figure>
 
-Cependant, nous avons le droite de passer la nouvelle structure ```ST_AxisTwoEncoder``` en ```VAR_IN_OUT``` même si elle est de type différent, car elle possède exactement par héritage les variables attendues par ```fbAxisInfo```.
+Wir haben jedoch das Recht, die neue Struktur ``ST_AxisTwoEncoder`` an ``VAR_IN_OUT`` zu übergeben, auch wenn sie von einem anderen Typ ist, da sie genau die von ``fbAxisInfo`` erwarteten Variablen enthält Erbe..
 
 ```iecst
 VAR
@@ -372,7 +371,7 @@ END_VAR
 fbStopAxis_X(ioAxisInfo := stAxisTwoEncoder;
 ```
 
-> Avantage, il n'est pas nécessaire de réécrire un FB ```FB_StopAxis``` pour cette nouvelle structure.
+> Vorteil, es ist nicht notwendig, für diese neue Struktur einen FB ``FB_StopAxis`` neu zu schreiben.
 
 ### Si Extends n'est pas disponible
 Il est possible en version **classique non OOP** d'obtenir le même résultat, mais c'est moins élégant:
@@ -392,10 +391,10 @@ END_VAR
 fbStopAxis_X(ioAxisInfo := stAxisTwoEncoder.stAxisInfo);
 ```
 
-# Enumeration
-L'énumération est mon type préféré, principalement pour la construction de ```CASE <state> OF```.
+# Aufzählung
+Aufzählung ist mein Lieblingstyp, hauptsächlich zum Erstellen von ``CASE <state> OF``.
 
-## Premier exemple
+## Erstes Beispiel
 ```iecst
 TYPE EN_MotionStateMachineNoDefType :
 (
@@ -410,12 +409,12 @@ TYPE EN_MotionStateMachineNoDefType :
 END_TYPE
 ```
 
-### Intérêt principal de l'énumération
-Le principal intérêt de é'énumération est la description d'une machine d'état. Dans la figure ci-dessosu, les transitions sont à titre d'exemple uniquement.
+### Hauptinteresse der Aufzählung
+Das Hauptinteresse der Aufzählung liegt in der Beschreibung eines Zustandsautomaten. In der folgenden Abbildung dienen die Übergänge nur als Beispiel.
 <figure>
     <img src="./puml/ENMotionStateMachineNoDefType/ENMotionStateMachineNoDefType.svg"
          alt="Description des états à partir d'une énumération">
-    <figcaption>Description des états à partir d'une énumération</figcaption>
+    <figcaption>Beschreibung von Zuständen aus einer Aufzählung</figcaption>
 </figure>
 
 ### Codage d'un ```CASE_OF```
@@ -442,62 +441,63 @@ CASE stateMotion OF
 END_CASE
 ```
 
-> Dans certains environnements, par exemple Siemens, les Enums n'existent pas, dans ce cas on pourra utiliser des constantes. Dans tous les cas, l'écriture d'une machine d'état sans caractères littéraux est une mauvaise pratique
+> In bestimmten Umgebungen, zum Beispiel Siemens, gibt es keine Enums, in diesem Fall können wir Konstanten verwenden. In jedem Fall ist das Schreiben einer Zustandsmaschine ohne Literalzeichen eine schlechte Praxis
 
-### TextList support
-> Text list support enables localization of the enumeration component identifiers and a representation of the symbolic component value in a text output in the visualization.
-Personnellement jamais utilisé.
+### TextList-Unterstützung
+> Die Unterstützung von Textlisten ermöglicht die Lokalisierung der Aufzählungskomponenten-IDs und eine Darstellung des symbolischen Komponentenwerts in einer Textausgabe in der Visualisierung.
+Persönlich nie benutzt.
 
-### Extends Enum
-**Impossible**. Il n'est pas possible d'étendre un Enum comme il est possible de le faire avec une structure.
+### Erweitert Enum
+**Unmöglich**. Es ist nicht möglich, eine Aufzählung zu erweitern, wie dies bei einer Struktur möglich ist.
 
-## Deuxième exemple
+## Zweites Beispiel
 ```iecst
-TYPE EN_TrafficLight_typ :
+TYP EN_TrafficLight_typ:
 (
-    Idle   := 99,
-    Rouge  := 1,
-    Orange := 2,
-    Vert   := 3
-) WORD := Rouge;
+     Idle   := 99,
+     Rot    := 1,
+     Orange := 2,
+     Grün   := 3
+) WORT := Rot;
 END_TYPE
 ```
 
-> Noter Idle à 99, c'est que si l'Enum n'est pas initalisé, il ne fonctionnera pas.
+> Beachten Sie, dass der Leerlauf bei 99 liegt. Dies bedeutet, dass die Enum nicht funktioniert, wenn sie nicht initialisiert ist.
 
-> Noter ) ``WORD`` := Rouge; **WORD** permet ici de forcer le type de base à utiliser pour l'Enum, par exemple pour un traitement numérique ou logique.
+> Hinweis) ``WORD`` := Rot; **WORD** ermöglicht es hier, die Verwendung des Basistyps für das Enum zu erzwingen, beispielsweise für numerische oder logische Verarbeitung.
 
-> Noter qu'il est possible de fixer une valeur d'initilisation pour l'Enum. Ici: **Rouge**.
+> Beachten Sie, dass es möglich ist, einen Initialisierungswert für die Enum festzulegen. Hier: **Rot**.
 
 # Alias
-Un alias est un type de données défini par l'utilisateur qui peut être utilisé pour créer un nom alternatif pour un type de données ou un bloc fonctionnel.
+Ein Alias ​​ist ein benutzerdefinierter Datentyp, der zum Erstellen eines alternativen Namens für einen Datentyp oder Funktionsblock verwendet werden kann.
 
-Example:
-*On délare une chaine de 50 caractères *ascii**
+Beispiel:
+
+*Wir deklarieren eine Zeichenfolge mit 50 Zeichen *ascii**
 
 ```iecst
 TYPE T_Message : STRING[50];
 END_TYPE
 ```
 
-Déclaration
+Stellungnahme
 
 ```iecst
 sMessageA : T_Message;
 ```
 
-Utilisation
+Verwenden
 
 ```iecst
 sMessageA := 'This is a message';
 ```
 
-> Ceci est intéressant si on utilise souvent une certaine construction, ici la chaine de caractères.
+> Das ist interessant, wenn wir häufig eine bestimmte Konstruktion verwenden, hier die Zeichenfolge.
 
 # Union
-Une UNION est une structure de données qui contient généralement différents types de données. Dans une union, tous les composants ont le même décalage, ce qui signifie qu'ils occupent le même espace mémoire.
+Eine UNION ist eine Datenstruktur, die normalerweise verschiedene Datentypen enthält. In einer Union haben alle Komponenten den gleichen Offset, belegen also den gleichen Speicherplatz.
 
-> L'intérêt d'une union réside principalement dans la programmation de bas niveau. Dans l'exemple ci-dessous tirée d'un capteur IO-Link [Baumer O300.DL](https://www.baumer.com/fr/en/product-overview/distance-measurement/laser-distance-sensors/standard-laser-distance-sensors/o300-dl-gm1j-72n/p/38517). Le capteur retourne les données dans une trame de 24 bits. Pour accéder à certaines données, on devra le faire soit sous forme de bits, ou de bytes.
+> Das Interesse einer Gewerkschaft liegt hauptsächlich in der Low-Level-Programmierung. Im folgenden Beispiel stammt es von einem IO-Link-Sensor [Baumer O300.DL](https://www.baumer.com/ch/de/produktubersicht/distanzmessung/laser-distanzsensoren-/standard-laser-distanzsensoren/o300-dl-gm1j-72n/p/38517). Der Sensor sendet Daten in einem 24-Bit-Frame zurück. Um auf bestimmte Daten zuzugreifen, müssen wir dies entweder in Form von Bits oder Bytes tun.
 
 <figure>
     <img src="img/IO-Link Process Data 3 bytes.png"
@@ -505,12 +505,12 @@ Une UNION est une structure de données qui contient généralement différents 
     <figcaption>IO-Link Process Data for Baumer O300.DL</figcaption>
 </figure>
 
-- MDC1: 2 bytes de données pour la grandeur du signal (16 bits)
-- Q: le bit de qualité qui indique que le signal est utilisable
-- BDC1: un seuil programmable qui fait que le capteur peut être utilisé simplement comme détecteur de proximité sans se soucier de la valeur MDC1.
-- A: un bit d'alarme qui indique un problème dans le capteur.
+- MDC1: 2 Datenbytes für Signalgröße (16 Bit)
+- Q: das Qualitätsbit, das anzeigt, dass das Signal verwendbar ist
+- BDC1: ein programmierbarer Schwellenwert, der bedeutet, dass der Sensor einfach als Näherungsdetektor verwendet werden kann, ohne sich Gedanken über den MDC1-Wert machen zu müssen.
+- A: ein Alarmbit, das auf ein Problem im Sensor hinweist.
 
-## Déclaration d'une structure de bits.
+## Deklaration einer Bitstruktur.
 ```iecst
 TYPE ST_Bits :
 STRUCT
@@ -525,7 +525,7 @@ STRUCT
 END_STRUCT
 END_TYPE
 ```
-### Déclaration d'une union de 3 bytes.
+### Deklaration einer UNION von 3 Bytes.
 ```iecst
 TYPE U_3Byte :
 UNION
@@ -534,7 +534,7 @@ UNION
 END_UNION
 END_TYPE
 ```
-###Instanciation de l'union
+### IInstanziieren der UNION
 ```iecst
 VAR
     bAlarme    : BOOL;
@@ -542,20 +542,20 @@ VAR
     u3Byte     : U_3Byte;
 END_VAR
 ```
-### Utilisation dans le code
+### Verwendung im Code
 ```iecst
 bAlarme := u3Byte.aBits[3].bBit3;
 iSignal := WORD_TO_INT(u3Byte.a3Byte[1] * 256 + u3Byte.a3Byte[2]);
 ```
-> On pourra vérifier facilement quel devrait être le résulat si le Byte 1 vaut ```0E``` et le Byte 2 ```E6```
+> Wir können leicht überprüfen, wie das Ergebnis aussehen sollte, wenn Byte 1 den Wert ``0E`` und Byte 2 ``E6`` hat
 
-> On pourra vérifier ensuite quel devrait être le résulat si le Byte 1 vaut ```FF``` et le Byte 2 ```FF```
+> Wir können dann prüfen, wie das Ergebnis aussehen sollte, wenn Byte 1 den Wert ``FF`` und Byte 2 ``FF`` hat
 
-## Big Endian vs Little Endian
-Une application d'une union pourra aider à la résolution de problèmes liés à l'```Endianness ```.
+## Big Endian gegen Little Endian
+Eine Union-Anwendung kann dabei helfen, Probleme im Zusammenhang mit Endianness zu lösen.
 
 ### Endianness
-Spécifie l'ordre dans lequel les séquenes de **bytes** sont enregistrée en mémoire.
+Gibt die Reihenfolge an, in der Sequenzen von **Bytes** im Speicher gespeichert werden.
 |Little Endian     |Big Endian      |
 |-----------------------------------|---------------|
 |Intel             |Motorala        |
@@ -564,7 +564,7 @@ Spécifie l'ordre dans lequel les séquenes de **bytes** sont enregistrée en m�
 |0xA1B2            |0xA1B2         |
 |```0xB2```, ```0xA1``` |```0xA1```, ```0xB2``` | 
 
-Concrètement pour une représentation ```Little-Endian``` sur un processeur **Intel**.
+Konkret für eine **Little-Endian**-Darstellung auf einem **Intel**-Prozessor.
 ```
 VAR
    myBytes  : ARRAY[1..4] OF BYTE;
@@ -577,37 +577,37 @@ END_VAR
     myByte[4] := 16#0;
 ```
 
-# Exercices
+# Übungen
 
-## Exercice 1, Min/Max/RMS of ioBuffer
-Nous avons en variable globale un buffer de 50 valeurs venant d'un convertisseur 16 bits, valeurs positives ou négatives.
-La taille du buffer est fixée par une constante.
-A chaque cycle, le système fait l'aquisition de 50 valeurs, sampling rate 50 [kHz] avec un bus temps réel à 1 [kHz].
-A chaque cycle, nous voulons obetenir:
--   ```iMinSampleValue```, la grandeur minimum.
--   ```iMaxSampleValue```, la grandeur maximum.
--   ```iRMSSampleValue```, la grandeur RMS.
+## Übung 1, Min/Max/RMS von ioBuffer
+Als globale Variable haben wir einen Puffer mit 50 Werten, die von einem 16-Bit-Konverter stammen, positive oder negative Werte.
+Die Größe des Puffers wird durch eine Konstante festgelegt.
+Bei jedem Zyklus erfasst das System 50 Werte, Abtastrate 50 [kHz] mit einem Echtzeitbus bei 1 [kHz].
+Bei jedem Zyklus möchten wir Folgendes erhalten:
+- ``iMinSampleValue``, die Mindestgröße.
+- ``iMaxSampleValue``, die maximale Größe.
+- ``iRMSSampleValue``, die RMS-Menge.
 
-[Solution Exercice 1](#solution-exercice-1-minmaxrms-of-iobuffer)
+[Lösung Übung 1](#lösung-übung-1-minmaxrms-of-iobuffer)
 
-## Exercice 2, State Machine
-Ecrire l'```Enum``` et la structure ```CASE_OF```, c'est à dire uniquement les états sans les transitions de la machine d'état ci-dessous.
+## Übung 2, State Machine
+Schreiben Sie die Struktur ``Enum`` und ``CASE_OF``, d. h. nur die Zustände ohne die Zustandsmaschinenübergänge unten.
 <figure>
     <img src="./puml/ENExerciceCsvWriteSteps/ENExerciceCsvWriteSteps.svg"
          alt="Machine d'état CSV Write">
-    <figcaption>Machine d'états CSV Write</figcaption>
+    <figcaption>CSV-Schreibzustandsmaschine</figcaption>
 </figure>
 
-### Contraintes:
-- le premier état à la valeur 999.
-- les autres états ont une valeur fixe.
-- l'énumération est de type ```UDINT```
-- l'état initial est forcé à ```WAIT_RISING_EDGE```
-- la variable d'état du ```CASE_OF``` est ```stateCsv```.
+### Einschränkungen:
+- Der erste Zustand hat den Wert 999.
+- Die anderen Zustände haben einen festen Wert.
+- Die Aufzählung ist vom Typ ``UDINT``.
+- Der Ausgangszustand wird auf ``WAIT_RISING_EDGE`` erzwungen
+- Die Statusvariable von ``CASE_OF`` ist ``stateCsv``.
 
-[Solution Exercice 2](#solution-exercice-2-state-machine)
+[Lösung Übung 2](#lösung-übung-2-state-machine)
 
-## Exercice 3, Modbus avec ```Endianess```
+## Übung 3, Modbus avec ```Endianess```
 Une série de registres Modbus sont donnés avec les informations suivantes.
 Format ```Big-Endian```.
 |Register      |Type      |Unit      |Description      |
@@ -621,19 +621,19 @@ Une trame ```Modbus``` arrive dans le registre suivant:
 ```
     modBusFrame : ARRAY[0..11] OF BYTE := [0, 8, 143, 237, 0, 41, 3, 189, 255, 254, 21, 231];
 ```
-Nous devons lire la trame ci-dessus avec un processus Intel ```Little-Endian``` pour afficher les valeurs dans des ```DINT```.
+Wir müssen den obigen Frame mit einem Intel **Little-Endian**-Prozess lesen, um die Werte in ``DINT`` anzuzeigen.
 
-[Solution Exercice 3](#solution-exercice-3-modbus-avec-endianess) 
+[Lösung Übung 3](#lösung-übung-3-modbus-mit-endianess) 
 
-## Exercice 4, VAR_IN_OUT with Extends
-Déclarer, instancier et coder l'exemple ci-dessus avec ```ST_AxisTwoEncoder```.
+## Übung 4, VAR_IN_OUT with Extends
+Deklarieren, instanziieren und kodieren Sie das obige Beispiel mit ``ST_AxisTwoEncoder``.
 
-[Solution Exerice 4](#solution-exerice-4-var_in_out-with-extends)
+[Lösung Übung 4](#lösung-übung-4-var_in_out-with-extends)
 
-# Solution des exercices
+# Lösung der Übungen
 
-## Solution Exercice 1, Min/Max/RMS of ioBuffer
-Fichier ```GVL_IO_BUFFER``` de déclaration des variables globales.
+## Lösung Übung 1, Min/Max/RMS of ioBuffer
+Datei ``GVL_IO_BUFFER`` zur Deklaration globaler Variablen.
 ```iecst
 VAR_GLOBAL
     ioBuffer        : ARRAY[1..IO_BUFFER_SIZE] OF INT;
@@ -676,15 +676,15 @@ END_FOR
 iRMSValue := LREAL_TO_INT(SQRT(LINT_TO_LREAL(iSumRMSValue/GVL_IO_BUFFER.IO_BUFFER_SIZE)));
 ```
 ### Test
-Avec tous les échantillons à 0, sauf:
-- un échantillon à 50
-- un échantillon à -50
+Mit allen Samples auf 0, außer:
+- eine Stichprobe von 50
+- eine Probe bei -50
 
 iMinValue := -50
 iMaxValue := 50
 iRMSValue := 10
 
-## Solution Exercice 2, State Machine
+## Lösung Übung  2, State Machine
 ```iecst
 ### Enum
 TYPE EN_CSV_WriteSteps :
@@ -732,8 +732,8 @@ CASE stateCsv OF
 END_CASE
 ```
 
-## Solution Exercice 3, Modbus avec ```Endianess```
-### Liste des constantes dans le fichier ```GVL_Modbus```
+## Lösung Übung 3, Modbus mit ```Endianess```
+### Liste der Konstanten in der Datei ``GVL_Modbus``.
 ```iecst
 VAR_GLOBAL CONSTANT
     MB_FRAME_SIZE     : INT := 12;
@@ -741,7 +741,7 @@ VAR_GLOBAL CONSTANT
     TYPE_SIZE_IN_BYTE : INT := 4;
 END_VAR
 ```
-### Définition de l'union ```U_SolveModbus```
+### Definition von Gewerkschaft ```U_SolveModbus```
 ```iecst
 TYPE U_SolveModbus :
 UNION
@@ -750,7 +750,7 @@ UNION
 END_UNION
 END_TYPE
 ```
-### Définition de la structure générale
+### Definition der allgemeinen Struktur
 ```iecst
 TYPE ST_SolveModbus :
 STRUCT
@@ -798,6 +798,6 @@ stResult.TotalReactiveEnergy_VARh := stResult.arMyRegisters[2].diMyResult;
 stResult.TotalApparentEnergy_VAh := stResult.arMyRegisters[3].diMyResult;
 ```
 
-## Solution Exerice 4, VAR_IN_OUT with Extends
+## Lösung Übung 4, VAR_IN_OUT with Extends
 
 To be completed

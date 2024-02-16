@@ -457,7 +457,7 @@ L'opérateur est une extension de la norme CEI 61131-3.
 
 Vous pouvez utiliser le nom d'une liste de variables globales (GVL) comme identifiant d'espace de noms pour les variables définies dans la liste. Cela permet d'utiliser des variables portant les mêmes noms dans différentes listes de variables globales tout en accédant de manière unique à une variable particulière. Le nom de la variable doit être précédé du nom de la liste de variables globales, séparé par un point.
 
-Syntaxe : <nom de la liste de variables globales>.<variable>
+Syntaxe : < nom de la liste de variables globales >.< variable >
 
 ### Déclaration dans la liste GVL_Config
 ```iecst
