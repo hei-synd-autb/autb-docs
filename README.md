@@ -17,7 +17,15 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 # List of Modules
 [Module 00 Quick Start](./AutB_MOD_00_Quick_Start/README.md): Une brève introduction au monde du PLC
 
+[Module 00 Quick Start DE](./AutB_MOD_00_Quick_Start/README_DE.md): Eine kurze Einführung in die Welt der SPS
+
+---
+
 [Module 01 Interface](./AutB_MOD_01_Interface/README.md): Gestion des interfaces de l'automate.
+
+[Module 01 Interface DE](./AutB_MOD_01_Interface/README_DE.md): Verwaltung von SPS-Schnittstellen.
+
+---
 
 [Module 02 Data Structure](./AutB_MOD_02_Data_Structure/README.md): Les structures de données.
 
