@@ -45,6 +45,14 @@ In diesem Modul sollen die Grundkenntnisse vermittelt werden, die zur Bewältigu
     <figcaption>Application Example, 5 Axis Handling Solution, Source: Bosch Rexroth</figcaption>
 </figure>
 
+Oder nähern Sie sich der Achssteuerung für diese Art von Anwendung:
+
+<figure>
+    <img src="./img/EMPA Laser Metal Deposition.jpg"
+         alt="EMPA Laser Metal Deposition">
+    <figcaption>Laser Metal Deposition, Source: EMPA (Eidgenössische Materialprüfungs- und Forschungsanstalt)</figcaption>
+</figure>
+
 # IEC 61131-3 Sprachen
 Dieser Absatz über Sprachen dient zu Informationszwecken. Wir werden nur die Sprache **Structured Text** verwenden, auf die später in diesem Kurs ausführlich eingegangen wird.
 
@@ -650,6 +658,7 @@ END_VAR
 - Genau in dem Moment, in dem beide Eingänge die TRUE-Position verlassen, wird der Befehl „sendStop“ während eines einzelnen Programmzyklus aktiviert.
 - Wenn beide Eingangssignale „TRUE“ sind, ist der Ausgang „enableMove“ aktiv.
 - Um eine Manipulation des Sicherheitssystems zu verhindern, prüft ein Timer, dass sich die beiden Signale für einen Zeitraum von mehr als 250[ms], **Diskrepanzzeit**, Divergenzzeit, nicht unterscheiden. Bei Überschreitung dieses Zeitlimits wird „enableMove“ nicht autorisiert und das Signal „securtiyError“ wird aktiviert (und bleibt dauerhaft aktiviert).
+- *Es ist notwendig, einige Variablen, Timer oder Trigger hinzuzufügen.*
 
 ## Lösungsaufgabe 1
 Was sind die folgenden Dezimalwerte?
@@ -681,4 +690,62 @@ modBusRegisters[iLoop+1] := DWORD_TO_WORD(dwValue AND 16#FFFF);
 ```
 
 ## Lösungsaufgabe 3
-...
+Beachten Sie die Formatierung und Ausrichtung, die das Lesen erleichtern.
+> Formatierung ist Teil der Codequalität!
+
+```iecst
+// Header
+FUNCTION_BLOCK FB_DeadManSwitch
+VAR_INPUT
+    signalOneMiddle     : BOOL;
+    signalTwoMiddle     : BOOL;
+END_VAR
+
+VAR_OUTPUT
+    enableMove          : BOOL;
+    sendStop            : BOOL;
+    securityError       : BOOL;
+END_VAR
+VAR
+    tonDiscrepancyTime  : TON;
+    fTrigStop           : F_TRIG;
+    testSendStop        : UDINT;
+END_VAR
+
+// Code
+tonDiscrepancyTime(IN := signalOneMiddle <> signalTwoMiddle,
+                   PT := T#250MS);
+                   
+fTrigStop(CLK := signalOneMiddle AND
+                 signalTwoMiddle);                  
+                   
+IF tonDiscrepancyTime.Q THEN
+    securityError := TRUE;
+END_IF
+
+IF signalOneMiddle          AND
+   signalTwoMiddle          AND
+   securityError            THEN
+   enableMove := TRUE;
+ELSE
+   enableMove := FALSE;
+END_IF
+
+sendStop := fTrigStop.Q;
+
+(*
+    To check sendStop Activated
+    Because it is difficult to view the value of sendStop for one cycle,
+    it could be a good idea to use a check sequence to validate it.
+    This is optional
+*)
+IF sendStop THEN
+    testSendStop := testSendStop + 1;
+END_IF
+```
+Alternativ könnte der enableMove auch wie folgt codiert werden:
+```iecst
+enableMove := signalOneMiddle AND
+              signalTwoMiddle AND
+              NOT securityError;
+```
