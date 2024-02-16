@@ -43,6 +43,14 @@ Ce module est simplement destiné à présenter les notions de base qui permettr
     <figcaption>Application Example 5 Axis Handling Solution, Source: Bosch Rexroth</figcaption>
 </figure>
 
+Ou encore aborder le pilotage d'axes pour ce genre d'application:
+
+<figure>
+    <img src="./img/EMPA Laser Metal Deposition.jpg"
+         alt="EMPA Laser Metal Deposition">
+    <figcaption>Laser Metal Deposition, Source: EMPA (Eidgenössische Materialprüfungs- und Forschungsanstalt)</figcaption>
+</figure>
+
 # Les langages de IEC 61131-3
 Ce paragraphe sur les langages est donné à titre d'information. Nous n'utiliserons que le langage **Structured Text** qui sera largement détaillé dans la suite de ce cours.
 
@@ -631,13 +639,15 @@ VAR_OUTPUT
     sendStop            : BOOL;
     securityError       : BOOL;
 END_VAR
-
 ```
+
+[Solution exercice 3](#solution-exercice-3)
 
 ### URS, User Request Specification
 -   Au moment précis où les deux entrées quittent la position TRUE, on active la commande ``sendStop`` pendant un cycle unique du programme.
 -   Si les deux signaux d'entrée sont ``TRUE``, la sortie ``enableMove`` est active.
--   Afin d'empêcher une manipluation du système de sécurité, un timer vérifie que les deux signaux ne soient pas différents pendant une durée supérieure à 250[ms], **discrepancy time**, temps de divergence. Si cette limite de temps est dépassée, on n'autorise pas le ``enableMove`` et le signal ``securtiyError`` est activé (et reste activé définitement).
+-   Afin d'empêcher une manipluation du système de sécurité, un timer vérifie que les deux signaux ne soient pas différents pendant une durée supérieure à 250[ms], **discrepancy time**, temps de divergence. Si cette limite de temps est dépassée, on n'autorise pas le ``enableMove`` et le signal ``securityError`` est activé (et reste activé définitement).
+-   *Il est nécessaire d'ajouter quelques variables, timers ou triggers.*
 
 ## Solution Exercice 1
 Quels sont les valeurs en décimal suivante ?
@@ -669,4 +679,61 @@ modBusRegisters[iLoop+1] := DWORD_TO_WORD(dwValue AND 16#FFFF);
 ```
 
 ## Solution Exercice 3
-...
+Notez la mise en forme et les alignements qui facilitent la lecture.
+> La mise en forme fait partie de la qualité du code !
+```iecst
+// Header
+FUNCTION_BLOCK FB_DeadManSwitch
+VAR_INPUT
+    signalOneMiddle     : BOOL;
+    signalTwoMiddle     : BOOL;
+END_VAR
+
+VAR_OUTPUT
+    enableMove          : BOOL;
+    sendStop            : BOOL;
+    securityError       : BOOL;
+END_VAR
+VAR
+    tonDiscrepancyTime  : TON;
+    fTrigStop           : F_TRIG;
+    testSendStop        : UDINT;
+END_VAR
+
+// Code
+tonDiscrepancyTime(IN := signalOneMiddle <> signalTwoMiddle,
+                   PT := T#250MS);
+                   
+fTrigStop(CLK := signalOneMiddle AND
+                 signalTwoMiddle);                  
+                   
+IF tonDiscrepancyTime.Q THEN
+    securityError := TRUE;
+END_IF
+
+IF signalOneMiddle          AND
+   signalTwoMiddle          AND
+   securityError            THEN
+   enableMove := TRUE;
+ELSE
+   enableMove := FALSE;
+END_IF
+
+sendStop := fTrigStop.Q;
+
+(*
+    To check sendStop Activated
+    Because it is difficult to view the value of sendStop for one cycle,
+    it could be a good idea to use a check sequence to validate it.
+    This is optional
+*)
+IF sendStop THEN
+    testSendStop := testSendStop + 1;
+END_IF
+```
+Variante, le enableMove pourrait aussi être codé de la manière suivante:
+```iecst
+enableMove := signalOneMiddle AND
+              signalTwoMiddle AND
+              NOT securityError;
+```

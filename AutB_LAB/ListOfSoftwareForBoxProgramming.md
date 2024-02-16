@@ -68,7 +68,7 @@ TortoiseGit  provides a graphical user interface GUI for GIT.
 > Please, ask a lab manager for the current version of ctrlX Works.
 
 ### ctrlX WORKS installation
-When installing ctrlX Works on PCs of HEVS, it is very important to exit temporarily the anti-virus, else the installation is partial and the system will not run correctly
+When installing ctrlX Works V1.16 on PCs of HEVS, it is very important to exit temporarily the anti-virus, else the installation is partial and the system will not run correctly
 
 The anti-virus prohibit the installation of many libraries of the IDE.
 
