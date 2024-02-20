@@ -46,32 +46,39 @@ Les actionneurs tels que la diode électroluminescente (DEL), le servomoteur CC,
 
 > Dans le cas du Spindle, on fait référence au moteur à haute vitesse. Celui-ci permet ensuite via une conversion mécanique de sélectionner différents types d'outils.
 
-## Électrique/Électronique
+## Électrique/Électronique (A revoir)
 Les éléments électriques font référence aux composants électriques (par exemple, résistance (R), condensateur (C), inductance (L), transformateur, etc.), aux circuits et aux signaux analogiques.
 
 Les éléments électroniques font référence à l'électronique analogique/numérique, aux transistors, aux thyristors, aux optocoupleurs, aux amplificateurs opérationnels, à l'électronique de puissance et au conditionnement de signaux. Les éléments électriques/électroniques sont utilisés pour interfacer des capteurs et des actionneurs électromécaniques aux éléments matériels de l'interface de commande.
 
 Les actionneurs tels que la diode électroluminescente (DEL), le servomoteur CC, le moteur pas à pas, le relais, le solénoïde, le haut-parleur, l'alliage à mémoire de forme, l'électro-aimant et la pompe appliquent une action commandée sur le processus physique.
-| IEPE/accelerometer|  IO-Link Gateway          |  5/2 Distributor          |
+| IEPE/accelerometer|  IO-Link Gateway          |  Wind turbine converter          |
 :---------------------------------------:|:-------------------------:|:-------------------------:|
-![](./img/ep3632-0001__web_preview.png.webp)  |![](./img/mamfile-1761001-720Wx540H-c.webp)  |![](./img/5._bi-stabiel_ventiel_w444%20Source%20Festo.webp)  |
-| Source Beckhoff| Source TDM | Source Festo | 
+![](./img/ep3632-0001__web_preview.png.webp)  |![](./img/mamfile-1761001-720Wx540H-c.webp)  |![](./img/ABBs_PCS6000_wind_turbine_converter.jpg)  |
+| Source Beckhoff| Source TDM | Source ABB | 
 
 Ce module se compose de deux partie, la première, 
 Le harware comprend les éléments qui ne sont pas directement programmables ou configurables depuis le PLC
 Le software comprend les éléments qui sont programmables, le code du PLC ou paramétrables. 
 Interface de contrôle/processeurs
+
 Les éléments d'interface de contrôle/matériel informatique font référence au convertisseur analogique-numérique (A2D), au convertisseur numérique-analogique (D2A), aux entrées/sorties numériques (E/S), aux compteurs, aux minuteries, au microprocesseur, au microcontrôleur, à l'acquisition et au contrôle des données. (DAC) et carte de traitement du signal numérique (DSP).
 Le matériel d'interface de commande permet une interface analogique/numérique, c'est-à-dire la communication du signal du capteur à l'ordinateur de commande et la communication du signal de commande du processeur de commande à l'actionneur. Le matériel informatique de commande met en œuvre un algorithme de commande, qui utilise des mesures de capteur, pour calculer les actions de commande à appliquer par l'actionneur.
 
+
 ## L’ordinateur
 Les éléments informatiques font référence au matériel/logiciel utilisé pour effectuer l'analyse, l'optimisation, la conception et la simulation de systèmes dynamiques assistés par ordinateur ; instruments virtuels ; prototypage de contrôle rapide ; simulation matérielle dans la boucle ; et acquisition et contrôle de données sur PC.
+
+| CtrlX OS|  S7 1500         |  Arduino       |
+:---------------------------------------:|:-------------------------:|:-------------------------:|
+![](./img/Wago_1024-11394548-DE.webp)  |![](./img/AutB_InterfaceLoaded.jpg)  |![](./img/Arduino%20Soft%20PLC.jpeg)  |
+| Source Wago| Source Siemens | Source Arduino | 
 
 ## Communication
 La différence entre l’automation moderne et celle d’il y a encore une dizaine d’année, c’est que si précédemment la communication était relativement linéaire entre les différents éléments, les technologies actuelles, OPC-UA et émergentes, PubSub, Ethernet APL (A two-wire Ethernet for process automation and hazardous locations, based on IEEE and IEC standards.) et futures permettent une communication croisée entre les différentes.
 Ces nouvelles technologies associées aux balbutiements de l’AI dans l’automation industrielle ouvrent des champs d’applications considérables à explorer aux futurs ingénieurs.
 
-| OPC UA|  TSN         |  Ethernet-apl          |
+| OPC UA                                 |  TSN                      |  Ethernet-apl          |
 :---------------------------------------:|:-------------------------:|:-------------------------:|
 ![](./img/OPC%20Foundation.jpg)  |![](./img/21-sa-313-time-sensitive-networking-tsn-logo-color-rgb-768x307.png)  |![](./img/Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png)  |
 | Source https://opcfoundation.org| Source https://1.ieee802.org/ | Source https://www.ethernet-apl.org | 
