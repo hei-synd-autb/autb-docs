@@ -23,3 +23,5 @@ Ici, les trois exemples de système d'automation
 Machine
 Chimie
 Energie
+
+Ensuite, [passer au cas particulier de la vis à bille du capteur jusqu'à l'actionneur](README_BallScrew.md).
