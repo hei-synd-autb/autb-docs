@@ -17,6 +17,8 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 [Accès rapide]()
 
+# Ajouter une partie Ethernet Realtime basée sur Ethercat.
+
 # Objectif
 On utilise un robot pour montrer comment tirer profit des performances d'un bus Ethernet Real-Time pour piloter directement un axe en position.
 

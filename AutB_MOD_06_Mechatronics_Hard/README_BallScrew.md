@@ -14,6 +14,19 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 *Keywords:* **MOTOR ENCODER AXIS**
 
+# Le système mécatronique du laboratoire d'automation
+<figure>
+    <img src="./img/smart_function_kit_handling_640x360.jpg"
+         alt="Smart Function Kit Handling">
+    <figcaption>Smart Function Kit Handling</figcaption>
+</figure>
+
+Il s'agit d'un *robot* avec 3 axes qui peuvent être synchronisés via un bus Ethernet real-time.
+
+# Vocabulaire
+Nous éviterons dans la mesure du possible de parler de drive ou driver en raison du manque de clarté de la définition. Nous parlerons de **commande d'axe**. Si nous allons dans le cadre de ce cours approfondir les commandes d'axes électriques, il existe au minimum deux autres technologies de commandes d'axe.
+
+
 # Système d'entrainement par vis à bille
 
 # Note d'écriture, à lire puis enlever
@@ -45,6 +58,76 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 -    Activité: du point À au point B.
 
 -    Rapport d’inertie.
+
+# Préambule
+Il serait trop long, voir contre-productif de passer en revue l'ensemble de la technologies nécessaire au pilotage d'un axe.
+
+Pour ne prendre que l'exemple des types de codeur, certaines variantes des axes que nous utilisons lors de ce cours permettent l'utilisation des codeurs suivants:
+- Motor MS2N
+- Sin-cos 1Vpp + Hyperface
+- Sin-cos avec piste de référence
+- Resolver
+- EnDat 2.2
+- SSI
+
+Selon le degré de détail souhaité, nous pourrions consacrer l'entier des cours du semestre à ce sujet, surtour si l'on décider d'y inclure l'asper **Functional Safety** des codeurs. *Les codeurs SSI ne sont par exemple pas souhaitables pour des fonctions de vitesse de sécurité, alors que le type Sin-cos est acceptable*.
+
+L'objet de ce cours consiste à dire:**prenez garde à ce que la technologie de codeur que vous adopterez soit d'un côté acceptable en terme de précision avec votre application**, mais aussi: **prenez garde à ce que la technologie de codeur que vous adopterez soit acceptable pour le type de commande d'axe que vous aurrez sélectionner**. Enfin: **est-ce que la commande d'axe devra répondre à des contraintes de sécurité particulières.**
+
+# Functional Safety
+<figure>
+    <img src="./img/ctrlX-AUTOMATION_ctrlX-DRIVE_drive-portfolio Safety On Board.jpg"
+         alt="Safety on Board">
+    <figcaption>Safety on Board</figcaption>
+</figure>
+
+Il n'est pas dans l'objet de ce cours de traiter de la sécurité machine, ce qu'il faut retenir tient en une ligne.
+Les systèmes d'axes, comme les codeurs peuvent être utilisés pour des application avec des contraintes de sécurité avec la condition suivante:
+> La spécification de sécurité doit être faite **avant** la commande du matériel.
+
+Il sera particulièrement couteux et compliqué d'ajouter des éléments de sécurité à un système qui n'est pas conçu pour le faire.
+
+Les axes du laboratoire d'automation sont équipés de la fonction **STO**, **Safe Torque Off**, ce qui signfie que si le circuit de sécurité constitué d'un arrêt d'urgence, d'un contact de sécurité sur les portes et d'une barrière lumineuse et interrompu, les moteurs ont un couple nul garanti.
+
+# Une commande d'axe moderne comprend
+
+<figure>
+    <img src="./img/Axis Overview Device.PNG"
+         alt="Device Overview">
+    <figcaption>Device Overview</figcaption>
+</figure>
+
+## DC Bus connection
+Dans le cas du laboratoire, le premier drive reçoit une alimentation triphasée et un convertisseur AC/DC.
+La puissance de l'alimentation AC/DC est suffisante pour alimenter le second drive qui lui reçoit directement la tension DC du premier.
+
+> Il est intéressant de voir que la structure du système du labo, Alimentation AC/DC, puis conversion DC/AC, peut être mise en parallèle avec d'autre systèmes énergétiques.
+
+> Le drive Y/Z peut être vu comme un onduleur qui fournit une tension sinusoidale à partir d'une tension continue reçue depuis le drive X.
+
+> Ces notions seront revues en détail en 3ème année entre autre en électronique de puissance.
+
+## STO Axis
+Il s'agit de la fonction de sécurité intégrée.
+Si une fonction de sécurité supplémentaire, type **SLS**, **Safe Limited Speed**, était nécessaire, il faudrait changer de type de drive.
+
+## Entrées et sorties analogiques et numériques.
+Ici, entrée analogique, ce type d'entrée numérique ne sera en général pas utilisable pour piloter l'axe en position en raison de son immunité au brut.
+
+## Engineering port.
+Les drives sont souvent doté d'un port dédié à la mise en service et à la maintenance de la commande d'axe.
+
+## Moteur
+Quand nous parlons de la connextion du moteur, nous parlons d'un système triphasé.
+
+### Tension de fonctionnement
+Problèmes:  Les axes avec des tension exotiques. (Jeny Science, Linmot)
+Les moteurs linéaire avec sans fer (tension limitée)
+
+## Codeur
+Attention aux codeurs numériques !
+
+Les codeurs numériques du type **ACURO link technology** ou **Hiperface DSL** sont des technlogies de transmission numérique du signal. Elles offre l'avantage de pouvoir transmettre le signal du codeur dans le même câble que la puissance du moteur grace à leur immunité au bruit. Leur grand défaut, **elles ne sont pas compatibles entre elles**.
 
 
 Le système d'entrainement par vis à bille, sous différentes formes, reste un des types d'entrainement les plus répendus dans l'industrie pour le déplacement de charges.
@@ -234,3 +317,5 @@ Le minimum d'énergie.
 Le minimum de puissance.
 Le temps minimum.
 (on est dans le domaines de simples équations d'ordre 2, très éventuellement des intégrales basiques).
+
+[Voir aussi d'autres types d'axe](README_OtherAxes.md).
