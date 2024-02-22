@@ -681,12 +681,12 @@ VAR
 END_VAR
 
 // Code
-pDword := ADR(rValue);
+pDword := ADR(rData);
 dwValue :=pDword^;
 // MSB
-modBusRegisters[iLoop] := DWORD_TO_WORD(SHR(dwValue,16));
+modBusRegisters[0] := DWORD_TO_WORD(SHR(dwValue,16));
 // LSB
-modBusRegisters[iLoop+1] := DWORD_TO_WORD(dwValue AND 16#FFFF);
+modBusRegisters[1] := DWORD_TO_WORD(dwValue AND 16#FFFF);
 ```
 
 ## Lösungsaufgabe 3
