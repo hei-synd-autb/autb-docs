@@ -86,7 +86,7 @@ Comme son nom l’indique, il est dédié à la représentation de **Function Bl
 </figure>
 
 ### Le Structured Text
-Le texte structuré est inspiré du langage Pascal développé dans les années septante par le professeur Niklaus Wirth à l’EPFZ dans les années 70. C’est un langage fortement typé et relativement robuste.
+Le texte structuré est inspiré du langage Pascal développé dans les années septante par le professeur Niklaus Wirth à l’EPFZ. C’est un langage fortement typé et relativement robuste.
 Depuis 2013, *third edition*, le texte structuré existe avec une extension orientée objet. Il n’existe pas actuellement d’information faisant penser à une réelle transformation du langage dans les années à venir, au même titre que le langage C pour les systèmes embarqués, il est fort probable qu’il reste longtemps le langage de base pour la programmation des automates.
 
 > On ne peut citer Niklaus Wirth sans citer sa loi empirique: **les programmes ralentissent plus vite que le matériel accélère**.
