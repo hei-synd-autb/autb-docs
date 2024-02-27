@@ -17,6 +17,15 @@ Représenter le diagramme donné en exemple pour Batch Processes sous forme de t
 
 Stellen Sie das Beispieldiagramm für Batch-Prozesse in strukturierter Typform gemäß IEC 61131-3 dar.
 
+<figure>
+    <img src="./img/PI_D_Drink Processing.svg"
+         alt="Lost image PI_D_Drink_Processing">
+    <figcaption>Drink Processing version Pipe & Process Diagram</figcaption>
+</figure>
+
+Les structures, ```TYPES```, des différents Control Modules sont donnés.
+Die Strukturen, ```TYPES```, der verschiedenen Steuermodule werden angegeben.
+
 ```iecst
 TYPE XV_Valve_typ
    STRUCT
