@@ -56,7 +56,7 @@ Wobei die unabhängige Variable K eine ganze Zahl ist.
 
 ### Probenahme
 Abtasttheorem
-Ein analoges Signal $ x_a(t) $ mit einer auf $ F(Hz) $ begrenzten Bandbreite kann aus seinen Abtastwerten $ x_a(k \delta t) $ nur dann exakt rekonstruiert werden, wenn diese mit einer Periode $ \delta t aufgenommen wurden $ kleiner oder gleich $ 1/(2F)$.
+Ein analoges Signal $\ x_a(t)$ mit einer auf $\ F_s(Hz)$ begrenzten Bandbreite kann aus seinen Abtastwerten $\ x_a(k \delta t)$ nur dann exakt rekonstruiert werden, wenn diese mit einer Periode $\ \delta t$ aufgenommen wurden kleiner oder gleich $\ 1/(2F_s)$.
 
 Literatur: Siehe [Murat Kunt, Digitale Signalverarbeitung](https://www.epflpress.org/produit/803/9782889142439/Traitement%20numerique%20des%20signaux%20)
 
@@ -247,4 +247,4 @@ Wählen Sie einen Sensor aus, der mit einer **i2c**, *Inter Integrated Circuit B
 
 In diesem Fall ist **i2c** ein serieller Bus, der hauptsächlich für die Kommunikation zwischen den verschiedenen auf einer elektronischen Karte integrierten Komponenten konzipiert ist. Der ausgewählte Sensor wird voraussichtlich sehr preiswert sein, jedoch nicht für den Anschluss im industriellen Umfeld ausgelegt. Die endgültigen Kosten für die Integration einer Komponente im Wert von einigen Franken werden wahrscheinlich viel höher ausfallen als für einen Sensor, der in einem Element gekapselt ist, das mit einer IEC 61131-2-kompatiblen Schnittstelle ausgestattet ist.
 
-Suite, [Verknüpfung der Schnittstellenkarten mit dem Programm](./README_DE_part_3.md).
+Folgende, [Verknüpfung der Schnittstellenkarten mit dem Programm](./README_DE_part_3.md).
