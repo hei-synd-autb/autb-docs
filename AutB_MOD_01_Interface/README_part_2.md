@@ -51,8 +51,8 @@ Toute la théorie de traitement numérique du signal est basée sur l’échanti
 Par définition, un signal discret est une suite de valeurs numériques réeles ou complexes. S'il est formé par des valeurs réelles, il est appelé signal réel, alors que s'il est composé de valeurs complexes, on l'appelle signal complexe. Un signal numérique est un signal discret dont l'amplitude est qunatifiée.
 
 ### Notation
--   $ x(k) $
--   $ x(k  \Delta t) $
+-   $\ x(k) $
+-   $\ x(k  \Delta t) $
 
 Où la variable idépendante K est un nombre entier.
 
@@ -187,6 +187,17 @@ Par exemple :
 - Le bus Sercos II (fibre optique) puis Sercos III (câble Ethernet) ont été développés pour synchroniser des axes pilotés par des moteur synchrone. Domaine d’application, la machine-outil (CNC).
 En dehors des caractéristiques techniques, il existe des aspect géographiques Le marché européen est dominé par Profinet (Siemens), alors que le marché américain est dominé par EtherNet /IP (Allen-Bradley).
 Il existe des choix d’entreprise. Si une grosse entreprise, telle Nestlé a normalisé un type de bus, elle cherchera à imposer ce bus à ces fournisseurs afin de simplifier la maintenance de son réseau.
+
+## Nouveauté 2023-2024
+Actuellement une nouvelle technologie est en phase d'essais pilote par différents fournisseurs. [Ethernet-APL](https://www.ethernet-apl.org) Advanced Physical Layer. Cette technologie est destinée à remplacer les Profibus-PA dans l'industrie dite du Process, chimie, biotechnologies. Pour les ingénieurs actifs dans ce type d'industrie, il vaudra la peine d'envisager ce type de bus pour tout nouveau projet. Cette technologie est prévue pour pouvoir utiliser les supports physiques des anciennes installations, elle est donc aussi pertinente pour des projets de rénovation.
+
+<figure>
+    <img src="./img/Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png"
+         alt="Image lost Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png">
+    <figcaption>Ethernet-APL</figcaption>
+</figure>
+
+
 ## Les normes
 Dans le cas des bus de terrain, même si des normes existent, série IEC 61784 et IEC 61800, elles ne résolvent rien, car des variantes des normes ont été écrites pour la majorité des principaux type de bus de terrain.
 La situation en 2023 selon une publication de HMS une entreprise spécialisée dans le développement de produits pour les bus industriels. Le graphique de HMS est réalisé à l’échelle mondiale et les zones géographiques montreraient des réalités différentes. Noter aussi la croissance des réseaux sans fil, wireless.

@@ -185,6 +185,17 @@ Zum Beispiel :
 - Der Sercos II-Bus (Lichtwellenleiter) und dann Sercos III (Ethernet-Kabel) wurden entwickelt, um von Synchronmotoren angetriebene Achsen zu synchronisieren. Anwendungsgebiet Werkzeugmaschine (CNC).
 Neben den technischen Besonderheiten gibt es auch geografische Aspekte: Der europäische Markt wird von Profinet (Siemens) dominiert, während der amerikanische Markt von EtherNet/IP (Allen-Bradley) dominiert wird.
 Es gibt geschäftliche Entscheidungen. Wenn ein großes Unternehmen wie Nestlé einen Bustyp standardisiert hat, wird es versuchen, diesen Bus diesen Lieferanten aufzuzwingen, um die Wartung seines Netzwerks zu vereinfachen.
+
+## Neu für 2023-2024
+Derzeit befindet sich eine neue Technologie in der Pilottestphase bei verschiedenen Anbietern. [Ethernet-APL](https://www.ethernet-apl.org) Erweiterte physikalische Schicht. Diese Technologie soll Profibus-PA in der sogenannten Prozess-, Chemie- und Biotechnologieindustrie ersetzen. Für Ingenieure, die in dieser Branche tätig sind, lohnt es sich, diesen Bustyp bei jedem neuen Projekt in Betracht zu ziehen. Diese Technologie ist darauf ausgelegt, die physikalischen Medien alter Anlagen nutzen zu können und ist daher auch für Renovierungsprojekte relevant.
+
+<Abbildung>
+     <img src="./img/Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png"
+          alt="Bild verloren Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png">
+     <figcaption>Ethernet-APL</figcaption>
+</figure>
+
+
 ## Standards
 Im Fall von Feldbussen lösen die Standards, selbst wenn sie in der Reihe IEC 61784 und IEC 61800 existieren, nichts, da für die meisten Haupttypen von Feldbussen Varianten der Standards geschrieben wurden.
 Die Situation im Jahr 2023 geht aus einer Veröffentlichung von HMS hervor, einem Unternehmen, das sich auf die Entwicklung von Produkten für Industriebusse spezialisiert hat. Das HMS-Diagramm wird im globalen Maßstab erstellt und geografische Gebiete würden unterschiedliche Realitäten zeigen. Beachten Sie auch das Wachstum drahtloser Netzwerke.

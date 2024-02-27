@@ -195,7 +195,6 @@ TYPE EM_ConveyorThreeStations_typ
 END_TYPE
 ```
 
-<<<<<<< HEAD
 ### Représentation UML du convoyeur
 Je n'ai pas la possibilité de représenter *exactement* une représentation de la structure. Quitte à porter un peu à confusion, deux alternatives sont proposées. **Je préfère la première**
 
@@ -334,4 +333,4 @@ WriteStationDataToModbus(simulateTags := simulateTags,
 
 > Le code sera plus facile à développer car il sera possible de visuliser simplement l'ensemble des entrées et des sorties sur une structure en arborescence qui correspond à celle de la machine.
 
-## Image OPC UA quand elle sera disponible..... 
+[Exercices](./MOD_01_Exercices.md)

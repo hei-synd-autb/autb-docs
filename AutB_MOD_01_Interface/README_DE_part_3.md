@@ -195,7 +195,6 @@ TYPE EM_ConveyorThreeStations_typ
 END_TYPE
 ```
 
-<<<<<<< HEAD
 ### UML-Darstellung des Förderers
 Ich bin nicht in der Lage, die Struktur *genau* darzustellen. Auch wenn es ein wenig Verwirrung stiftet, werden zwei Alternativen vorgeschlagen. **Ich bevorzuge das erste**
 
@@ -333,4 +332,4 @@ WriteStationDataToModbus(simulateTags := simulateTags,
 
 > Der Code wird einfacher zu entwickeln sein, da alle Ein- und Ausgänge einfach in einer Baumstruktur angezeigt werden können, die der der Maschine entspricht.
 
-## OPC UA-Image, sofern verfügbar.....
+[Übungen](./MOD_01_Exercices.md)

@@ -85,6 +85,8 @@ discret ni continus ; cependant, ils présentent les deux caractéristiques.
     <figcaption>Drink Processing version Pipe & Process Diagram</figcaption>
 </figure>
 
+> La signification des labels P&ID est donnée à titre indicative dans le document annexe [Piping and Instrumentation Diagram](./PID_Diagram.md).
+
 <figure>
     <img src="img/S88_Drink_Processing.svg"
          alt="Lost image S88_Drink_Processing">
@@ -97,9 +99,11 @@ discret ni continus ; cependant, ils présentent les deux caractéristiques.
     <figcaption>Drink Processing version ISA-88</figcaption>
 </figure>
 
+
+
 Le travail sur les intefaces consiste à relier le processus représenté par exemple par le schéma **P&ID**, **Pipe & Process Diagram** que l'on retrouve fréquement dans l'industrie chimique avec le software représenté par le schéma UML.
 
-## Autres aspects de ISA-88
+## Autres aspects de ISA-88, *à titre d'information*
 ### Procedural Control Model
 ISA-88 gère aussi un modèle procédural, Procedural Control Model, que l'on pourrait simplement traduire par la gestion des recettes.
 Les élément traités dans le cadre de ce cours se limitent au bas de l'échelle procédurale. Ils seronts ensuite pilotés par une **phase**.

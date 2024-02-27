@@ -85,6 +85,8 @@ diskret oder kontinuierlich; Sie weisen jedoch beide Merkmale auf.
     <figcaption>Drink Processing version Pipe & Process Diagram</figcaption>
 </figure>
 
+> Die Bedeutung der P&ID-Beschriftungen ist als Hinweis im beigefügten Dokument [Piping and Instrumentation Diagram](./PID_Diagram.md) angegeben.
+
 <figure>
     <img src="img/S88_Drink_Processing.svg"
          alt="Lost image S88_Drink_Processing">
@@ -99,7 +101,7 @@ diskret oder kontinuierlich; Sie weisen jedoch beide Merkmale auf.
 
 Die Arbeit an den Schnittstellen besteht darin, den Prozess, der beispielsweise durch das **P&ID**-Diagramm, das in der chemischen Industrie häufig vorkommende **Pipe & Process Diagram** dargestellt wird, mit der durch das UML-Diagramm dargestellten Software zu verbinden.
 
-## Andere Aspekte von ISA-88
+## Andere Aspekte von ISA-88, *zu Ihrer Information*
 ### Verfahrenskontrollmodell
 ISA-88 verwaltet auch ein Verfahrensmodell, das Procedural Control Model, das einfach als Rezeptverwaltung übersetzt werden könnte.
 Die in diesem Kurs behandelten Elemente beschränken sich auf das untere Ende der Verfahrensskala. Sie werden dann von einer **Phase** gesteuert.
