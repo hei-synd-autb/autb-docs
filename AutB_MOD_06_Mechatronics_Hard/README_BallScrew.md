@@ -10,9 +10,11 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 06 Eléments mechatronics, Use case: bsall screws
+# Module 06 Eléments mechatronics, Use case: ball screws
 
 *Keywords:* **MOTOR ENCODER AXIS**
+
+# Module en cours d'écriture
 
 # Le système mécatronique du laboratoire d'automation
 <figure>
@@ -26,6 +28,23 @@ Il s'agit d'un *robot* avec 3 axes qui peuvent être synchronisés via un bus Et
 # Vocabulaire
 Nous éviterons dans la mesure du possible de parler de drive ou driver en raison du manque de clarté de la définition. Nous parlerons de **commande d'axe**. Si nous allons dans le cadre de ce cours approfondir les commandes d'axes électriques, il existe au minimum deux autres technologies de commandes d'axe.
 
+# Use case
+Nous nous limitons ici à la description complète d'un axe équipé d'une pince.
+Nous décrivons l'ensemple des éléments nécessaires au pilotage avec leurs implications mécanique.
+
+Contraintes mécaniques
+-   Liées au processus, par exemple vitesse nécessaire.
+-   Liées à la mécanique, par exemple, la vitesse maximale admissible par la vis à bille.
+-   Liée à l'actionneur électromécanique, la vitesse maximale du moteur ou sa charge maximale admissible.
+
+Quelques exemples:
+-   Le couple maximal du moteur sera dépendant de l'accélération nécessaire pour exécuter un mouvement, de la charge embarquée et du frottement.
+-   Le couple nominal du moteur sera dépendant du taux d'utilisation du moteur, le temps de cycle, mais aussi de la capacité thermique de l'ensemble et des conditions environnementales du laboratoire.
+-   La précision de l'ensemble sera dépendant de la résolution du codeur, mais aussi de la rigidité mécanique, puis enfin de la masse de l'ensemble mobile du moteur.
+
+> Même si un régulateur à haute performance  permet en théorie de travailler avec des moteurs de petite taille, en pratique, les différentes limites de précision des mesures et des modèles impliquent d'adapter la masse du rotor du moteur à la masse du système mobile.
+
+> Dans des application à haute performance, un différence de température ambiante de l'ordre de 20°C peuvent avoir une influence non négligeable sur la charge admissible du moteur.
 
 # Système d'entrainement par vis à bille
 
@@ -44,12 +63,27 @@ Nous éviterons dans la mesure du possible de parler de drive ou driver en raiso
 -    Contraintes de vitesse.
 -    Contraintes approvisionnement, SAP.
 
--    Type de moteur, type de codeur.
+-   Type de moteur
 
--    Maintenance.
+-   Type de codeur.
+
+## Maintenance.
+Du point de vue de l'automation, il est nécessaire de prévoir la maitenance du système sur le long terme. Celà passe, entre autre par la pérénité de l'ensemble logiciel.
+
+> Une commande d'axe est composée de nombreus paramètres, il faut être conscient qu'en cas de réparation du système, les paramètres risquent d'être perdus. Il est nécessaire de les archiver.
+
+> Différentes réglementations impliquent que les systèmes numériques soient protégés par des mots de passe. La disponibilité de ces mots de passe sur le long terme doit être garanti.
+
+> Batteries de sauvegarde de la date et de l'heure. Les systèmes de sécurité OT utilisent de plus en plus des systèmes de certificats datés et limités dans le temps. 
+
+### Procédures opérationelles standard
+En anglais, SOP : Standard Operating Procedure, c'est une documentation qui indique comment restautrer la partie logicielle ou les paramètres des éléments numériques.
+
 -    Calcul énergie moyenne moteur, drive, couple, vitesse, Precision.
 
--    Dans 10 ans? 20 ans ?
+### Disponibilité sur le long terme
+Les fournisseurs de matériel industriel garantissent un service sur le matériel livré jusqu'à une durée de 25 ans. C'est une composante non négligeable dont il faut tenir compte au moment du choix du matériel. Les coûts de développement en automation sont souvent largement supérieur au coût du matériel.
+
 
 -    Calcul vis à bille.
 -    Type de bus, synchronisé?
@@ -118,7 +152,7 @@ Ici, entrée analogique, ce type d'entrée numérique ne sera en général pas u
 Les drives sont souvent doté d'un port dédié à la mise en service et à la maintenance de la commande d'axe.
 
 ## Moteur
-Quand nous parlons de la connextion du moteur, nous parlons d'un système triphasé.
+Quand nous parlons de la connexion du moteur, nous parlons d'un système triphasé.
 
 ### Tension de fonctionnement
 Problèmes:  Les axes avec des tension exotiques. (Jeny Science, Linmot)

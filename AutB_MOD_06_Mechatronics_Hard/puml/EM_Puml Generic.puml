@@ -1,0 +1,13 @@
+ @startuml
+object Sensor
+
+object Actuator
+object ActuatorToMechanical
+
+object Bus_Connection
+
+object Safety
+
+Object PLC
+
+@enduml

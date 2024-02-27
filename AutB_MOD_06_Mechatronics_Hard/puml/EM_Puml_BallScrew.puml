@@ -1,0 +1,16 @@
+ @startuml
+object Codeur
+
+object Motor
+object BallScrewSystem
+
+object Gripper
+object Sensor
+
+object BusConnection
+
+object E_Stop
+
+Object PLC
+
+@enduml
