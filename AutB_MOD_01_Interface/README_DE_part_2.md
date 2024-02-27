@@ -243,6 +243,8 @@ Es ist sehr wichtig, sich die folgenden Informationen zu merken:
 - Berücksichtigen Sie die technischen Aspekte, Zykluszeit, Durchsatz, funktionale Sicherheit und Cybersicherheit, die später im Kurs entwickelt werden.
 
 ## Ein schlechtes Beispiel.
-Wählen Sie einen Sensor mit i2c-Schnittstelle aus und suchen Sie nach der Eingangs-/Ausgangskarte, die die Kommunikation mit einer SPS ermöglicht.
+Wählen Sie einen Sensor aus, der mit einer **i2c**, *Inter Integrated Circuit Bus*-Schnittstelle ausgestattet ist, und suchen Sie nach der Eingangs-/Ausgangskarte, die die Kommunikation mit einer SPS ermöglicht.
+
+In diesem Fall ist **i2c** ein serieller Bus, der hauptsächlich für die Kommunikation zwischen den verschiedenen auf einer elektronischen Karte integrierten Komponenten konzipiert ist. Der ausgewählte Sensor wird voraussichtlich sehr preiswert sein, jedoch nicht für den Anschluss im industriellen Umfeld ausgelegt. Die endgültigen Kosten für die Integration einer Komponente im Wert von einigen Franken werden wahrscheinlich viel höher ausfallen als für einen Sensor, der in einem Element gekapselt ist, das mit einer IEC 61131-2-kompatiblen Schnittstelle ausgestattet ist.
 
 Suite, [Verknüpfung der Schnittstellenkarten mit dem Programm](./README_DE_part_3.md).

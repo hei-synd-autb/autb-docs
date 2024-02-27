@@ -43,7 +43,7 @@ La notion de Système d’exploitation préemptif en temps réel, *preemptive* *
 
 Toute la théorie de traitement numérique du signal est basée sur l’échantillonnage. Si la répétabilité de la qualité de l’échantillonnage n’est pas garantie la qualité de traitement du signal.
 
-> Il faut retenir qu'un PLC est capable d'exécuter la majorité des **algorithmes de traitement du signal** et de **régulation avancée** jusqu'à un bande passante de l'ordre de **1 à 2 [kHz]**.
+> Il faut retenir qu'un PLC est capable d'exécuter la majorité des **algorithmes de traitement du signal** et de **régulation avancée** jusqu'à une bande passante de l'ordre de **1 à 2 [kHz]**.
 
 ## A propos des signaux numériques
 
@@ -58,7 +58,7 @@ Où la variable idépendante K est un nombre entier.
 
 ### Echantillonnage
 Théorème d'échantillonage
-Un signal analogique $ x_a(t) $ ayant une largeur de bande limitée à $ F(Hz) $ ne peut être reconstitué exactement à partir de ses échantillons $ x_a(k \delta t) $ que si ceux-ci ont été prélevés avec une période $ \delta t $ inférieure ou égale à $ 1/(2F)$.
+Un signal analogique $\ x_a(t) $ ayant une largeur de bande limitée à $ F_s(Hz) $ ne peut être reconstitué exactement à partir de ses échantillons $\ x_a(k \delta t) $ que si ceux-ci ont été prélevés avec une période $\ \delta t $ inférieure ou égale à $\ 1/(2F_s)$.
 
 Littérature: Voir [Murat Kunt, Traitement numérique des signaux](https://www.epflpress.org/produit/803/9782889142439/Traitement%20numerique%20des%20signaux%20) 
 
@@ -245,6 +245,8 @@ Il est très important de retenir les informations suivantes :
 - Tenir compte des aspects techniques, temps de cycle, débit, sécurité fonctionnelle et cybersécurité qui seront développés dans la suite du cours.
 
 ## Un mauvais exemple.
-Sélectionner un capteur muni d’une interface i2c et chercher la carte d’entrées sortie qui permettra de communiquer avec un automate.
+Sélectionner un capteur muni d’une interface **i2c**, *Inter Integrated Circuit Bus*, et chercher la carte d’entrées sortie qui permettra de communiquer avec un automate.
+
+Dans ce cas, **i2c** est un bus série conçu avant tout pour de la communication entre les différents composants intégrés sur une carte électronique. Le capteur sélectionné sera sans doute très bon marché, mais pas conçu pour un connexion dans un environnement industriel. Le coût final de l'intégration d'un composant qui vaut quelques francs s'avérera probablement bien plus élevé qu'un capteur encapsulé dans un élément équipé d'une interface compatible IEC 61131-2.
 
 Suite, [liaison du des cartes d'interface avec le programme](./README_part_3.md).
