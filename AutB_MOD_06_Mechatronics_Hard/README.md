@@ -88,7 +88,7 @@ En quelques mot:
 
 - **TSN**, pour Time Sensitive Network est un standard qui cherche à uniformiser les réseaux Ethernet Realtime.
 
-- **Ethernet APL**, *Advanced Physical Layer*, est un standard physique destiné à remplacer à terme les différents réeaux au niveau process. 
+- **Ethernet APL**, *Advanced Physical Layer*, est un standard physique destiné à remplacer à terme les différents réseaux au niveau process. 
 
 > Ces différents organismes collaborent entre eux. On peut rêver à l'horizon d'une dizaine d'années d'avoir un système de communication indusriel uniformisé. Mais en attendant, **les différents protocoles de communication industriels forment une véritable jungle**.
 
