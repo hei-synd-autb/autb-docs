@@ -58,7 +58,7 @@ Où la variable idépendante K est un nombre entier.
 
 ### Echantillonnage
 Théorème d'échantillonage
-Un signal analogique $\ x_a(t) $ ayant une largeur de bande limitée à $ F_s(Hz) $ ne peut être reconstitué exactement à partir de ses échantillons $\ x_a(k \delta t) $ que si ceux-ci ont été prélevés avec une période $\ \delta t $ inférieure ou égale à $\ 1/(2F_s)$.
+Un signal analogique $\ x_a(t) $ ayant une largeur de bande limitée à $\ F_s(Hz) $ ne peut être reconstitué exactement à partir de ses échantillons $\ x_a(k \delta t) $ que si ceux-ci ont été prélevés avec une période $\ \delta t $ inférieure ou égale à $\ 1/(2F_s)$.
 
 Littérature: Voir [Murat Kunt, Traitement numérique des signaux](https://www.epflpress.org/produit/803/9782889142439/Traitement%20numerique%20des%20signaux%20) 
 
