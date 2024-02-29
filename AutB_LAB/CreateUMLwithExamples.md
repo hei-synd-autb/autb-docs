@@ -229,3 +229,73 @@ B is Idle
 C is Idle
 @enduml
 ```
+# A use case for state diagram
+Plant UML allows you to generate relatively complex cases quickly and in Open Source, but makes it difficult to choose the free arrangement of states.
+
+## PaclML State Diagram
+
+<figure>
+    <img src="./puml/PackML_StateDiagram/PackML_StateDiagram.svg"
+         alt="PackML_StateDiagram.svg">
+    <figcaption>The PackML State Diagram</figcaption>
+</figure>
+
+```@startuml
+State PackML{
+    State Aborted #LightGreen
+    State Aborting #LightYellow
+
+    state Not_Abort {
+        state Clearing #LightGreen
+        state Stopping #LightGreen
+        state Stopped #LightYellow
+
+            state Not_Stop {
+            state Resetting #LightGreen
+            state Idle #LightYellow
+            State Starting #LightGreen
+            State Execute #SkyBlue
+            State Completing #LightGreen
+            State Complete #LightYellow
+
+            State Suspending #LightGreen
+            State Suspended #LightYellow
+            State Unsuspending #LightGreen
+
+            State Holding #LightGreen
+            State Held #LightYellow
+            State Unholding #LightGreen
+        }
+    }
+}
+
+Aborting --> Aborted : SC
+Aborted --> Clearing : Clear
+Not_Abort --> Aborting : Abort
+
+Not_Stop --> Stopping : Stop
+
+Clearing --> Stopped : SC
+
+Stopping --> Stopped : SC
+
+Stopped --> Resetting : Reset
+Resetting --> Idle : SC
+Idle --> Starting : Start
+Starting --> Execute : SC
+Execute --> Completing : SC
+Completing --> Complete : SC
+Complete --> Resetting : Reset
+
+Execute --> Suspending : Suspend
+Suspending --> Suspended : SC
+Suspended --> Unsuspending : Un-Suspend
+Unsuspending --> Execute : SC
+
+Execute --> Holding : Hold
+Holding --> Held : SC
+Held --> Unholding : Un-Hold
+Unholding --> Execute : SC
+
+@enduml
+```
