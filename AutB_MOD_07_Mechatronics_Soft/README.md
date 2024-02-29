@@ -14,6 +14,16 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 *Keywords:* **PARAMETER ENCODER PARA**
 
+# Ce module est en cours d'écriture
+
+# Ici, on peut parler des différents modules App, d'un système comme ctrlX Core.
+-    Module Motion
+-    Module VPN
+-    Module G Code
+etc...
+
+> Automation as a service...
+
 # Objectif de ce module
 Comprendre, paramétrer et découvrir une commande d'axe moderne.
 Ce module sert principalement à présenter une mise en application du module *Elements mechatronics Hardware*.
