@@ -232,7 +232,7 @@ C is Idle
 # A use case for state diagram
 Plant UML allows you to generate relatively complex cases quickly and in Open Source, but makes it difficult to choose the free arrangement of states.
 
-## PaclML State Diagram
+## PackML State Diagram
 
 <figure>
     <img src="./puml/PackML_StateDiagram/PackML_StateDiagram.svg"
