@@ -77,14 +77,14 @@ Il n'est pas du tout dans l'objectif de ce cours de rentrer dans les détails du
 
 # Des interfaces standards
  
-Les fournisseur de solution PLC proposent des modules d’entrées sorties qui sont spécifiques à leur gamme de produits et ne sont généralement pas compatibles avec celles des autres fabricants, à commencer par leurs caractéristiques mécaniques.
+Les fournisseurs de solutions PLC proposent des modules d’entrées sorties qui sont spécifiques à leur gamme de produits et ne sont généralement pas compatibles avec celles des autres fabricants, à commencer par leurs caractéristiques mécaniques.
 
 ## Exemple de modules d’entrées
 |Origine Beckhoff   | Origine Siemens|
 |:-----------------:|:--------------:|
 |![](img/IO%20Module%20Beckhoff.jpg) |![](img/IO%20Module%20Siemens.png)|
 
-Il une multitude de solutions techniques qui permettent à différents modules de communiquer entre eux, mais avec des conséquences directes sur le temps de développement et le coût du matériel. Il faudra encore y ajouter un risque supplémentaire pour l’augmentation de la complexité.
+Il existe une multitude de solutions techniques qui permettent à des modules de fabricants différents de communiquer entre eux, mais avec des conséquences directes sur le temps de développement et le coût du matériel. Il faudra encore y ajouter un risque supplémentaire pour l’augmentation de la complexité.
 
 La première tâche de l’ingénieur en automation, mais souvent sous la responsabilité du chef de projet qui pourra être un ingénieur en chimie ou en mécanique, sera de sélectionner le fournisseur dont la gamme de produit correspond au mieux à son type d’application.
 
