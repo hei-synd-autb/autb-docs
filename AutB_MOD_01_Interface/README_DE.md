@@ -17,7 +17,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 *Keywords:* **61131-2 hardware tags**
 
 <figure>
-    <img src="img/Logo_IEC.png"
+    <img src="./img/Logo_IEC.png"
          alt="Logo IEC">
     <figcaption>Logo International Electrotechnical Commission</figcaption>
 </figure>
@@ -41,7 +41,7 @@ Es geht nicht darum, im Detail auf die verschiedenen Arten industrieller Prozess
 > Nachfolgend finden Sie einen Vergleich zweier Arten von Prozessen, die wahrscheinlich in der Pharmaindustrie eingesetzt werden.
 
 <figure>
-    <img src="img/Batch vs Continuous Manufacturing.jpg"
+    <img src="./img/Batch vs Continuous Manufacturing.jpg"
          alt="Batch vs Continuous Manufacturing">
     <figcaption>Batch vs Continuous Manufacturing, Source: Org. Process Res. Dev. 2021, 25, 4, 721-739</figcaption>
 </figure>
@@ -54,7 +54,7 @@ Auf Softwareebene ist die **Erhöhung der Modularität** eines Programms oft gle
 ISA-88 bietet ein Modell, das es ermöglicht, einen industriellen Prozess nach einem generischen Modell darzustellen. Obwohl es sich bei ISA-88 ursprünglich um einen Standard handelt, der für die **Stapelverarbeitung** entwickelt wurde, kann er auch zur Modellierung anderer Arten von Prozessen verwendet werden, sodass wir diesen Kurs als allgemeinen Ansatz präsentieren können, der für andere Arten von Prozessen gilt, die automatisiert werden können.
 
 <figure>
-    <img src="img/S88_Physical_Model_UML_Generic.svg"
+    <img src="./img/S88_Physical_Model_UML_Generic.svg"
          alt="lost image S88_Physical_Model_UML_Generic">
     <figcaption>ISA-88 Physical Model Generic vesion UML</figcaption>
 </figure>
@@ -80,7 +80,7 @@ diskret oder kontinuierlich; Sie weisen jedoch beide Merkmale auf.
 ### Ein Beispiel für einen Batch-Prozess
 
 <figure>
-    <img src="img/PI_D_Drink Processing.svg"
+    <img src="./img/PI_D_Drink Processing.svg"
          alt="Lost image PI_D_Drink_Processing">
     <figcaption>Drink Processing version Pipe & Process Diagram</figcaption>
 </figure>
@@ -88,7 +88,7 @@ diskret oder kontinuierlich; Sie weisen jedoch beide Merkmale auf.
 > Die Bedeutung der P&ID-Beschriftungen ist als Hinweis im beigefügten Dokument [Piping and Instrumentation Diagram](./PID_Diagram.md) angegeben.
 
 <figure>
-    <img src="img/S88_Drink_Processing.svg"
+    <img src="./img/S88_Drink_Processing.svg"
          alt="Lost image S88_Drink_Processing">
     <figcaption>Drink Processing version ISA-88</figcaption>
 </figure>
