@@ -642,7 +642,7 @@ Déclarer, instancier et coder l'exemple ci-dessus avec ```ST_AxisTwoEncoder```.
 ```
 ``FB_StopAxis`` est instancié sous le nom de ``fbStopAxisTwoEncoder``.
 
-La structure de données ``ST_AxisTwoEncoder`` est instancié sous nom de ```stAxisTwoEncoder```
+La structure de données ``ST_AxisTwoEncoder`` est instanciée sous nom de ```stAxisTwoEncoder```
 
 L'axe X était instancié sous la forme suivante:
 ```iecst
