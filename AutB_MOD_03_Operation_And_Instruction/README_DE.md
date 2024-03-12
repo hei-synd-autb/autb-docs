@@ -764,6 +764,6 @@ bLightGreen  :=  (eStateMachine = E_StateMachine_typ.Green);
 
 bLightOrange := (eStateMachine = E_StateMachine_typ.Orange) OR
                 (eStateMachine = E_StateMachine_typ.Red_Orange) OR
-                (eStateMachine = E_StateMachine_typ.Warning) AND bLightRed.Q;
+                (eStateMachine = E_StateMachine_typ.Warning) AND fbBlink.Q;
 
 ```
