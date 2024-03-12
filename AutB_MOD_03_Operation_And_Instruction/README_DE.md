@@ -430,19 +430,73 @@ END_FOR
 [Lösung Exercice 4](#lösung-übung-4-for-mit-inkrement)
 
 ## Übung 5 (MOD)
-### Schreiben nicht abgeschlossen.
+### Schreiben noch nicht beendet, nicht tun...
 In der Informatik gibt die Modulo-Operation den Rest oder vorzeichenbehafteten Rest einer Division zurück, nachdem eine Zahl durch eine andere dividiert wurde (sogenannter Modulus der Operation).
-Schreiben Sie eine ``REPEAT``-Schleife, um zu zählen, wie oft Sie die Variable ``N`` durch die Zahl ``D`` dividieren können. Geben Sie den Wert ``Q`` und den Rest ``R`` zurück. Verwenden Sie keine Division oder Multiplikation.
+Schreiben Sie eine REPEAT-Schleife, um zu zählen, wie oft Sie die Variable N durch die Zahl D dividieren können. Geben Sie den Wert Q und den Rest R zurück. Verwenden Sie keine Division oder Multiplikation.
 
 ## Übung 6 MULT
-### Schreiben nicht abgeschlossen.
-Verwenden Sie eine „FOR“-Schleife, um die Multiplikation von ``Y := A x X`` ohne Multiplikation oder Division durchzuführen.
+### Schreiben noch nicht beendet, nicht tun...
+Verwenden Sie eine „FOR“-Schleife, um die Multiplikation von „Y := A x X“ ohne Multiplikation oder Division durchzuführen.
 
 ## Übung 7 SQRT
-### Schreiben nicht abgeschlossen.
+### Schreiben noch nicht beendet, nicht tun...
 Berechnen Sie SQRT nur mit Grundoperationen.
 
+## Übung 8, Ampeln in 4 Staaten
 
+<figure>
+    <img src="./puml/4-state traffic lights/4-state traffic lights.svg"
+         alt="Image lost: 4-state traffic lights">
+    <figcaption>State Diagram: 4-state traffic lights.svg</figcaption>
+</figure>
+
+Verwendung der folgenden Variablen:
+- Legen Sie den Enum-Typ für die Zustandsmaschine fest.
+- Codieren Sie die Zustandsmaschine mithilfe von Eingabebedingungen.
+- Codieren Sie die Ausgänge.
+
+```iecst
+VAR_INPUT
+    bConditionEnable    : BOOL;
+    bConditionRedOrange : BOOL;
+    bConditionGreen     : BOOL;
+    bConditionOrange    : BOOL;
+    bConditionRed
+END_VAR    
+VAR_OUTPUT
+    bLightRed           : BOOL;
+    bLightGreen         : BOOL;
+    bLightOrange        : BOOL;
+END_VAR
+VAR
+    eStateMachine       : E_StateMachine_typ;
+END_VAR
+```
+> Um streng zu sein, ist die obige Zustandsmaschine nicht vollständig. Wir sollten mit dem Fall rechnen, dass das System nicht mehr aktiviert ist, um beispielsweise beim Einschalten ein grünes Licht zu vermeiden. Hier ist eine vollständige Version:
+
+<figure>
+    <img src="./puml/4-state traffic lights complete/4-state traffic lights complete.svg"
+         alt="Image lost: 4-state traffic lights complete">
+    <figcaption>State Diagram: 4-state traffic lights complete</figcaption>
+</figure>
+
+[Lösungsaufgabe 8](#lösung-übung-8-ampeln-in-4-staaten)
+
+## Übung 9, 4-Status-Ampel, Fehler.
+Wir nutzen die Daten von [Übung 8, 4-Staaten-Ampel](#exercise-8-4-Staaten-Ampel).
+
+Im Falle einer Systemstörung, die durch einen ``bError``-Eintrag angezeigt wird, möchten wir, dass das orangefarbene Licht blinkt.
+Dafür haben wir einen ``FB_Blink``, der einen ``Q``-Ausgang mit einer Frequenz von 90 Schlägen pro Minute liefert.
+
+> Wir bevorzugten den Status ``Warnung`` oder ``Alarm``. Wenn die Fehlfunktion zu erwarten ist, handelt es sich nicht um einen Fehler. Ein Fehler wäre der Fall, wenn das Signalsystem nicht funktioniert, was nicht akzeptabel ist!
+
+> Es wird davon ausgegangen, dass im Fehlerfall das System vor dem Neustart deaktiviert werden muss.
+
+Vervollständigen Sie den Code.
+
+[SLösungsaufgabe 9](#lösung-übung-9-4-status-ampel-fehler)
+
+## Redaktionelle Anmerkungen
 Irgendwo will ich dieses Ding
 1.7 C Quellcode: Lagrange-Interpolation
 
@@ -480,3 +534,236 @@ Die Variable ``diCounter`` nimmt nacheinander die Werte ``5``, ``3`` und ``1`` a
 
 ## Lösung Übung 4, ```FOR``` mit Inkrement
 > iLastLoopVar = 30.
+
+## Lösung Übung 5
+Noch nicht fertig... nicht tun.
+
+## Lösung Übung 6
+Noch nicht fertig... nicht tun.
+
+## Lösung Übung 7
+Noch nicht fertig... nicht tun.
+
+## Lösung Übung 8, Ampeln in 4 Staaten
+
+Typdefinition einer Zustandsmaschine
+```iecst
+// The values of states can be modified.
+// The values of states can be omitted, but they are recommended
+TYPE E_StateMachine_typ :
+(
+    Idle       := 99,
+    Red        := 10,
+    Red_Orange := 20,
+    Green      := 30,
+    Orange     := 40
+) := Idle;
+END_TYPE
+```
+
+Code
+```iecst
+CASE eStateMachine OF
+    Idle       :
+        IF bConditionComplete THEN
+            eStateMachine := E_StateMachine_typ.Red;
+        END_IF
+    Red        :
+        IF NOT bConditionComplete THEN
+            eStateMachine := E_StateMachine_typ.Idle;
+        ELSIF bConditionRedOrange THEN
+            eStateMachine := E_StateMachine_typ.Red_Orange;
+        END_IF    
+    Red_Orange :
+        IF NOT bConditionComplete THEN
+            eStateMachine := E_StateMachine_typ.Idle;
+        ELSIF bConditionGreen THEN
+            eStateMachine := E_StateMachine_typ.Green;
+        END_IF    
+    Green      :
+        IF NOT bConditionComplete THEN
+            eStateMachine := E_StateMachine_typ.Idle;
+        ELSIF bConditionOrange THEN
+            eStateMachine := E_StateMachine_typ.Orange;
+        END_IF    
+    Orange     :
+        IF NOT bConditionComplete THEN
+            eStateMachine := E_StateMachine_typ.Idle;
+        ELSIF bConditionRed THEN
+            eStateMachine := E_StateMachine_typ.Red;
+        END_IF    
+END_CASE
+
+bLightRed    :=  (eStateMachine = E_StateMachine_typ.Red) OR
+                 (eStateMachine = E_StateMachine_typ.Red_Orange);
+
+bLightGreen  :=  (eStateMachine = E_StateMachine_typ.Green);
+
+bLightOrange := (eStateMachine = E_StateMachine_typ.Orange) OR
+                (eStateMachine = E_StateMachine_typ.Red_Orange);
+
+```
+
+## Lösung Übung 9, 4-Status-Ampel, Fehler
+
+### Vollständig
+
+Der komplette Zustandsautomat kann sich schnell als komplex erweisen.
+
+<figure>
+    <img src="./puml/4-state traffic lights error complete/4-state traffic lights error complete.svg"
+         alt="Image lost: 4-state traffic lights complete">
+    <figcaption>State Diagram: 4-state traffic lights complete</figcaption>
+</figure>
+
+Wenn wir uns jedoch auf den PUML-Code beziehen, der zur Generierung des Diagramms verwendet wurde, erscheint die Anzahl der Übergänge bereits einfacher:
+
+```
+
+[*] --> Idle
+Idle --> Red : bConditionEnable
+Red --> Red_Orange : bConditionRedOrange
+Red_Orange --> Green : bConditionGreeen
+Green --> Orange : bConditionOrange
+Orange -->  Red : bConditionRed
+
+Idle --> Warning : bError
+Red --> Warning : bError
+Red_Orange --> Warning : bError
+Green --> Warning : bError
+Orange -->  Warning : bError
+
+Red --> Idle: NOT bConditionRedOrange
+Red_Orange --> Idle : NOT bConditionGreeen
+Green --> Idle : NOT bConditionOrange
+Orange -->  Idle : NOT bConditionRed
+Warning --> Idle : NOT bConditionRed
+
+```
+
+### Teilweise
+Wir könnten auch eine Teilversion verwenden:
+<figure>
+    <img src="./puml/4-state traffic lights error/4-state traffic lights error.svg"
+         alt="Image lost: 4-state traffic lights error.svg">
+    <figcaption>State Diagram: 4-state traffic lights error partial</figcaption>
+</figure>
+
+### Band
+
+Oder stellen Sie die Staaten gruppiert dar:
+<figure>
+    <img src="./puml/4-state traffic lights error variant/4-state traffic lights error variant.svg"
+         alt="Image lost: 4-state traffic lights error variant.svg">
+    <figcaption>State Diagram: 4-state traffic lights error variant</figcaption>
+</figure>
+
+
+### Um etwas über den Rahmen dieses Kurses hinauszugehen
+In der Praxis wird eine Maschine für ein vollständiges System in verschiedene Betriebszustände zerlegt. Im folgenden Beispiel könnte das System in drei Zustände zerlegt werden: **Abortede**, **Suspended** und **Execute**. Die Bedingungen für den Übergang von einem Zustand in einen anderen sind sehr klar definiert und es ist jeweils nur ein Zustand der Maschine aktiv.
+
+<figure>
+    <img src="./puml/4-state traffic lights error solution/4-state traffic lights error solution.svg"
+         alt="Image lost: 4-state traffic lights error solution">
+    <figcaption>State Diagram: 4-state traffic lights error a possible solution</figcaption>
+</figure>
+
+[Siehe zum Beispiel PackML](https://www.omac.org/packml), aber das Thema liegt etwas außerhalb des Rahmens dieses Kurses.
+
+Für die Zwecke dieses Kapitels wird das [vollständige Modell](#vollständig) verwendet.
+
+> Auch wenn das Schreiben des vollständigen Modells etwas länger dauert, ist es das strengste und potenziell robusteste, da es die Validierung aller Szenarien ausnahmslos ermöglicht.
+
+Typdefinition einer Zustandsmaschine mit Warnung
+```iecst
+// The values of states can be modified.
+// The values of states can be omitted, but they are recommended
+TYPE E_StateMachine_typ :
+(
+    Idle       := 99,
+    Red        := 10,
+    Red_Orange := 20,
+    Green      := 30,
+    Orange     := 40,
+    Warning    := 50
+) := Idle;
+END_TYPE
+```
+Variables with ``bError`` and ``fbBlink``.
+```iecst
+VAR_INPUT
+    bError              : BOOL;
+    bConditionEnable    : BOOL;
+    bConditionRedOrange : BOOL;
+    bConditionGreen     : BOOL;
+    bConditionOrange    : BOOL;
+    bConditionRed
+END_VAR    
+VAR_OUTPUT
+    bLightRed           : BOOL;
+    bLightGreen         : BOOL;
+    bLightOrange        : BOOL;
+END_VAR
+VAR
+    eStateMachine       : E_StateMachine_typ;
+    fbBlink             : FB_Blink;
+END_VAR
+```
+
+Code with warning
+```iecst
+CASE eStateMachine OF
+    Idle       :
+        IF bConditionComplete THEN
+            eStateMachine := E_StateMachine_typ.Red;
+        END_IF
+    Red        :
+        IF NOT bConditionComplete THEN
+            eStateMachine := E_StateMachine_typ.Idle;
+        ELSIF bError THEN
+            eStateMachine := E_StateMachine_typ.Warning;
+        ELSIF bConditionRedOrange THEN
+            eStateMachine := E_StateMachine_typ.Red_Orange;
+        END_IF    
+    Red_Orange :
+        IF NOT bConditionComplete THEN
+            eStateMachine := E_StateMachine_typ.Idle;
+        ELSIF bError THEN
+            eStateMachine := E_StateMachine_typ.Warning;
+        ELSIF bConditionGreen THEN
+            eStateMachine := E_StateMachine_typ.Green;
+        END_IF    
+    Green      :
+        IF NOT bConditionComplete THEN
+            eStateMachine := E_StateMachine_typ.Idle;
+        ELSIF bError THEN
+            eStateMachine := E_StateMachine_typ.Warning;
+        ELSIF bConditionOrange THEN
+            eStateMachine := E_StateMachine_typ.Orange;
+        END_IF    
+    Orange     :
+        IF NOT bConditionComplete THEN
+            eStateMachine := E_StateMachine_typ.Idle;
+        ELSIF bError THEN
+            eStateMachine := E_StateMachine_typ.Warning;
+        ELSIF bConditionRed THEN
+            eStateMachine := E_StateMachine_typ.Red;
+        END_IF  
+    Warning    :
+        IF NOT bConditionComplete THEN
+            eStateMachine := E_StateMachine_typ.Idle;
+        END_IF  
+END_CASE
+
+fbBlink();
+
+bLightRed    :=  (eStateMachine = E_StateMachine_typ.Red) OR
+                 (eStateMachine = E_StateMachine_typ.Red_Orange);
+
+bLightGreen  :=  (eStateMachine = E_StateMachine_typ.Green);
+
+bLightOrange := (eStateMachine = E_StateMachine_typ.Orange) OR
+                (eStateMachine = E_StateMachine_typ.Red_Orange) OR
+                (eStateMachine = E_StateMachine_typ.Warning) AND bLightRed.Q;
+
+```
