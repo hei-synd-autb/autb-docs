@@ -534,7 +534,7 @@ UNION
 END_UNION
 END_TYPE
 ```
-###Instanciation de l'union
+### Instanciation de l'union
 ```iecst
 VAR
     bAlarme    : BOOL;
@@ -555,10 +555,10 @@ iSignal := WORD_TO_INT(u3Byte.a3Byte[1] * 256 + u3Byte.a3Byte[2]);
 Une application d'une union pourra aider à la résolution de problèmes liés à l'```Endianness ```.
 
 ### Endianness
-Spécifie l'ordre dans lequel les séquenes de **bytes** sont enregistrée en mémoire.
+Spécifie l'ordre dans lequel les séquences de **bytes** sont enregistrée en mémoire.
 |Little Endian     |Big Endian      |
 |-----------------------------------|---------------|
-|Intel             |Motorala        |
+|Intel             |Motorola        |
 |Byte with the smallest value first |Byte with the largest value first|
 |decimal 41394     |decimal 41394  |
 |0xA1B2            |0xA1B2         |
@@ -621,12 +621,34 @@ Une trame ```Modbus``` arrive dans le registre suivant:
 ```
     modBusFrame : ARRAY[0..11] OF BYTE := [0, 8, 143, 237, 0, 41, 3, 189, 255, 254, 21, 231];
 ```
-Nous devons lire la trame ci-dessus avec un processus Intel ```Little-Endian``` pour afficher les valeurs dans des ```DINT```.
+Nous devons lire la trame ci-dessus avec un processeur Intel ```Little-Endian``` pour afficher les valeurs dans des ```DINT```.
 
 [Solution Exercice 3](#solution-exercice-3-modbus-avec-endianess) 
 
 ## Exercice 4, VAR_IN_OUT with Extends
 Déclarer, instancier et coder l'exemple ci-dessus avec ```ST_AxisTwoEncoder```.
+
+<figure>
+    <img src="./puml/VarInOutWithExtends/VarInOutWithExtends.svg"
+         alt="VAR_IN_OUT with Extends">
+    <figcaption>VAR_IN_OUT with Extends</figcaption>
+</figure>
+
+```ST_SecondEncoder``` est composé de:
+```iecst
+	ActualPosition  : REAL;
+	ActualVelocity  : REAL := 0;
+	bAxisStopped    : BOOL;
+```
+``FB_StopAxis`` est instancié sous le nom de ``fbStopAxisTwoEncoder``.
+
+La structure de données ``ST_AxisTwoEncoder`` est instancié sous nom de ```stAxisTwoEncoder```
+
+L'axe X était instancié sous la forme suivante:
+```iecst
+ (* With ST_AxisInfo *)
+ fbStopAxis_X(ioAxisInfo := stAxisInfo);
+```
 
 [Solution Exerice 4](#solution-exerice-4-var_in_out-with-extends)
 
@@ -800,4 +822,35 @@ stResult.TotalApparentEnergy_VAh := stResult.arMyRegisters[3].diMyResult;
 
 ## Solution Exerice 4, VAR_IN_OUT with Extends
 
-To be completed
+Déclaration des structures
+
+```iecst
+TYPE ST_SecondEncoder
+STRUCT
+	ActualPosition  : REAL;
+	ActualVelocity  : REAL := 0;
+	bAxisStopped    : BOOL;
+END_STRUCT
+END_TYPE
+```
+
+```iecst
+TYPE ST_AxisTwoEncoder EXTENDS ST_AxisInfo :
+STRUCT
+    stSecondEncoder : ST_SecondEncoder;
+END_STRUCT
+END_TYPE
+```
+Instanciation des variables
+```iecst
+VAR
+   fbStopAxisTwoEncoder : FB_StopAxis;
+   stAxisTwoEncoder     : ST_AxisTwoEncoder;
+END_VAR
+```
+
+Appel du FB
+```iecst
+ (* With ST_AxisTwoEncoder *)
+ fbStopAxisTwoEncoder(ioAxisInfo := stAxisTwoEncoder);
+```
