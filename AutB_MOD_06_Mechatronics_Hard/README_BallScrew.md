@@ -48,6 +48,8 @@ Quelques exemples:
 
 # Système d'entrainement par vis à bille
 
+
+
 # Note d'écriture, à lire puis enlever
 
 > Diagramme d'activité ?
@@ -353,3 +355,62 @@ Le temps minimum.
 (on est dans le domaines de simples équations d'ordre 2, très éventuellement des intégrales basiques).
 
 [Voir aussi d'autres types d'axe](README_OtherAxes.md).
+
+# Use Case, les modules du labo 23N.411
+
+$ S_{max} $, Plage de déplacement maximale.  
+
+u             Nombre de mm par révolution, de l'allemand mm/Umdrehung
+
+CCW vs CW     Counterclockwise vs Clockwise
+
+|Axis |$ S_{max} $ [mm]| u [mm/u] |$V_{max}$ [m/s] | $ a_{max} $ [m/s2]|M1 max [Nm]| d | i|
+|-----|----------------|----------|----------------|-------------------|-----------|---|--|
+|X    |565             |5.0       |0.30            |15                 |8.2        |CCW|1 |
+|Y    |350             |5.0       |0.38            |15                 |6.76       |CCW|1 |
+|Z    |320             |5.0       |0.57            |15                 |2.39       |CW |1 |
+
+
+
+
+# Théorie
+
+## Analogie entre oscillateur mécanique et électrique
+
+Système RLC
+
+<figure>
+    <img src="./img/Circuit_RLC.gif"
+         alt="Lost image ircuit_RLC">
+    <figcaption>Circuit RLC, Source https://uel.unisciel.fr/physique/meca/meca_ch09/co/chapitre9_04.html</figcaption>
+</figure>
+
+$ L \dfrac{d^2i}{dt^2} + R \dfrac{di}{dt} + \dfrac{i}{C} = 0$
+
+Oscillateur mécanique
+
+<figure>
+    <img src="./img/System Amorti.gif"
+         alt="System Amorti.gif">
+    <figcaption>Oscillation amortie, Source https://uel.unisciel.fr/physique/syst_oscillants/syst_oscillants_ch03/co/apprendre_ch3_05.html</figcaption>
+</figure>
+
+$ x'' + \dfrac{\mu}{m}x' + \dfrac{k}{m} = 0 $
+
+Le but ici n'est pas de revenir sur un court d'électricité ou un cours mécanique, mais de rappeler que la réalité correspond à la théorie, mais en beaucoup plus compliqué.
+
+Les phénomènes suivants vont rentrer en ligne de compte à partir d'un certain niveau de cadence ou de précision:
+
+-   La rigidité du robot cartésien. La mesure est effectuée au niveau du moteur, cela peut être relativement éloigné de la position réele de la tête du robot.
+
+-   A partir d'un certain niveau d'accélération, l'ensemble de la structure va commencer à bouger.
+
+-   Le backlash des engrenages, si il est négligeables tant que l'on ne desend pas en dessous du centième de milimètre, il commencera à poser un problème en dessous.
+
+-   Le frottemenet des billes de la vis, si il peut être considéré comme plus ou moins constant à basse vitesse, il augementera de manière quadratique avec la vitesse.
+
+-   La constante de force du moteur, si elle est considérée comme constante à basse température, elle changera lorsque le moteur chauffe, donc souvent, dans les situations où la plage d'utilisation du moteur devient critique.
+
+-   La dissipation thermique d'un moteur se fait principalement par rayonnement, et en partie par contact thermique avec 
+
+

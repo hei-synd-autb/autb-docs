@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 06 Eléments mechatronics, Hardware
+# Module 06 Eléments mechatronics, Hardware Desgin Specification
 
 *Keywords:* **S88 Unit**
 
