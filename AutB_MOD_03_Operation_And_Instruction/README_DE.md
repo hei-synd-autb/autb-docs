@@ -397,18 +397,21 @@ diResult := diNumber;
 Geben Sie den Wert nach der Variablenschleife an: ``diNumber1``.
 ```iecst
 (*
-   Example of Instruction FOR 
+    Example of Instruction FOR 
 *)
-diNumber1 := 1;
-FOR diCounter := 5 TO 1 BY -1 DO
-   // At least on statement is expected, it can be a comment
-   diNumber1 := diNumber1 * 2;
-END_FOR;
+IF NOT DoOnce THEN
+    doOnce := TRUE;
+    diNumber1 := 1;
+    FOR diCounter := 5 TO 1 BY -1 DO
+       // At least on statement is expected, it can be a comment
+       diNumber1 := diNumber1 * 2;
+    END_FOR;    
+END_IF
 ```
 [Lösung Übung 3](#lösung-übung-3-for-mit-dekrement)
 
 ## Übung 4, ```FOR``` mit Inkrement
-Welchen Wert wird die Variable „iLastLoopVar“ am Ende der Ausführung des folgenden Codes haben:
+Welchen Wert wird die Variable ``iLastLoopVar`` am Ende der Ausführung des folgenden Codes haben:
 ```iecst
 PROGRAM PRG_ForLoop
 VAR
@@ -529,8 +532,7 @@ Result := a;    // Result is 792
 </figure> 
 
 ## Lösung Übung 3, ```For``` mit Dekrement
-> Der Wert von ``diNumber`` ist ``3``.
-Die Variable ``diCounter`` nimmt nacheinander die Werte ``5``, ``3`` und ``1`` an
+Die Variable ``diNumber1`` am Ende der Schleife ist **32**;
 
 ## Lösung Übung 4, ```FOR``` mit Inkrement
 > iLastLoopVar = 30.

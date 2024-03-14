@@ -394,13 +394,16 @@ diResult := diNumber;
 Donner la valeur après la boucle de la variable: ```diNumber1```
 ```iecst
 (*
-   Example of Instruction FOR 
+    Example of Instruction FOR 
 *)
-diNumber1 := 1;
-FOR diCounter := 5 TO 1 BY -1 DO
-   // At least on statement is expected, it can be a comment
-   diNumber1 := diNumber1 * 2;
-END_FOR;
+IF NOT DoOnce THEN
+    doOnce := TRUE;
+    diNumber1 := 1;
+    FOR diCounter := 5 TO 1 BY -1 DO
+       // At least on statement is expected, it can be a comment
+       diNumber1 := diNumber1 * 2;
+    END_FOR;    
+END_IF
 ```
 [Solution Exercice 3](#solution-exercice-3-for-avec-décrément)
 
@@ -527,8 +530,7 @@ Result := a;    // Result is 792
 </figure> 
 
 ## Solution Exercice 3, ```For``` avec décrément
-> La valeur de ```diNumber``` est de ```3```
-La variable ```diCounter``` prend successivement les valeurs ```5```, ```3``` et ```1```
+La variable ```diNumber1``` à la fin de la boucle est de **32**;
 
 ## Solution Exercice 4, ```FOR``` avec incrément
 > iLastLoopVar = 30.
