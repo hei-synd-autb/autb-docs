@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# MOD 02 Structures de données.
+# Module 02 Structures de données.
 
 *Keywords:* **DUT Type Conversion  ARRAY STRUCT**
 
