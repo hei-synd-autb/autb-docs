@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 06 Eléments mechatronics, Hardware
+# Module 06 Eléments mechatronics, Hardware Design Specification
 
 *Keywords:* **MOTOR ENCODER AXIS**
 
@@ -55,7 +55,7 @@ Les actionneurs tels que la diode électroluminescente (DEL), le servomoteur CC,
 | IEPE/accelerometer|  IO-Link Gateway          |  Wind turbine converter          |
 :---------------------------------------:|:-------------------------:|:-------------------------:|
 ![](./img/ep3632-0001__web_preview.png.webp)  |![](./img/mamfile-1761001-720Wx540H-c.webp)  |![](./img/ABBs_PCS6000_wind_turbine_converter.jpg)  |
-| Source Beckhoff| Source TDM | Source ABB | 
+| Source Beckhoff| Source Baumer | Source ABB | 
 
 Ce module se compose de deux partie, la première, 
 Le harware comprend les éléments qui ne sont pas directement programmables ou configurables depuis le PLC

@@ -417,7 +417,7 @@ Das Hauptinteresse der Aufzählung liegt in der Beschreibung eines Zustandsautom
     <figcaption>Beschreibung von Zuständen aus einer Aufzählung</figcaption>
 </figure>
 
-### Codage d'un ```CASE_OF```
+### Codierung von ```CASE_OF```
 ```iecst
 VAR
     stateMotion : EN_MotionStateMachineNoDefType := EN_MotionStateMachineNoDefType.Idle;
@@ -534,7 +534,7 @@ UNION
 END_UNION
 END_TYPE
 ```
-### IInstanziieren der UNION
+### Instanziieren der UNION
 ```iecst
 VAR
     bAlarme    : BOOL;
@@ -558,7 +558,7 @@ Eine Union-Anwendung kann dabei helfen, Probleme im Zusammenhang mit Endianness 
 Gibt die Reihenfolge an, in der Sequenzen von **Bytes** im Speicher gespeichert werden.
 |Little Endian     |Big Endian      |
 |-----------------------------------|---------------|
-|Intel             |Motorala        |
+|Intel             |Motorola        |
 |Byte with the smallest value first |Byte with the largest value first|
 |decimal 41394     |decimal 41394  |
 |0xA1B2            |0xA1B2         |
@@ -627,6 +627,27 @@ Wir müssen den obigen Frame mit einem Intel **Little-Endian**-Prozess lesen, um
 
 ## Übung 4, VAR_IN_OUT with Extends
 Deklarieren, instanziieren und kodieren Sie das obige Beispiel mit ``ST_AxisTwoEncoder``.
+
+<figure>
+    <img src="./puml/VarInOutWithExtends/VarInOutWithExtends.svg"
+         alt="VAR_IN_OUT with Extends">
+    <figcaption>VAR_IN_OUT with Extends</figcaption>
+</figure>
+
+```ST_SecondEncoder``` est composé de:
+```iecst
+	ActualPosition  : REAL;
+	ActualVelocity  : REAL := 0;
+	bAxisStopped    : BOOL;
+```
+``FB_StopAxis`` wird unter dem Namen instanziiert ``fbStopAxisTwoEncoder``.
+
+Die Datenstruktur ``ST_AxisTwoEncoder`` wird unter dem Namen instanziiert```stAxisTwoEncoder```
+
+Die X-Achse wurde in folgender Form instanziiert:
+```iecst
+ (* With ST_AxisInfo *)
+ fbStopAxis_X(ioAxisInfo := stAxisInfo);
 
 [Lösung Übung 4](#lösung-übung-4-var_in_out-with-extends)
 

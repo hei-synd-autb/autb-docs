@@ -1,0 +1,24 @@
+@startuml
+
+[*] --> Idle
+
+state Not_Idle{
+    state Red
+    state Red_Orange
+    state Green
+    state Orange
+}
+    
+state Warning
+
+Idle --> Red : bConditionEnable
+Not_Idle --> Idle : NOT bConditionEnable
+Not_Idle --> Warning : bError
+Warning --> Idle : NOT bConditionEnable
+
+Red --> Red_Orange : bConditionRedOrange
+Red_Orange --> Green : bConditionGreeen
+Green --> Orange : bConditionOrange
+Orange -->  Red : bConditionRed
+
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+
+[*] --> Aborted
+
+State Aborted
+State Suspended{
+    State Warning
+}
+State Execute{
+    state Red
+    state Red_Orange
+    state Green
+    state Orange
+}
+
+Aborted --> Execute : Clear
+Execute --> Suspended : Suspend
+Suspended --> Aborted : Abort
+Execute --> Aborted : Abort
+Suspended --> Execute : Unsuspend
+
+@enduml
