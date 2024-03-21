@@ -127,7 +127,10 @@ END_VAR
 
     fbCheckOne();
     fbCheckTwo(diNewValue := diTestOne,
-               bReset := bReset);
+               bReset := bReset,
+               diOut => diTestOne);
+
+    diTestTwo := fbCheckTwo.diOut;
 
     bAnd := AND_OUT(IN1 := fbCheckOne.Q,
                     IN2 := fbCheckTwo.Q);
