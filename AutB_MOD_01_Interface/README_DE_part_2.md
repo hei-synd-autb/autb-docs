@@ -183,6 +183,7 @@ Zum Beispiel :
 - Profibus-PA für Prozessautomatisierung, eine Variante von Profibus DP, die für den Einsatz in explosionsgefährdeten Bereichen konzipiert ist. Es ist in der chemischen Industrie sehr präsent.
 - Profinet, der Nachfolger von Profibus, basierend auf Ethernet-Unterstützung. Es ersetzt Profibus-PA nicht, da es nicht für explosionsgefährdete Bereiche ausgelegt ist.
 - Der Sercos II-Bus (Lichtwellenleiter) und dann Sercos III (Ethernet-Kabel) wurden entwickelt, um von Synchronmotoren angetriebene Achsen zu synchronisieren. Anwendungsgebiet Werkzeugmaschine (CNC).
+
 Neben den technischen Besonderheiten gibt es auch geografische Aspekte: Der europäische Markt wird von Profinet (Siemens) dominiert, während der amerikanische Markt von EtherNet/IP (Allen-Bradley) dominiert wird.
 Es gibt geschäftliche Entscheidungen. Wenn ein großes Unternehmen wie Nestlé einen Bustyp standardisiert hat, wird es versuchen, diesen Bus diesen Lieferanten aufzuzwingen, um die Wartung seines Netzwerks zu vereinfachen.
 
