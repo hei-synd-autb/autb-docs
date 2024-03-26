@@ -364,7 +364,7 @@ Ecrire un bout de code qui compte combien de fois il faut multiplier la variable
 
 [Solution Exercice 1](#solution-exercice-1-whiledo)
 
-## Exercie 2. ```REPEAT...UNTIL```
+## Exercice 2. ```REPEAT...UNTIL```
 Dans le cas du code donné dans l'exemple ci-dessus, que ce passe-t-il si on remplace ```diCounter := diCounter - 1;``` par un décrément de 2, ```diCounter := diCounter - 2;``` ?
 
 > Réfléchir au problème et ne pas tester.
@@ -522,7 +522,7 @@ END_WHILE
 
 Result := a;    // Result is 792
 ```
-## Solution Exercie 2. ```REPEAT...UNTIL```
+## Solution Exercice 2. ```REPEAT...UNTIL```
 <figure>
     <img src="./img/CrashBlueScreen.jpg"
          alt="Boucle infinie, risque de Crash">
