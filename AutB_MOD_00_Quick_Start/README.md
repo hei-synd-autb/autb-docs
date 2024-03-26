@@ -604,14 +604,14 @@ TP est un générateur d'impulsions, quelle que soit la durée du signal en entr
 
 # Exercices
 ## Exercice 1
-Quels sont les valeurs en décimal suivante ?
+Quelles sont les valeurs suivantes converties au format spécifié dans le suffixe et affichées en décimal ?
 ```iecst
-    byMyByte  := 2#1010_0110;
+    byMyBYTE  := 2#1010_0110;
     byMyWORD  := 16#A6;
-    nResByte  := SHL(16#45,2);
-    nResWord  := SHL(16#0045,2);
-    nResDWord := ROR(nInByte,nVar);
-    nResLWord := ROR(nInWord,nVar);
+    nResBYTE  := SHL(16#45,2);
+    nResWORD  := SHL(16#0045,2);
+    nResDWORD := ROR(nResBYTE,2);
+    nResLWORD := ROR(nResWORD,2);
 ```
 [Solution exercice 1](#solution-exercice-1)
 
@@ -658,13 +658,14 @@ END_VAR
 
 ## Solution Exercice 1
 Quels sont les valeurs en décimal suivante ?
+
 ```iecst
-    byMyByte  := 14;
-    byMyWORD  := 14;
-    nResByte  := 20;
-    nResWord  := 276;   
-    nResDWord := 81;
-    nResLWord := 16401;
+    byMyBYTE  := 166;
+    byMyWORD  := 166;
+    nResBYTE  := 20;      // 0100_0101 -> 0001_0100
+    nResWORD  := 276;     // 0100_0101 -> 0000_0001_0001_0100
+    nResDWORD := 5;       // 0001_0100 -> 0000_0101
+    nResLWORD := 69;      // 0000_0001_0001_0100 -> ...0100_0101
 ```
 
 ## Solution Exercice 2
