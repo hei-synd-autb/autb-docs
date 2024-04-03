@@ -411,7 +411,7 @@ END_TYPE
 ```
 
 ### Intérêt principal de l'énumération
-Le principal intérêt de é'énumération est la description d'une machine d'état. Dans la figure ci-dessous, les transitions sont à titre d'exemple uniquement.
+Le principal intérêt de l'énumération est la description d'une machine d'état. Dans la figure ci-dessous, les transitions sont à titre d'exemple uniquement.
 <figure>
     <img src="./puml/ENMotionStateMachineNoDefType/ENMotionStateMachineNoDefType.svg"
          alt="Description des états à partir d'une énumération">
