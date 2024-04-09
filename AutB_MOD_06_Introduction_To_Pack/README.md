@@ -12,7 +12,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 # Module 06 Introduction to PackML
 
-*Keywords:* **PackML PackTag*
+*Keywords:* **PackML PackTag**
 
 # Préambule
 Dans la suite des modules, nous allons aborder en pratique et en théorie, le pilotage d'axes électriques.
@@ -70,7 +70,7 @@ Pour une Unit / machine qui exécute plus d'un processus indépendant, une inter
 <figure>
     <img src="./img/WhyStandardStates.png"
          alt="Image lost: WhyStandardStates">
-    <figcaption>Pack ML Why Standard States, Source: opcconnect.opcfoundation.org
+    <figcaption>PackML, Why Standard States, Source: opcconnect.opcfoundation.org
     </figcaption>
 </figure>
 
@@ -83,14 +83,13 @@ Le modèle d'état de l'interface PackML repose sur deux éléments principaux :
 ###	States
 - **Acting States** (un état dans lequel l'unité / la machine effectue une action)
 - **Waiting States** (situation stable pour l'unité / la machine). Un état d'attente nécessite une commande pour entrer dans l'état suivant.
-- Execute est un état particulier qui combine un Wait state avec un acting State.
+- **Execute** est un état particulier qui combine un **Wait state** avec un **Acting State**, on parle aussi de **Dual State**.
  
 <figure>
     <img src="./img/SyntaxofPackMLStateMachine.png"
          alt="Image lost: SyntaxofPackMLStateMachine">
     <figcaption>Syntax of PackML State Machine</figcaption>
 </figure>
-
 
 De manière générale, pendant un **Wait state**, rien ne se passe, ou du moins, il n’y a pas d’action de la machine au niveau *Procedural*. Cependant, rien n’empêche qu’une bande d’alimentation continue à avancer, et même qu’elle s’arrête, si la commande d’arrêt est interne au module qui la contrôle.
 
@@ -101,14 +100,34 @@ Lorsque les modules sont en **Acting State**, on a une action concrète des modu
 Lorsque tous les modules ont terminé leur séquence et activé leur statut **State Complete**, et **seulement à cet instant**, tous les modules passent à l’état suivant.
 
 ## Le PackML Interface State Model
-Il est recommandé d’implémenter l’ensemble des 17 états du State Model. Le guide OMAC, dit que les utilisateurs final peuvent accepter une déviation de ses 17 états.
+ 
+<figure>
+    <img src="./img/PackMLStateModel.png"
+         alt="Image lost: PackMLStateModel">
+    <figcaption>PackML State Model</figcaption>
+</figure>
+
+Il est recommandé d’implémenter l’ensemble des **17 états** du State Model.
+
+En principe, on peut supprimer certains états, mais il est **interdit d'en ajouter**, *à l'exception bien entendu des états internes de chacun des 17 états*.
+
+> Dans l'image ci-dessus, **SC** signifie **State Complete**, cela signfie que le module concerné a terminé la tâche qui lui était assignée dans l'état actif.
 
 ###	Suppression d’états
-Les 17 états sont implémentés.
+**Les 17 états sont implémentés!!!**
 Selon les implémentation, il est possible de désactiver certains états, parmi lesquels Complete, Completing, Suspending, Suspended, Unsupending, Holding, Held et Unhoding, notamment en mode manuel.
+
 Certaines implémentations, comme Siemens, permettent de configurer les états actifs.
-Dans le plus simple cas, uniquement les états Stopped et Execute sont implémentés.
-De manière générale, tous les états Acting peuvent être supprimés. Avec les conditions suivantes :
+
+> Dans un cas extrême, on pourra se contenter d'un minimum d'états, dont **Stopped et Execute**. Une fois maîtrisé, le concept pourra aussi être utilisé dans des installations très simples.
+
+<figure>
+    <img src="./img/The Minimum State Machine.png"
+         alt="Image lost: The Minimum State Machine">
+    <figcaption>PackML The Minimum State Machine</figcaption>
+</figure>
+
+De manière générale, tous les états **Acting** peuvent être supprimés. Avec les conditions suivantes :
 
 |Precondition	    |Requierment       |
 |-----------------|------------------|
@@ -126,13 +145,9 @@ Je conseille de les encapsuler dans des états intermédiaires. Mais e**n aucun 
 
 ### Implémentation Custom
 Il est bien entendu possible de partir d’une feuille blanche pour écrire une implémentation particulière.
+
 Le but du PackML est de gagner en efficacité. Je conseille donc de partir d’une implémentation existante, y compris au niveau de sa documentation.
- 
-<figure>
-    <img src="./img/PackMLStateModel.png"
-         alt="Image lost: PackMLStateModel">
-    <figcaption>PackML State Model</figcaption>
-</figure>
+
 
 ##	En résumé
 
@@ -171,14 +186,6 @@ ISA Technical Report TR88.00.02 Machine and Unit States. Comme la majorité des 
 **State Type** *Wait*
 
 La machine est alimentée et stationnaire après avoir terminé l'état STOPPING. Toutes les communications avec les autres systèmes fonctionnent (le cas échéant). Une commande RESET provoquera une sortie de STOPPED à l'état RESETTING.
-
-> Dans un cas extrême, on pourra se contenter d'un minimum d'états, dont Stopped. Une fois maîtrisé, le concept pourra aussi être utilisé dans des installations très simples.
-
-<figure>
-    <img src="./img/The Minimum State Machine.png"
-         alt="Image lost: The Minimum State Machine">
-    <figcaption>PackML The Minimum State Machine</figcaption>
-</figure>
 
 ###	Starting
 **State Type** *Acting*
@@ -349,13 +356,13 @@ Le fournisseur de la machine doit spécifier les modes disponibles en plus de la
 Il appartient au fournisseur de la machine et à l'utilisateur final de définir le mode de démarrage après la mise sous tension, par exemple STOPPED ou IDLE.
 
 ###	Principes
-Le tableau des modes est donné à titre indicatif. Seul le mode PRODUCTION est obligatoire.
+-   Le tableau des modes est donné à titre indicatif. Seul le mode PRODUCTION est obligatoire.
 
-Le passage d’un mode à l’autre ne peut se faire **que dans des états bien définis**, en général l’état STOPPED.
+-   Le passage d’un mode à l’autre ne peut se faire **que dans des états bien définis**, en général l’état STOPPED.
 
-Le passage d’un mode à l’autre ne peut se faire que quand les états d’arrivée et de départ sont présents.
+-   Le passage d’un mode à l’autre ne peut se faire que quand les états d’arrivée et de départ sont présents.
 
-Dans certaines implémentations, les autorisations d’accès d’un mode à l’autre peuvent être paramétrés.
+-   Dans certaines implémentations, les autorisations d’accès d’un mode à l’autre peuvent être paramétrés.
 
 |PackML tag value|Mode	|PackML State Model	|Restricted access |Use|
 |------|------|-------|------------------|-------------------------|
@@ -472,4 +479,4 @@ Concrètement: cela signifie qu'il existe des spécifications qui permettent à 
 - des Interactions machine à machine;
 - des informations de mappage entre le système PackML et les systèmes OPC UA.
 
-
+# En pratique, *reste à compléter avec des exemples des LAB 06 et 07*.
