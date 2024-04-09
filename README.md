@@ -35,15 +35,17 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 [Module 05 Robust Programming with State Machine](./AutB_MOD_05_Robust_Programming_With_State_Machine/README.md): Utilisation des machines d'état pour une programmation robuste.
 
-[Module 06 Mechatronics Hard](./AutB_MOD_06_Mechatronics_Hard/MotionControDriveTrain.md): Capteurs et actionneurs du point de vue hardware. *Exemple: une commande d'axe électrique*.
+[Module 06 Introduction_To_Pack](./AutB_MOD_06_Introduction_To_Pack/README.md): Introduction to PackML states.
 
-[Module 07 Mechatronics Soft](./AutB_MOD_07_Mechatronics_Soft/README.md): Capteurs et actionneurs du point de vue paramètres et régulation. *Exemple: une commande d'axe électrique*.
+[Module 07 Mechatronics Soft](./AutB_MOD_07_Mechatronics_Soft/README.md): La structure et le fonctionnement d'un axe électrique.
 
-[Module 08 Synchronized Motion with Real-Time Ethernet](./AutB_MOD_08_Synchronized_Motion_With_Real_Time_Ethernet/README.md): Utilisation des propriétés d'un Ethernat Real-time pour un pilotage en continu.
+[Module 08 Motion Control with PLCopen](./AutB_MOD_08_Motion_Control_With_PLCopen/README.md): Utilisation d'une bibliothèque de fonctions standard pour le pilotage d'un mouvemement.
 
-[Module 09 Motion Control with PLCopen](./AutB_MOD_09_Motion_Control_With_PLCopen/README.md): Utilisation d'une bibliothèque de fonctions standard pour le pilotage d'un mouvemement.
+[Module 09 Synchronized Motion with Real-Time Ethernet](./AutB_MOD_09_Synchronized_Motion_With_Real_Time_Ethernet/README.md): Utilisation des propriétés d'un Ethernat Real-time pour asservir un axe par une tâche cyclique de l'automate.
 
 [Module 10 OPC-UA](./AutB_MOD_10_OPC_UA/README.md): Une architecture de communication unifiée pour l'automation industrielle.
+
+[Module 11 Design Specificatin](./AutB_MOD_11_Design_Specification/README.md) L'ancien module méchatronics hard dont le concept est revu.
 
 # Industrial Automation Labs
 
