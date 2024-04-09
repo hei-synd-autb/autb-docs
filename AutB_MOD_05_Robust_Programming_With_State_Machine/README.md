@@ -145,7 +145,7 @@ Tant que la ``Status`` est ``TRUE``, cela signfie que l'axe est sous couple. Si 
 TYPE E_EnableInOperation :
 (
     // Starting state of a function block
-	STATE_IDLE  := 999,
+    STATE_IDLE  := 999,
     // Initialization of the function block State
     STATE_INIT := 1,
     //  Working state of the function block
@@ -158,9 +158,9 @@ END_TYPE
 // Declaration
     eEnableInOperation  :   E_EnableInOperation;
 
-// Use, not that ordre is not important
+// Use: note that order is not important
 CASE eEnableInOperation OF
-    E_EnableInOperation.STATE_ERROR  :
+    E_EnableInOperation.STATE_ERROR :
         ;
     E_EnableInOperation.STATE_IDLE  :
         ;
@@ -312,7 +312,7 @@ Les paragraphes ci-dessus servent d'une part à construire un bloc fonctionnel r
 
 > Si le bloc n'est pas appelé, la machine d'état ne peut pas fonctionner et les sorties ne sont plus valides.
 
-## Un exemple qui peut poser problème
+## Un premier exemple qui peut poser problème
 Soit l'exemple de code ci-dessous, **BAD Practice**.
 
 ```iecst
@@ -334,9 +334,9 @@ CASE eEnableInOperation OF
         ;    
 END_CASE
 ```
-Si tout ce passe comme prévu dans l'idée du programmeur, le ``MC_Reset`` sera exécuté dans l'état ``STATE_INIT``, puis sera à nouveau exécuté dans l'état ``STATE_IDLE``. Mais, en cas d'autre type d'erreur, par exemple perte de l'alimentation électrique de ``X_Axis``, on passe directement dans l'état STATE_ERROR. **Problème**, la machine d'état interne de ``mcReset`` ne serait plus mise à jour avec un risque de comportement indéterminé.
+Si tout ce passe comme prévu dans l'idée du programmeur, le ``MC_Reset`` sera exécuté dans l'état ``STATE_INIT``, puis sera à nouveau exécuté dans l'état ``STATE_IDLE``. Mais, en cas d'autre type d'erreur, par exemple une perte de l'alimentation électrique de ``X_Axis``, on passerait directement dans l'état STATE_ERROR. **Problème**: la machine d'état interne de ``mcReset`` ne serait plus mise à jour. Cela impliquerait un risque de comportement indéterminé si les sorties du Function Block ``MC_Reset`` sont utilisée dans une autre portion du programme.
 
-C'est pourquoi, afin d'éviter cette incertitude, on préféra appeler mcReset à un seul endrtoit, après la machine d'état, la commande ``mcReset.Execute`` est codée avec de la logique combinatoire.
+C'est pourquoi, afin d'éviter cette incertitude, on préféra appeler mcReset **à un seul endroit**, après la machine d'état, la commande ``mcReset.Execute`` est codée avec de la logique combinatoire.
 
 ```iecst
 // GOOD practice for call of mcReset()
@@ -360,6 +360,55 @@ Avec cette pratique, **GOOD practice**, on a la certitude que:
 1.  ``mcReset.Execute`` sera ``TRUE`` uniquement dans l'état ``E_EnableInOperation.STATE_INIT`` et ``FALSE`` dans tous les autes états de ``eEnableInOperation``.
 2.  La machine interne de ``mcReset`` sera toujours exécutée.
 3.  *Cet exemple est théorique, car en motion control, MC_Reset est en général utilisé pour réinitialiser le sytème après une erreur*.
+
+## Un deuxième exemple qui peut poser, ou posera obligatoirement un problème
+Reprenons le cas d'une machine d'état utilisée pour piloter des feux de signailisation vu dans une module précédent [Feux de circulation à 4 états](https://github.com/hei-synd-autb/autb-docs/tree/main/AutB_MOD_03_Operation_And_Instruction#exercice-8-feux-de-circulation-%C3%A0-4-%C3%A9tats).
+
+<figure>
+    <img src="./puml/4-state traffic lights/4-state traffic lights.svg"
+         alt="Image lost: 4-state traffic lights">
+    <figcaption>State Diagram: 4-state traffic lights.svg</figcaption>
+</figure>
+
+Avec le code suivant: *une partie des transitions ont été enlevées pour obtenir un exemple plus clair*. Par rapport à l'exemple de l'exercice cité, un nouveau programmeur a voulu ajouter un nouvel état ``SpecialCase``.
+
+L'exemple de codage montre qu'il est possible d'avoir soit un feu vert soit un feu rouge pour l'état ``E_StateMachine_typ.SpecialCase``.
+
+> **C'est exactement ce que l'on veut éviter**. Un état de la machine correspond à **une et une seule** configuration des sorties.
+
+> On acceptera des paramètres dans un état, comme pour définir la position d'un bloc fonctionnel, mais **on n'utilisera jamais les entrées Execute ou Enable d'un Function Block directement dans une machine d'état**.
+
+```iecst
+CASE eStateMachine OF
+    E_StateMachine_typ.Idle       :
+        ;
+        // Some transition
+        bLightRed := FALSE;
+        bLightGreen := FALSE;
+    E_StateMachine_typ.Red        :
+        bLightRed := TRUE;
+        bLightGreen := FALSE;
+        IF mySpecialCondition THEN
+           eStateMachine := E_StateMachine_typ.SpecialCase
+        END_IF
+    E_StateMachine_typ.Red_Orange :
+        ;
+        // Some transition
+    E_StateMachine_typ.Green      :
+        bLightRed := FALSE;
+        bLightGreen := TRUE;
+        IF mySpecialCondition THEN
+           eStateMachine := E_StateMachine_typ.SpecialCase
+        END_IF
+    E_StateMachine_typ.Orange     :
+        ;
+        // Some transition
+
+    E_StateMachine_typ.SpecialCase     :
+        ;
+        // Some transition
+END_CASE
+```
 
 # Autres pratiques utiles
 ## State nm1, état précédent

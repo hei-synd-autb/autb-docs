@@ -80,7 +80,7 @@ A chaque **flanc montant** de l'entrée Execute, le compteur s'incrémente de 1.
 
 [Solution Exercice 3](#solution-exercice-3-7-segments-display-execute)
 
-## Exercice 4, Move Absolute
+## Exercice 4, Move Absolute (Pas terminé, ne pas faire / Noch nicht fertig, tu es nicht)
 Construire un bloc fonctionnel qui permette de mettre sous tension un axe et d'effectuer un mouvement absolu.
 Les blocs fonctionnels suivants sont disponibles selon la [spécification de PLCopen](./documentation/plcopen_motion_control_part_1_version_2.0.pdf).
 
@@ -90,7 +90,7 @@ Les blocs fonctionnels suivants sont disponibles selon la [spécification de PLC
 
 > Dans ce cas de figure, on constate(ra) que la gestion d'un système, même relativement simple en apparence, peut rapidement s'avérer complexe si l'on veut que le système soit robuste. Les données sont présentées sous la forme des exigences de l'utilisateur, URS, User Requierments Specifications.
 
-## Exercice 5, Move Velocity
+## Exercice 5, Move Velocity (Pas terminé, ne pas faire / Noch nicht fertig, tu es nicht)
 Il s'agit d'une variante de [l'exercice 4](#exercice-4-move-absolute). Dans ce nouveau cas, il ne s'agit plus de travailler avec un axe en mode **position**, mais en mode **vitesse**. Un cas typique pourrait être le pilotage d'une pompe, débit proportionnel à la vitesse.
 
 Reprendre les données de l'exercice précédent avec les modifications suivantes:

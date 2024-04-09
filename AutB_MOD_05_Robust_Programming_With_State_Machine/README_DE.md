@@ -21,7 +21,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 # Allgemein
 Es gibt einige Prinzipien, die es Ihnen ermöglichen, **robusten Code** zu schreiben.
-Mit „robust“ meinen wir die **Fähigkeit, die gewünschte Funktion auszuführen**, aber auch die Fähigkeit, **unerwünschtes Verhalten zu vermeiden**, bis hin zum Begriff der Zeit, um einen modischen Begriff zu verwenden, könnten wir von ** sprechen. Nachhaltigkeit**.
+Mit ``robust`` meinen wir die **Fähigkeit, die gewünschte Funktion auszuführen**, aber auch die Fähigkeit, **unerwünschtes Verhalten zu vermeiden**, bis hin zum Begriff der Zeit, um einen modischen Begriff zu verwenden, könnten wir von ** sprechen. Nachhaltigkeit**.
 
 Die Originalquelle ist nicht bekannt, es heißt aber: **Code wird viel häufiger gelesen als geschrieben**. Ein Code wird ebenfalls geändert. Die Qualität des Schreibens trägt wesentlich dazu bei, dass ein Code geändert werden kann, ohne dass es zu unerwünschten Nebenwirkungen kommt.
 
@@ -112,7 +112,7 @@ fbAlarm(Enable := (selector = E_Color.red));
 # Modelle aktivieren und ausführen
 Bei der objektorientierten Programmierung gibt es mehrere Variationsmöglichkeiten. Einschließlich dessen, was darin besteht, Vererbung, Schnittstellen und Methoden zu verwenden, um grundlegende Funktionsblöcke mit gemeinsamem Verhalten zu definieren. Siehe [unten, Um ein wenig weiter zu gehen](#to-go-a-little-forther). Die beiden genannten Referenzen gehen jedoch über den Rahmen dieses Kurses *basic* hinaus, sie ermöglichen den Nachweis, dass IEC 61131-3 in seiner aktuellen Fassung die Strukturierung von Code mit komplexer Architektur ermöglicht und werden nicht kommentiert.
 
-Das Design durch Funktionsblöcke greift jedoch das erste Prinzip der objektorientierten Programmierung auf, die **Kapselung**. **Um genau zu sein, ist der Funktionsblock eine Klasse, seine Instanz ist ein Objekt**. Andererseits werden wir nicht über Vererbung oder Polymorphismen sprechen. Dies bedeutet, dass die Funktionsblöcke nicht durch Methoden, sondern durch boolesche BOOL-Signale aktiviert werden, die in zwei Hauptkategorien eingeteilt werden können: „Ausführen“ und „Aktivieren“.
+Das Design durch Funktionsblöcke greift jedoch das erste Prinzip der objektorientierten Programmierung auf, die **Kapselung**. **Um genau zu sein, ist der Funktionsblock eine Klasse, seine Instanz ist ein Objekt**. Andererseits werden wir nicht über Vererbung oder Polymorphismen sprechen. Dies bedeutet, dass die Funktionsblöcke nicht durch Methoden, sondern durch boolesche BOOL-Signale aktiviert werden, die in zwei Hauptkategorien eingeteilt werden können: ``Ausführen`` und ``Aktivieren``.
 
 ## InOperation-Modell aktivieren
 Typische Verwendung: ein Regler, der kontinuierlich arbeitet. Sobald der Block betriebsbereit ist, erscheint ``InOperation``. Der Regler funktioniert normal.
@@ -135,7 +135,7 @@ Solange ``Status`` ``TRUE`` ist, bedeutet dies, dass die Achse unter Drehmoment 
 |STATE_IDLE |999 |Starting state of a function block|
 |STATE_INIT |1 |Initialization of the function block State runs after the function block starts. All preparations required for the actual operations are made here. A sub-state machine is possible.|
 |STATE_INOP| 2 |Working state of the function block In this state, the actual task of the function block is executed.|
-|STATE_ERROR| 3 |Error state| State is active after an error occurs. It is exited by resetting “Enable” or “Execute”.|
+|STATE_ERROR| 3 |Error state| State is active after an error occurs. It is exited by resetting ``Enable`` or ``Execute``.|
 
 > Das Festlegen der Enumerationswerte ist optional. Die Angewohnheit, diesen Wert **999** für ``STATE_IDLE`` zu setzen, resultiert aus der Idee, dass eine Variable bei **0** eine Variable sein könnte, die wir vergessen haben zu initialisieren.
 
@@ -194,7 +194,7 @@ Im Falle einer ``ENUM`` ist für die Nutzung dieser Komponenten die Angabe des N
     eEnableInOperation := E_EnableInOperation.STATE_INIT;
 ```
 
-> Bevorzugen Sie das Schreiben im Stil „E_EnableInOperation.STATE_INIT“, der immer akzeptiert wird.
+> Bevorzugen Sie das Schreiben im Stil ``E_EnableInOperation.STATE_INIT``, der immer akzeptiert wird.
 
 #### Attribute strict
 Verbietet das Schreiben auf die Zustandsvariable mit einem anderen Typ.
@@ -254,7 +254,7 @@ Im folgenden Beispiel wird **MC_RESET** in Motion Control-Anwendungen verwendet,
 |STATE_INIT |1 |Initialization of the function block State runs after the function block starts. All preparations required for the actual operations are made here. A sub-state machine is possible.|
 |STATE_INOP| 2 |Working state of the function block In this state, the actual task of the function block is executed.|
 |STATE_DONE| 3 |Processing completed| State indicates that task processing was successfully completed.|
-|STATE_ERROR| 4 |Error state| State is active after an error occurs. It is exited by resetting “Enable” or “Execute”.|
+|STATE_ERROR| 4 |Error state| State is active after an error occurs. It is exited by resetting ``Enable`` or ``Execute``.|
 
 ### Ein Funktionsblock vom Typ ``Enable``.
 
@@ -262,7 +262,7 @@ Ein Funktionsbaustein vom Typ ``Enable`` wird kontinuierlich aufgerufen, solange
 Es gilt im Allgemeinen als aktiv, solange das Ausgangssignal ``InOperation`` oder ``Status`` TRUE ist.
 Wenn der Ausgang ``InOperation`` oder ``Status`` wahr ist, ``TRUE``, während der Funktionsblock nicht kontinuierlich aufgerufen wird, gibt es absolut keine Garantie dafür, dass das Signal gültig ist. Dies sollte als Programmierfehler betrachtet werden, der vom Compiler nicht gemeldet wird.
 
-Ein Beispiel für einen Funktionsblock vom Typ „Enable“ ist ein Regler oder ein Funktionsblock vom Typ ``MC_Power``, der zur Achsensteuerung verwendet wird.
+Ein Beispiel für einen Funktionsblock vom Typ ``Enable`` ist ein Regler oder ein Funktionsblock vom Typ ``MC_Power``, der zur Achsensteuerung verwendet wird.
 
 <figure>
     <img src="./img/MC_Power Schneider Electric.png"
@@ -335,9 +335,9 @@ CASE eEnableInOperation OF
         ;    
 END_CASE
 ```
-Wenn nach den Vorstellungen des Programmierers alles wie geplant verläuft, wird ``MC_Reset`` im Status ``STATE_INIT`` und dann erneut im Status ``STATE_IDLE`` ausgeführt. Aber im Falle eines anderen Fehlertyps, zum Beispiel eines Stromausfalls an ``X_Achse``, gehen wir direkt in den Zustand STATE_ERROR. **Problem**: Die interne Zustandsmaschine von ``mcReset`` würde nicht mehr aktualisiert werden, was zu einem unbestimmten Verhalten führen würde.
+Wenn nach den Vorstellungen des Programmierers alles wie geplant verläuft, wird ``MC_Reset`` im Status ``STATE_INIT`` und dann erneut im Status ``STATE_IDLE`` ausgeführt. Aber im Falle eines anderen Fehlertyps, beispielsweise eines Ausfalls der Stromversorgung der ``X_Achse``, würden wir direkt in den Zustand STATE_ERROR wechseln. **Problem**: Die interne Zustandsmaschine von ``mcReset`` würde nicht mehr aktualisiert. Dies birgt die Gefahr eines unbestimmten Verhaltens, wenn die Ausgänge des Funktionsbausteins ``MC_Reset`` in einem anderen Teil des Programms verwendet werden.
 
-Um diese Unsicherheit zu vermeiden, haben wir es daher vorgezogen, ``mcReset`` an einer Stelle aufzurufen, nach der Zustandsmaschine, wobei der Befehl ``mcReset.Execute`` mit kombinatorischer Logik codiert ist.
+Um diese Unsicherheit zu vermeiden, haben wir es daher vorgezogen, mcReset **an einer Stelle** nach der Zustandsmaschine aufzurufen. Der Befehl ``mcReset.Execute`` ist mit kombinatorischer Logik codiert.
 
 ```iecst
 // GOOD practice for call of mcReset()
@@ -361,6 +361,55 @@ Mit dieser Praxis, der **GUTEN Praxis**, sind wir sicher, dass:
 1. ``mcReset.Execute`` ist nur im Status ``E_EnableInOperation.STATE_INIT`` ``TRUE`` und in allen anderen Status von ``eEnableInOperation`` ``FALSE``.
 2. Die interne ``mcReset``-Maschine wird immer ausgeführt.
 3. *Dieses Beispiel ist theoretisch, da ``MC_Reset`` in der Bewegungssteuerung im Allgemeinen verwendet wird, um das System nach einem Fehler zurückzusetzen*.
+
+## Ein zweites Beispiel, das zwangsläufig ein Problem darstellen kann oder wird
+Kehren wir zum Fall einer Zustandsmaschine zurück, die zur Steuerung von Ampeln verwendet wird und in einem vorherigen Modul [Ampeln mit 4 Zuständen](https://github.com/hei-synd-autb/autb-docs/tree /main/AutB_MOD_03_Operation_And_Instruction) gezeigt wurde #exercise-8-ampeln-%C3%A0-4-%C3%A9states).
+
+<Abbildung>
+     <img src="./puml/4-state Traffic Lights/4-state Traffic Lights.svg"
+          alt="Bild verloren: 4-Staaten-Ampel">
+     <figcaption>Zustandsdiagramm: 4-Zustands-Ampeln.svg</figcaption>
+</figure>
+
+Mit dem folgenden Code: *Einige der Übergänge wurden entfernt, um ein klareres Beispiel zu erhalten*. Im Vergleich zum Beispiel in der zitierten Übung wollte ein neuer Programmierer einen neuen Zustand ``SpecialCase`` hinzufügen.
+
+Das Codierungsbeispiel zeigt, dass es möglich ist, entweder ein grünes Licht oder ein rotes Licht für den Status ``E_StateMachine_typ.SpecialCase`` zu haben.
+
+> **Genau das wollen wir vermeiden**. Ein Maschinenzustand entspricht **einer und nur einer** Ausgangskonfiguration.
+
+> Wir akzeptieren Parameter in einem Zustand, um beispielsweise die Position eines Funktionsblocks zu definieren, aber **wir werden niemals die Execute- oder Enable-Eingänge eines Funktionsblocks direkt in einer Zustandsmaschine verwenden**.
+
+```iecst
+CASE eStateMachine OF
+     E_StateMachine_typ.Idle:
+         ;
+         // Irgendein Übergang
+         bLightRed := FALSE;
+         bLightGreen := FALSE;
+     E_StateMachine_typ.Red:
+         bLightRed := TRUE;
+         bLightGreen := FALSE;
+         WENN mySpecialCondition DANN
+            eStateMachine := E_StateMachine_typ.SpecialCase
+         END_IF
+     E_StateMachine_typ.Red_Orange:
+         ;
+         // Irgendein Übergang
+     E_StateMachine_typ.Green:
+         bLightRed := FALSE;
+         bLightGreen := TRUE;
+         WENN mySpecialCondition DANN
+            eStateMachine := E_StateMachine_typ.SpecialCase
+         END_IF
+     E_StateMachine_typ.Orange:
+         ;
+         // Irgendein Übergang
+
+     E_StateMachine_typ.SpecialCase:
+         ;
+         // Irgendein Übergang
+END_CASE
+```
 
 # Andere nützliche Praktiken
 ## Zustand nm1, vorheriger Zustand
@@ -500,7 +549,7 @@ Schließlich wird das Ereignis an ein Überwachungssystem gesendet, das in seine
 Die Verarbeitung von Alarmen hängt wenig vom SPS-Teil ab. Das vollständige Schreiben eines Alarmmanagementsystems ist eine komplexe Aufgabe und in den meisten Fällen verwendet der Automatisierungsingenieur eine Alarmbibliothek, die ihm eine Reihe von Funktionsblöcken zur Verfügung stellt, die an die Umgebung, in der er arbeitet, angepasst sind.
 Der folgende Code ist von einer Original-Siemens-Bibliothek inspiriert, die für eine dedizierte Hardwareumgebung entwickelt wurde.
 
-> Bibliotheken sind Pakete von Funktionsblöcken, die mit dem verglichen werden können, was wir in Python über einen „import“-Befehl erhalten würden.
+> Bibliotheken sind Pakete von Funktionsblöcken, die mit dem verglichen werden können, was wir in Python über einen ``import``-Befehl erhalten würden.
 
 ### codiert
 Wir haben ein Mindestmaß an Verständnis dafür, was ein Funktionsblock ist. Wir können den Punkt anhand eines Codebeispiels veranschaulichen, was ein **Ereignis** sein könnte.
@@ -537,9 +586,9 @@ instEventServoLeft(Enable        := CM_LeftServo.Overheated,
 
 Beim Aufruf dieses Funktionsblocks werden wir:
 
-1. Aktivieren Sie das Ereignis mit „CM_LeftServo.Overheated“.
-2. Definieren Sie die Reaktion des Systems auf das Ereignis, hier einen **Stop** mit „enumEvent.Stop“.
-3. Definieren Sie die Ereignismeldung mit „emBagForming.cmLeftServo“ und „Motor. „Überhitzung“.
+1. Aktivieren Sie das Ereignis mit ``CM_LeftServo.Overheated``.
+2. Definieren Sie die Reaktion des Systems auf das Ereignis, hier einen **Stop** mit ``enumEvent.Stop``.
+3. Definieren Sie die Ereignismeldung mit ``emBagForming.cmLeftServo`` und ``Motor. ``Überhitzung``.
 4. stsEventActive gibt den Alarmstatus zurück. Das Bit verschwindet, wenn der Motor abkühlt.
 5. stsEventLatched bleibt aktiv, bis der Bediener den Alarm bestätigt. Dadurch weiß er, warum seine Maschine stehen geblieben ist, auch wenn der Motor inzwischen abgekühlt ist. Diese Informationen können auch verwendet werden, um sicherzustellen, dass dem Betreiber die Informationen zur Verfügung standen. *Leider können wir grundsätzlich nicht garantieren, dass der Alarm gelesen wurde, bevor er abgewiesen wird*.
 6. Bietet Zugriff auf die Struktur, die alle Alarme gruppiert.
@@ -547,13 +596,13 @@ Beim Aufruf dieses Funktionsblocks werden wir:
 > Event-Management-Umgebungen sind oft für den Umgang mit mehreren Sprachen konzipiert. Die Nachrichten beziehen sich somit auf separate Textdateien.
 
 ## Event Manager
-**Fehler**... ein Alarm ist kein Fehler! Ein Alarm ist mit einem bestimmten Ereignis verknüpft, das auf Maschinenebene referenziert wird. Eine Division durch Null könnte ein Fehler sein, allerdings bestünde in diesem Fall die Gefahr eines „Absturzes“ des Automaten.
+**Fehler**... ein Alarm ist kein Fehler! Ein Alarm ist mit einem bestimmten Ereignis verknüpft, das auf Maschinenebene referenziert wird. Eine Division durch Null könnte ein Fehler sein, allerdings bestünde in diesem Fall die Gefahr eines ``Absturzes`` des Automaten.
 Ein Fehler kann durch ein Element der Maschine ausgelöst werden, beispielsweise eine Unterbrechung des Kommunikationsbusses. In diesem Fall wird der Fehler durch einen Alarm signalisiert.
 
 ### Alarm
-Alarme deuten auf ein ernstes Problem mit der Maschine hin, das in der Regel die Produktion verhindert oder ein Sicherheitsrisiko darstellt. Alarme werden einer „Kategorie“ zugeordnet, die es der Zustandsmaschine ermöglicht, sofort auf einen Alarm zu reagieren, indem sie in den entsprechenden Zustand wechselt.
+Alarme deuten auf ein ernstes Problem mit der Maschine hin, das in der Regel die Produktion verhindert oder ein Sicherheitsrisiko darstellt. Alarme werden einer ``Kategorie`` zugeordnet, die es der Zustandsmaschine ermöglicht, sofort auf einen Alarm zu reagieren, indem sie in den entsprechenden Zustand wechselt.
 
-> Beispiel: **CM_LeftServo.Overheated**. In diesem Fall stoppt der Achsbefehl den Motor und übermittelt Informationen an das System. Es liegt am Programmierer, eine Instanz von „FB_Event“ hinzuzufügen, ein Alarmstufenereignis einzurichten und dann zu entscheiden, was es bewirkt. Sollten wir nur ein einzelnes Gerät, nur die Maschine oder die gesamte Produktionslinie stoppen?
+> Beispiel: **CM_LeftServo.Overheated**. In diesem Fall stoppt der Achsbefehl den Motor und übermittelt Informationen an das System. Es liegt am Programmierer, eine Instanz von ``FB_Event`` hinzuzufügen, ein Alarmstufenereignis einzurichten und dann zu entscheiden, was es bewirkt. Sollten wir nur ein einzelnes Gerät, nur die Maschine oder die gesamte Produktionslinie stoppen?
 
 ### Warnung
 Warnungen informieren den Bediener darüber, dass etwas nicht stimmt. Warnungen haben im Allgemeinen keine unmittelbaren Auswirkungen auf die Produktion, erfordern jedoch jetzt oder in naher Zukunft ein Eingreifen des Bedieners.
@@ -568,7 +617,7 @@ Beispiel: **CM_LeftServo.MotorDisconnected**, es ist durchaus möglich, dass ein
 ## Um die Alarme zusammenzufassen
 - Alarme sind ein wesentlicher Bestandteil einer robusten Programmierung.
 - Die Alarme hängen von der Softwareumgebung der Maschine ab, weshalb sie in diesem Kurs nicht detailliert beschrieben werden, sondern auf der Ebene des **Steuermoduls** bleiben.
-- Jeder Alarm ist einzigartig und kann mit einer Dokumentation verknüpft werden. Das bedeutet, dass wir alle Alarminstanzen eines Programms verfolgen können müssen, aber auch die Ebene „Event_Type“, die betroffene Komponente „MessagePrefix“ und die Art des Fehlers „MessageCode“. , sind Konstanten und keine Variablen, *Sprachtyp ausgenommen*.
+- Jeder Alarm ist einzigartig und kann mit einer Dokumentation verknüpft werden. Das bedeutet, dass wir alle Alarminstanzen eines Programms verfolgen können müssen, aber auch die Ebene ``Event_Type``, die betroffene Komponente ``MessagePrefix`` und die Art des Fehlers ``MessageCode``. , sind Konstanten und keine Variablen, *Sprachtyp ausgenommen*.
 - Zu viele Alarme oder unnötige Alarme sind Programmierfehler.
 
 Der **ISA 18.2**-Standard gibt eine Empfehlung zur Anzahl der vom Betreiber tolerierbaren Ereignisse.
