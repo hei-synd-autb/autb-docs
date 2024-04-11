@@ -45,7 +45,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 [Module 10 OPC-UA](./AutB_MOD_10_OPC_UA/README.md): Une architecture de communication unifiée pour l'automation industrielle.
 
-[Module 11 Design Specificatin](./AutB_MOD_11_Design_Specification/README.md) L'ancien module méchatronics hard dont le concept est revu.
+[Module 11 Design Specification](./AutB_MOD_11_Design_Specification/README.md) L'ancien module méchatronics hard dont le concept est revu.
 
 # Industrial Automation Labs
 

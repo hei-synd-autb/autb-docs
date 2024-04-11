@@ -616,7 +616,7 @@ Beispiel: **CM_LeftServo.MotorDisconnected**, es ist durchaus möglich, dass ein
 
 ## Um die Alarme zusammenzufassen
 - Alarme sind ein wesentlicher Bestandteil einer robusten Programmierung.
-- Die Alarme hängen von der Softwareumgebung der Maschine ab, weshalb sie in diesem Kurs nicht detailliert beschrieben werden, sondern auf der Ebene des **Steuermoduls** bleiben.
+- Die Alarme hängen von der Softwareumgebung der Maschine ab, weshalb sie in diesem Kurs nicht detailliert beschrieben werden, sondern auf der Ebene des **Control Module** oder **Equipement Module**bleiben.
 - Jeder Alarm ist einzigartig und kann mit einer Dokumentation verknüpft werden. Das bedeutet, dass wir alle Alarminstanzen eines Programms verfolgen können müssen, aber auch die Ebene ``Event_Type``, die betroffene Komponente ``MessagePrefix`` und die Art des Fehlers ``MessageCode``. , sind Konstanten und keine Variablen, *Sprachtyp ausgenommen*.
 - Zu viele Alarme oder unnötige Alarme sind Programmierfehler.
 

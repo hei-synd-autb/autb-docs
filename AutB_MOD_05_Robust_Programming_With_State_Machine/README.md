@@ -513,7 +513,7 @@ END_CASE
 ## Ne jamais sous-estimer les aides à la lecture du programme
 Ce module fournit une série de recommandations pour la programmation qui n'apparaissent en général pas dans les guides de programmation PLC.
 
-Dans de nombreux cas, les premiers cas d'un ingénieur en automation se ferons dans une strucutre existantes. Dans ce cas, les règles énumérées ci-dessus pourrons être différentes.
+Dans de nombreux cas, les premiers cas d'un ingénieur en automation se feront dans une strucutre existantes. Dans ce cas, les règles énumérées ci-dessus pourrons être différentes.
 
 Si aucune structure n'existe, l'ingénieur en automation aura intérêt à s'inspirer des règles ci-dessus, puis à les améliorer pour les adapter à ses besoins.
 
@@ -561,7 +561,7 @@ VAR
 END_VAR
 
 //
-//  Use of instance ïnstEventStop of type FB_Event
+//  Use of instance instEventStop of type FB_Event
 //
 instEventServoLeft(Enable        := CM_LeftServo.Overheated,
                    Event_Type    := enumEvent.Stop,
@@ -614,7 +614,7 @@ Exemple : **CM_LeftServo.MotorDisconnected**, il est parfaitement possible pour 
 
 ## Pour résumer les alarmes
 -   Les alarmes sont une composantes essientielle d'une programmation robuste.
--   Les alarmes dépendent de l'environnement logiciel de la machine, c'est pourquoi elles ne sont pas détaillées dans ce cours qui reste au niveau du **Control Module**.
+-   Les alarmes dépendent de l'environnement logiciel de la machine, c'est pourquoi elles ne sont pas détaillées dans ce cours qui reste au niveau du **Control Module** ou **Equipment Module**.
 -   Chaque alarme est unique est peut être reliée à une documentation. Cela signifie que l'on doit pouvoir tracer l'ensemble des instances d'alarme d'un programme, mais aussi que le niveau, ``Event_Type``, le composant concernée, ``MessagePrefix``, et le type de défaut, ``MessageCode``, sont des constantes et non des variables, *type de langue excepté*.
 -   Trop d'alarmes ou des alarmes inutiles sont des défauts de programmation.
 
