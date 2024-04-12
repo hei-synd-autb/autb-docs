@@ -367,7 +367,7 @@ Reprenons le cas d'une machine d'état utilisée pour piloter des feux de signai
 <figure>
     <img src="./puml/4-state traffic lights/4-state traffic lights.svg"
          alt="Image lost: 4-state traffic lights">
-    <figcaption>State Diagram: 4-state traffic lights.svg</figcaption>
+    <figcaption>State Diagram: 4-state traffic lights</figcaption>
 </figure>
 
 Avec le code suivant: *une partie des transitions ont été enlevées pour obtenir un exemple plus clair*. Par rapport à l'exemple de l'exercice cité, un nouveau programmeur a voulu ajouter un nouvel état ``SpecialCase``.

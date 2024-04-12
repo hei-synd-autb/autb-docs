@@ -368,7 +368,7 @@ Kehren wir zum Fall einer Zustandsmaschine zurück, die zur Steuerung von Ampeln
 <Abbildung>
      <img src="./puml/4-state Traffic Lights/4-state Traffic Lights.svg"
           alt="Bild verloren: 4-Staaten-Ampel">
-     <figcaption>Zustandsdiagramm: 4-Zustands-Ampeln.svg</figcaption>
+     <figcaption>Zustandsdiagramm: 4-Zustands-Ampeln</figcaption>
 </figure>
 
 Mit dem folgenden Code: *Einige der Übergänge wurden entfernt, um ein klareres Beispiel zu erhalten*. Im Vergleich zum Beispiel in der zitierten Übung wollte ein neuer Programmierer einen neuen Zustand ``SpecialCase`` hinzufügen.
