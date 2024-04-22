@@ -16,33 +16,183 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 # Ce module est en cours d'écriture
 
-# Ici, on peut parler des différents modules App, d'un système comme ctrlX Core.
--    Module Motion
--    Module VPN
--    Module G Code
-etc...
-
-> Automation as a service...
-
 # Objectif de ce module
 Comprendre, paramétrer et découvrir une commande d'axe moderne.
 Ce module sert principalement à présenter une mise en application du module *Elements mechatronics Hardware*.
-
-Il est composé d'un introduction succincte à la mécanique vibratoire pour la comparer à son homoloque électrique, le circuit **RLC** resistor **R**, an inductor **L**, and a capacitor **C**.
-
-En deuxième partie, nous découvrirons comment nous pouvons analyser ce problème à l'aide d'une commande d'axe.
 
 > L'important n'est pas nécessairement de connaître tous les composants d'une commande complète. **Il est important par contre de prendre conscience de la complexité qui peuvent se cacher derrière une simple commande de position**. *A contrario*, **il est important de comprendre qu'une commande de haut de gamme permettra de résoudre de nombreux problèmes complexes**.
 
 > **La majorité des commandes d'axes destinées à être connectées à des PLC sont conçues avec le même type d'architecture**. Le niveau de détail et le nombre d'options sont très variables.
 
-> A la fin de ce module, vous devriez être capable de gérér les principaux paramètres de ce genre de système:
+> A la fin de ce module, vous devriez être capable de comprendre les principaux paramètres de ce genre de système.
+
+# Le drive du point de vue de la connection vers l'extérieur.
+Ci dessous les différentes vue d'un système de commande d'axe particulier. La plupart des commandes d'axes électriques industrielles possèdent les même caractéristiques. Le système reste fondamentallement le même:
+
+-    Piloter un moteur à partir d'une alimentation triphasée.
+-    Utiliser un codeur pour asservir l'axe en position.
+-    Prosposer un système de sécurité, STO, Safe Torque Off, présent en standard sur la plupart des commandes d'axe du marché.
+-    Permettre une connexion avec un Ethernet Realtime.
+
+# Top View
+
+<figure align="center">
+    <img src="./img/MechaDriveFrontConnect.png"
+         alt="Image Lost MechaDriveFrontConnect">
+    <figcaption>Electrical Drive Front View</figcaption>
+</figure>
+
+## Alimentation électrique
+
+
+<figure align="center">
+    <img src="./img/MotorPowerOverview.png"
+         alt="Image Lost MotorPowerOverview">
+    <figcaption>Aperçu de l’alimentation du moteur</figcaption>
+</figure>
+
+L'alimentation en puissance suite souvent le principe suivant:
+
+## Supply
+Alimentation 3 x AC avec convertisseur DC.
+
+Certains systèmes travaillent avec des tensions différentes.
+Certains systèmes sont conçus sans alimentation pour être connectés directement sur une alimentation de puissance en courant continu, DC.
+
+> La qualité de l'alimentation peut avoir une influence sur la plage de travail du moteur. 
+
+## Axis
+Modulation du signal pour les trois phases du moteur.
+
+### DC bus connexion (ici XD02). 
+Le drive représenté ici, celui où se trouve le processeur du PLC, axe X, est alimenté en 3x400 [Vac]. Son convertisseur AC/DC est suffisamment puissant pour alimenter d’autres drives en tension continue. Le deuxième drive dans le laboratoire, pour les axes Y et Z ne contient pas de convertisseur AC/DC, il est alimenté via le bus DC de l’axe X.
+
+### Régénération
+Certaines alimentations haut de gamme permettent de réinjecter du courant dans le réseau, par exemple lors de la phase de décélération des moteurs. Le surcoût d’une telle alimentation n’est en général pas justifié pour de petites installations.
+
+## Sécurité (ici XG41)
+### Sécurité, STO, Safe Torque Off
+La plupart des drives de cette catégories présents sur le marché son livrés avec une fonction de sécurité de base qui garanti l’absence du courant dans le moteur via un connexion dédiée, dans le cas du laboratoire, lié via un bouton d’arrêt d’urgence.
+ 
+> Couple = courant x Nm/A.
+
+La caractéristique des moteurs synchrone à aimanant permanent inclut le plus souvent un paramètre appxoximé comme constant: Torque constant: [Nm/A]..
+
+<figure>
+    <img src="./img/MotorTechnicalData.png"
+         alt="Image Lost: MotorTechnicalData">
+    <figcaption>Motor Technical Data Example</figcaption>
+</figure>
+
+<figure>
+    <img src="./img/ExempleOfCurveDataForASynchMotor.png"
+         alt="Image Lost: ExempleOfCurveDataForASynchMotor">
+    <figcaption>Plage de travail d'un moteur synchrone</figcaption>
+</figure>
+
+Il existe d’autres types de fonctions de sécurité, SLS Safe Limited Speed, SOS Safe Operating Stop, qui sont souvent des options qui doivent être précisées à la commande et ne peuvent être ajoutées par la suite.
+La sécurité peut être câblée ou passer via le bus Ethernet Real-Time.
 
  <figure>
-    <img src="./img/Schematic Example 5 Axis Handling Solution.png"
-         alt="Schematic Example 5 Axis Handling Solution">
-    <figcaption>Schematic Example 5 Axis Handling Solution, source: Bosch Rexroth</figcaption>
+    <img src="./img/FailSafeOverEthercat.png"
+         alt="Image Lost: FailSafeOverEthercat">
+    <figcaption>Logique câblée vs FSoE = FailSafe over EtherCAT</figcaption>
 </figure>
+
+## Analog, auxiliary inputs/outputs, ici XG31
+Il est encore possible dans certains cas d'utiliser une commande d'axe électrique en passant par une série d'entrées/sorties analogiques/numériques. Avec la généralisation des bus Ethernet Realtime sur les PLC, ce genre de pilotage fait figure d'histoire ancienne.
+
+Dans certains cas, il reste nécessaire de disposer de signaux plus rapides que ce que ne permet un Ethernet Realtime, par exemple une fin de course rapide pour un palpeur, ci-dessous un exemple d’origine Renishaw, 
+
+ <figure>
+    <img src="./img/RenishawAccuracyMachineToolTouchProbes.jpg"
+         alt="Image Lost: RenishawAccuracyMachineToolTouchProbes">
+    <figcaption>Accuracy Machine Tool Touch Probes, Source Renishaw</figcaption>
+</figure>
+
+## Bus de terrain, ici XF50, XF51, XF24 et XF24
+Les connecteurs XF50, XF51, XF24 et XF24 servent à la connexion avec un Ethernet Realtime. En général, les fabricants ne fournissent qu’un seul type de bus de terrain.
+Parfois, il existe la possibilité de choisir une option à la commande, mais non modifiable, par exemple linmot. Parfois, ce bus peut être configuré, mais c’est rare, Rexroth est le seul cas que je connaisse.
+
+Dans le cadre du laboratoire, le drive X est équipé d’un Ethercat Master et d’un Profinet Slave.
+Le Profinet Slave est en présérie, prerelease et n’est pas encore en service.
+
+## Motor, ici XD03
+Connection du moteur, le plus souvent sur trois phases, mais il existe quelques rares moteurs qui travaillent avec deux phases, Linmot. Les drives pour deux phases sont spécifiques à ce constructeur.
+
+## Frein XG03
+Dans certains cas, il est nécessaire de prévoir un frein, intégré ou auxiliaire.
+Il est important de noter que le frein, en particulier celui intégré dans un moteur n’est pas destiné à décélérer le moteur, mais à le maintenir en position lorsque l’asservissement électrique n’est pas actif.
+
+## Sonde de température XG03
+> En finalité, ce qui va en général limiter la plage d'utilisation d'un moteur, c'est sa température.
+
+Sans risque de destruction des conducteurs électrique par fusion, perte des caractéristiques magnétiques temporaires ou perte des aimants et d'autres risques liés à la température, la plage d'utilisation d'un moteur pourrait être considérablement élargies.
+
+Certains moteur sont livrables en version **Forced Ventilation**, ou **Water Cooling** pour obtenir des performance supérieures pour un encombrement donné.
+
+> Les sondes de températures ne sont en général pas dirctement utilisées comme indication de la température. En fonctionnement dynamiques, les différentes parties du moteur peuvent se trouver dans des plages de température très différentes, en particulier si le moteur exécute des mouvement de très faible amplitude. La sonde de température est en général utilisée comme base de référence à un model de température du moteur. C'est ce model qui surveillera la température du moteur.
+
+## Codeur, ici XG20
+La spécification du codeur est souvent l’interface la plus complexe à gérer.
+
+Il existe de multiples technologies de transmission du signal du codeur, dont une partie sont propriétaires.
+
+Quelques drives sont équipés d’interfaces dites multi codeurs. Les drives du laboratoire sont équipés uniquement d’une entrée pour un codeur numérique ACURO link.
+
+Quelques exemples
+1.	En-Dat 2.2, numérique, propriétaire Heidenhain.
+2.	Sin-cos, générique
+3.	TTL, générique
+4.	Resolver, générique
+5.	IO-Link, générique
+6.	DRIVE-CLiQ, propriétaire Siemens
+7.	Profinet
+8.	Hyperface, 
+9.	Hyperface DSL
+10.	SSI
+11.	…
+
+## Codeur auxiliaire
+Pour certaines applications, il peut être nécessaire d’ajouter un deuxième codeur. Pour prendre un exemple, dans le cas d’un entrainement avec une vis à bille, comme dans le cas du laboratoire 23N.411, le codeur rotatif sur le moteur servira au régulateur de vitesse, mais afin de compenser les déformations mécaniques il pourrait être nécessaire d’ajouter un codeur linéaire sur la vis à bille afin de garantir la précision finale en position.
+
+Deuxième exemple d’application d’un deuxième codeur, pour les broches d’usinage à haute vitesse sur une machine d’usinage. Un codeur précis pour le positionnement angulaire de la broche à basse vitesse fournira un signal avec une fréquence trop élevée à haute vitesse. On équipera la broche avec une résolution plus faible pour la régulation de la vitesse lorsque la vitesse de rotation dépasse un certain seuil.
+
+
+# Top View
+ <figure>
+    <img src="./img/MechaDriveTopConnect.png"
+         alt="Image Lost: MechaDriveTopConnect">
+    <figcaption>Vue de dessus, le plus souvent pour l'alimentation en puissance</figcaption>
+</figure>
+
+## Alimentation DC, XD10
+La plupart des drives sont conçus avec une alimentation en puissance, bus DC et électronique interne séparée. Dans le milieu industriel, 24 Vdc.
+
+## Contact auxiliaire pour l’alimentation, XG02
+Ce contact reste ouvert tant que l’électronique interne n’est pas prête pour gérer la puissance électrique d’alimentation. Il sert en général à piloter un contacteur auxiliaire qui permet de couper l’alimentation AC.
+
+
+# Bottom View
+
+ <figure>
+    <img src="./img/MechaDriveBottomConnect.png"
+         alt="Image Lost: MechaDriveBottomConnect">
+    <figcaption>Vue de dessous, le plus souvent connexion du moteur</figcaption>
+</figure>
+
+## Sonde de température, XG03
+La température de moteur dépend principalement de trois facteurs :
+•	Le taux d’utilisation, c’est-à-dire la puissance moyenne pendant une période donnée.
+•	Le couplage mécanique du moteur et la résistance thermique ce de couplage.
+•	La température ambiante autour du moteur.
+Il est important de noter que la sonde de température sert de référence à un modèle de température interne. La sonde de température ne donne en effet qu’une mesure locale à un endroit particulier du moteur, il est important de protéger l’ensemble du moteur dont certaines parties pourraient changer de température plus rapidement que l’emplacement de la sonde.
+Certains moteurs sont équipés de plusieurs sondes de température, par exemple une par bobine.
+
+## Résistance de freinage externe XD04
+Sauf exception avec des alimentations haut de gamme permettant de réinjecter du courant dans le réseau, l’énergie produite par le moteur en décélération sera en partie dissipée sous forme de chaleur par une résistance électrique interne au drive.
+Dans certain cas, si l’énergie générée par le moteur est plus importante que celle que peut dissiper la résistance interne, il sera nécessaire d’ajouter une résistance externe supplémentaire.
+
 
 
 # Aspect théorique
