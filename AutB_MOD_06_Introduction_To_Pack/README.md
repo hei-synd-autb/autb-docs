@@ -34,13 +34,13 @@ On pourra aussi se référer à l'[OMAC, The Organisation for Machine Automation
 ##	Identifying a Unit/Machine (rappel et extension)
 Une Unit / machine est définie comme un ensemble d'équipements physiques et de fonctions de commande qui exécutent une ou plusieurs fonctions de traitement majeures.
 
-Une unité / machine peut être une seule machine ou un sous-ensemble d'une ligne d'emballage entière.
+Une **unité** / **machine** peut être une seule machine ou un sous-ensemble d'une ligne d'emballage entière.
 
-Une Unit / machine est définie fonctionnellement ou physiquement via une interface unité / machine commune.
+Une Unit / machine est définie fonctionnellement ou physiquement via une **interface** unité / machine commune.
 
 Le gestionnaire d'état de l'interface PackML fournit une interface de communication unique entre les HMI ou autre système de commande externe et l'unité / la machine, comme illustré à la Figure « One Unit ».
 
-<figure>
+<figure align="center">
     <img src="./img/One_Unit.png"
          alt="Image lost: One Unit">
     <figcaption>One Unit</figcaption>
@@ -56,18 +56,24 @@ Tips : Une interface PackML est définie pour chaque partie d'une unité qui gè
 
 > Un dépalettiseur peut être constitué de convoyeurs d'alimentation, d'un robot, de convoyeurs de sortie et est considéré comme une unité / machine, comme le montre la figure PackML Machine.
 
-<figure>
+<figure align="center">
     <img src="./img/APackMLmachinemadeofdifferentEquipmentModules.png"
          alt="Image lost: MLmachinemadeofdifferentEquipmentModules">
     <figcaption>A Pack ML machine made of different Equipment Modules</figcaption>
 </figure>
 
-Figure 27 A Pack ML machine made of different Equipment Modules
+Visuellement, cela pourrait ressembler à ceci:
+
+<figure align="center">
+    <img src="./img/3D_TrayHandler_0003.jpg.webp"
+         alt="Image lost: 3D_TrayHandler_0003.jpg.webp">
+    <figcaption>Image d'origine www.mikron.com Tray Handler</figcaption>
+</figure>
 
 Pour une Unit / machine qui exécute plus d'un processus indépendant, une interface PackML est requise pour chacun des processus indépendants. Par exemple, un palettiseur avec deux cellules d'emballage indépendantes dans la même ligne, doit avoir deux interfaces PackML.
 
 ## Pouquoi des états standard ?
-<figure>
+<figure align="center">
     <img src="./img/WhyStandardStates.png"
          alt="Image lost: WhyStandardStates">
     <figcaption>PackML, Why Standard States, Source: opcconnect.opcfoundation.org
@@ -85,7 +91,7 @@ Le modèle d'état de l'interface PackML repose sur deux éléments principaux :
 - **Waiting States** (situation stable pour l'unité / la machine). Un état d'attente nécessite une commande pour entrer dans l'état suivant.
 - **Execute** est un état particulier qui combine un **Wait state** avec un **Acting State**, on parle aussi de **Dual State**.
  
-<figure>
+<figure align="center">
     <img src="./img/SyntaxofPackMLStateMachine.png"
          alt="Image lost: SyntaxofPackMLStateMachine">
     <figcaption>Syntax of PackML State Machine</figcaption>
@@ -101,7 +107,7 @@ Lorsque tous les modules ont terminé leur séquence et activé leur statut **St
 
 ## Le PackML Interface State Model
  
-<figure>
+<figure align="center">
     <img src="./img/PackMLStateModel.png"
          alt="Image lost: PackMLStateModel">
     <figcaption>PackML State Model</figcaption>
@@ -121,7 +127,7 @@ Certaines implémentations, comme Siemens, permettent de configurer les états a
 
 > Dans un cas extrême, on pourra se contenter d'un minimum d'états, dont **Stopped et Execute**. Une fois maîtrisé, le concept pourra aussi être utilisé dans des installations très simples.
 
-<figure>
+<figure align="center">
     <img src="./img/The Minimum State Machine.png"
          alt="Image lost: The Minimum State Machine">
     <figcaption>PackML The Minimum State Machine</figcaption>
@@ -154,16 +160,16 @@ Le but du PackML est de gagner en efficacité. Je conseille donc de partir d’u
 |State    |Description                |
 |---------|---------------------------|
 |EXECUTE	|**Acting State** - L'unité / la machine est dans un état de fonctionnement stable - l'unité / la machine est en train de produire.|
-|STOPPED / IDLE / COMPLETE	|**Wait State** - Un état stable utilisé pour identifier qu'une unité / machine a atteint un ensemble défini de conditions. Dans un tel état, l'unité / la machine maintient un état jusqu'à ce qu'une commande provoque une transition vers un Acting State. L'unité / la machine est alimentée et stationnaire.
-RESETTING / STARTING / SUSPENDING / UNSUSPENDING / COMPLETING / HOLDING / UNHOLDING / ABORTING / CLEARING / STOPPING	|**Acting State** - Un état qui représente une activité de traitement, par exemple l'accélération de la vitesse. Cela implique l'exécution unique ou répétée d'étapes de traitement dans un ordre logique, pendant un temps fini ou jusqu'à ce qu'une condition spécifique soit atteinte, par exemple dans l'état Starting, la qualité et la validité des données reçues sont vérifiées, avant de monter en vitesse pour exécution.
+|STOPPED / IDLE / COMPLETE	|**Wait State** - Un état stable utilisé pour identifier qu'une unité / machine a atteint un ensemble défini de conditions. Dans un tel état, l'unité / la machine maintient un état jusqu'à ce qu'une commande provoque une transition vers un Acting State. L'unité / la machine est alimentée et stationnaire.|
+RESETTING / STARTING / SUSPENDING / UNSUSPENDING / COMPLETING / HOLDING / UNHOLDING / ABORTING / CLEARING / STOPPING	|**Acting State** - Un état qui représente une activité de traitement, par exemple l'accélération de la vitesse. Cela implique l'exécution unique ou répétée d'étapes de traitement dans un ordre logique, pendant un temps fini ou jusqu'à ce qu'une condition spécifique soit atteinte, par exemple dans l'état Starting, la qualité et la validité des données reçues sont vérifiées, avant de monter en vitesse pour exécution.|
 |HELD |**Wait State** - Un état qui représente un état d'erreur sur l'unité qui générera une alarme ou un avertissement. Dans cet état, l'unité / la machine ne produit pas, jusqu'à ce que l'opérateur effectue une transition vers l'état EXECUTE. L'état maintient les opérations de l'unité / de la machine pendant que le blocage du matériau est éliminé, ou une correction sûre d'un défaut d'équipement avant la reprise de la production.|
 |SUSPENDED	|**Wait State** - Dans cet état, l'unité / la machine ne produit rien. Elle s'arrêtera de fonctionner ou continuera à fonctionner sans produire jusqu'à ce que les conditions de processus externes reviennent à la normale, moment auquel l'état SUSPENDED passera à l'état UNSUSPENDING, généralement sans aucune intervention de l'opérateur.|
-|ABORTED|Wait State, La machie est à l'arrêt, toutes les énergies sont coupées sur les actuateurs. C'est l'état de la machine après la mise sous tension ou après un arrêt d'urgence.
+|ABORTED|**Wait State**, La machine est à l'arrêt, toutes les énergies sont coupées sur les actuateurs. C'est l'état de la machine après la mise sous tension ou après un arrêt d'urgence.|
 
 > La différence entre **Held** et **Suspended** est surtout à comprendre du point de vue de l’analyse de la performance de la machine (Unit).
 Dans le cas du **Suspended**, la machine est en attente de conditions **externes**. Par exemple, alimentation en produit, machine en amont ou en aval pas prête. Cela signifie que quand on analyse la performance de la machine, même si la machine passe 50% de son temps en **Suspended**, la machine, l’unité elle-même n’est pas en cause.
 
-<figure>
+<figure align="center">
     <img src="./img/HeldVsSuspended.png"
          alt="Image lost: HeldVsSuspended">
     <figcaption>PackML Held vs Suspended</figcaption>
@@ -171,7 +177,7 @@ Dans le cas du **Suspended**, la machine est en attente de conditions **externes
 
 > Dans le cas du **Held**, cela signifie en général qu’**un des élément de la machine** a produit un évènement qui a emmené la machine dans cet état. Si la machine passe 50% de son temps en **Held**, il sera sans doute nécessaire d’analyser la cause de cet état.
 
-<figure>
+<figure align="center">
     <img src="./img/PackML states Internal & External conditions.png"
          alt="Image lost: PackML states Internal & External conditions.png">
     <figcaption>PackML states Internal & External conditions</figcaption>
@@ -234,71 +240,78 @@ Remarque : dans le domaine de la sécurité des entraînements, on retrouve la n
 
 L'état ABORTED peut être entré à tout moment en réponse à la commande Abort ou à l'apparition d'un défaut machine. La logique d'abandon amènera la machine à un arrêt sûr et rapide. Le fonctionnement de l'arrêt d'urgence entraînera le déclenchement de la machine par son système de sécurité. Il fournira également un signal pour déclencher l'état ABORTING.
 
-> Dans le domaine des entrainements électriques, la commande **Abort** amène en général les entraînement dans l’état **STO**, *Safe Operating Stop*, c'est à dire que l'absence de mouvement est garanti sans obligatoirement supprimer le courant actif sur les moteurs. Voir aussi la remarque pour Stopping.
+> Dans le domaine des entrainements électriques, la commande **Abort** amène en général les entraînement dans l’état **STO**, *Safe Operating Stop*, c'est à dire que l'absence de mouvement est garanti sans obligatoirement supprimer le courant actif sur les moteurs.
 
 Au niveau de la logique interne du système, l’état ABORTING devrait avoir passé par la même logique que l’état STOPPING, ceci afin d’arrêter les axes de manière contrôlée.
 Le délai accordé par le système pour exécuter l’état ABORTING dépend de critères de sécurité.
 
-###		Aborted
+###	Aborted
 **State Type** *Wait*
 
 Cet état conserve les informations sur l'état de la machine relatives à la condition d'abandon. La machine ne peut sortir de l'état ABORTED qu'après une commande Clear explicite, puis une intervention manuelle pour corriger et réinitialiser les défauts machine détectés.
 
-###		Holding
+###	Holding
 **State Type** *Acting*
 
-Lorsque la machine est dans l'état EXECUTE, la commande Hold peut être utilisée pour démarrer la logique HOLDING qui amène la machine à un arrêt contrôlé ou à un état qui représente HELD pour le mode de contrôle de l'unité particulier. Une machine peut passer dans cet état soit lorsqu'un défaut interne de l'équipement est détecté automatiquement, soit par une commande opérateur. La commande Hold offre à l'opérateur un moyen sûr d'intervenir manuellement dans le processus (comme le retrait d'une bouteille cassée de l'alimentation) et de redémarrer l'exécution lorsque les conditions sont sûres. Pour pouvoir redémarrer correctement la production après l'état HOLD, tous les points de consigne de processus pertinents et l'état de retour des procédures au moment de la réception de la commande Hold doivent être enregistrés dans le contrôleur de la machine lors de l'exécution de la procédure HOLDING.
+Lorsque la machine est dans l'état EXECUTE, la commande Hold peut être utilisée pour démarrer la logique HOLDING qui amène la machine à un arrêt contrôlé ou à un état qui représente HELD pour le mode de contrôle de l'unité particulier. 
+
+Une machine peut passer dans cet état soit lorsqu'un défaut interne de l'équipement est détecté automatiquement, soit par une commande opérateur. La commande Hold offre à l'opérateur un moyen sûr d'intervenir manuellement dans le processus (comme le retrait d'une bouteille cassée de l'alimentation) et de redémarrer l'exécution lorsque les conditions sont sûres.
+
+Pour pouvoir redémarrer correctement la production après l'état HOLD, tous les points de consigne de processus pertinents et l'état de retour des procédures au moment de la réception de la commande Hold doivent être enregistrés dans le contrôleur de la machine lors de l'exécution de la procédure HOLDING.
 
 > Une des difficulté de l’état HOLDING est d’amener la machine dans un état suffisamment stable pour permettre un retour à l’état EXECUTE sans devoir repasser par une phase d’initialisation, RESETTING.
 
-###		Held
+###	Held
 **State Type** *Wait*
 
 L'état HOLD maintient le fonctionnement de la machine pendant que les blocages de matériau sont éliminés, ou pour arrêter le débit pendant qu'un problème en aval est résolu, ou pour permettre la correction sûre d'un défaut d'équipement avant que la production puisse reprendre.
 
-###		Unholding
+###	Unholding
 **State Type** *Acting*
 
 L'état UNHOLDING est une réponse à une commande d'opérateur pour reprendre l'état EXECUTE. L'émission de la commande Unhold récupérera les points de consigne enregistrés et renverra les conditions d'état pour préparer la machine à revenir à l'état EXECUTE normal.
-Remarque : Une commande d'opérateur Unhold est toujours requise et UNHOLDING ne peut jamais être lancé automatiquement.
+> Une commande d'opérateur Unhold est toujours requise et UNHOLDING ne peut jamais être lancé automatiquement.
 
-###		Completing
+###	Completing
 **State Type** *Acting*
 
 Cet état est une réponse automatique de l'état EXECUTE. Le fonctionnement normal est terminé (c.-à-d. Le traitement à l'entrée s'arrêtera).
-Exemple : une machine doit produire 2000 assemblages, une fois que ce nombre atteint, une procédure est mise en route pour évacuer les pièces qui se trouvent encore dans la machine et ne sont plus nécessaires pour produire ses assemblages.
+>Exemple : une machine doit produire 2000 assemblages, une fois que ce nombre atteint, une procédure est mise en route pour évacuer les pièces qui se trouvent encore dans la machine et ne sont plus nécessaires pour produire ses assemblages.
 
-###		Complete
+###	Complete
 **State Type** *Wait*
 
 La machine a terminé l'état COMPLETING et attend maintenant une commande Reset avant de passer à l'état RESETTING.
 
-###		Resetting
+###	Resetting
 **State Type** *Acting*
 
 Cet état est le résultat d'une commande RESET à partir de l'état STOPPED ou COMPLETE. RESETTING amènera généralement une machine générer un signal visuel ou sonore et à placer la machine dans un état où les composants sont sous tension en attendant une commande START.
 
 **Exemple** : dans l’état STOPPED ou COMPLETE la machine peut être mise dans un état de basse consommation (et de bas volume sonore). Dans l’exemple d’un vibreur rotatif et/ou linéaire on pourra mettre sous tension les différents éléments avec l’activité RESETTING. L’activité STARTING servira à emmener les pièces jusqu’en sortie du vibreur linéaire.
  
-<figure>
+<figure align="center">
     <img src="./img/PackMLResetting,sourcewwwicm-automationcom.jpg"
          alt="Image lost: PackMLResetting,sourcewwwicm-automationcom.png">
     <figcaption>PackML Resetting, source www.icm-automation.com</figcaption>
 </figure>
 
-###		Clearing
+###	Clearing
 **State Type** *Acting*
 
 Initié par une commande d'état pour effacer les défauts qui ont pu se produire lors de l'ABORTING, et qui sont présents dans l'état ABORTED avant de passer à l'état STOPPED.
 
->Dans le cas de commandes d’entrainement électriques, l’état ABORTED signifie souvent que les moteurs sont mis hors couple, STO, Safe Torque Off, par le circuit de sécurité. Une des activité de la commande CLREARING peut être de remettre les moteurs sous tension.
+>Dans le cas de commandes d’entrainement électriques, l’état ABORTED signifie souvent que les moteurs sont mis hors couple, **STO**, **Safe Torque Off**, par le circuit de sécurité. Une des activité de la commande CLERARING peut être de remettre les moteurs sous tension. **STO** Signifie que le couple du moteur, à savoir le courant, est déconnecté de manière sûre.
 
-##	Les commandes
+## Les commandes
 
-Les commandes sont au nombre de 9. Il suffit de se référer à la figure du PackML State Model. Toute description supplémentaire semble superflue. Dans la formalisation du PackTag, leur valeur va de 0, pas de commande, à 9.
-Le tableau ci-dessous est donné à titre indicatif.
-Certaines commandes peuvent être des combinaisons logiques, par exemple les commandes Clear et Reset peuvent utiliser le même bouton.
-Beaucoup de commandes, par exemple Hold, Stop, Abort sont générées par des niveaux d’alarmes.
+- Les commandes sont au nombre de 9. Il suffit de se référer à la figure du PackML State Model. Toute description supplémentaire semble superflue. Dans la formalisation du PackTag, leur valeur va de 0, pas de commande, à 9.
+
+- Le tableau ci-dessous est donné à titre indicatif.
+
+- Certaines commandes peuvent être des combinaisons logiques, par exemple les commandes **Clear** et **Reset** peuvent utiliser le même bouton.
+
+- Beaucoup de commandes, par exemple Hold, Stop, Abort sont générées par des niveaux d’alarmes.
 
 >Pour rappel, dans une machine, chaque alarme doit posséder un numéro d’identification unique. De même, chaque alarme liée à une commande générera une commande unique.
 
@@ -315,9 +328,9 @@ Beaucoup de commandes, par exemple Hold, Stop, Abort sont générées par des ni
 |Abort|	8|	Optional|	 	|YES	|E-Stop|
 |Clear|	9|	Optional	|YES	| 	|Reset (E-Stop)|
 
-##	Remote
+## Remote
 
-<figure>
+<figure align="center">
     <img src="./img/PackMLremotecommands.png"
          alt="Image lost: PackMLremotecommands">
     <figcaption>PackML remote commands</figcaption>
@@ -332,12 +345,12 @@ Les boutons sont un exemple d’extension, ils sont par exemple présents dans l
 - Rouge	Abort (E-Stop)
 
 >**Remarque générale**
-Un diagnostic rapide de la bonne qualité de la gestion de la machine d’état d’une installation peut être souvent fait rapidement avec une commande. Abort.
+Un diagnostic rapide de la bonne qualité de la gestion de la machine d’état d’une installation peut être souvent fait rapidement avec une commande. **Abort**.
 L’arrêt d’une installation via un arrêt d’urgence est une procédure normale qui doit être maitrisée. Si un ou plusieurs éléments se trouvent dans un état signalant une erreur après une procédure d’arrêt d’urgence, c’est que cette procédure est mal maîtrisée.
-Dans le cas d’entrainements avec des masses ou des inerties importantes, un mise hors couple mal maîtrisée peut s’avérer plus dangereuse que l’évènement ayant généré la commande Abort.
-Un opérateur usant et abusant régulièrement de la commande Abort pour arrêter ou réinitialiser sa machine en cas d’erreur est aussi un symptôme malheureusement trop fréquent d’une machine d’état mal maîtrisée.
+Dans le cas d’entrainements avec des masses ou des inerties importantes, un mise hors couple mal maîtrisée peut s’avérer plus dangereuse que l’évènement ayant généré la commande **Abort**.
+Un opérateur usant et abusant régulièrement de la commande **Abort** pour arrêter ou réinitialiser sa machine en cas d’erreur est aussi un symptôme malheureusement trop fréquent d’une machine d’état mal maîtrisée.
 
-##	Unit Control Mode, modes et transitions
+## Unit Control Mode, modes et transitions
 
 Une unité / machine peut être dans différents modes, par exemple **Production**, **Maintenance**, **Manuel**, **Nettoyage**, **Mode Jog**, etc.
 
@@ -380,7 +393,7 @@ Il appartient au fournisseur de la machine et à l'utilisateur final de définir
 Ici, les boucles Suspend et Complete sont désactivées.
 Dans la pratique, cela signifie principalement que la machine est isolée des éléments externes.
 
-<figure>
+<figure align="center">
     <img src="./img/PackMLStateModelMaintenance.png"
          alt="Image lost: PackMLStateModelMaintenance">
     <figcaption>PackML State Model Maintenance</figcaption>
@@ -389,7 +402,7 @@ Dans la pratique, cela signifie principalement que la machine est isolée des é
 ###	Mode manuel, *exemple*
 Le mode manuel n’est pas un mode *Debug*, il permet d’exécuter des procédures, phases selon ISA-88, pour piloter individuellement les équipements.
  
-<figure>
+<figure align="center">
     <img src="./img/PackML State Model Manual.png"
          alt="Image lost: PackML State Model Manual">
     <figcaption>PackML State Model Manual</figcaption>
@@ -432,7 +445,7 @@ Les tags d'administration contiennent des données collectées par des systèmes
 - Les tags d'administration sont précédés de « Admin ».
 
 #### PackTag, aperçu
-<figure>
+<figure align="center">
     <img src="./img/PackTag overview.png"
          alt="Image lost: PackTag overview">
     <figcaption>PackTag overview</figcaption>
@@ -440,7 +453,7 @@ Les tags d'administration contiennent des données collectées par des systèmes
 
 #### Command, aperçu
 
-<figure>
+<figure align="center">
     <img src="./img/PackTag Command Overview.png"
          alt="Image lost: PackTag Command Overview">
     <figcaption>PackTag Command Overview</figcaption>
@@ -449,7 +462,7 @@ Les tags d'administration contiennent des données collectées par des systèmes
 
 #### Admin, aperçu
 
-<figure>
+<figure align="center">
     <img src="./img/PackTag Admin Overview.png"
          alt="Image lost: PackTag Admin Overview">
     <figcaption>PackTag Admin Overview</figcaption>
@@ -458,7 +471,7 @@ Les tags d'administration contiennent des données collectées par des systèmes
 
 #### Product, aperçu
 
-<figure>
+<figure align="center">
     <img src="./img/PackTag Product Overview.png"
          alt="Image lost: PackTag Product Overview.png">
     <figcaption>PackTag Product Overview</figcaption>
@@ -479,4 +492,167 @@ Concrètement: cela signifie qu'il existe des spécifications qui permettent à 
 - des Interactions machine à machine;
 - des informations de mappage entre le système PackML et les systèmes OPC UA.
 
-# En pratique, *reste à compléter avec des exemples des LAB 06 et 07*.
+# En pratique,
+
+Nous n'abordons pas l'implémentation de la machine d'état PackML, gérée ici par un Function Block ``FB_PackStates``. Par contre, nous l'utilisons car elle permet de beaucoup simplifier la gestion d'équipements complexes tels la commande d'axes électriques.
+
+Voici quelques exemples d'implémentation pour une commande d'axe électrique.
+
+Nous supposons une machine d'état partielle du PackML.
+
+<figure align="center">
+    <img src="./img/PackMLStateModelMaintenance.png"
+         alt="Image lost: PackMLStateModelMaintenance">
+    <figcaption>Partial state machine of PackML</figcaption>
+</figure>
+
+## Emergency Stop
+Dans ce cas particulier, nous supposons qu'une erreur critique est détectée sur un axe, par exemple une surchauffe du moteur et que cela demande un arrêt d'urgence de la machine, commande ``Abort``.
+
+La commande ``Abort`` amène la machine d'état gérée par un FB ``fbPackStates`` dans l'état ``Aborting``. Nous allons traiter le signal de l'axe X ``mcReadStatus_X.ErrorStop`` uniqument dans cet état. Une fois que nous aurons quittancé cette erreur, nous informerons le FB ``fbPackStates`` que le problème est résolu par un **State Complete**: ``fbPackStates.Aborting_SC := TRUE;``.
+
+```iecst
+IF fbPackStates.state.Aborting THEN
+	IF mcReadStatus_X.ErrorStop THEN
+		fbPackStates.Aborting_SC := FALSE;
+	ELSE
+		fbPackStates.Aborting_SC := TRUE;
+	END_IF
+ELSE
+	;
+END_IF
+```
+
+Nous notons ci-dessous, que l'état ``fbPackStates.state.Aborting`` est aussi utilisé pour une commande de quittance de l'erreur via un Function Block de type ``MC_Reset``. Le code ci-dessous est simplifié.
+
+```iecst
+mcReset_X(Axis := GVL_AxisDefines.X_Axis,
+          Execute := (fbPackStates.state.Aborting);
+```
+
+## Mise sous tension du système
+Dans ce cas, nous attendons que l'axe X soit sous tension, état ``mcReadStatus_X.Standstill``, mais nous voulons aussi vérifier qu'un préhenseur, Gripper, soit en position ouverte avant de passer dans l'état PackML **Stopped**.
+
+```ìecst
+IF fbPackStates.state.Clearing THEN	
+	IF mcReadStatus_X.Standstill AND
+       fbGripper.isOpen          THEN
+		fbPackStates.Clearing_SC := TRUE;
+	ELSE
+		fbPackStates.Clearing_SC := FALSE;
+	END_IF
+ELSE
+	;
+END_IF
+```
+
+## Préparer la machine au démarrage dans un état stable inactif
+Dans ce cas, nous amenons l'axe X dans une position prête au démarrage à l'aide d'une machine d'état interne, **sub-state**. C'est une commande **reset** qui fera passer l'unité de production de l'état inactif, **Wait State** ``Stopped`` à l'état inactif ``Idle`` en passant par l'état actif, **Acting State** ``Resetting``.
+
+```iecst
+IF fbPackStates.state.Resetting THEN
+	fbPackStates.Resetting_SC := FALSE;
+	CASE eResetting OF
+		E_Resetting.Idle :
+            stSetParam_X.rPosition_mm := 50;
+			stSetParam_X.rVeloctiy_mm_s := 2000;  
+			eResetting := E_Resetting.eMotionInit;
+
+		E_Resetting.eMotionInit :
+			IF mcMoveAbs_X.Done THEN
+				eResetting := E_Resetting.eMotionInitDone; 
+			END_IF
+
+		E_Resetting.eMotionInitDone :
+			;;
+	END_CASE
+	 
+	IF eResetting = E_Resetting.eMotionInitDone THEN
+		fbPackStates.Resetting_SC := TRUE;
+	END_IF
+ELSE
+	eResetting := E_Resetting.Idle;
+END_IF
+```
+
+> Noter dans l'exemple ci-dessus, l'utilisation du ``Else`` pour remettre la machine d'état interne dans son état initial chaque fois que nous ne somme pas en **Resetting**. ```eResetting := E_Resetting.Idle;```.
+
+> L'initialisation de ``eResetting`` permet aussi d'éviter de perturber d'autres commandes par des états parasites de ``eResetting`` lorsque nous ne sommes pas en **Resetting**. Voir le code **partiel**  d'appel de la fonction ``MC_MoveAbsolute``.
+
+
+```iecst
+mcMoveAbs_X(Axis := GVL_AxisDefines.X_Axis,
+               Execute := (eResetting = E_Resetting.eMotionInit)   OR
+						  (eStarting = E_Starting.eMotionStarting) OR
+                          (eExecute = E_Execute.eMotionBack)       OR              
+                          (eExecute = E_Execute.eMotionFwd));  
+						  
+```
+
+> Avec cette écriture, nous avons la certitude qu'à la sortie de chaque état actif du PackML, les différentes machines internes ``eResetting``, ``eStarting``, ``eExecute`` seront toujours en Idle est qu'il sera possible d'utiliser le ``mcMoveAbs_X.Execute ``lors d'un prochain **flanc montant**.
+
+## Execute
+L'activité principale de la machine sera programmée uniquement dans la partie ``Execute``. On pourra ainsi se concentrer sur cette portion de code sans devoir se soucier de la gestions de tous les autres états de la machines telle que la phase d'initialisation ou la gestion des différents cas de figure qui pourraient interrompre l'activité de la machine.
+
+```ìecst
+IF fbPackStates.state.Execute THEN
+	fbPackStates.Execute_SC := FALSE;
+	(*
+		Execute State Machine.
+	*)
+	CASE eExecute OF
+		E_Execute.eIdle :
+			strState := 'Idle';
+			stSetParam_X.rPosition_mm := stRemote.lrPositionFwd_X;
+			eExecute := E_Execute.eMotionFwd;
+
+		E_Execute.eMotionFwd :
+			strState := 'Motion Fwd';
+			IF mcMoveAbs_X.Done THEN
+				eExecute := E_Execute.eMotionFwdDone; 
+			END_IF
+
+		E_Execute.eMotionFwdDone :
+			strState := 'Motion Fwd Done, Close Gripper';
+			IF fbCloseGripper.Done THEN
+				stSetParam_X.rPosition_mm := stRemote.lrPositionBck_X;
+				eExecute := E_Execute.eMotionBack;
+			END_IF
+
+		E_Execute.eMotionBack :
+			strState := 'Motion Back';
+			IF mcMoveAbs_X.Done THEN
+				eExecute := E_Execute.eMotionBackDone; 
+			END_IF
+
+		E_Execute.eMotionBackDone :
+			strState := 'Motion Back Done, Open Gripper'; 
+			IF fbOpenGripper.Done THEN
+				stSetParam_X.rPosition_mm := stRemote.lrPositionFwd_X;
+				eExecute := E_Execute.eMotionFwd;
+			END_IF
+
+	END_CASE
+	;
+ELSE
+	strState := 'Idle';
+	eExecute := E_Execute.eIdle;
+END_IF
+```
+
+> Noter enfin, la gestion d'un préhenseur, Gripper, à l'aide de deux Function Blocks, ``FB_OpenGripper`` et ``FB_CloseGripper``.
+
+```iecst
+fbOpenGripper.Execute := (eExecute = E_Execute.eMotionBackDone);
+fbCloseGripper.Execute := (eExecute = E_Execute.eMotionFwdDone);
+
+fbOpenGripper(hwEV := GVL_Abox.uaAboxInterface.uaSchunkGripper,
+	          hwSensor := GVL_Abox.uaAboxInterface.uaSchunk);
+			  
+fbCloseGripper(hwEV := GVL_Abox.uaAboxInterface.uaSchunkGripper,
+	           hwSensor := GVL_Abox.uaAboxInterface.uaSchunk);
+```
+
+# QCM
+
+Voir Moodle...
