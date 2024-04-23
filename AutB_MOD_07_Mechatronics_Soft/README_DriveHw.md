@@ -106,13 +106,13 @@ La plupart des drives de cette catégories présents sur le marché son livrés 
 
 La caractéristique des moteurs synchrone à aimants permanents inclut le plus souvent un paramètre appxoximé comme constant: Torque constant: [Nm/A]..
 
-<figure>
+<figure align="center">
     <img src="./img/MotorTechnicalData.png"
          alt="Image Lost: MotorTechnicalData">
     <figcaption>Motor Technical Data Example</figcaption>
 </figure>
 
-<figure>
+<figure align="center">
     <img src="./img/ExempleOfCurveDataForASynchMotor.png"
          alt="Image Lost: ExempleOfCurveDataForASynchMotor">
     <figcaption>Plage de travail d'un moteur synchrone</figcaption>
@@ -121,7 +121,7 @@ La caractéristique des moteurs synchrone à aimants permanents inclut le plus s
 Il existe d’autres types de fonctions de sécurité, SLS Safe Limited Speed, SOS Safe Operating Stop, qui sont souvent des options qui doivent être précisées à la commande et ne peuvent être ajoutées par la suite.
 La sécurité peut être câblée ou passer via le bus Ethernet Real-Time.
 
- <figure>
+ <figure align="center">
     <img src="./img/FailSafeOverEthercat.png"
          alt="Image Lost: FailSafeOverEthercat">
     <figcaption>Logique câblée vs FSoE = FailSafe over EtherCAT</figcaption>
@@ -132,7 +132,7 @@ Il est encore possible dans certains cas d'utiliser une commande d'axe électriq
 
 Dans certains cas, il reste nécessaire de disposer de signaux plus rapides que ce que ne permet un Ethernet Realtime, par exemple une fin de course rapide pour un palpeur, ci-dessous un exemple d’origine Renishaw, 
 
- <figure>
+ <figure align="center">
     <img src="./img/RenishawAccuracyMachineToolTouchProbes.jpg"
          alt="Image Lost: RenishawAccuracyMachineToolTouchProbes">
     <figcaption>Accuracy Machine Tool Touch Probes, Source Renishaw</figcaption>
@@ -188,7 +188,7 @@ Deuxième exemple d’application d’un deuxième codeur, pour les broches d’
 
 
 # Top View
- <figure>
+ <figure align="center">
     <img src="./img/MechaDriveTopConnect.png"
          alt="Image Lost: MechaDriveTopConnect">
     <figcaption>Vue de dessus, le plus souvent pour l'alimentation en puissance</figcaption>
@@ -203,7 +203,7 @@ Ce contact reste ouvert tant que l’électronique interne n’est pas prête po
 
 # Bottom View
 
- <figure>
+ <figure align="center">
     <img src="./img/MechaDriveBottomConnect.png"
          alt="Image Lost: MechaDriveBottomConnect">
     <figcaption>Vue de dessous, le plus souvent connexion du moteur</figcaption>
@@ -312,7 +312,7 @@ Le dimensionnement de l'**entraînement électrique** se fait en prenant l'arbre
 
 Pour le dimensionnement de l'entraînement, il faut tenir compte des limites ainsi que des valeurs de base. Les limites ne doivent pas être dépassées afin d'éviter d'endommager les composants mécaniques.
 
-<figure>
+<figure align="center">
     <img src="./img/MotionControDriveTrain.png"
          alt="Entrainement avec vis à bille">
     <figcaption>Entrainement avec vis à bille, schéma de principe</figcaption>
@@ -350,7 +350,7 @@ Un des défaut des vis à bille est ce que l'on appelle le Backlash
 
 La différence peut venir de la vis à bille.
 
-<figure>
+<figure align="center">
     <img src="./img/Lash-measure-V2.gif"
          alt="Backlash Animation, ball gaps exaggerated for visibility">
     <figcaption>Backlash Animation, ball gaps exaggerated for visibility, Source: https://www.thomsonlinear.com/en/training/ball_screws/backlash</figcaption>
@@ -358,7 +358,7 @@ La différence peut venir de la vis à bille.
 
 Ou d'autres rapports de transmission intemédiaires.
 
-<figure>
+<figure align="center">
     <img src="./img/Source Research Gate Backlash-in-mating-gear-transmissions.png"
          alt="Source Research Gate Backlash-in-mating-gear-transmissions">
     <figcaption>Backlash in mating gear transmissions, Source: Research Gate</figcaption>
@@ -377,19 +377,20 @@ Adaptation de la masse en mouvement
 Idéalement la masse en mouvement du rotor doit être adapté dans un certain ratio à celui de la masse pilotée, si nécessaire on utilisera un réducteur
  
 
-<figure>
+<figure align="center">
     <img src="./img/MitsubishiInertiaRatio.png"
          alt="Image Lost Mitsubishi Inertia Ratio">
     <figcaption>Mitsubishi Inertia Ratio</figcaption>
 </figure>
 
-<figure>
+<figure align="center">
     <img src="./img/MitsubishiInertiaRatioFrequency.png"
          alt="Image Lost MitsubishiInertiaRatioFrequency">
     <figcaption>Mitsubishi Inertia Ratio Frequency</figcaption>
 </figure>
  
-Il existe passablement de techniques au niveau des régulateur pour permettre d’utiliser les moteurs les plus petits possible. Cela peut même s’avérer très efficace. Il faut cependant garder en tête que plus le niveau technique augmente, plus le réglage sera pointu. Un système peut aussi évoluer avec le temps, principalement au niveau du frottement.
+
+> Il existe passablement de techniques au niveau des régulateur pour permettre d’utiliser les moteurs les plus petits possible. Cela peut même s’avérer très efficace. Il faut cependant garder en tête que plus le niveau technique augmente, plus le réglage sera pointu. Un système peut aussi évoluer avec le temps, principalement au niveau du frottement.
 
 Dans le monde de la machine-outil, la charge sur un moteur peut aussi changer continuellement selon le type d’usinage que l’on effectue. 
 
@@ -398,8 +399,8 @@ On trouve passablement de littérature sur le sujet, mais on peut garder en têt
 -    Pour des applications peu critiques, on pourra se contenter de ratio de l’ordre de la dizaine.
 -    Si l’on s’approche de la centaine ou plus, le système sera très difficile à gérer au niveau de la régulation, voire impossible. 
 
-La solution : un réducteur.
-<figure>
+### La solution : un réducteur.
+<figure align="center">
     <img src="./img/RexrothGear.jpg"
          alt="Image Lost Rexroth Gear">
     <figcaption>Rexroth Gear reduction</figcaption>
@@ -446,7 +447,7 @@ Motion Profile
 Il est nécessaire, si possible de connaitre non seulement la mécanique, mais aussi le profil d’utilisation. 
 Le profil va principalement permettre de dimensionner le couple nominal du moteur, qui dépend en particulier de la température
  
-<figure>
+<figure align="center">
     <img src="./img/Motion Profile.png"
          alt="Image Lost Motion Profile">
     <figcaption>Motion Profile</figcaption>
