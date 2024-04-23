@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 07 le drive, connection vers l'extérieur.
+# Module 07 le drive, hardware.
 Ci dessous les différentes vue d'un système de commande d'axe particulier. La plupart des commandes d'axes électriques industrielles possèdent les même caractéristiques. Le système reste fondamentallement le même:
 
 -    Piloter un moteur à partir d'une alimentation triphasée.
@@ -18,7 +18,7 @@ Ci dessous les différentes vue d'un système de commande d'axe particulier. La 
 -    Prosposer un système de sécurité, STO, Safe Torque Off, présent en standard sur la plupart des commandes d'axe du marché.
 -    Permettre une connexion avec un Ethernet Realtime.
 
-## Un drive Ethercat pour piloter des moteurs de quelque watt
+## Un variateur équipé d'Ethercat pour piloter des moteurs de quelques watts
 
 <figure align="center">
     <img src="./img/EPOS4_Compact_50_8_EtherCAT_195px-750x430.jpg"
@@ -26,7 +26,15 @@ Ci dessous les différentes vue d'un système de commande d'axe particulier. La 
     <figcaption>EPOS4 d'origine Maxon</figcaption>
 </figure>
 
-Dans la suite de ce cours, nous allons en général parler de moteurs alimentés via 3 phases AC 400[V].
+- Dans la suite de ce cours, nous allons en général parler de moteurs alimentés via 3 phases AC 400[V], alors que dans le cas du drive Maxon il s'agit d'un petit moteur à courant continu.
+- Ce cours ne se préoccupe pas de la partie analogique des moteurs, mais de la manière de piloter l'axe électrique avec quelques notions de configuration. De la même manière, les contraintes mécaniques du réducteur ci-dessous sont hors du champ de compétence.
+
+
+<figure align="center">
+    <img src="./img/drive-systems-brushsless-dc-motors-stage-picture.png"
+         alt="Image Lost drive-systems-brushsless-dc-motors-stage-picture.png">
+    <figcaption>Maxon drive systems brushless dc motors stage</figcaption>
+</figure>
 
 # Alimentation AC/DC
 
@@ -216,7 +224,20 @@ Dans certain cas, si l’énergie générée par le moteur est plus importante q
 # Quelque exemples de moteurs
 Les drives tels que ceux qui sont disponibles au laboratoire permettent de piloter le plupart des moteurs dits AC synchrones, dits aussi à aimants permanents, du marché, ainsi que des moteurs asynchrones ou à induction.
 
-> Pour les moteurs asynchrones, pour les applications simples sans contrainte de position, par exemple un convoyeur ou une pompe, de simples convertisseurs de fréquence sont souvent une solution meilleur marché.
+> Pour les moteurs asynchrones, pour les applications simples sans contrainte de position, par exemple un convoyeur ou une pompe, de simples convertisseurs de fréquence sont souvent une solution meilleur marché. Parfois un convertisseur de fréquence ne se justifiera pas et un simple contacteur triphasé suffira.
+
+<figure align="center">
+    <img src="./img/Schneider Altivar_ATV71H075N4Z.jpg"
+         alt="Image Lost Schneider Altivar_ATV71H075N4Z">
+    <figcaption>Frequency Converter Altivar ATV71H075N4Z</figcaption>
+</figure>
+
+
+<figure align="center">
+    <img src="./img/Montech_Conveyor.webp"
+         alt="Image Lost Montech_Conveyor">
+    <figcaption>Montech_Conveyor</figcaption>
+</figure>
 
 Pour une broche à haute vitesse, moteur asynchrone, de l'ordre de 50'000 [rpm], il faudra sans doute une commande d'axe haut de gamme.
 <figure align="center">
@@ -275,5 +296,169 @@ Quitte à insister sur le problème que représentent la variété des interface
 |Encoders with ctrlX SENSEmotor|Digital|
 
 Historiquement, les codeur absolus, qui maintiennent une position connue après déclanchement de la machine étaient beaucoup plus honéreux que les codeurs relatifs, pour lesquels une procédure de référencement était nécessaire lors de chaque enclenchement de la machine. Cette affirmation est de moins en moins vraie et l'avantage de s'affranchir d'une procédure de référencement qui peux s'avérer compliquée, surtout quand de nombreux axes doivent être référencés, fait acutellement plutôt pencher la balance en faveur des codeurs absolus.
+
+# Quelques rappels de contraintes mécaniques sur un axe électrique
+
+# Principes de base
+Pour le dimensionnement de l'entraînement, **Drive Train**, la chaîne cinématique peut être divisée en système mécanique, **Mechanical System** et système d'entraînement, **Drive**.
+
+Pour l'exemple du laboratoire d'automation, le système mécanique comprend les composants physiques
+-  système de mouvement linéaire, *la vis à bille* **Ballscrew Module**, et éléments de transmission, **Transmission** (entraînement côté courroie, accouplement)
+- et la charge, **Load** à transporter.
+
+L'entraînement électrique est une combinaison moteur-contrôleur, **Motor-Controller** avec des données de puissance correspondantes.
+
+Le dimensionnement de l'**entraînement électrique** se fait en prenant l'arbre du moteur comme point de référence.
+
+Pour le dimensionnement de l'entraînement, il faut tenir compte des limites ainsi que des valeurs de base. Les limites ne doivent pas être dépassées afin d'éviter d'endommager les composants mécaniques.
+
+<figure>
+    <img src="./img/MotionControDriveTrain.png"
+         alt="Entrainement avec vis à bille">
+    <figcaption>Entrainement avec vis à bille, schéma de principe</figcaption>
+</figure>
+
+## Données techniques et symboles de formule pour le système mécanique
+Pour chaque composant (système de mouvement linéaire, accouplement, entraînement latéral par courroie, réducteur), les limites maximales autorisées correspondantes pour le **couple d'entraînement** et la **vitesse** ainsi que les valeurs de base pour le **moment de friction** et le **moment d'inertie** de **masse** doivent être utilisées.
+
+Les données techniques suivantes avec les symboles de formule associés sont utilisées lors de la prise en compte des exigences de base du système mécanique dans les calculs de conception pour le dimensionnement de l'entraînement. Les données répertoriées dans le tableau ci-dessous se trouvent dans la section intitulée « Données techniques » ou sont déterminées à l'aide de formules basées sur les descriptions des pages suivantes.
+
+### Contraintes mécaniques
+-    Vitesse maximale admissible
+-    Couple moteur admissible
+-    Limites, calculer la vitesse et la décélération
+-    Tenir compte des limites réeles
+-    Tenir compte du couple pour l'accélération et la décélération
+-    Pas de la vis à bille et de l'entrainement (Gear ratio).
+-    Sens de déplacement
+-    Quelle est la position de référence ?
+
+> La documentation des axes du laboratoire donne les informations suivantes:
+
+|Axe |Smax [mm]|u[mm/U]    |Vmax[m/s]   |amax [m/s2]   |Mmax[Nm] | d  |i   |
+|----|---------|-----------|------------|--------------|---------|----|----|
+|x   |565      |5.0        |0.3         |15            |8.22     |ccw |1   |
+|y   |350      |5.0        |0.38        |15            |6.76     |ccw |1   |
+|z   |320      |5.0        |0.57        |15            |2.39     |cw  |1   |
+
+
+-    Nous sommes chez un fabricant allemand, U pour Umdrehung.
+-    i = 1, Dans notre cas, le moteur est en prise directe avec le moteur ou via un engrenage 1/1.
+
+## Ecart sur l'engrenage, Basklash, règle linéaire
+Un des défaut des vis à bille est ce que l'on appelle le Backlash
+
+La différence peut venir de la vis à bille.
+
+<figure>
+    <img src="./img/Lash-measure-V2.gif"
+         alt="Backlash Animation, ball gaps exaggerated for visibility">
+    <figcaption>Backlash Animation, ball gaps exaggerated for visibility, Source: https://www.thomsonlinear.com/en/training/ball_screws/backlash</figcaption>
+</figure>
+
+Ou d'autres rapports de transmission intemédiaires.
+
+<figure>
+    <img src="./img/Source Research Gate Backlash-in-mating-gear-transmissions.png"
+         alt="Source Research Gate Backlash-in-mating-gear-transmissions">
+    <figcaption>Backlash in mating gear transmissions, Source: Research Gate</figcaption>
+</figure>
+
+Certains entrainements électriques permettent de raccorer un deuxième codeur.
+
+1- Le premier est utilisé pour la régulation du moteur.
+
+2- Le deuxième permet de compenser la différence de position sur un régulateur de position.
+
+# Ratio masse *avant* et *après* axe moteur
+la Il n'y a pas de calcul théorique précis, en raison, par exemple, de la difficulté de calculer ou mesurer la rigidité de l'ensemble de l'entrainement.
+
+Adaptation de la masse en mouvement
+Idéalement la masse en mouvement du rotor doit être adapté dans un certain ratio à celui de la masse pilotée, si nécessaire on utilisera un réducteur
+ 
+
+<figure>
+    <img src="./img/MitsubishiInertiaRatio.png"
+         alt="Image Lost Mitsubishi Inertia Ratio">
+    <figcaption>Mitsubishi Inertia Ratio</figcaption>
+</figure>
+
+<figure>
+    <img src="./img/MitsubishiInertiaRatioFrequency.png"
+         alt="Image Lost MitsubishiInertiaRatioFrequency">
+    <figcaption>Mitsubishi Inertia Ratio Frequency</figcaption>
+</figure>
+ 
+Il existe passablement de techniques au niveau des régulateur pour permettre d’utiliser les moteurs les plus petits possible. Cela peut même s’avérer très efficace. Il faut cependant garder en tête que plus le niveau technique augmente, plus le réglage sera pointu. Un système peut aussi évoluer avec le temps, principalement au niveau du frottement.
+
+Dans le monde de la machine-outil, la charge sur un moteur peut aussi changer continuellement selon le type d’usinage que l’on effectue. 
+
+On trouve passablement de littérature sur le sujet, mais on peut garder en tête.
+-    Plus le ration est proche de 1, plus le système sera facile à régler, on cherche à s’approcher de 1 dans le monde de la machine-outil.
+-    Pour des applications peu critiques, on pourra se contenter de ratio de l’ordre de la dizaine.
+-    Si l’on s’approche de la centaine ou plus, le système sera très difficile à gérer au niveau de la régulation, voire impossible. 
+
+La solution : un réducteur.
+<figure>
+    <img src="./img/RexrothGear.jpg"
+         alt="Image Lost Rexroth Gear">
+    <figcaption>Rexroth Gear reduction</figcaption>
+</figure>
+ 
+
+
+**Bosch Rexroth** donne l'information suivante, *Project planning/calculation R999000499* :
+## Prise en compte du rapport des moments d'inertie de masse du système mécanique et du moteur.
+
+Le rapport des moments d'inertie de masse sert d'indicateur pour les performances de contrôle d'une combinaison moteur-contrôleur.
+Le moment d’inertie du moteur est directement lié à la taille du moteur.
+
+## Rapport des moments d'inertie de masse
+Pour la présélection, l'expérience a montré que les rapports suivants permettent d'obtenir des performances de contrôle élevées.
+Il ne s’agit pas de limites rigides, mais les valeurs qui les dépassent nécessiteront un examen plus approfondi de l’application spécifique.
+
+Ratio = moment d'inertie masse pilotée / mass côté moteur
+
+|Domaine d'application  | Ratio |
+|-----------------------|-------|
+|Handling               | <= 6.0|
+|Processing             | <= 1.5|
+
+Par **Handling**, on entend système de manipulation, déplacement d'un objet.
+Par **Processing**, on entend suivi précis de trajectoire, comme un machine outil type CNC.
+
+## Pour citer une autre source de référence
+**ABB** mentionne la remarque suivante dans un document de dimensionnement des moteurs: *Le rapport idéal entre l'inertie réfléchie et l'inertie du moteur est de **1:1**, un rapport qui permet d'obtenir le meilleur positionnement et la meilleure précision. L'inertie réfléchie ne doit pas dépasser l'inertie du moteur plus de **dix fois**, s'il est important de maintenir les performances de contrôle*.
+
+L'expérience personnelle montre que des rapports d'inertie trop élevés, de l'ordre de 100, peuvent rendre un système même relativement rigide, totalement instable et impossible à piloter voir dangereux. La plupart des outils de configuration de système d'entrainement et de sélection de moteur des différents fabricants incluent en général un rapport type en fonction du type d'application. **Si le ratio est trop important, un réducteur sera proposé**.
+
+# Température de fonctionnement
+Il existe des moteur avec refroidissement libre, forcé ou par liquide.
+-    Self-cooling
+-    Forced ventilation
+     Water cooling
+Le refroidissement dépend de la résistance thermique du moteur dans son environnement. Par conduction et par convection.
+
+L'aspect résistance thermique est particulièrement important pour un assemblage avec un moteur linéaire et complexe pour un moteur linéaire sans fer.
+
+# Motion profile
+Motion Profile
+Il est nécessaire, si possible de connaitre non seulement la mécanique, mais aussi le profil d’utilisation. 
+Le profil va principalement permettre de dimensionner le couple nominal du moteur, qui dépend en particulier de la température
+ 
+<figure>
+    <img src="./img/Motion Profile.png"
+         alt="Image Lost Motion Profile">
+    <figcaption>Motion Profile</figcaption>
+</figure>
+
+> Pour faire simple, l'intégration de la puissance électrique du moteur pendant un temps donné doit correspondre à une puissance thermique dissipée en tenant compte du rendement du moteur pendant cette période.
+ 
+
+# Maintenance mécanique
+Les éléments mécanique nécessitent des interventions de maintenance comme la lubrification qui permettent de prolonger leur cycle de vie.
+**Si vous pensez à intégrer cet aspect là dans votre système, vous aurez pris une longueur d'avance sur l'immense majorité de vos concurents !**
+
+
 
 [Module 07 le drive, software](README_DriveSoft.md)

@@ -146,3 +146,14 @@ La notion de sécurité ne fait pas partie de ce cours. la seule chose important
 
 # Bibiographie
 **Mécanique vibratoire**. Auteurs: Michel Del Pedro, Pierre Pahud. 
+
+# Exercices
+En utilisant les différentes paramètres d'un moteur et d'une vis à bille, quelques exercices qui consistent pour un ensemble donné, à
+
+Calculer en travaillant sur les paramètres de vitesse et d'accélération, des mouvements avec:
+Le minimum d'énergie.
+Le minimum de puissance.
+Le temps minimum.
+(on est dans le domaines de simples équations d'ordre 2, très éventuellement des intégrales basiques).
+
+Déterminer pour chaque axe si il est nécessaire de limiter le couple du moteur.

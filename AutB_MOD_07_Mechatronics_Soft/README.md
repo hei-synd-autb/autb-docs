@@ -35,17 +35,17 @@ L'ambition de ce module est de tenter de présenter une technologie qui englobe 
     <figcaption>Source Starrag-Bumotec, 191 néo</figcaption>
 </figure>
 
-Ci-dessous, le système d'axe un peu différent de l'image réel. La pièce est usinée sur l'axe C, puis est repris par les axes A/W pour reprendre la partie de la pièce qui ne pouvait être usinée dans l'axe C.
+Ci-dessous, le système d'axe est un peu différent de l'image réele. La pièce est usinée sur l'axe C, puis est reprise par les axes A/W pour terminer la partie de la pièce qui ne pouvait être usinée dans l'axe C.
 
 <figure align="center">
     <img src="./img/Direct Drives Axes Bumotec.jpg"
          alt="Image Lost Direct Drives Axes Bumotec.jpg">
-    <figcaption>Multi axes system with direct drive</figcaption>
+    <figcaption>Multi axes system with direct drive, source Bumotec</figcaption>
 </figure>
 
 ## Une troisième forme d'axes élecrtiques synchronisés
 
-Avant l'apparition des systèmes d'axes synchronisés avec Ethernet Realtime, ce type de machine était synchronisée par un système mécanique. La sychronisation via Ethernet Realtime simplifie le câblage et augemente la flexibilité de la machine pour différentes variantes de produits.
+Avant l'apparition des systèmes d'axes synchronisés avec Ethernet Realtime, ce type de machine était synchronisée par un système mécanique. La sychronisation via Ethernet Realtime simplifie le câblage et augmente la flexibilité de la machine pour différentes variantes de produits.
 
 <figure align="center">
     <img src="./img/sapal-DSD-0600-H-min.jpg"
@@ -61,7 +61,7 @@ Avant l'apparition des systèmes d'axes synchronisés avec Ethernet Realtime, ce
     <figcaption>Source: www.grande-dixence.ch</figcaption>
 </figure>
 
-> D'une certaine manière, une turbine est un moteur qui fonctionne en sens inverse. Ce qui est vrai dans la commande d'axe électrique, dans la mesure où pendant sa phase de décélération, un axe électrique générera de l'énergie qui devra être dissipée.
+> D'une certaine manière, une turbine est un moteur qui fonctionne en sens inverse. Ce qui est vrai dans la commande d'axe électrique, dans la mesure où pendant sa phase de décélération, un axe électrique générera de l'énergie qui devra être dissipée, le plus souvent par une résistance thermique.
 
 Certaines commandes d'axe électriques sont conçues pour réinjecter cette énergie dans le réseau.
 
@@ -74,11 +74,10 @@ L'image ci-dessous représente un pont sur le canal Baudouin en Belgique. Tiges 
 <figure align="center">
     <img src="./img/PontenBelgiqueaveccommandehydraulique.jpg"
          alt="Image Lost PontenBelgiqueaveccommandehydraulique">
-    <figcaption>Cartesian robot with 4 axes</figcaption>
+    <figcaption>Pont en Belgique avec commande hydraulique</figcaption>
 </figure>
 
-Pont en Belgique avec commande hydraulique
--    Avantages: fortes à très fortes puissance.
+-    Avantages de l'hydraulique: fortes à très fortes puissance.
 -    Inconvénients: complexité et coûts de maintenance.
 
 > Dans la pratique, on parlera plutôt d'entraînements électro-hydrauliques. Les commandes électriques qui fournissent la pression d'huile sont souvent similaires aux commandes d'axe que nous utiliserons dans le cadre des travaux pratiques.
@@ -98,7 +97,7 @@ Après l'énergie électrique et hydraulique, l'énergie pneumatique est une tro
     <figcaption>Axe pneumatique d'origine Schunk</figcaption>
 </figure>
 
-L'énergie pneumatique est en général fournie par un compresseur qui utilise un moteur électrique. Si la technologie pneumatique est relativement simple à mettre en oeuvre, elle est relativement honéreuse en termes de coût de l'énergie.
+> L'énergie pneumatique est en général fournie par un compresseur qui utilise un moteur électrique. Si la technologie pneumatique est relativement simple à mettre en oeuvre, elle est relativement honéreuse en termes de coût de l'énergie.
 
 ## Axe électrique avec un changement d'échelle
 
@@ -123,7 +122,7 @@ EPOS4 Compact 50/5 EtherCAT, digital positioning controller
     <figcaption>The Perseverance rover and the Mars helicopter Ingenuity. Image credit: NASA/JPL-Caltech</figcaption>
 </figure>
 
-Finalement, que ce soit pour piloter un pont de plusieur tonnes en belgiques, ou piloter un moteur de quelques grammes similaire à celui qui est parti sur Mars, certains principes restent relativement similaires.
+> Finalement, que ce soit pour piloter un pont de plusieurs tonnes en Belgique ou piloter un moteur de quelques grammes similaire à celui qui est parti sur Mars, certains principes restent relativement similaires.
 
 # Objectif de ce module
 Comprendre, paramétrer et découvrir une commande d'axe électrique moderne.
