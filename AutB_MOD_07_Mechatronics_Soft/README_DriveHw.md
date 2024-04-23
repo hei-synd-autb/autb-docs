@@ -455,10 +455,18 @@ Le profil va principalement permettre de dimensionner le couple nominal du moteu
 
 > Pour faire simple, l'intégration de la puissance électrique du moteur pendant un temps donné doit correspondre à une puissance thermique dissipée en tenant compte du rendement du moteur pendant cette période.
  
+ # Les câbles
+ Dans beaucoup d'équipements mobiles, un partie des câbles se déplacent avec les éléments mobile. Il existe des câbles spécialement confectionnés pour les équipements mobiles.
+<figure align="center">
+    <img src="./img/Igus e-chains-weitere-loesung_570.jpg"
+         alt="Câbles et  les chaînes porte-câbles">
+    <figcaption>Câbles et  les chaînes porte-câbles</figcaption>
+</figure>
+
+> **Les câbles sont la principale source de défaut dans les équipements mobiles**. Même si les câbles sont correctement sélectionnés et confectionnés, c'est une bonne pratique de prévoir des connecteurs pour que les câbles mobiles puissent être facilement remplacés.
 
 # Maintenance mécanique
 Les éléments mécanique nécessitent des interventions de maintenance comme la lubrification qui permettent de prolonger leur cycle de vie.
-**Si vous pensez à intégrer cet aspect là dans votre système, vous aurez pris une longueur d'avance sur l'immense majorité de vos concurents !**
 
 
 
