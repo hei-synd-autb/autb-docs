@@ -104,6 +104,8 @@ La plupart des drives de cette catégories présents sur le marché son livrés 
  
 > Couple = courant x Nm/A.
 
+> Pour une fontion de type **SLS**, non seulement la commande d'axe doit répondre à un certain niveau de sécurité, **mais le moteur aussi**.
+
 La caractéristique des moteurs synchrones à aimants permanents inclut le plus souvent un paramètre approximé comme *constant*: Torque Constant: [Nm/A].
 
 <figure align="center">
