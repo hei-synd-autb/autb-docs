@@ -53,13 +53,13 @@ Pour prendre l'exemple du moteur MS2N04-D0BQN de l'axe X du laboratoire d'automa
 |-----------|--------------|
 |![](./img/MS2N04-D0BQN-Uncontrolled%20Supply.png)|![](./img/MS2N04-D0BQN-Controlled%20supply.png)|
 
-Mais aussi, les alimentation régulées parettent parfois de réinjecter l'énergie de freinage dans le réseau.
+Mais aussi, les alimentation régulées permettent parfois de réinjecter l'énergie de freinage dans le réseau.
 
 > Certains systèmes travaillent avec des tensions différentes.
 <figure align="center">
     <img src="./img/pick & place cantilever Lxs X-400F120 Lxu Y-320F60 Lxu Z-160F60 Rxhq C-50-12T0.3.png"
          alt="Image Lost pick & place cantilever Lxs X-400F120 Lxu Y-320F60 Lxu Z-160F60 Rxhq C-50-12T0.3.png">
-    <figcaption>Pick and Plance d'origine Jenny Science avec de moteurs 48 [Vdc]</figcaption>
+    <figcaption>Pick and Place d'origine Jenny Science avec de moteurs 48 [Vdc]</figcaption>
 </figure>
 
 > Certains rares systèmes travaillent sur une ou deux phases.
@@ -104,7 +104,7 @@ La plupart des drives de cette catégories présents sur le marché son livrés 
  
 > Couple = courant x Nm/A.
 
-La caractéristique des moteurs synchrone à aimants permanents inclut le plus souvent un paramètre appxoximé comme constant: Torque constant: [Nm/A]..
+La caractéristique des moteurs synchrone à aimants permanents inclut le plus souvent un paramètre appxoximé comme constant: Torque constant: [Nm/A].
 
 <figure align="center">
     <img src="./img/MotorTechnicalData.png"
@@ -254,7 +254,7 @@ Moteur linéaire sans fer, permet des vitesse et des accélérations très impor
 </figure>
 
 # Quelque exemples de codeurs
-Si les moteurs rotatifs sont le plus souvent équipés de codeurs rotatifs intégrés:
+Si les moteurs rotatifs sont le plus souvent équipés de codeurs rotatifs intégrés...
 
 
 <figure align="center">
@@ -263,7 +263,7 @@ Si les moteurs rotatifs sont le plus souvent équipés de codeurs rotatifs inté
     <figcaption>Heindenhain Internal Rotary Encoder</figcaption>
 </figure>
 
-Les moteurs linéaires sont souvent livrés sans encapsultation mécanique et doivent faire l'objet d'une conception mécanique complète.
+...les moteurs linéaires sont souvent livrés sans encapsultation mécanique et doivent faire l'objet d'une conception mécanique complète.
 
 > Pour qu'un moteur à aimants permanents puisse fonctionner correctement, la position des aimants relative au codeur doit être connue. Sur certaines commande d'axe, il existe une procédure qui permet de mesurer cet alignement, on parle de méthode de commutation. Cette procédure n'est pas nécessaire pour les moteurs rotatifs avec codeur intégré, car le codeur et les aimants ont une position calibrée au montage. Ce qui n'est souvent pas le cas pour un moteur linéaire avec un codeur qui est indépendant mécaniquement des aimants.
 
@@ -356,7 +356,7 @@ La différence peut venir de la vis à bille.
     <figcaption>Backlash Animation, ball gaps exaggerated for visibility, Source: https://www.thomsonlinear.com/en/training/ball_screws/backlash</figcaption>
 </figure>
 
-Ou d'autres rapports de transmission intemédiaires.
+Ou d'autres rapports de transmission intermédiaires.
 
 <figure align="center">
     <img src="./img/Source Research Gate Backlash-in-mating-gear-transmissions.png"
@@ -453,7 +453,7 @@ Le profil va principalement permettre de dimensionner le couple nominal du moteu
     <figcaption>Motion Profile</figcaption>
 </figure>
 
-> Pour faire simple, l'intégration de la puissance électrique du moteur pendant un temps donné doit correspondre à une puissance thermique dissipée en tenant compte du rendement du moteur pendant cette période.
+> Pour faire simple: l'intégration de la puissance électrique du moteur pendant un temps donné doit correspondre à une puissance thermique dissipée en tenant compte du rendement du moteur pendant cette période.
  
  # Les câbles
  Dans beaucoup d'équipements mobiles, un partie des câbles se déplacent avec les éléments mobile. Il existe des câbles spécialement confectionnés pour les équipements mobiles.
@@ -468,6 +468,7 @@ Le profil va principalement permettre de dimensionner le couple nominal du moteu
 # Maintenance mécanique
 Les éléments mécanique nécessitent des interventions de maintenance comme la lubrification qui permettent de prolonger leur cycle de vie.
 
-
+## Intelligence artificielle
+Une des premières applications de l'intelligence artificielle dans le domaine de l'automation actuellement consiste à tenter d'identifier l'usure des roullements à bille sur les moteurs par analyse des vibrations mesurées à l'aide d'un accéléromètre.
 
 [Module 07 le drive, software](README_DriveSoft.md)
