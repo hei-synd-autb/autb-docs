@@ -100,11 +100,11 @@ Le drive représenté ici, celui où se trouve le processeur du PLC, axe X, est 
 ### Sécurité, STO, Safe Torque Off
 La plupart des drives de cette catégories présents sur le marché son livrés avec une fonction de sécurité de base qui garanti l’absence du courant dans le moteur via un connexion dédiée, dans le cas du laboratoire, lié via un bouton d’arrêt d’urgence.
 
-> Attention, dans de nombreux cas, les fonctions de sécurité sont des options qui ne sont disponibles qu'à la commande. **Si on devait ajouter par exemple une fonction SLS, Safe Limited Speed, aux axes du laboratoire, il faudrait commande de nouveaux systèmes !**. Il est important de connaître les contraintes de sécurité avant de commande le matériel.
+> Attention, dans de nombreux cas, les fonctions de sécurité sont des options qui ne sont disponibles qu'à la commande. **Si on devait ajouter par exemple une fonction SLS, Safe Limited Speed, aux axes du laboratoire, il faudrait commander de nouveaux systèmes !**. Il est important de connaître les contraintes de sécurité avant de commander le matériel.
  
 > Couple = courant x Nm/A.
 
-La caractéristique des moteurs synchrone à aimants permanents inclut le plus souvent un paramètre appxoximé comme constant: Torque constant: [Nm/A].
+La caractéristique des moteurs synchrones à aimants permanents inclut le plus souvent un paramètre approximé comme *constant*: Torque Constant: [Nm/A].
 
 <figure align="center">
     <img src="./img/MotorTechnicalData.png"
