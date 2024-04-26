@@ -12,6 +12,8 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 # Module 07 le drive, software.
 
+# Dieser Teil wird derzeit direkt im Labor verarbeitet: Siehe:[LAB 05 Inbetriebnahme einer elektrischen Achse mit Kugelumlaufspindel](https://github.com/hei-synd-autb/autb-lab-05)
+
 # Aspect théorique
 Dans le module précédent, mechatronics hardware, nous avons abordé un type d'entrainement équipé d'une vis à bille. Nous avons vu que les principaux paramètres du système étaient outre ses dimensions:
 - La masse en mouvement.
