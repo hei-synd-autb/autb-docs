@@ -58,3 +58,33 @@ Finalement, il conviendra de tenir compte de l'ensemble de la structure en mouve
 </figure>
 
 # Un pas plus loin
+La régulation en position des moteurs synchrones utilise souvent le même schéma avec dans l'ordre:
+- La commande de position,
+- un régulateur de position,
+- un régulateur de vitesse,
+- un régulateur de courant qui via une constante de force ou couple convertit le courant en grandeur mécanique.
+
+## Régulateur de courant
+Le régulateur de courant dépend des caractéristiques électriques du moteur qui sont en principe bien connues et entrées comme paramètres dans le drive. Sauf exception, il n'est pas nécessaire de modifier les paramètres du regulateur de courant qui sont calculés par de drive.
+
+## Régulateur de vitesse
+Il dépend des paramètres mécaniques du système et est donc particulièrement compliqué à mettre au point quand les paramètres mécaniques sont non linéaires. C'est pourquoi on utilise souvent une base de travail empirique ou un algorithme d'**autotuning** interne au drive.
+
+## Régulateur de position
+Il dépend du type de processus. Par défaut un régulateur proportionnel avec un facteur ``1`` est souvent suffisant. 
+
+Dans l'exemple ci-dessous, on ajoute un feedforward.
+Le principe est de convertir directement une variation de position en courant à condition de connaître la masse ou le moment d'inertie du système à piloter. Le feedforward convient bien au suivi de position et permet de limiter l'erreur de poursuite à savoir l'écard entre la position de commande et le position mesurée.
+
+On peut garder en tête qu'un régulateur sert avant tout à réagir aux perturbations non mesurables mais que tout ce qui permettra d'anticiper, à mettre en relation avec **forward**, améliorera le système.
+
+<figure align="center">
+    <img src="./SpeedRegulation/FeedForwardAndModel.png"
+         alt="Image Lost FeedForwardAndModel">
+    <figcaption>Feedforward or application of a model</figcaption>
+</figure>
+
+Le principe est d'apprendre à comprendre un sytème en visualisant les différentes composantes du mouvement. L'avantage de comprendre le système et de maîtriser la programmation est qu'il sera ensuite possible de compléter soit même le model général de pilotage d'un système.
+
+# Exemple, écrire un régulateur PI.
+## Pseudo code:
