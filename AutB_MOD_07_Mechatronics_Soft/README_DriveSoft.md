@@ -25,7 +25,7 @@ Ci-dessous, un aperçu des roulements de la vis à bille dans un axe CKK tel que
     <figcaption>CKK Internal View</figcaption>
 </figure>
 
-Selon un figure d'origine SFK, fournisseur de roulement à bille, on peut observer un exemple de variation du frottement des roulements à bille en fonction de la température.
+Selon un figure d'origine SFK, fournisseur de roulement à bille, on peut observer un exemple de variation du frottement des roulements à bille en fonction de la vitesse.
 
 <figure align="center">
     <img src="./SpeedRegulation/SourceSFKFrictionAsFunctionOfSpeed.png"
@@ -41,7 +41,7 @@ Une vue externe d'un module SFK montre que nous avons en sus, des lamelles en ca
     <figcaption>CKK External View</figcaption>
 </figure>
 
-Nous obtenons, selon documention Bosch Rexroth, un exemple de la variation du frottement en fonction du temps sur un mouvement aller et retour sur l'ensemble de la course d'un système.
+Nous obtenons, selon documentation Bosch Rexroth, un exemple de la variation du frottement en fonction du temps sur un mouvement aller et retour sur l'ensemble de la course d'un système.
 
 <figure align="center">
     <img src="./SpeedRegulation/ExampleOfCkkAxisInHevsLabFriction.png"
@@ -92,7 +92,8 @@ Le principe est d'apprendre à comprendre un sytème en visualisant les différe
          alt="Image Lost ExempleNoFeedForward">
     <figcaption>Motion without feedforward</figcaption>
 </figure>
-En analisant ce mouvement à faible vitesse, +/- 2 [mm] et 10 mm/s, dans le graphe, 600 mm/min, on peut visualiser par exemple la force de frottement dynamique.
+
+En analysant ce mouvement à faible vitesse, +/- 2 [mm] et 10 mm/s, dans le graphe, 600 mm/min, on peut visualiser par exemple la force de frottement dynamique.
 
 ### Exemple **avec** feedforward
 <figure align="center">
@@ -106,11 +107,54 @@ Ici, on peut visualiser le feedforward en noir et constater qu'il diminue effica
 On peut aussi constater que le feedforward permet de stabilier plus rapidement la vitesse en bleu et évite un dépassement de la vitesse, la petite bosse en augementation de vitesse sur le premier schéma.
 
 # Exemple, écrire un régulateur PI.
+
+<figure align="center">
+    <img src="./SpeedRegulation/SimpleExampleOfPiController.png"
+         alt="Image Lost ExampleOfCkkAxisInHevsLabOberview">
+    <figcaption>Simple PI regler</figcaption>
+</figure>
+
+
 ## Pseudo code:
+```iecst
+Proportional Gain : Kp
+Integration Time  := Tn
+Integration Gain  := Ki
+
+// Pseudo code PI Regler
+
+Read(Input)
+
+error := Input - Output
+
+// Integrator
+// If Tn = 0, no integration
+IF Tn > 0 THEN
+	Ki := 1/Tn;
+ELSE
+	Ki := 0;
+END_IF;
+sumError := sumError + error;
+
+// Before Limit
+sumPI := Kp * error + Ki * sumError;
+
+// Set Limit called sometimes 
+IF sumPI > LimitHigh then
+	Output := LimitHigh;
+ELSIF sumPI < LimitLow then
+	Output := LimitLow;	
+ELSE
+	Output := sumPI;
+END_IF
+
+
+Write(Output)
+```
 
 ## Your job
 -   Utiliser le modèle d'un FB **Enable In Operation Base** pour réaliser un régulateur PI dans un FB_PI.
--   Utiliser l'état Init pour réinitialiser le sommateur de l'intégrateur.
+-   Utiliser l'état Init pour réinitialiser le sommateur de l'intégrateur: ``sumError``.
 
 # Conclusion
 Si on sait écrire un régulateur PI, on pourrait aussi théoriquement écrire son propre système d'optimisation pour compenser un problème particulier.
