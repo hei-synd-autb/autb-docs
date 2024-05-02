@@ -86,5 +86,31 @@ On peut garder en tête qu'un régulateur sert avant tout à réagir aux perturb
 
 Le principe est d'apprendre à comprendre un sytème en visualisant les différentes composantes du mouvement. L'avantage de comprendre le système et de maîtriser la programmation est qu'il sera ensuite possible de compléter soit même le model général de pilotage d'un système.
 
+### Exemple **sans** feedforward
+<figure align="center">
+    <img src="./SpeedRegulation/ExempleNoFeedForward.png"
+         alt="Image Lost ExempleNoFeedForward">
+    <figcaption>Motion without feedforward</figcaption>
+</figure>
+En analisant ce mouvement à faible vitesse, +/- 2 [mm] et 10 mm/s, dans le graphe, 600 mm/min, on peut visualiser par exemple la force de frottement dynamique.
+
+### Exemple **avec** feedforward
+<figure align="center">
+    <img src="./SpeedRegulation/ExempleWithFeedForward.png"
+         alt="Image Lost ExempleNoFeedForward">
+    <figcaption>Motion with feedforward</figcaption>
+</figure>
+
+Ici, on peut visualiser le feedforward en noir et constater qu'il diminue efficacement l'écart de poursuite en violed pendant la phase d'accélération, augmentation de la vitesse en bleu.
+
+On peut aussi constater que le feedforward permet de stabilier plus rapidement la vitesse en bleu et évite un dépassement de la vitesse, la petite bosse en augementation de vitesse sur le premier schéma.
+
 # Exemple, écrire un régulateur PI.
 ## Pseudo code:
+
+## Your job
+-   Utiliser le modèle d'un FB **Enable In Operation Base** pour réaliser un régulateur PI dans un FB_PI.
+-   Utiliser l'état Init pour réinitialiser le sommateur de l'intégrateur.
+
+# Conclusion
+Si on sait écrire un régulateur PI, on pourrait aussi théoriquement écrire son propre système d'optimisation pour compenser un problème particulier.
