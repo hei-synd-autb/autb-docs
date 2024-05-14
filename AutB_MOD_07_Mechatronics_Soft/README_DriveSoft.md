@@ -157,5 +157,7 @@ Write(Output)
 -   Utiliser le modèle d'un FB **Enable In Operation Base** pour réaliser un régulateur PI dans un FB_PI.
 -   Utiliser l'état Init pour réinitialiser le sommateur de l'intégrateur: ``sumError``.
 
+[Un exemple d'implémentation est donné en annexe](Function%20Block%20PI%20Regler.md)
+
 # Conclusion
 Si on sait écrire un régulateur PI, on pourrait aussi théoriquement écrire son propre système d'optimisation pour compenser un problème particulier.
