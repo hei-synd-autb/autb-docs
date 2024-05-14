@@ -123,9 +123,10 @@ Integration Gain  := Ki
 
 // Pseudo code PI Regler
 
-Read(Input)
+Read(Setpoint)
+Read(MeasureProcess)
 
-error := Input - Output
+error := Setpoint - MeasureProcess
 
 // Integrator
 // If Tn = 0, no integration
