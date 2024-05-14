@@ -104,7 +104,7 @@ La raison principale pour l'utilisation d'une trajectoire d'ordre 5 est la suiva
 
 -   $\ P’’(t) = 20 a_5 t^3 + 12 a_4 t^2 + 6 a_3 t + 2 a_2 $
 
-> On pourra montrer que si l'on cherche le mouvememnt qui demande le minimum d'énergie, le polynôme n'est pas la meilleure solution, mais l'expérience montre que le poylnôme d'ordre 5 est un bon compromis entre faible excitation mécanique et efficicience énergétique.
+> On pourra montrer que si l'on cherche le mouvememnt qui demande le minimum d'énergie, le polynôme n'est pas la meilleure solution, mais l'expérience montre que le polynôme d'ordre 5 est un bon compromis entre faible excitation mécanique et efficience énergétique.
 
 ## Opérations sur les trajectoires
 Il est possible d'effectuer plusieurs types d'opérations sur les trajectoires. Celles qui nous intéressent sont de deux ordre.
