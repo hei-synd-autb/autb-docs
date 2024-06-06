@@ -43,7 +43,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 [Module 09 Synchronized Motion with Real-Time Ethernet](./AutB_MOD_09_Synchronized_Motion_With_Real_Time_Ethernet/README.md): Utilisation des propriétés d'un Ethernat Real-time pour asservir un axe par une tâche cyclique de l'automate.
 
-[Module 10 OPC-UA](./AutB_MOD_10_OPC_UA/README.md): Une architecture de communication unifiée pour l'automation industrielle.
+[Module 10 OPC-UA and Industrial Network](./AutB_MOD_10_OPC_UA/README.md): Un bref aperçu des réseaux indutriels et protocoles de communication.
 
 [Module 11 Design Specification](./AutB_MOD_11_Design_Specification/README.md) L'ancien module méchatronics hard dont le concept est revu.
 
