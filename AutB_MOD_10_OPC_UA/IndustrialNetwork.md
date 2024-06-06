@@ -66,9 +66,11 @@ Quitte à rester un peu simpliste, la performance du bus de terrain en **Etherne
 
 Les équipements **gourmands** en bande passante sont en général les commandes moteurs. Le nombre d’entrées analogiques peut revêtir une certaine importance.
 De manière générale, on peut estimer que pour un temps de cycle de l’ordre de la millisecondes et quelques dizaines de moteurs ou autre nœuds sur le réseau, il est peu probable de se retrouver face à une limitation. Le PLC arrivera probablement à ses limites avant le bus.
-4.4.1.7	Camera
+
+###	Camera
 Il y a un élément de plus en plus présent dans les systèmes d’automation actuel, ce sont les caméras. Le grand volumes de données qu’elles génèrent seraient susceptibles de charger un bus au-delà de ses limites. C’est dans ce genre de cas de figure qu’il faudra commencer à se pencher attentivement sur la charge du bus.
-4.4.1.8	Sécurité
+
+###	Sécurité
  
 <figure>
     <img src="./img/IndustrialNetwork_Powerlink_Safety.jpg"
@@ -77,7 +79,8 @@ Il y a un élément de plus en plus présent dans les systèmes d’automation a
 </figure> 
 
 La majorité des bus temps réel actuels sont maintenant capables d’être utilisés pour la câblage des éléments de sécurité. C’est le protocole qui est sécurisé entre deux points.
-4.4.2	Réseaux secondaires, Field Bus
+
+## Réseaux secondaires, Field Bus
  
 <figure>
     <img src="./img/IndustrialNetwork_Powerlink_SecondaryNetwork.png"
@@ -91,7 +94,8 @@ Dans la pratique, le bus Ethernet real-time est réservé aux composants nécess
 -   On peut synchroniser les moteurs en position avec un codeur branché lui aussi sur le bus Ethernet real-time.
 -   On trouve des caméras qui peuvent se connecter directement sur le bus Ethernet.
 -   Pour accéder aux composants nécessitant moins de données, ou une fréquence d’échantillonnage inférieure on utilisera souvent un bus dit **bus de terrain**. Les données seront en général multiplexées et connectées au bus Ethernet real-time via une passerelle. Comme pour les bus Ethernet real-time, on trouve peut de normalisation à ce niveau-là.
-4.4.2.1	AS-Interface
+
+###	AS-Interface
  
 <figure>
     <img src="./img/IndustrialNetwork_AS_Interface.png"
@@ -99,7 +103,7 @@ Dans la pratique, le bus Ethernet real-time est réservé aux composants nécess
     <figcaption>AS-Interface, Source: Siemens</figcaption>
 </figure> 
 
-Le bus **AS-Inferface** », ou **ASi** », est l’exemple typique d’un bus de terrain. Sa vitesse dépend principalement du nombre de composants.
+Le bus **AS-Inferface**, ou **ASi**, est l’exemple typique d’un bus de terrain. Sa vitesse dépend principalement du nombre de composants.
 -   Le câble jaune fournit la puissance et transfert les données modulées sur la puissance.
 -   Le câble noir fournit uniquement de la puissance pour les modules de sortie nécessitant plus de courant.
 
@@ -213,7 +217,7 @@ Dans les industries nécessitant un processus de validation, les capteurs IO-Lin
 Ouvrage de référence
 IO-Link The DNA of Industry 4.0,  Joachim R. Uffelmann, Peter Wienzek, Myriam Jahn
 
-4.4.2.3	Quelques remarques complémentaires ici :
+###	Quelques remarques complémentaires ici :
 https://e2e.ti.com/blogs_/b/industrial_strength/archive/2015/08/20/three-protocols-for-industrial-communication
 
 Le processus connait plutôt le protocol HART, cependant un des acteurs majeurs de la mesure process se dirige clairement vers le IO-Link
