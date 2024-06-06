@@ -14,8 +14,6 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 *Keywords:* [OPC UA](https://opcfoundation.org/)
 
-# OpcUa_AutB
-
 [Vous pourriez d'abord lire la présentation du réseau industriel](IndustrialNetwork.md)
 
 Ce module est une introduction à OPC UA.
@@ -59,10 +57,6 @@ Le modèle client/serveur est le modèle de communication traditionnel dans OPC 
     <figcaption>OPC UA Layers</figcaption>
 </figure> 
 
-OPC UA dans le cadre de ce cours **(en construction)**
-Ce cours se concentre sur la partie application de l’OPC UA avec une très succincte description des couches inférieures. Dans la mesure ou la norme OPC UA comporte un volet sécurité, IEC TR 62541-2, nous en profiterons pour aborder l’aspect cyber sécurité d’un projet d’automation.
-OPC UA offre les fonctionnalités suivantes
-
 - Protocole ouvert et **indépendant de la plate-forme** pour la communication interprocessus et réseau.
 - Accès à Internet et communication via des pare-feu (Firewalls).
 - Mécanismes intégrés de contrôle d'accès et de sécurité au niveau du protocole et de l'application.
@@ -72,16 +66,17 @@ OPC UA offre les fonctionnalités suivantes
 - Évolutivité des petits systèmes embarqués aux applications d'entreprise et modèles complexes orientés objet.
 
 # Architecture
-Le terme Unified Architecture signifie que OPC UA est conçu pour couvrir l’ensemble de l’architecture d’un système d’automation, depuis un ERP, en passant par un **MES**, les systèmes **SCADA** et jusqu’au capteur.
+Le terme **Unified Architecture** signifie que **OPC UA** est conçu pour couvrir l’ensemble de l’architecture d’un système d’automation, depuis un **ERP**, en passant par un **MES**, les systèmes **SCADA** et jusqu’au capteur.
 En d’autres termes, il est possible depuis une application sur le Cloud d’accéder de manière sécurisée aux informations d’un capteur.
-ERP Enterprise resource planning.
-Un type de logiciel que les entreprises utilisent pour gérer leurs activités quotidiennes telles que la comptabilité, les achats, la gestion de projets, la gestion des risques et la conformité, ainsi que les opérations de supply chain, une chaîne qui relie le fournisseur du fournisseur au client.
-MES Manufacturing Execution System
-Un système informatique qui connecte, surveille et contrôle des systèmes de fabrication et flux de données complexes au niveau des ateliers
-SCADA Supervisory Control and Data Acquisition
-Système de supervision industrielle qui traite en temps réel un grand nombre de mesures et contrôle à distance les installations)
 
-## Figure
+## ERP Enterprise resource planning.
+Un type de logiciel que les entreprises utilisent pour gérer leurs activités quotidiennes telles que la comptabilité, les achats, la gestion de projets, la gestion des risques et la conformité, ainsi que les opérations de supply chain, une chaîne qui relie le fournisseur du fournisseur au client.
+
+## MES Manufacturing Execution System
+Un système informatique qui connecte, surveille et contrôle des systèmes de fabrication et flux de données complexes au niveau des ateliers
+
+## SCADA Supervisory Control and Data Acquisition
+Système de supervision industrielle qui traite en temps réel un grand nombre de mesures et contrôle à distance les installations)
 
 <figure>
     <img src="./img/OPC_UA_Scope.png"

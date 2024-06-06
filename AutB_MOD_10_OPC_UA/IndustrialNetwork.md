@@ -28,7 +28,7 @@ Ceci montre que norme et standardisation ne sont pas des synonymes….
 Au niveau de la conception, et c’est la raison pour laquelle je place le bus de terrain avant le PLC, c’est que l’ingénieur automaticien choisira parfois sa plateforme de développement non pas en fonction des performances du PLC, mais en fonctions des équipements disponibles pour un bus de terrain donnés.
 Dans l’aperçu ci-dessous, et de manière parfaitement arbitraire, c’est l’Ethernet-Powerlink qui est choisi. [Les images proviennent de] (https://www.ethernet-powerlink.org).
 
-###	Architecture
+###	Architecture réseau
  
 <figure>
     <img src="./img/IndustrialNetwork_Powerlink_Architecture.png"
@@ -113,7 +113,7 @@ Le bus **AS-Inferface**, ou **ASi**, est l’exemple typique d’un bus de terra
     <figcaption>AS-Interface, Section view</figcaption>
 </figure> 
  
--   La système de câblage est extrêmement bon marché car les esclaves s'insèrent directement sur le câble à l’aide de deux pointes métalliques qui entrent en contact avec les connecteurs internes. Il est ainsi possible de rajouter un nœud ASi sur le bus sans interrompre le câble !
+> La système de câblage est extrêmement bon marché car les esclaves s'insèrent directement sur le câble à l’aide de deux pointes métalliques qui entrent en contact avec les connecteurs internes. Il est ainsi possible de rajouter un nœud ASi sur le bus sans interrompre le câble !
 
 -   Il existe une version **Safe** du bus ASi.
 
@@ -127,10 +127,10 @@ Le bus **AS-Inferface**, ou **ASi**, est l’exemple typique d’un bus de terra
 |Cycle time: 5 ms (typical)|
 |Data transfer: digital and analog (16 Bit)|
 
- Voir aussi
+Voir aussi
 [Complément d’information](https://www.as-interface-academy.net)
 
-###	IO-Link
+# IO-Link
  
 <figure>
     <img src="./img/IndustrialNetwork_IO_Link_Overview.png"
@@ -138,7 +138,7 @@ Le bus **AS-Inferface**, ou **ASi**, est l’exemple typique d’un bus de terra
     <figcaption>IO-Link Architecture</figcaption>
 </figure> 
 
-#### Principe
+## Principe
 **IO-Link est un protocole**.
 IO-Link est une technologie entrées/sorties normalisée **IEC 61131-9** pour la communication avec des capteurs et des actionneurs. La communication point à point est basée sur la connexion de capteur et d'actionneur à 3 fils de **IEC 61131-2**. IO-Link n'est donc pas un bus de terrain mais le développement de la technique de connexion existante pour les capteurs et les actionneurs.
 Pour le mettre en relation avec la technologie AS-interface, il existe maintenant des passerelles permettant de faire transiter le protocole IO-link à travers un réseau AS-interface.
@@ -152,7 +152,7 @@ Interface de communication numérique point à point pour petits capteurs et act
     <figcaption>IO-Link on AS-Interaface, Source: www.bihl-wiedemann.de </figcaption>
 </figure> 
 
-#### Caractéristique principale
+## Caractéristique principale
 
 Utilisation de l’infrastructure existante. Un capteur IO-Link pourra en général être installé sur un réseau existant, car il est capable de fournir les signaux standards du IEC 61131-2, bien sûr sans l’avantage des données du protocole. De même, un capteur d’ancienne génération qui ne fournit pas le protocole pourra être installé sur un réseau mis à niveau pour IO-Link.
 -   Transmission du signal analogique sous forme numérique. Cela améliore la résistance aux perturbation électro-magnétiques.
@@ -177,7 +177,7 @@ Chaque port du maître IO-Link peut être utilisé soit en mode SIO (mode d'entr
 
 En standard, 2 octets de données process sont disponibles par cycle. L'utilisateur peut également sélectionner des paquets de données plus grands (types de trames). Il est ainsi possible de transmettre des données process de plus grande taille, jusqu'à 32 octets, avec un temps de cycle plus lent.
 
-#### Exemple d’une passerelle de type Baumer
+## Exemple d’une passerelle de type Baumer
 Cette passerelle est non seulement conçue pour être connectée à un Ethernet Real-time, par exemple Profinet, mais permet aussi l’accès direct à des données formatées en OPC-UA via le protocole TCP-IP.
 
 <figure>
@@ -186,38 +186,41 @@ Cette passerelle est non seulement conçue pour être connectée à un Ethernet 
     <figcaption>IO-Link Gateway, Source: www.baumer.com </figcaption>
 </figure>
 
-#### IODDs
+## IODDs
 Chaque appareil IO-Link possède un fichier de description de l'appareil, appelé IODD (IO Device Description). Il contient des données sur le fabricant, le numéro d'article, la fonctionnalité, etc. qui peuvent être facilement lues et traitées par l'utilisateur. Chaque appareil, c'est-à-dire chaque détecteur, peut être identifié de manière unique à la fois par l'IODD et par un ID d'appareil interne. Il se compose de plusieurs fichiers : un fichier principal et des fichiers de langue externe optionnels (tous deux au format XML), ainsi que des fichiers image (au format PNG).
 Ces fichiers sont nécessaires pour le paramétrages de la communication des PLC
 Les fichier IODDs de tous les fabricants sont disponibles sur le site www.io-link.com.
 
 
-Données cycliques / Process Data
+## Données cycliques / Process Data
 Transmises en temps réel. Elles sont utilisées pour le contrôle de processus dans le système et peuvent également être transférées vers d'autres systèmes informatiques via IO-Link.
 -   Ce sont les données transmises traditionnellement sous forme binaire, 0 ou 24 Vdc ou analogique sous forme 0..10 Vdc ou 4..20 mA.
-A noter :
-PDI : Process Data Input
-PDO : Process Data Output
-Données acycliques / Service Data
+
+### A noter :
+> PDI : Process Data Input
+
+> PDO : Process Data Output
+
+## Données acycliques / Service Data
 Permettent de paramétrer les détecteurs (dispositifs d'E/S) et, si nécessaire, de lire les données d'analyse et d'identification.
 -   Diagnostique du capteur, tel que qualité du signal, température du capteur.
 -   Repérage du capteur, tel que type du capteur, numéro de série.
 -   Paramétrage, tel que distance de mesure, niveau de contraste.
-Alarmes / Event Data
+### Alarmes / Event Data
 Notification ou indicateur créé lorsqu'un événement critique se produit. Exemples de données d'événement :
 -   mauvais capteur connecté,
 -   erreur de communication,
 -   circuits ouverts,
 -   surcharge,
 -   lentille sale.
-Validation
 
+## Validation
 Dans les industries nécessitant un processus de validation, les capteurs IO-Link offrent la caractéristique intéressante de pouvoir être validés. Contrairement au capteurs traditionnels, on peut choisir de vérifier si le capteur a été changé en lisant son numéro de série, mais on peut aussi simplement choisir de vérifier si il a été remplacé par un capteur équivalent.
 
-Ouvrage de référence
+### Ouvrage de référence
 IO-Link The DNA of Industry 4.0,  Joachim R. Uffelmann, Peter Wienzek, Myriam Jahn
 
-###	Quelques remarques complémentaires ici :
+##	Quelques remarques complémentaires ici :
 https://e2e.ti.com/blogs_/b/industrial_strength/archive/2015/08/20/three-protocols-for-industrial-communication
 
 Le processus connait plutôt le protocol HART, cependant un des acteurs majeurs de la mesure process se dirige clairement vers le IO-Link
