@@ -21,6 +21,15 @@ OPC UA sera utilisé sous forme paramétrable afin de comprendre son utilisation
 Pour plus de détails sur les fonctions avancées de OPC UA, on se reportera au cours du 6ème semestre P&C.
 
 # Contexte
+## Passerelle OT - IT
+-   IT pour Internet Technology
+-   OT pour Operational Technology
+
+|IT |OT |
+|-----------|-----------|
+|![](./img/OPC-UA-IT.png)|![](./img/OPC-UA-OT.png)|
+|Source: www.skyguide.ch|Source: Syngenta|
+
 ## Nécessité de communiquer entre différentes machines.
 > M2M Machine To Machine
 

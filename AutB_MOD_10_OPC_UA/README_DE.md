@@ -22,6 +22,16 @@ OPC UA wird in konfigurierbarer Form verwendet, um seinen Einsatz im Kontext der
 Weitere Details zu den erweiterten Funktionen von OPC UA finden Sie in den P&C des 6. Semesters.
 
 # Kontext
+## Tor OT - IT
+
+-   IT für Internet Technology
+-   OT für Operational Technology
+
+|IT |OT |
+|-----------|-----------|
+|![](./img/OPC-UA-IT.png)|![](./img/OPC-UA-OT.png)|
+|Source: www.skyguide.ch|Source: Syngenta|
+
 ## Notwendigkeit der Kommunikation zwischen verschiedenen Maschinen.
 > M2M Maschine zu Maschine
 
