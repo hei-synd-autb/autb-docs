@@ -36,7 +36,7 @@ Dans l'image ci-dessous, on représente une ligne de production qui utilise Pack
 
 ## Nécessité de communiquer entre différents appareils
 Chaque fabricant utilse un protocol interne qui lui est propre.
-> Il reste nécessaire d'avoir un bus de communication compatible TCP/IP, pour que les appareis puissent établir une communication via OPC-UA. Dans le cadre du laboratoire, le transport est assuré via un Ethernet Realtime de type Profinet.
+> Il reste nécessaire d'avoir un bus de communication compatible TCP/IP, pour que les appareils puissent établir une communication via OPC-UA. Dans le cadre du laboratoire, le transport est assuré via un Ethernet Realtime de type Profinet.
 
 | | | |
 |-----------|--------------|--------------|
@@ -77,9 +77,11 @@ Le modèle **client/serveur** est le modèle de communication traditionnel dans 
 **OPC UA est conçu pour utiliser l'architecture TCP/IP**, il occupe les couches 5, 6 et 7 du modèle OSI.
 
 Sans entrer dans les détails.
--   Les **couches 1 et 2** concernent le support physique. Par exemple: câbles ethernet avec connecteur RJ45 ou Wifi.
--   Les **couches 3 et 4** spécifient le protocol TCP/IP. Transmission Control Protocol transmet des paquets de données et garanti le succès de transmission de ces paquets, Internet Protocol fournit en particulier l'adresse, par exemple 192.168.0.200.
--   Les **couches 5, 6 et 7** sont liés à l'établissement d'une communication qui peut être sécurisée, le codage des données sous format binaire et finalement à l'application qui est codée par l'utilisateur.  
+-   Les **couches 1 et 2** concernent le support physique. Par exemple: câbles Ethernet avec connecteur RJ45 ou Wifi.
+-   Les **couches 3 et 4** spécifient le protocol TCP/IP. Transmission Control Protocol transmet des paquets de données et garantit le succès de transmission de ces paquets, Internet Protocol fournit en particulier l'adresse, par exemple 192.168.0.200.
+-   Les **couches 5, 6 et 7** sont liés à l'établissement d'une communication qui peut être sécurisée, le codage des données sous format binaire et finalement à l'application qui est codée par l'utilisateur.
+
+> OPC-UA via TCP/IP garantit l'envoi et la réception des paquets mais ne donne aucune garantie quand à précision temporelle de transport de ces paquets.
 
 <figure>
     <img src="./img/OPC_UA_Layers.png"
@@ -199,8 +201,6 @@ La modélisation des données définit les règles et les blocs de construction 
 Les services UA sont l'interface entre les serveurs en tant que fournisseur d'un modèle d'information et les clients en tant que consommateurs de ce modèle d'information. Les Services sont définis de manière abstraite. Ils utilisent les mécanismes de transport pour échanger les données entre le client et le serveur.
 Ce concept de base d'OPC UA permet à un client OPC UA d'accéder aux plus petits éléments de données sans avoir besoin de comprendre l'ensemble du modèle exposé par des systèmes complexes. Les clients OPC UA comprenant également des modèles spécifiques peuvent utiliser des fonctionnalités plus avancées définies pour des domaines et des cas d'utilisation spéciaux. La figure 2 montre les différentes couches de modèles d'information définis par OPC, par d'autres organisations ou par des fournisseurs.
 
-
-
 ### Discovery mechanism
 L’un des aspects particulier et fondateur de l’OPU UA est sa fonction découverte. Cela signifie que l’architecture intègre non seulement l’aspect d’accès aux données, mais aussi l’accès à la modélisation des données, Metadata. Sans connaître à l’avance la structure d’un capteur il sera possible de découvrir l’organisation des données à l’intérieur de ce capteur, de lire ou écrire certains paramètres, mais encore d’invoquer des méthodes. On pourrait dire qu’il est non seulement possible d’accéder à un objet, mais aussi de découvrir sa classe.
 
@@ -258,6 +258,28 @@ OPC UA est normalisé selon **IEC 62541**. La spécification de l’OPC UA est u
 
 
 A noter IEC 62451-13:2020 Norm number-Part:Year. Au moment de l’écriture de ce cours, la plupart des parties sont en **Pre-Release** c’est-à-dire en cours d’approbation finale.
+
+# OT Security
+Une des particularitéa de l'OPC-UA est d'inclure dans sa spécification de base les notions de sécurité, IEC TR 62541-2:2020. OPC unified architecture - Part 2, Security Model.
+
+-   OPC UA fournit un niveau de sécurité par nom d'utilisateur et mot de passe.
+-   OPC UA fournit un niveau de sécurité par échange de certificats.
+-   OPC UA fournit un service de cryptage de données.
+
+> Si on compare par exemple OPC UA avec un protocol de type MODBUS-TCP, aucun des trois niveaux de sécurité mentionné ci-dessus n'est spécifié par Modbus, ce qui signifie que n'importe qui poura accéder aux données d'un appareil équipé d'un serveur Modbus.
+
+> Des travaux sont en cours pour sécuriser le protocol Modbus.
+
+# Ethernet APL, Advanced Physical Layer
+Actuellement ils reste difficile de déployer OPC-UA dans certains secteuts industriels, principalement en raison de sa dépendance à un réseaus Ethernet, couches 1 et 2. C'est une des raisons d'être de la nouvelle technologie Ethernet-APL. [Voir Industrial Network](IndustrialNetwork.md).
+
+<figure>
+    <img src="./img/IndustrialNetwork_Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png"
+         alt="Lost image: IndustrialNetwork_Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr">
+    <figcaption>Ethernet-APL</figcaption>
+</figure> 
+
+
 
 # Dans le laboratoire HEVS
 - Nous utilisons une communication machine to machine entre Siemens S7 et CtrlX Core.

@@ -81,6 +81,8 @@ Ohne auf Details einzugehen.
 - **Schichten 3 und 4** geben das TCP/IP-Protokoll an. Das Transmission Control Protocol überträgt Datenpakete und garantiert die erfolgreiche Übertragung dieser Pakete, insbesondere das Internet Protocol liefert die Adresse, zum Beispiel 192.168.0.200.
 - Die **Schichten 5, 6 und 7** beziehen sich auf den Aufbau einer sicheren Kommunikation, die Kodierung von Daten im Binärformat und schließlich auf die vom Benutzer kodierte Anwendung.
 
+> OPC-UA über TCP/IP garantiert das Senden und Empfangen von Paketen, garantiert jedoch nicht die zeitliche Präzision des Transports dieser Pakete.
+
 <figure>
     <img src="./img/OPC_UA_Layers.png"
          alt="Lost image: OPC_UA_Layers">
@@ -256,6 +258,26 @@ OPC UA ist nach **IEC 62541** standardisiert. Die OPC UA-Spezifikation ist ein M
 
 
 Bitte beachten Sie IEC 62451-13:2020 Normnummer-Teil:Jahr. Zum Zeitpunkt der Erstellung dieses Kurses befinden sich die meisten Teile in der **Vorveröffentlichung**, d. h. im Prozess der endgültigen Genehmigung.
+
+# OTSecurity
+Eine der Besonderheiten von OPC-UA besteht darin, Sicherheitskonzepte in seine Basisspezifikation IEC TR 62541-2:2020 aufzunehmen. OPC einheitliche Architektur – Teil 2, Sicherheitsmodell.
+
+- OPC UA bietet ein gewisses Maß an Benutzernamen- und Passwortsicherheit.
+- OPC UA bietet ein gewisses Maß an Sicherheit durch Zertifikatsaustausch.
+- OPC UA bietet einen Datenverschlüsselungsdienst.
+
+> Vergleicht man beispielsweise OPC UA mit einem Protokoll vom Typ MODBUS-TCP, so ist keine der drei oben genannten Sicherheitsstufen durch Modbus spezifiziert, was bedeutet, dass jeder auf die Daten eines Geräts zugreifen kann, das mit einem Modbus-Server ausgestattet ist.
+
+> Es wird an der Sicherung des Modbus-Protokolls gearbeitet.
+
+# Ethernet APL, Advanced Physical Layer
+Derzeit ist es nach wie vor schwierig, OPC-UA in bestimmten Industriebereichen einzusetzen, vor allem aufgrund der Abhängigkeit von Ethernet-Netzwerken, Layer 1 und 2. Dies ist einer der Gründe für die neue Ethernet-APL-Technologie. [Siehe Industrial Network](IndustrialNetwork_DE.md).
+
+<figure>
+    <img src="./img/IndustrialNetwork_Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png"
+         alt="Lost image: IndustrialNetwork_Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr">
+    <figcaption>Ethernet-APL</figcaption>
+</figure> 
 
 # Im HEVS-Labor
 - Wir nutzen die Maschine-zu-Maschine-Kommunikation zwischen Siemens S7 und CtrlX Core.
