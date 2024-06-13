@@ -20,6 +20,31 @@ Ce module est une introduction à OPC UA.
 OPC UA sera utilisé sous forme paramétrable afin de comprendre son utilisation dans le cadre de l'automation, et plus généralement pour tout système qui requiert l'échange d'un grand nombre de données complexes dans un contexte sécurisé.
 Pour plus de détails sur les fonctions avancées de OPC UA, on se reportera au cours du 6ème semestre P&C.
 
+# Contexte
+## Nécessité de communiquer entre différentes machines.
+> M2M Machine To Machine
+
+Dans l'image ci-dessous, on représente une ligne de production qui utilise PackML pour:
+-   La communication entre des machines de différents fabricants, qui utilisent potentiellement des automates de différents fournisseurs.
+-   La communication avec la gestion de la machine,[ERP](#erp-enterprise-resource-planning), [MES](#mes-manufacturing-execution-system), [SCADA](#scada-supervisory-control-and-data-acquisition).
+
+<figure>
+    <img src="./img/OPC-UA-MachineToMachine.png"
+         alt="Lost image: OPC-UA-MachineToMachine">
+    <figcaption>Communication between machines. Source opcfoundation.org</figcaption>
+</figure>
+
+## Nécessité de communiquer entre différents appareils
+Chaque fabricant utilse un protocol interne qui lui est propre.
+> Il reste nécessaire d'avoir un bus de communication compatible TCP/IP, pour que les appareis puissent établir une communication via OPC-UA. Dans le cadre du laboratoire, le transport est assuré via un Ethernet Realtime de type Profinet.
+
+| | | |
+|-----------|--------------|--------------|
+|Siemens S7|Lab PC|Laptop|
+|![](./img/OPC-UA-Device-Lab-S7.png)|![](./img/OPC-UA-Device-Lab-PC.png)|![](./img/OPC-UA-Device-LapTop.png)|
+|Baumer Gateway|CtrlX Core|HMI|
+|![](./img/OPC-UA-Device-Baumer-IO-Link.png)|![](./img/OPC-UA-Device-CtrlX.png)|![](./img/OPC-UA-Device-HMI.png)|
+
 # OPC UA 
 ## Livre de référence
 OPC Unified Architecture de Mahnke, Leitner et Damm, 2009.
@@ -47,15 +72,32 @@ Pour l’automaticien cela consiste à faire des click pour lier les données à
 
 ### Qu’est-ce que OPC UA?
 **Open Platform Communications** / **Unified Architecture**
-Le modèle client/serveur est le modèle de communication traditionnel dans OPC UA. Il est basé sur l'idée qu'il existe un composant serveur passif qui expose des données pour d'autres applications qui agissent en tant que clients. Les applications **Client** peuvent accéder aux données et informations du **Serveur** via des services standardisés.
+Le modèle **client/serveur** est le modèle de communication traditionnel dans OPC UA. Il est basé sur l'idée qu'il existe un composant serveur passif qui expose des données pour d'autres applications qui agissent en tant que clients. Les applications **Client** peuvent accéder aux données et informations du **Serveur** via des services standardisés.
 
 **OPC UA est conçu pour utiliser l'architecture TCP/IP**, il occupe les couches 5, 6 et 7 du modèle OSI.
+
+Sans entrer dans les détails.
+-   Les **couches 1 et 2** concernent le support physique. Par exemple: câbles ethernet avec connecteur RJ45 ou Wifi.
+-   Les **couches 3 et 4** spécifient le protocol TCP/IP. Transmission Control Protocol transmet des paquets de données et garanti le succès de transmission de ces paquets, Internet Protocol fournit en particulier l'adresse, par exemple 192.168.0.200.
+-   Les **couches 5, 6 et 7** sont liés à l'établissement d'une communication qui peut être sécurisée, le codage des données sous format binaire et finalement à l'application qui est codée par l'utilisateur.  
 
 <figure>
     <img src="./img/OPC_UA_Layers.png"
          alt="Lost image: OPC_UA_Layers">
     <figcaption>OPC UA Layers</figcaption>
 </figure> 
+
+La notion de **client/serveur** signifie dans le cas de l'OPC-UA qu'un serveur est conçu pour mettre à disposition une certaine quantité de données et qu'un client peut parcourir l'ensemble des données disponibles dans le serveur et choisir quelles sont les données qu'il voudra lire ou modifier. Un appareil peut être uniquement un serveur ou uniquement un client.
+
+> Cela signifie qu'au moment de l'établisssement de la communication par la session de la couche 5, une communication sera établie entre deux points. Le client et le serveur.
+
+Une architecture peut regrouper une multitude d'appareils qui pourront être clients ou serveurs de différents appareils.
+
+<figure>
+    <img src="./img/OPC-UA.MultipleClientServer.webp"
+         alt="Lost image: MultipleClientServer">
+    <figcaption>Multiple OPC-UA Client Server Configuration</figcaption>
+</figure>
 
 - Protocole ouvert et **indépendant de la plate-forme** pour la communication interprocessus et réseau.
 - Accès à Internet et communication via des pare-feu (Firewalls).

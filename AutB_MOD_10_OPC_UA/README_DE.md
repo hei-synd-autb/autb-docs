@@ -21,6 +21,31 @@ Dieses Modul ist eine Einführung in OPC UA.
 OPC UA wird in konfigurierbarer Form verwendet, um seinen Einsatz im Kontext der Automatisierung und allgemeiner für jedes System zu verstehen, das den Austausch einer großen Anzahl komplexer Daten in einem sicheren Kontext erfordert.
 Weitere Details zu den erweiterten Funktionen von OPC UA finden Sie in den P&C des 6. Semesters.
 
+# Kontext
+## Notwendigkeit der Kommunikation zwischen verschiedenen Maschinen.
+> M2M Maschine zu Maschine
+
+Im Bild unten stellen wir eine Produktionslinie dar, die PackML verwendet für:
+- Kommunikation zwischen Maschinen unterschiedlicher Hersteller, die möglicherweise SPS unterschiedlicher Anbieter verwenden.
+- Kommunikation mit Maschinenmanagement, [ERP](#erp-enterprise-resource-planung), [MES](#mes-manufacturing-execution-system), [SCADA](#scada-supervisory-control-and-data-acquisition ).
+
+<figure>
+    <img src="./img/OPC-UA-MachineToMachine.png"
+         alt="Lost image: OPC-UA-MachineToMachine">
+    <figcaption>Communication between machines. Source opcfoundation.org</figcaption>
+</figure>
+
+## Notwendigkeit der Kommunikation zwischen verschiedenen Geräten
+Jeder Hersteller verwendet sein eigenes internes Protokoll.
+> Es ist weiterhin ein TCP/IP-kompatibler Kommunikationsbus erforderlich, damit die Geräte eine Kommunikation über OPC-UA aufbauen können. Im Labor erfolgt der Transport über ein Profinet-Typ Realtime Ethernet.
+
+| | | |
+|-----------|--------------|--------------|
+|Siemens S7|Lab PC|Laptop|
+|![](./img/OPC-UA-Device-Lab-S7.png)|![](./img/OPC-UA-Device-Lab-PC.png)|![](./img/OPC-UA-Device-LapTop.png)|
+|Baumer Gateway|CtrlX Core|HMI|
+|![](./img/OPC-UA-Device-Baumer-IO-Link.png)|![](./img/OPC-UA-Device-CtrlX.png)|![](./img/OPC-UA-Device-HMI.png)|
+
 # OPC UA
 ## Nachschlagewerk
 OPC Unified Architecture von Mahnke, Leitner und Damm, 2009.
@@ -51,11 +76,28 @@ Das Client/Server-Modell ist das traditionelle Kommunikationsmodell in OPC UA. E
 
 **OPC UA ist für die Nutzung der TCP/IP-Architektur konzipiert**, es belegt die Schichten 5, 6 und 7 des OSI-Modells.
 
+Ohne auf Details einzugehen.
+- **Schichten 1 und 2** betreffen die physische Unterstützung. Zum Beispiel: Ethernet-Kabel mit RJ45- oder WLAN-Anschluss.
+- **Schichten 3 und 4** geben das TCP/IP-Protokoll an. Das Transmission Control Protocol überträgt Datenpakete und garantiert die erfolgreiche Übertragung dieser Pakete, insbesondere das Internet Protocol liefert die Adresse, zum Beispiel 192.168.0.200.
+- Die **Schichten 5, 6 und 7** beziehen sich auf den Aufbau einer sicheren Kommunikation, die Kodierung von Daten im Binärformat und schließlich auf die vom Benutzer kodierte Anwendung.
+
 <figure>
     <img src="./img/OPC_UA_Layers.png"
          alt="Lost image: OPC_UA_Layers">
     <figcaption>OPC UA Layers</figcaption>
 </figure> 
+
+Der Begriff **Client/Server** bedeutet im Fall von OPC-UA, dass ein Server darauf ausgelegt ist, eine bestimmte Datenmenge zur Verfügung zu stellen, und dass ein Client alle auf dem Server verfügbaren Daten durchsuchen und auswählen kann, welche Daten er verwenden möchte wird lesen oder ändern wollen. Ein Gerät kann nur ein Server oder nur ein Client sein.
+
+> Das bedeutet, dass zum Zeitpunkt des Kommunikationsaufbaus durch die Schicht-5-Sitzung eine Kommunikation zwischen zwei Punkten aufgebaut wird. Der Client und der Server.
+
+Eine Architektur kann eine Vielzahl von Geräten zusammenführen, die Clients oder Server verschiedener Geräte sein können.
+
+<figure>
+    <img src="./img/OPC-UA.MultipleClientServer.webp"
+         alt="Lost image: MultipleClientServer">
+    <figcaption>Multiple OPC-UA Client Server Configuration</figcaption>
+</figure>
 
 - Offenes und **plattformunabhängiges** Protokoll für die Interprozess- und Netzwerkkommunikation.
 - Internetzugang und Kommunikation über Firewalls.
