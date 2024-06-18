@@ -57,6 +57,10 @@ Les alarmes sont considérées comme des sorties et son traitées à la fin du c
 
 ## Pseudo code.
 ```iecst
+(*
+    Header
+*)
+
 FUNCTION_BLOCK FB_PseudCode
 VAR_INPUT
     One         : REAL;
@@ -214,7 +218,10 @@ END_VAR
 Un bloc fonctionnel de type Enable / InOperation est constitué au minimum d'une entrée et deux sorties.
 
 ```iecst
-// Declaration
+(*
+    Header
+*)
+
 VAR_INPUT
     Enable       : BOOL := FALSE;
 END_VAR
@@ -419,9 +426,9 @@ Il peut être pratique de connaître l'état précédent de la machine d'état. 
 
 Dans l'exemple ci-dessous: 
 ```iecst
-//**********************************************
-// Some variables
-//**********************************************
+(*
+    Header
+*)
 VAR
     eEnableInOperation      : E_EnableInOperation;
     eEnableInOperationNm1   : E_EnableInOperation;
@@ -484,9 +491,10 @@ Même si les énumérations utilisées dans la machine d'état sont autant expli
 Il existe une pratique relativement simple pour aider au diagnostique de la machine, c'est fournir une information légèrement détaillée, par légèrement détaillée, nous entendons, une seule phrase.
 
 ```iecst
-//**********************************************
-// Some variables
-//**********************************************
+(*
+    Header
+*)
+
 VAR
     // If a size is not defined, then CODESYS allocates 80 characters by default
     strStateInfo    : STRING := '';
@@ -553,9 +561,9 @@ Ci-dessous, le code est inspiré d'une librairie d'origine Siemens conçue pour 
 Nous avons un minimum de compréhension de ce qu'est un Function Block, nous pouvons illustrer le propos avec un exemple de code de ce que pourrait être un **Event**.
 
 ```iecst
-//
-// Declaration of a Function Block event
-//
+(*
+    Header / Declaration of Function Block Event
+*)
 VAR
     instEventServoLeft   : FB_Event;
 END_VAR

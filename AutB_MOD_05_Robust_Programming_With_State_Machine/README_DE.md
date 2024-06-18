@@ -58,6 +58,10 @@ Die Ausgabeverwaltung umfasst den Aufruf von Funktionsblöcken, die im Header de
 
 ## Pseudo code.
 ```iecst
+(*
+    Header
+*)
+
 FUNCTION_BLOCK FB_PseudCode
 VAR_INPUT
     One         : REAL;
@@ -201,7 +205,10 @@ Verbietet das Schreiben auf die Zustandsvariable mit einem anderen Typ.
 Wir können den Typ lesen, da wir den ``DINT``-Typ erzwungen haben.
 
 ```iecst
-// Declaration
+(*
+    Header
+*)
+
 VAR
     testUnTruc          : DINT;
 END_VAR
@@ -215,7 +222,10 @@ END_VAR
 Ein Funktionsblock vom Typ Enable / InOperation besteht aus mindestens einem Eingang und zwei Ausgängen.
 
 ```iecst
-// Declaration
+(*
+    Header
+*)
+
 VAR_INPUT
     Enable       : BOOL := FALSE;
 END_VAR
@@ -421,9 +431,10 @@ Es kann hilfreich sein, den vorherigen Zustand der Zustandsmaschine zu kennen. Z
 Im Beispiel unten:
 
 ```iecst
-//**********************************************
-// Some variables
-//**********************************************
+(*
+    Header
+*)
+
 VAR
     eEnableInOperation      : E_EnableInOperation;
     eEnableInOperationNm1   : E_EnableInOperation;
@@ -486,9 +497,10 @@ Selbst wenn die in der Zustandsmaschine verwendeten Aufzählungen so explizit wi
 Es gibt eine relativ einfache Methode zur Diagnose der Maschine, die darin besteht, leicht detaillierte Informationen bereitzustellen, wobei wir mit leicht detailliert einen einzelnen Satz meinen.
 
 ```iecst
-//**********************************************
-// Some variables
-//**********************************************
+(*
+    Header
+*)
+
 VAR
     // If a size is not defined, then CODESYS allocates 80 characters by default
     strStateInfo    : STRING := '';
@@ -555,9 +567,10 @@ Der folgende Code ist von einer Original-Siemens-Bibliothek inspiriert, die für
 Wir haben ein Mindestmaß an Verständnis dafür, was ein Funktionsblock ist. Wir können den Punkt anhand eines Codebeispiels veranschaulichen, was ein **Ereignis** sein könnte.
 
 ```iecst
-//
-// Declaration of a Function Block event
-//
+(*
+    Header / Declaration of a Function Block event
+*)
+
 VAR
     instEventServoLeft   : FB_Event;
 END_VAR
