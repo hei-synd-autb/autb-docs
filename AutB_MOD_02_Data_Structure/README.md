@@ -12,7 +12,70 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 # Module 02 Structures de données.
 
-*Keywords:* **DUT Type Conversion  ARRAY STRUCT**
+*Keywords:* **DUT Type Conversion ARRAY STRUCT**
+
+# Préambule
+## Typage
+Le langage de programmation IEC 61131-3 Structured Text est un langage fortement typé, cela signifie que le compilateur peut détecter les erreurs de type lors de la compilation.
+
+> Le langage IEC 61131-3 est un langage **typé statiquement**, ce qui signifie que le type des variables doit être défini par l’utilisateur **avant** son utilisation.
+
+> Le langage **IEC61131-3 est un langage compilé**, cela signifie qu’il est converti en format binaire exécutable avant son utilisation.
+
+> Ces différentes caractéristiques le rendent très différents d’un langage comme Python, mais sur son principe, proche d’un langage comme C++.
+
+### Quelques rappels concernant les types.
+Le type permet de définir le codage binaire d’une variable. Pour un **PLC** *Programmable Logic System* ou **ICS**, *Industrial Control System* dont la vocation est de communiquer entre différents types d’appareils, c’est particulièrement important.
+
+### Quelques exemples :
+- Pour communiquer avec le monde réel analogique, les systèmes va utiliser des convertisseurs A/D, analogique/digital ou D/A, digital/analogique qui sont souvent dans des formats entre 10 et 16 bits. L’écriture directe sur un convertisseur D/A d’un nombre réel codé selon le format IEEE-754 n’aura aucun sens et produira une erreur.
+
+- Un autre type de communication est celle utilisée par Modbus TCP, ce protocole rudimentaire mais encore très utilisé sur des réseaux Ethernet, par exemple pour le diagnostic de contacteurs électrique utiliser des registres de 16 bits. Un nombre réel de 64 bits selon IEEE-754 sera découpé en 4 portions de 16 bits.
+Pris morceau par morceau, aucun de ces 16 bits n’aura de signification et leur mauvaise interprétation causera une erreur, voir potentiellement un crash s’il est interprété comme un nombre inconnu.
+
+Un **ICS** Industrial Control System est souvent utilisé dans des infrastructures critiques, un auteur canadien utilise le terme de **Boomable** industry qui exprime bien le problème que l’on peut retrouver par exemple dans l’industrie chimique en Valais.
+
+### Pour résumer:
+Un programme, un bloque fonctionnel ou une fonction écrite en langage structuré de type IEC-61131-3 commencera toujours par un en-tête ou **header** qui contient l’ensemble des variables qui seront utilisées dans la suite du programme.
+
+Le caractère **statique** des variables dans un programme rédigé en IEC-61131-3 n’est pas qu’une caractéristique vieillotte du langage, c’est aussi et surtout une caractéristique qui améliore la **robustesse du code.**
+ 
+## Data User Type
+Dans certains langages comme Matlab, un type n’est qu’une classe parmi d’autres. En langage IEC 61131-3, nous avons des types de base, par exemple INT, REAL, BOOL. Mais aussi la possibilité de définir des types composés qui correspondent aux besoins de l’utilisateur.
+
+En mathématiques, on utilise aussi des types d’une certaines manière. Si l’on veut utiliser des nombres complexes pour travailler, par exemple, avec un oscillateur RLC on pourra définir un type utilisateur particulier.
+
+```ìecst
+(*
+    Define data type
+*)
+TYPE Cplx_typ :
+STRUCT
+   re        : REAL;
+   im        : REAL;
+END_STRUCT
+END_TYPE
+```
+```ìecst
+(*
+    Declare variable of type Cplx_typ in a header
+*)
+VAR
+   myCplx      : Cplx_typ;
+   myMagnitude : REAL;
+END_VAR
+```
+
+```ìecst
+(*
+    Use this new type
+*)
+myMagnitude := SQRT(myCplx.re^2 + myCplx.im^2);
+```
+
+De manière plus générale dans la suite de ce cours, on utilisera principalement les DUT Data User Type pour structurer l’information d’un système d’automation.
+
+
 
 # Type conversion
 Le Structured Text (du moins son compilateur) est exigeant et contraignant en terme de conversion de types. **A raison !**
