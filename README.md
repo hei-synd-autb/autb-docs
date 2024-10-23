@@ -104,6 +104,15 @@ Simply clone or download the repository.
 * ZaS
 * Cédric Lenoir
 
+## Test Mermaid
+```mermaid
+  graph TD;
+      A-->B;
+      A-->C;
+      B-->D;
+      C-->D;
+```
+
 ## Find us on
 
 [hevs.ch](https://www.hevs.ch) &nbsp;&middot;&nbsp;
