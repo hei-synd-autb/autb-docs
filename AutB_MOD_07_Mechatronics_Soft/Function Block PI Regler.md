@@ -44,7 +44,7 @@ VAR_OUTPUT
 	Output              : REAL;
 END_VAR
 VAR
-	eInOperationBase	: E_InOperationBase := E_InOperationBase.Idle;
+    eInOperationBase	: E_InOperationBase := E_InOperationBase.Idle;
     errorSetProcess     : REAL;     // Difference between set point and measure of process
     Ki                  : REAL;     // Used to check if Tn is 0 / integration gain
     sumError            : REAL;     // Result of integration
@@ -54,7 +54,7 @@ END_VAR
 ## Code
 ```iecst
 (*
-	Input management.
+    Input management.
     Could be needed for adpatation of measure.
     Here: nothing
 *)
@@ -70,7 +70,8 @@ CASE eInOperationBase OF
 		
 	E_InOperationBase.Init :
 		// Used to reset integrator
-        sumError := 0;
+                sumError := 0;
+                eInOperationBase := E_InOperationBase.InOp;
 		
 	E_InOperationBase.InOp :
 		(*
