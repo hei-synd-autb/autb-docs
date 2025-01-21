@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 align="left">
+  <br>
+  <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
+  <br>
+  Industrial Automation Base
+  <br>
+</h1>
+<p>Cours AutB</p>
+<p>Author: <a href="mailto:cedric.lenoir@hevs.ch">Cédric Lenoir</a></p>
+<h1 id="module-00-quick-start">Module 00 Quick Start</h1>
+<p><em>Keywords:</em> <strong>Variables / Instructions / Cycle Time / Types / Triggers / Timers</strong></p>
+<figure>
+    <img src="./img/Logo_IEC.png"
+         alt="Logo IEC">
+    <figcaption>Logo International Electrotechnical Commission</figcaption>
+</figure>
+<h2 id="programmable-controllers---part-1-general-information">Programmable controllers - Part 1: General information</h2>
+<h2 id="abstract-wwwiecch">Abstract (www.iec.ch)</h2>
+<p>IEC 61131-1:2003 applies to programmable controllers (<strong>PLC</strong>) and their associated peri-pherals such as programming and debugging tools (PADTs), human-machine interfaces (HMIs), etc., which have as their intended use the control and command of machines and industrial processes. It gives the definitions of terms used in this standard. It identifies the principal functional characteristics of programmable controller systems. This second edition cancels and replaces the first edition published in 1992 and constitutes a technical revision. <em>This bilingual version (2012-05) corresponds to the monolingual English version, published in 2003-05</em>.</p>
+<blockquote>
+<p>Les citations en anglais ne sont pas traduite.</p>
+</blockquote>
+<h1 id="objectif">Objectif</h1>
+<p>Ce module est destiné à présenter les notions de base nécessaires pour aborder le premier travail pratique.</p>
+<ul>
+<li><a href="#principe-de-base">Système Cyclique</a></li>
+<li><a href="#les-variables">Variables</a></li>
+<li><a href="#les-types-de-base">Les types de base</a></li>
+<li><a href="#function-block-r_trig-et-f_trig">Triggers</a></li>
+<li><a href="#function-block-ton-tof-et-tp">Timers</a></li>
+</ul>
+<blockquote>
+<p>A la fin <strong>des</strong> modules, vous devriez être capable de gérer ce genre d'axes.</p>
+</blockquote>
+<figure>
+    <img src="./img/Application Example 5 Axis Handling Solution.png"
+         alt="Application Example 5 Axis Handling Solution">
+    <figcaption>Application Example, 5 Axis Handling Solution, Source: Bosch Rexroth</figcaption>
+</figure>
+<p>Ou encore aborder le pilotage d'axes pour ce genre d'application:</p>
+<figure>
+    <img src="./img/EMPA Laser Metal Deposition.jpg"
+         alt="EMPA Laser Metal Deposition">
+    <figcaption>Laser Metal Deposition, Source: EMPA (Eidgenössische Materialprüfungs- und Forschungsanstalt)</figcaption>
+</figure>
+<h1 id="les-langages-de-iec-61131-3">Les langages de IEC 61131-3</h1>
+<p>Ce paragraphe sur les langages est donné à titre d'information. Nous n'utiliserons que le langage <strong>Structured Text</strong> qui sera largement détaillé dans la suite de ce cours.</p>
+<h2 id="la-norme-d%C3%A9finit-plusieurs-types-de-langage">La norme définit plusieurs types de langage</h2>
+<h3 id="le-ladder-diagram-ld">Le Ladder Diagram LD</h3>
+<p>Pour la représentation de contacts physiques. Typiquement pour représenter, par exemple, l’état de nombreux disjoncteurs et contacteurs électriques pour l'alimentation électrique d'un bâtiment. <strong>Ce langage est inutilisable, ou presque, pour exécuter des algorithmes et du traitement du signal</strong>. Nous ne l'utiliserons pas.</p>
+<figure>
+    <img src="./img/Ladder Programming Source Siemens.png"
+         alt="Ladder Programming Source Siemens">
+    <figcaption>Ladder Programming Source: <a href="https://www.siemens.com/global/en/products/automation/systems/industrial/plc.html">Siemens</a></figcaption>
+</figure>
+<blockquote>
+<p>Le ladder est encore très répandu dans certaines industries.</p>
+</blockquote>
+<h3 id="le-sequential-function-chart-sfc">Le Sequential Function Chart SFC</h3>
+<p><strong>Dérivé du modèle mathématique des réseaux de Petri</strong>. Peut être utile pour la représentation d’un processus qui se déroule selon une liste de séquences bien définies et peu compliquée. Devient vite ingérable si le nombre de séquences augmente. Son utilisation est anecdotique. Nous ne l'utiliserons pas.</p>
+<figure>
+    <img src="./img/SFC Programming Source Beckhoff.png"
+         alt="SFC Programming Source Beckhoff">
+    <figcaption>Ladder Programming Source: <a href="https://www.beckhoff.com/fr-ch/">Beckhoff</a></figcaption>
+</figure>
+<h3 id="le-function-block-diagram-fbd">Le Function Block Diagram FBD</h3>
+<p>Comme son nom l’indique, il est dédié à la représentation de <strong>Function Blocks, FB</strong>. Il est utile pour représenter une chaîne de régulateurs. Il est aussi utilisé pour la programmation de relais de sécurité pour lequels on utilise principalement une série de block paramétrable. Convient pour représenter des algorithmes au niveau macroscopique, mais pas pour écrire l'algorithme lui-même. <strong>Nous l'utiliserons parfois pour modéliser un programme, mais pas pour l'écriture de programmes.</strong></p>
+<figure>
+    <img src="./img/Function Block Programming Source Sick.png"
+         alt="Function Block Programming Source Sick">
+    <figcaption>Function Block Programming Safety, Source: <a href="https://www.sick.com/ch/en/safety/c/g296181">Sick</a></figcaption>
+</figure>
+<h3 id="le-structured-text">Le Structured Text</h3>
+<p>Le texte structuré est inspiré du langage Pascal développé dans les années septante par le professeur Niklaus Wirth à l’EPFZ. C’est un langage fortement typé et relativement robuste.
+Depuis 2013, <em>third edition</em>, le texte structuré existe avec une extension orientée objet. Il n’existe pas actuellement d’information faisant penser à une réelle transformation du langage dans les années à venir, au même titre que le langage C pour les systèmes embarqués, il est fort probable qu’il reste longtemps le langage de base pour la programmation des automates.</p>
+<blockquote>
+<p>On ne peut citer Niklaus Wirth sans citer sa loi empirique: <strong>les programmes ralentissent plus vite que le matériel accélère</strong>.</p>
+</blockquote>
+<h1 id="principe-de-base">Principe de base</h1>
+<p>Ce qui différencie principalement un automate programmable, PLC ou Programmable Logic Controller est son fonctionnement purement cyclique.</p>
+<h2 id="fondamentalement-un-automate-pr%C3%A9sente-deux-caract%C3%A9ristiques-principales">Fondamentalement un automate présente deux caractéristiques principales.</h2>
+<blockquote>
+<p>Les programmes sont exécutés en <strong>boucle</strong>...</p>
+</blockquote>
+<blockquote>
+<p>selon un temps de <strong>cycle fixe</strong>.</p>
+</blockquote>
+<p>Cela les rend particulièrement bien adaptés au traitement des signaux échantillonnés, dit aussi traitement numérique, au réglage numérique avancé et dans un domaine relativement neuf, à l’exécution de réseau de neurones.</p>
+<h2 id="syst%C3%A8me-en-boucle">Système en boucle</h2>
+<p>Un automate lit des données, traite les données et transmet les données sur un interface de sortie.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> itarator_variable <span class="hljs-keyword">in</span> sequence_name:
+	readInputs()
+    ...
+	someAlgortithm()
+    ...
+	writeOutputs()
+</div></code></pre>
+<p>Ce genre de boucle, ne garantit toutefois pas que la durée de chaque boucle soit identique.</p>
+<blockquote>
+<p>La condition nécessaire et suffisante pour échantillonner un signal sans perte d'information est que la fréquence d'échantillonnage <strong>Fs</strong> soit supérieure ou égale au double de la fréquence maximale du signal analogique. Ce principe fonctionne pour autant que la période d'échantionnage soit autant régulière que possible.</p>
+</blockquote>
+<ul>
+<li>$\ f_s \geq 2f_{max} $</li>
+</ul>
+<blockquote>
+<p>En régulation, on préférera même:</p>
+</blockquote>
+<ul>
+<li>$\ f_s \geq 10f_{max} $</li>
+</ul>
+<p>Afin de pouvoir profiter de la puissance de calcul des automates pour faire de la commande numérique, nous exigeons de notre système qu'il travaille avec un temps de cycle fixe.</p>
+<blockquote>
+<p>A ma connaissance, la première application concrête de la technique d'échantillonage utilisait une fréquence de l'ordre de 16 à 18 $\ image/s $ et date de 1895.</p>
+</blockquote>
+<p><em>C'est le cinéma...</em></p>
+<h3 id="syst%C3%A8me-minimum">Système minimum</h3>
+<p>Dans de nombreux cas, cette architecture est suffisante.</p>
+<figure>
+    <img src="img/Read Input Cyclic Write Output.png"
+         alt="Read Input Cyclic Write Output">
+    <figcaption>PLC with one task and one program</figcaption>
+</figure>
+<blockquote>
+<p>Le temps de cycle est géré par une horloge interne qui génère des événements à temps de cycle fixe pour lancer l'exécution d'un cycle de programme.</p>
+</blockquote>
+<p>Le temps de cycle minimum dépendra principalement du type de processus à automatiser.</p>
+<ul>
+<li>ordre de la milliseconde pour le monde des machines.</li>
+<li>ordre de la seconde pour le monde du process.</li>
+</ul>
+<p>Les automates industriels modernes permettent de gérer des tâches avec des temps de cycle différents.</p>
+<figure>
+    <img src="img/Slow Task vs Quick Task.png"
+         alt="Image not available Slow Task vs Quick Task">
+    <figcaption>Slow Task vs Quick Task</figcaption>
+</figure>
+<h1 id="les-variables">Les variables</h1>
+<p>Contrairement à d'autres types de langages tels <strong>Python</strong>, le language des automates, normalisé selon IEC 61131-3 est fortement typé. C'est une question de robustesse.</p>
+<h2 id="chaque-variable-doit-%C3%AAtre-d%C3%A9clar%C3%A9e-avec-son-type">Chaque variable doit être déclarée avec son <strong>type</strong>.</h2>
+<pre class="hljs"><code><div>    bMyFirstVar     : BOOL;
+    strMyFirsText   : STRING;
+</div></code></pre>
+<h2 id="chaque-variable-doit-%C3%AAtre-d%C3%A9lar%C3%A9e-avant-son-utilisation">Chaque variable doit être délarée <strong>avant</strong> son utilisation.</h2>
+<p>Dans le cas du compilateur/IDE que nous utiliserons dans le cadre de ce cours, les variables et le code sont séparés dans deux espaces différents, les variables, en haut, et le code, en bas.</p>
+<figure>
+    <img src="./img/VariablesAvantLeCode.png"
+         alt="Variables Avant Le Code">
+    <figcaption>Variables Avant Le Code</figcaption>
+</figure>
+<p>En principe, dans un PLC codé en IEC 61131-3 il y a peu, voir pas d'allocation dynmique de la mémoire. Là encore, c'est une question de <strong>robustesse</strong>. C'était aussi, mais c'est moins vrai aujourd'hui, afin de mieux maitriser un espace mémoire limité.</p>
+<blockquote>
+<p>J'ai eu un cas d'une machine qui se <em>crashait</em> environ tous les six mois. Comme la machine était rapide et puissante, cela provoquait souvent des dégats matériels importants et des arrêts de production coûteux. La machine était programmée partiellement en Delphi, un language orienté objet qui comme le IEC 61131-3 Structured Text est inspiré du Pascal.
+La cause était une allocation dynmique de mémoire mal gérée de quelques bytes qui petit à petit augmentait la taille de l'espace mémoire allouée au donnée pour finir par déborder sur l'espace mémoire alloué au programme et finissait par le détruire. En sus d'être destructeur, ce problème fut particulièrement complexe et long à identifier.</p>
+</blockquote>
+<p>C’est dans la gestion des <strong>variables d'interface</strong> que le langage ST présente sa supériorité par rapport aux autres dans le monde industriel. Nous allons voir pourquoi.</p>
+<h2 id="les-variables-dentr%C3%A9e">Les variables d'entrée</h2>
+<p>Variable d'entrée du block, le block a toutefois le droit d'écrire sur cette variable.</p>
+<pre class="hljs"><code><div>VAR_IN
+    // Set the variable bMyButton to the block.
+    bMyButton   : BOOL;
+END_VAR
+</div></code></pre>
+<h2 id="les-variables-de-sortie">Les variables de sortie</h2>
+<p>Il n'est pas possible d'écrire sur une variable de sortie depuis l'extérieur du block ou elle est déclarée.</p>
+<pre class="hljs"><code><div>VAR_OUT
+    // Get the variable bMyBeeper from the block.
+    bMyBeeper   : BOOL;
+END_VAR
+</div></code></pre>
+<h2 id="les-variables-dentr%C3%A9e-sortie">Les variables d'entrée sortie</h2>
+<p>Le terme entrée/sortie n'est pas le but principal de cette variable. Le but principal de ce type de variable est de la passer par référence, ce qui évite de perdre du temps à la copier de l'intérieur vers l'extérieur du block avant son exécution et vice versa à la fin de l'exécution du block</p>
+<pre class="hljs"><code><div>VAR_IN_OUT
+    (*
+        Give to the block the address of a buffer.
+        With this construction, the block can access to any of the elements
+        of the buffer without having to copy 10000 elements
+    *)
+    aMyBuffer   : ARRAY[1..10000] OF DINT;
+END_VAR
+</div></code></pre>
+<blockquote>
+<p>La notion de VAR_IN_OUT est l'un de mes aspects préférés du language IEC 61131-3, nous auront l'occasion d'y revenir plus en détail.</p>
+</blockquote>
+<h2 id="les-variables-simples">Les variables simples</h2>
+<p>Les variables simples sont accessibles uniquement dans le block dans lequel elles ont été déclarées.</p>
+<pre class="hljs"><code><div>VAR
+    iMyLoop   : INT;
+END_VAR
+</div></code></pre>
+<h2 id="les-variables-globales">Les variables globales</h2>
+<p>Les variables sont accessibles partout dans le programme.
+<em>Elles sont a utiliser avec parcimonie car elles sont un obstactle à la modularité du code. Un module de code qui utilise une variable globale ne pourra être réutiliser sans ajouts ou modifications dans un autre programme</em>.</p>
+<pre class="hljs"><code><div>VAR_GLOBAL
+    iMyProgramParameter   : INT;
+END_VAR
+</div></code></pre>
+<h2 id="les-constantes">Les constantes</h2>
+<pre class="hljs"><code><div>VAR CONSTANT
+    uiMyArraySize   : UINT := 1024;
+END_VAR
+</div></code></pre>
+<blockquote>
+<p>Noter que</p>
+</blockquote>
+<ol>
+<li>les constantes portent très mal leur nom, puisqu'on les appel VAR...</li>
+<li>Les constantes doivent obligatoirement être initilisées avec une valeur.</li>
+</ol>
+<h2 id="variables-pointeurs"><em>Variables</em> Pointeurs</h2>
+<blockquote>
+<p>Le traitment des pointeurs ne fait en principe pas partie des objectifs de ce cours.</p>
+</blockquote>
+<p>Ci-dessous, pMonAge contient l’adresse d’une variable INT.
+Exemple</p>
+<pre class="hljs"><code><div>VAR
+    (* Pointeur sur un INT *)
+    pMonAge : POINTER TO INT;
+END_VAR
+</div></code></pre>
+<h1 id="les-types-de-base">Les types de base</h1>
+<p>Il y a encore quelques années, on prenait garde à utiliser des variables <em>courtes</em> afin d'économiser de la place en mémoire et/ou de réduire le temps de calcul. C'est de moins en moins le cas aujourd'hui. La plupart des processeurs sur les PLC travaillent sur 32 ou 64 bits.</p>
+<p>Par contre, connaitre la taille et le type de donnée reste important.</p>
+<h2 id="exemple-1">Exemple 1</h2>
+<p>Le PLC va communiquer avec des capteurs qui eux, sont équipés de petits microcontrôleurs dont la taille est limitée. Si l'on veut écrire sur un registre de 8 bits à partir d'un REAL de 32 bits, on aura un problème.</p>
+<h2 id="exemple-2">Exemple 2</h2>
+<p>Malgré son grand âge, le Modbus reste un protocol de communication très répendu qui travaille par défaut sur 16 bits. Si l'on veut transférer un nombre précis sur 64 bits, LREAL, il faudra coder, puis décoder le nombres de bytes nécessaires, mais aussi dans le bon ordre. Une mauvaise interprétation pourrait conduire à un nombre inconnu qui provoque le même type de problème qu'une division par 0, à savoir, un crash du PLC.</p>
+<h2 id="binaire">Binaire</h2>
+<table>
+<thead>
+<tr>
+<th>Data type</th>
+<th>Range</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BOOL</td>
+<td>TRUE (1),  FALSE (0)</td>
+<td>8 bits (Depends on hardware and compiler)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="integer">Integer</h2>
+<table>
+<thead>
+<tr>
+<th>Data type</th>
+<th>Range</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BYTE</td>
+<td>0 à 255</td>
+<td>8 bits</td>
+</tr>
+<tr>
+<td>WORD</td>
+<td>0 à 65535</td>
+<td>16 bits</td>
+</tr>
+<tr>
+<td>DWORD</td>
+<td>0 à 4294967295</td>
+<td>32 bits</td>
+</tr>
+<tr>
+<td>LWORD</td>
+<td>0 à beaucoup</td>
+<td>64 bits</td>
+</tr>
+<tr>
+<td>SINT</td>
+<td>-128 à 127</td>
+<td>8 bits</td>
+</tr>
+<tr>
+<td>USINT</td>
+<td>0 à 255</td>
+<td>8 bits</td>
+</tr>
+<tr>
+<td>INT</td>
+<td>-32768 à 32767</td>
+<td>16 bits</td>
+</tr>
+<tr>
+<td>UINT</td>
+<td>0 à 65535</td>
+<td>16 bits</td>
+</tr>
+<tr>
+<td>DINT</td>
+<td>... à beaucoup</td>
+<td>32 bits</td>
+</tr>
+<tr>
+<td>UDINT</td>
+<td>0 à beaucoup</td>
+<td>32 bits</td>
+</tr>
+<tr>
+<td>LINT</td>
+<td>à beaucoup</td>
+<td>64 bits</td>
+</tr>
+<tr>
+<td>ULINT</td>
+<td>0 à beaucoup</td>
+<td>64 bits</td>
+</tr>
+</tbody>
+</table>
+<h2 id="floating-point">Floating point</h2>
+<table>
+<thead>
+<tr>
+<th>Data type</th>
+<th>Range</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REAL</td>
+<td>3.402823e+38 à 3.402823e+38</td>
+<td>32 bits</td>
+</tr>
+<tr>
+<td>LREAL</td>
+<td>1.7976931348623158 e+308 à 1.7976931348623158 e+308</td>
+<td>64 bits</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cha%C3%AEne-de-caract%C3%A8res">Chaîne de caractères</h2>
+<table>
+<thead>
+<tr>
+<th>Data type</th>
+<th>Codage</th>
+<th>Base size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STRING</td>
+<td>ASCII</td>
+<td>1 byte</td>
+</tr>
+<tr>
+<td>WSTRING</td>
+<td>Unicode</td>
+<td>2 byte</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Un PLC n'est pas conçu pour traiter des chaine de caractères</strong>. On utilisera les chaînes de caractère uniquement pour des fonctions simples pour afficher un minimum d'informations liées au fonctionnement du système comme des alarmes. Même les alarmes utilsent en général des routines de plus haut niveau codées en C/C++ afin de gérer par exemple des alarmes en plusieurs langues.</p>
+</blockquote>
+<h2 id="date-et-heure">Date et heure</h2>
+<table>
+<thead>
+<tr>
+<th>Data type</th>
+<th>Range</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TIME</td>
+<td>0 to 4294967295</td>
+<td>32 bits</td>
+</tr>
+<tr>
+<td>TIME_OF_DAY</td>
+<td>0 (23:59:59:000) to 4294967295 (23:59:59:000)</td>
+<td>32 bits</td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>0 (01.01.1970) to 4294967295 (02.07.2106)</td>
+<td>32 bits</td>
+</tr>
+<tr>
+<td>DATE_AND_TIME (DT)</td>
+<td>0 (01.01.1970,00:00:00) to 4294967295 (02.07.2106,6:28:15)</td>
+<td>32 bits</td>
+</tr>
+<tr>
+<td>LTIME</td>
+<td>0 to 213503d23h34m33s709ms551us615ns</td>
+<td>64 bits</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>LTIME est nécessaire quand un « timer » doit être utilisé dans le format de la micro, voire de la nano seconde.</p>
+</blockquote>
+<blockquote>
+<p>System Beckhoff counts time by steps of 100 [ns]</p>
+</blockquote>
+<h1 id="bien-choisir-son-type">Bien choisir son type</h1>
+<h2 id="la-taille">La taille</h2>
+<p>La taille idéale du type, surtout pour les Integer, dépend du compilateur et du processeur.
+Cela peut signifier que pour un PLC donné, l’Integer idéal soit le DINT. Simplement parce que le format de donnée de base du processeur est 32 bits et que l’utilisation d’un autre format impliquera une conversion qui prend du temps.</p>
+<p>A l’heure où j’écris ces lignes, le DINT semble être le bon format de base. Dans quelques années, le LINT sera peut-être le standard.</p>
+<h2 id="fausse-bonne-id%C3%A9e">Fausse bonne idée</h2>
+<p>Utiliser un SINT pour économiser de la place, ce n’est déjà pas tellement nécessaire, mais finir avec une boucle infinie parce que finalement la variable de la boucle a dépassé 127, c’est idiot. Prenez un DINT.</p>
+<h2 id="entier-non-sign%C3%A9">Entier non signé</h2>
+<p>Un exemple typique d’entier non-signé est une énumération. Son intérêt est faible.
+Il peut même être intéressant d’avoir un type signé pour une énumération en identifiant une valeur négative. Par exemple -1 pour une grandeur encore non utilisée.</p>
+<h2 id="entier-de-type-byte-word-dword-et-lword">Entier de type BYTE, WORD, DWORD et LWORD</h2>
+<p>Ces grandeurs sont utilisées pour des registres. Ce ne sont donc en principe pas des nombres au sens propre du terme et ils ne devraient pas être utilisés pour des calculs en base 10.
+Leur taille est choisie en fonction du registre utilisé.</p>
+<blockquote>
+<p>Les variables de type BYTE, WORD, DWORD et LWORD permettent en particulier de faire des opérations logiques de type AND, OR, etc...</p>
+</blockquote>
+<h3 id="repr%C3%A9sentation-binaire">Représentation binaire</h3>
+<p>Base 2</p>
+<pre class="hljs"><code><div>    byMyByte    : BYTE := 2#1010_0110;
+</div></code></pre>
+<p>Base 16</p>
+<pre class="hljs"><code><div>    byMyByte    : BYTE := 16#A6;
+</div></code></pre>
+<h3 id="bitshift-operators">Bitshift Operators</h3>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Call</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SHL</td>
+<td>SHL(nInWord,nPos)</td>
+<td>Décale <em>nInWord</em> de <em>nPos</em> bits vers la gauche, les bits qui sortent vers la gauche sont perdus.</td>
+</tr>
+<tr>
+<td>SHR</td>
+<td>SHR(nInWord,nPos)</td>
+<td>Décale <em>nInWord</em> de <em>nPos</em> bits vers la droite, les bits qui sortent vers la droite sont perdus.</td>
+</tr>
+<tr>
+<td>ROL</td>
+<td>ROL(nInWord,nPos)</td>
+<td>Décale <em>nInWord</em> de <em>nPos</em> bits vers la gauche, les bits qui sortent vers la gauche reviennent à droite.</td>
+</tr>
+<tr>
+<td>ROR</td>
+<td>ROR(nInWord,nPos)</td>
+<td>Décale <em>nInWord</em> de <em>nPos</em> bits vers la droite, les bits qui sortent vers la droite reviennet par la gauche.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="un-exemple-dutilisation-de-word-et-dword">Un exemple d'utilisation de WORD et DWORD</h3>
+<p>On trouve encore beaucoup dans l'industrie de vieux protocols de communication comme <strong>Modbus</strong>. Ce protocol transmet les informations sur des registres de 16 bits, <code>WORD</code>. Si l'on veut lire un <code>REAL</code> codé sur Modbus, il faudra lire deux <code>WORD</code>, puis convertir ces deux registres en un REAL.
+Voici un exemple de code.</p>
+<pre class="hljs"><code><div>//	Most Significant Word First
+//	Example :
+//	Word_1 --&gt; registre 21037 = 0x440A
+//	Word_2 --&gt; registre 21038 = oxC000
+//	Result for this example should be 555.00 A.
+FUNCTION F_ModbusRegisterTo_FLOAT32 : REAL
+VAR_INPUT
+	///	Most Significant Word
+	Word_1: WORD;
+	Word_2: WORD;
+END_VAR
+VAR
+	ForCheck_32: DWORD;
+	prResult_32: POINTER TO REAL;
+END_VAR
+
+// Code
+ForCheck_32 := Word_1;
+ForCheck_32 := SHL(ForCheck_32,16);
+ForCheck_32 := ForCheck_32 + Word_2;
+prResult_32 := ADR(ForCheck_32);
+
+(*
+	Note: this is not a type conversion.
+	The value in registers is not coded like a word, but like
+	a IEEE 754 float !!!
+*)
+F_ModbusRegisterTo_FLOAT32 := prResult_32^;
+</div></code></pre>
+<h2 id="datatype-selon-plcopen">Datatype selon PLCopen</h2>
+<p>On peut être un supporter de PLCopen sans pour autant être d’accord avec tout.
+Dans son document PLCopen Coding Guidelines V1.0, § 5.23. Select Appropriate Data Type.</p>
+<h3 id="ce-que-dit-plcopen">Ce que dit PLCopen</h3>
+<ul>
+<li><em>A correctly data typed variable helps describe its function, making its use somewhat self-explanatory</em></li>
+<li><em>&quot;Strongly typed&quot; code, where data type conversions must be explicitly made helps avoid coding mistakes and oversights where some conversion behaviour may not be as assumed, and may be missed by commissioning and testing phases</em></li>
+<li><em>Compilers can use the data type to check assignments and instructions use, to ensure operations are as the developer expects</em></li>
+<li><em>Smaller data types typically use less memory, so allow for more variables or larger programs</em></li>
+<li><em>Using unsigned data types where appropriate prevents any negative value being assigned accidently, and having to write code, and test the code, to deal with these eventualities.</em></li>
+<li><em>The use of enumerated and subrange types make a program even more readable and can contribute to program reliability by helping to avoid the use of unintended values of variables as well as by explicitly expressing the intended semantics of the values of enumerated variables</em></li>
+</ul>
+<h2 id="ce-que-je-mod%C3%A8re">Ce que je modère</h2>
+<ul>
+<li><em>Smaller data types typically use less memory, so allow for more variables or larger programs</em></li>
+</ul>
+<p>Premièrement, ce n’est pas toujours vrai, certains compilateurs ignorent les types plus courts.</p>
+<p>Deuxièmement, la taille de la mémoire est de moins en moins un problème.</p>
+<ul>
+<li><em>Using unsigned data types where appropriate prevents any negative value being assigned accidently, and having to write code, and test the code, to deal with these eventualities</em>.</li>
+</ul>
+<blockquote>
+<p>C’est vrai à l’écriture du code. Ce n’est plus vraiment vrai en dynamique.
+Un code du type :</p>
+</blockquote>
+<pre class="hljs"><code><div>PROGRAM PlcProg
+VAR
+   diMonTruc:       DINT  := 0;
+   diMonTrucDeux:   DINT  := 0;
+   udiMonTruc:      UDINT := 0;
+END_VAR
+udiMonTruc := DINT_TO_UDINT(diMonTruc);
+</div></code></pre>
+<p>fonctionnera parfaitement même avec une valeur négative dans diMonTruc.</p>
+<p><strong>Cependant</strong>
+Pour diMonTruc = -45, on obtiendra udiMonTruc = 4294967251. Ce n’est pas certain que cela ce que l’on souhaite.</p>
+<p>La seule différence, c’est qu’avec udiMonTruc déclaré en UDINT, le compilateur affichera un avertissement. Cela peut toutefois être un critère suffisant pour justifier l’utilisation du type non signé.
+Siemens Style</p>
+<blockquote>
+<p>le style Siemens exige des guillemets dans l’édition des variables.</p>
+</blockquote>
+<pre class="hljs"><code><div>ORGANIZATION_BLOCK &quot;CallUnitModeStateManager&quot;
+VAR
+   diMonTruc:       DINT  := 0;
+   diMonTrucDeux:   DINT  := 0;
+   udiMonTruc:      UDINT := 0;
+END_VAR
+&quot;udiMonTruc&quot; := DINT_TO_UDINT(&quot;diMonTruc&quot;);
+</div></code></pre>
+<h2 id="instruction-ifelsifelse">Instruction <code>IF...ELSIF...ELSE</code></h2>
+<blockquote>
+<p>L'instruction <code>IF...ELSIF...ELSE</code> est présentée ici en introduction, elle est revue aiileus plus en détails.</p>
+</blockquote>
+<p>L’instruction <code>IF</code></p>
+<pre class="hljs"><code><div>IF &lt;Condition&gt; THEN
+   &lt;Instruction&gt;
+</div></code></pre>
+<p>sert à tester une condition.</p>
+<p>L’instruction <code>ELSIF</code></p>
+<pre class="hljs"><code><div>ELSIF &lt;Another Condition&gt; THEN
+   &lt;Instruction&gt;
+</div></code></pre>
+<p>optionnelle est exécutée si IF est faux avec une nouvelle condition.</p>
+<p>L’instruction <code>ELSE</code> <em>optionnelle et sans condition</em></p>
+<pre class="hljs"><code><div>ELSE
+   &lt;Instruction&gt;
+</div></code></pre>
+<p>Est exécutée uniquement si les conditions précédentes sont fausses.</p>
+<p>Les instructions IF et ELSIF se terminent obligatoirement par</p>
+<pre class="hljs"><code><div>END_IF
+</div></code></pre>
+<h2 id="function-block-rtrig-et-ftrig">Function Block <code>R_TRIG</code> et <code>F_TRIG</code></h2>
+<p>Cest deux bloques fonctionnels sont des classiques de la programmation PLC. Même si ils sont simples à programmer, ils existent en standard dans la plupart des environnements.</p>
+<blockquote>
+<p>On verra plus tard que les Function Block se placent en principe à la fin du programme. <code>R_TRIG</code> et <code>F_TRIG</code> <strong>sont l'exception qui confirment la règle</strong>. Il se placent toujours avant la partie du code qui utilise leur sortie car la sortie n'est active que pendant le cycle d'activation.</p>
+</blockquote>
+<h3 id="rtrig"><code>R_TRIG</code></h3>
+<p>Détecte un flanc montant et reste active pendant exactement un cycle automate.</p>
+<figure>
+    <img src="./puml/R_Trig/R_Trig.svg"
+         alt="Trigger sur le flanc montant">
+    <figcaption>R_TRIG Trigger sur le flanc montant</figcaption>
+</figure>
+<blockquote>
+<p>C'est l'exemple typique d'un bloque fonctionnel, car, comparé à une fonction <code>FC</code> qui n'a pas de mémoire interne, <code>R_TRIG</code> doit mémoriser l'état précédent.</p>
+</blockquote>
+<h3 id="param%C3%A8tres-du-bloc-fonctionnel-rtrig">Paramètres du bloc fonctionnel <code>R_TRIG</code></h3>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Declaration</th>
+<th>Data type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CLK</td>
+<td>Input</td>
+<td>BOOL</td>
+<td>Incoming signal, the edge of which is to be queried</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>Output</td>
+<td>BOOL</td>
+<td>Result of edge evaluation</td>
+</tr>
+</tbody>
+</table>
+<figure>
+    <img src="./img/R_TRIG_Source Beckhoff.png"
+         alt="R_TRIG_Source Beckhoff">
+    <figcaption>R_TRIG: Source: <a href="https://infosys.beckhoff.com/english.php?content=../content/1033/tcplclib_tc2_standard/74391563.html&id=2005587076592354672">Beckhoff R_TRIG</a>
+    </figcaption>
+</figure>
+<h3 id="impl%C3%A9mentation-rtrig">Implémentation <code>R_TRIG</code></h3>
+<pre class="hljs"><code><div>FUNCTION_BLOCK R_TRIG
+VAR_INPUT
+    CLK    : BOOL; (* Signal to detect *)
+END_VAR
+VAR_OUTPUT
+    Q      : BOOL; (* Edge detected *)
+END_VAR
+VAR
+    memory : BOOL; (* Store last state*)
+END_VAR
+
+(*
+   Example of implementation
+*)
+IF CLK        AND 
+   NOT memory THEN
+    Q := TRUE;
+ELSE
+    Q := FALSE;
+END_IF
+memory := CLK;
+</div></code></pre>
+<h3 id="d%C3%A9claration-et-utilisation-de-rtrig">Déclaration et utilisation de <code>R_TRIG</code></h3>
+<pre class="hljs"><code><div>PROGRAM PRG_TRIG
+VAR
+    bSwitchOne : BOOL;
+    rTRIG      : R_TRIG;
+    iCounter   : INT;
+END_VAR
+
+(*
+   Count the number of times the switch is activated.
+*)
+rTRIG(CLK := bSwitch);
+IF rTRIG.Q THEN
+   iCounter := iCounter + 1;
+END_IF
+</div></code></pre>
+<blockquote>
+<p>Comme le programme est cyclique, on doit détecter les flancs d'activation de <code>bSwitch</code>, sinon le compteur serait incrémenté à chaque cycle quand <code>bSwitch</code> est <code>TRUE</code>.</p>
+</blockquote>
+<h3 id="ftrig"><code>F_TRIG</code></h3>
+<p>F_TRIG est l'équivalent de R_TRIG, mais sur le flanc descendant. Par exemple au moment où l'on relache la pression sur un bouton. Poignées de sécurité « homme mort ».</p>
+<h2 id="function-block-ton-tof-et-tp">Function Block <code>TON</code>, <code>TOF</code> et <code>TP</code></h2>
+<figure>
+    <img src="./img/TON_Source Beckhoff.png"
+         alt="R_TRIG_Source Beckhoff">
+    <figcaption>TON: Source: <a href="https://infosys.beckhoff.com/english.php?content=../content/1033/tcplclib_tc2_standard/74403595.html&id=">Beckhoff TON</a>
+    </figcaption>
+</figure>
+<figure>
+    <img src="./puml/TonTimeDiagram/TonTimeDiagram.svg"
+         alt="Timer On">
+    <figcaption>TON</figcaption>
+</figure>
+<p>La sortie <code>Q</code> s'active <code>PT</code>, Pulse Duration après l'activation de la variable <code>IN</code>. Quand l'entrée <code>IN</code> revient à FALSE, la sortie <code>Q</code> repasse à <code>FALSE</code>.</p>
+<p>La variable ET, Ellapsed Time n'est pas représentée sur le graphique car l'outil PUML utilisé ne permet pas de le faire proprement sur toute la plage.</p>
+<p>En voici un extrait ci-dessous.</p>
+<figure>
+    <img src="./puml/TonTimeDiagramElapsedTime/TonTimeDiagramElapsedTime.svg"
+         alt="Ton Time Diagram Elapsed Time">
+    <figcaption>TON Time Diagram Elapsed Time</figcaption>
+</figure>
+<h3 id="param%C3%A8tres-du-bloque-fonctionnel-ton">Paramètres du bloque fonctionnel <code>TON</code></h3>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Declaration</th>
+<th>Data type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IN</td>
+<td>Input</td>
+<td>BOOL</td>
+<td>starts timer with rising edge, resets timer with falling edge</td>
+</tr>
+<tr>
+<td>PT</td>
+<td>Input</td>
+<td>BOOL</td>
+<td>time to pass, before Q is set</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>Output</td>
+<td>BOOL</td>
+<td>is TRUE, PT seconds after IN had a rising edge</td>
+</tr>
+<tr>
+<td>PT</td>
+<td>Output</td>
+<td>BOOL</td>
+<td>elapsed time</td>
+</tr>
+</tbody>
+</table>
+<h3 id="exemple-de-code">Exemple de code</h3>
+<pre class="hljs"><code><div>PROGRAM PLC_PRG
+VAR
+    switchOpen      : BOOL;
+    tonWaitOneSec   : TON;
+    activateDoor    : BOOL;
+END_VAR
+
+tonWaitOneSec(IN := switchOpen,
+              PT := T#1S,
+              Q =&gt; activateDoor);
+</div></code></pre>
+<p>Une commande de porte <code>activateDoor</code> n'est activée que si l'opérateur active <code>switchOpen</code> pendant au minium une seconde. <em>Notez le format particulier de la valeur de temps</em>. On pourrait aussi utiliser <code>T#1000ms</code>.</p>
+<h3 id="tof"><code>TOF</code></h3>
+<p>Au contraire du TON, le TOF commence à incrémenter ET, Ellapsed Time quand le signal d'entrée passe de <code>TRUE</code> à <code>FALSE</code>.</p>
+<figure>
+    <img src="./puml/TofTimeDiagramElapsedTime/TofTimeDiagramElapsedTime.svg"
+         alt="Tof Time Diagram Elapsed Time">
+    <figcaption>TOF Time Diagram Elapsed Time</figcaption>
+</figure>
+<h3 id="tp"><code>TP</code></h3>
+<p>TP est un générateur d'impulsions, quelle que soit la durée du signal en entrée, la durée du signal de sortie sera identique.</p>
+<figure>
+    <img src="./puml/TpTimeDiagram/TpTimeDiagram.svg"
+         alt="TP Time Diagram">
+    <figcaption>TP Time Diagram</figcaption>
+</figure>
+<h1 id="exercices">Exercices</h1>
+<h2 id="exercice-1">Exercice 1</h2>
+<p>Quelles sont les valeurs suivantes converties au format spécifié dans le suffixe et affichées en décimal ?</p>
+<pre class="hljs"><code><div>    byMyBYTE  := 2#1010_0110;
+    byMyWORD  := 16#A6;
+    nResBYTE  := SHL(16#45,2);
+    nResWORD  := SHL(16#0045,2);
+    nResDWORD := ROR(nResBYTE,2);
+    nResLWORD := ROR(nResWORD,2);
+</div></code></pre>
+<p><a href="#solution-exercice-1">Solution exercice 1</a></p>
+<h2 id="exercice-2">Exercice 2</h2>
+<p>Reprendre l'exemple de code de <a href="#un-exemple-dutilisation-de-word-et-dword">conversion Modbus to REAL</a>, mais écrire la fonction inverse.
+C'est à dire le code qui permettra d'écrire, par exemple, 1235.33 dans les registres suivant:</p>
+<pre class="hljs"><code><div>    rData           : REAL := 1235.33;      // Test real data.
+    modBusRegisters : ARRAY[0..1] OF WORD;  // MSB First
+</div></code></pre>
+<p><a href="#solution-exercice-2">Solution exercice 2</a></p>
+<h2 id="exercice-3">Exercice 3</h2>
+<p>Une poignée &quot;homme mort&quot; est un module de sécurité qui contient un interrupteur qui n'est actif que si celui-ci est activé à mi-course. Si l'interrupteur est pressé jusqu'au bout, ce qui pourrait signfier une crispation de la main de l'opérateur, on active un arrêt d'urgence.</p>
+<figure>
+    <img src="./img/SchmersalDeadManSwitch.jpg"
+         alt="Dead Man Switch">
+        <figcaption>Dead Man Switch, <a href="https://products.schmersal.com">Image Schmersal</a>
+    </figcaption>
+</figure>
+<pre class="hljs"><code><div>VAR_INPUT
+    signalOneMiddle     : BOOL;
+    signalTwoMiddle     : BOOL;
+END_VAR
+
+VAR_OUTPUT
+    enableMove          : BOOL;
+    sendStop            : BOOL;
+    securityError       : BOOL;
+END_VAR
+</div></code></pre>
+<p><a href="#solution-exercice-3">Solution exercice 3</a></p>
+<h3 id="urs-user-request-specification">URS, User Request Specification</h3>
+<ul>
+<li>Au moment précis où les deux entrées quittent la position TRUE, on active la commande <code>sendStop</code> pendant un cycle unique du programme.</li>
+<li>Si les deux signaux d'entrée sont <code>TRUE</code>, la sortie <code>enableMove</code> est active.</li>
+<li>Afin d'empêcher une manipluation du système de sécurité, un timer vérifie que les deux signaux ne soient pas différents pendant une durée supérieure à 250[ms], <strong>discrepancy time</strong>, temps de divergence. Si cette limite de temps est dépassée, on n'autorise pas le <code>enableMove</code> et le signal <code>securityError</code> est activé (et reste activé définitement).</li>
+<li><em>Il est nécessaire d'ajouter quelques variables, timers ou triggers.</em></li>
+</ul>
+<h2 id="solution-exercice-1">Solution Exercice 1</h2>
+<p>Quels sont les valeurs en décimal suivante ?</p>
+<pre class="hljs"><code><div>    byMyBYTE  := 166;
+    byMyWORD  := 166;
+    nResBYTE  := 20;      // 0100_0101 -&gt; 0001_0100
+    nResWORD  := 276;     // 0100_0101 -&gt; 0000_0001_0001_0100
+    nResDWORD := 5;       // 0001_0100 -&gt; 0000_0101
+    nResLWORD := 69;      // 0000_0001_0001_0100 -&gt; ...0100_0101
+</div></code></pre>
+<h2 id="solution-exercice-2">Solution Exercice 2</h2>
+<pre class="hljs"><code><div>VAR
+    rData           : REAL := 1235.33;      // Test real data.
+    modBusRegisters : ARRAY[0..1] OF WORD;  // MSB First
+    dwValue         : DWORD;
+    pDword          : POINTER TO DWORD;   
+END_VAR
+
+// Code
+pDword := ADR(rData);
+dwValue :=pDword^;
+// MSB
+modBusRegisters[0] := DWORD_TO_WORD(SHR(dwValue,16));
+// LSB
+modBusRegisters[1] := DWORD_TO_WORD(dwValue AND 16#FFFF);
+</div></code></pre>
+<h2 id="solution-exercice-3">Solution Exercice 3</h2>
+<p>Notez la mise en forme et les alignements qui facilitent la lecture.</p>
+<blockquote>
+<p>La mise en forme fait partie de la qualité du code !</p>
+</blockquote>
+<pre class="hljs"><code><div>// Header
+FUNCTION_BLOCK FB_DeadManSwitch
+VAR_INPUT
+    signalOneMiddle     : BOOL;
+    signalTwoMiddle     : BOOL;
+END_VAR
+
+VAR_OUTPUT
+    enableMove          : BOOL;
+    sendStop            : BOOL;
+    securityError       : BOOL;
+END_VAR
+VAR
+    tonDiscrepancyTime  : TON;
+    fTrigStop           : F_TRIG;
+    testSendStop        : UDINT;
+END_VAR
+
+// Code
+tonDiscrepancyTime(IN := signalOneMiddle &lt;&gt; signalTwoMiddle,
+                   PT := T#250MS);
+                   
+fTrigStop(CLK := signalOneMiddle AND
+                 signalTwoMiddle);                  
+                   
+IF tonDiscrepancyTime.Q THEN
+    securityError := TRUE;
+END_IF
+
+IF signalOneMiddle          AND
+   signalTwoMiddle          AND
+   securityError            THEN
+   enableMove := TRUE;
+ELSE
+   enableMove := FALSE;
+END_IF
+
+sendStop := fTrigStop.Q;
+
+(*
+    To check sendStop Activated
+    Because it is difficult to view the value of sendStop for one cycle,
+    it could be a good idea to use a check sequence to validate it.
+    This is optional
+*)
+IF sendStop THEN
+    testSendStop := testSendStop + 1;
+END_IF
+</div></code></pre>
+<p>Variante, le enableMove pourrait aussi être codé de la manière suivante:</p>
+<pre class="hljs"><code><div>enableMove := signalOneMiddle AND
+              signalTwoMiddle AND
+              NOT securityError;
+</div></code></pre>
+<p>Checked.</p>
+
+</body>
+</html>
