@@ -380,6 +380,10 @@ De préférence on utilise ```VAR_IN_OUT```, qui passe l'adresse de la structure
 
 ## FB avec ```VAR_IN_OUT```
 
+<h2 style="color:red">BAD code with AI</h2>
+
+[2025 Utiliser un pointeur à la place d'un IN_OUT](./VAR_IN_OUT_BAD_AI_CODE.md)
+
 ### Déclaration d'un FB avec ```VAR_IN_OUT```
 ```iecst
 FUNCTION_BLOCK FB_StopAxis
