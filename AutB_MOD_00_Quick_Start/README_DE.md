@@ -21,6 +21,70 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
     <figcaption>Logo International Electrotechnical Commission</figcaption>
 </figure>
 
+## Inhaltsverzeichnis
+
+- [Module 00 Quick Start](#module-00-quick-start)
+  - [Inhaltsverzeichnis](#inhaltsverzeichnis)
+  - [Programmable controllers - Part 1: Allgemeine Informationen](#programmable-controllers---part-1-allgemeine-informationen)
+  - [Abstract (www.iec.ch)](#abstract-wwwiecch)
+- [Ziel](#ziel)
+- [IEC 61131-3 Sprachen](#iec-61131-3-sprachen)
+  - [Der Standard definiert mehrere Arten von Sprachen](#der-standard-definiert-mehrere-arten-von-sprachen)
+    - [LD Ladder Diagram](#ld-ladder-diagram)
+    - [Der Sequential Function Chart SFC](#der-sequential-function-chart-sfc)
+    - [Ders Function Block Diagram FBD](#ders-function-block-diagram-fbd)
+    - [Der Structured Text](#der-structured-text)
+- [Grundprinzip](#grundprinzip)
+  - [Grundsätzlich hat ein Automat zwei Hauptmerkmale.](#grundsätzlich-hat-ein-automat-zwei-hauptmerkmale)
+  - [Schleifensystem](#schleifensystem)
+    - [Mindestsystem](#mindestsystem)
+- [Die Variablen](#die-variablen)
+  - [Jede Variable muss mit ihrem **Typ** deklariert werden.](#jede-variable-muss-mit-ihrem-typ-deklariert-werden)
+  - [Jede Variable muss **vor** ihrer Verwendung deklariert werden.](#jede-variable-muss-vor-ihrer-verwendung-deklariert-werden)
+  - [Eingabevariablen](#eingabevariablen)
+  - [Ausgabevariablen](#ausgabevariablen)
+  - [Eingabe-Ausgabevariablen](#eingabe-ausgabevariablen)
+  - [Einfache Variablen](#einfache-variablen)
+  - [Globale Variablen](#globale-variablen)
+  - [Konstanten](#konstanten)
+  - [*Variablen* Zeiger](#variablen-zeiger)
+- [Grundtypen](#grundtypen)
+  - [Beispiel 1](#beispiel-1)
+  - [Beispiel 2](#beispiel-2)
+  - [Binär](#binär)
+  - [Integer](#integer)
+  - [Floating point](#floating-point)
+  - [Zeichenfolge](#zeichenfolge)
+  - [Datum und Stunde](#datum-und-stunde)
+- [Wählen Sie Ihren Typ mit Bedacht aus](#wählen-sie-ihren-typ-mit-bedacht-aus)
+  - [Die Größe](#die-größe)
+  - [Falsch gute Idee](#falsch-gute-idee)
+  - [Ganzzahl ohne Vorzeichen](#ganzzahl-ohne-vorzeichen)
+  - [Ganzzahl vom Typ BYTE, WORD, DWORD und LWORD](#ganzzahl-vom-typ-byte-word-dword-und-lword)
+    - [Binäre Darstellung](#binäre-darstellung)
+    - [Bitshift Operators](#bitshift-operators)
+    - [Ein Beispiel für die Verwendung von WORD und DWORD](#ein-beispiel-für-die-verwendung-von-word-und-dword)
+  - [Datentyp gemäß PLCopen](#datentyp-gemäß-plcopen)
+    - [Was PLCopen sagt](#was-plcopen-sagt)
+  - [Was ich moderiere](#was-ich-moderiere)
+  - [Anweisung „IF...ELSIF...ELSE“.](#anweisung-ifelsifelse)
+  - [Function Block ```R_TRIG``` et ```F_TRIG```](#function-block-r_trig-et-f_trig)
+    - [```R_TRIG```](#r_trig)
+    - [Funktionsblockparameter ```R_TRIG```](#funktionsblockparameter-r_trig)
+    - [Implémentation ```R_TRIG```](#implémentation-r_trig)
+    - [Erklärung und Verwendung von ```R_TRIG```](#erklärung-und-verwendung-von-r_trig)
+    - [``F_TRIG``](#f_trig)
+  - [Function Block ```TON```, ```TOF``` et ``TP``](#function-block-ton-tof-et-tp)
+    - [Funktionsblockparameter ```TON```](#funktionsblockparameter-ton)
+    - [Codebeispiel](#codebeispiel)
+    - [``TOF``](#tof)
+    - [``TP``](#tp)
+- [Übungen](#übungen)
+  - [Übung 1](#übung-1)
+  - [Übung 2](#übung-2)
+    - [URS, User Request Specification](#urs-user-request-specification)
+  - [Lösungsaufgabe 1](#lösungsaufgabe-1)
+  - [Lösungsaufgabe 2](#lösungsaufgabe-2)
 ## Programmable controllers - Part 1: Allgemeine Informationen
 
 ## Abstract (www.iec.ch)
@@ -133,11 +197,19 @@ Um die Rechenleistung von Automaten zur numerischen Steuerung nutzen zu können,
 
 ### Mindestsystem
 In vielen Fällen ist diese Architektur ausreichend.
-<figure>
-    <img src="img/Read Input Cyclic Write Output.png"
-         alt="Read Input Cyclic Write Output">
-    <figcaption>PLC with one task and one program</figcaption>
-</figure>
+
+```mermaid
+---
+title: PLC Principle
+---
+
+flowchart TD
+    A@{ shape: hourglass, label: "Collates" }
+    ReadInput(Read Inputs) --> CyclicProgram(Cyclic Program)
+    A -- "Cycle Time 10[ms]" --> CyclicProgram
+    CyclicProgram --> WriteOoutput(Write Outputs)
+    
+```
 
 > Die Zykluszeit wird von einer internen Uhr verwaltet, die feste Zykluszeitereignisse generiert, um die Ausführung eines Programmzyklus einzuleiten.
 
@@ -147,11 +219,32 @@ Die Mindestzykluszeit hängt hauptsächlich von der Art des zu automatisierenden
 
 Moderne industrielle Automatisierungssysteme ermöglichen die Bewältigung von Aufgaben mit unterschiedlichen Taktzeiten.
 
-<figure>
-    <img src="img/Slow Task vs Quick Task.png"
-         alt="Image not available Slow Task vs Quick Task">
-    <figcaption>Slow Task vs Quick Task</figcaption>
-</figure>
+```mermaid
+---
+title: PLC Many Tasks
+---
+
+flowchart TD
+
+
+    A@{ shape: hourglass, label: "Collates" }
+    B@{ shape: hourglass, label: "Collates" }
+    subgraph SlowTask
+      ProgramOne
+    end
+    subgraph QuickTask
+      ProgramTwo
+      ProgramMotion
+    end
+    ReadInput(Read Inputs) --> ProgramOne
+    ReadInput(Read Inputs) --> ProgramTwo
+    ReadInput(Read Inputs) --> ProgramMotion
+    A -- "Cycle Time 10[ms]" --> SlowTask
+    B -- "Cycle Time 1[ms]" --> QuickTask
+    ProgramOne --> WriteOoutput(Write Outputs)
+    ProgramTwo --> WriteOoutput(Write Outputs)
+    ProgramMotion --> WriteOoutput(Write Outputs)
+```
 
 # Die Variablen
 Im Gegensatz zu anderen Sprachtypen wie **Python** ist die nach IEC 61131-3 standardisierte Automatensprache stark typisiert. Es ist eine Frage der Robustheit.
@@ -621,16 +714,6 @@ Welche der folgenden Werte werden in das im Suffix angegebene Format konvertiert
 [Lösungsaufgabe 1](#lösungsaufgabe-1)
 
 ## Übung 2
-Nehmen Sie das Codebeispiel aus [Modbus-zu-REAL-Konvertierung](#an-example-of-use-of-word-and-dword), aber schreiben Sie die entgegengesetzte Funktion.
-Das heißt der Code, mit dem Sie beispielsweise 1235,33 in die folgenden Register schreiben können:
-```iecst
-    rData           : REAL := 1235.33;      // Test real data.
-    modBusRegisters : ARRAY[0..1] OF WORD;  // MSB First
-```
-
-[Lösungsaufgabe 2](#lösungsaufgabe-2)
-
-## Übung 3
 Eine Totmanneinrichtung ist ein Sicherheitsmodul, das einen Schalter enthält, der nur dann aktiv ist, wenn er zur Hälfte betätigt wird. Wird der Schalter bis zum Anschlag gedrückt, was zu einer Verspannung der Hand des Bedieners führen könnte, wird ein Not-Aus aktiviert.
 
 <figure>
@@ -653,7 +736,7 @@ VAR_OUTPUT
 END_VAR
 ```
 
-[Lösungsaufgabe 3](#lösungsaufgabe-3)
+[Lösungsaufgabe 2](#lösungsaufgabe-2)
 
 ### URS, User Request Specification
 - Genau in dem Moment, in dem beide Eingänge die TRUE-Position verlassen, wird der Befehl „sendStop“ während eines einzelnen Programmzyklus aktiviert.
@@ -671,26 +754,7 @@ Was sind die folgenden Dezimalwerte?
     nResDWORD := 5;       // 0001_0100 -> 0000_0101
     nResLWORD := 69;      // 0000_0001_0001_0100 -> ...0100_0101
 ```
-
 ## Lösungsaufgabe 2
-```iecst
-VAR
-    rData           : REAL := 1235.33;      // Test real data.
-    modBusRegisters : ARRAY[0..1] OF WORD;  // MSB First
-    dwValue         : DWORD;
-    pDword          : POINTER TO DWORD;   
-END_VAR
-
-// Code
-pDword := ADR(rData);
-dwValue :=pDword^;
-// MSB
-modBusRegisters[0] := DWORD_TO_WORD(SHR(dwValue,16));
-// LSB
-modBusRegisters[1] := DWORD_TO_WORD(dwValue AND 16#FFFF);
-```
-
-## Lösungsaufgabe 3
 Beachten Sie die Formatierung und Ausrichtung, die das Lesen erleichtern.
 > Formatierung ist Teil der Codequalität!
 

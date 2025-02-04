@@ -20,6 +20,71 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
     <figcaption>Logo International Electrotechnical Commission</figcaption>
 </figure>
 
+## Table des Matières
+
+- [Module 00 Quick Start](#module-00-quick-start)
+  - [Table des Matières](#table-des-matières)
+  - [Programmable controllers - Part 1: General information](#programmable-controllers---part-1-general-information)
+  - [Abstract (www.iec.ch)](#abstract-wwwiecch)
+- [Objectif](#objectif)
+- [Les langages de IEC 61131-3](#les-langages-de-iec-61131-3)
+  - [La norme définit plusieurs types de langage](#la-norme-définit-plusieurs-types-de-langage)
+    - [Le Ladder Diagram LD](#le-ladder-diagram-ld)
+    - [Le Sequential Function Chart SFC](#le-sequential-function-chart-sfc)
+    - [Le Function Block Diagram FBD](#le-function-block-diagram-fbd)
+    - [Le Structured Text](#le-structured-text)
+- [Principe de base](#principe-de-base)
+  - [Fondamentalement un automate présente deux caractéristiques principales.](#fondamentalement-un-automate-présente-deux-caractéristiques-principales)
+  - [Système en boucle](#système-en-boucle)
+    - [Système minimum](#système-minimum)
+- [Les variables](#les-variables)
+  - [Chaque variable doit être déclarée avec son **type**.](#chaque-variable-doit-être-déclarée-avec-son-type)
+  - [Chaque variable doit être délarée **avant** son utilisation.](#chaque-variable-doit-être-délarée-avant-son-utilisation)
+  - [Les variables d'entrée](#les-variables-dentrée)
+  - [Les variables de sortie](#les-variables-de-sortie)
+  - [Les variables d'entrée sortie](#les-variables-dentrée-sortie)
+  - [Les variables simples](#les-variables-simples)
+  - [Les variables globales](#les-variables-globales)
+  - [Les constantes](#les-constantes)
+  - [*Variables* Pointeurs](#variables-pointeurs)
+- [Les types de base](#les-types-de-base)
+  - [Exemple 1](#exemple-1)
+  - [Exemple 2](#exemple-2)
+  - [Binaire](#binaire)
+  - [Integer](#integer)
+  - [Floating point](#floating-point)
+  - [Chaîne de caractères](#chaîne-de-caractères)
+  - [Date et heure](#date-et-heure)
+- [Bien choisir son type](#bien-choisir-son-type)
+  - [La taille](#la-taille)
+  - [Fausse bonne idée](#fausse-bonne-idée)
+  - [Entier non signé](#entier-non-signé)
+  - [Entier de type BYTE, WORD, DWORD et LWORD](#entier-de-type-byte-word-dword-et-lword)
+    - [Représentation binaire](#représentation-binaire)
+    - [Bitshift Operators](#bitshift-operators)
+  - [Datatype selon PLCopen](#datatype-selon-plcopen)
+    - [Ce que dit PLCopen](#ce-que-dit-plcopen)
+  - [Ce que je modère](#ce-que-je-modère)
+  - [Instruction ```IF...ELSIF...ELSE```](#instruction-ifelsifelse)
+  - [Function Block ```R_TRIG``` et ```F_TRIG```](#function-block-r_trig-et-f_trig)
+    - [```R_TRIG```](#r_trig)
+    - [Paramètres du bloc fonctionnel ```R_TRIG```](#paramètres-du-bloc-fonctionnel-r_trig)
+    - [Implémentation ```R_TRIG```](#implémentation-r_trig)
+    - [Déclaration et utilisation de ```R_TRIG```](#déclaration-et-utilisation-de-r_trig)
+    - [``F_TRIG``](#f_trig)
+  - [Function Block ```TON```, ```TOF``` et ``TP``](#function-block-ton-tof-et-tp)
+    - [Paramètres du bloque fonctionnel ```TON```](#paramètres-du-bloque-fonctionnel-ton)
+    - [Exemple de code](#exemple-de-code)
+    - [``TOF``](#tof)
+    - [``TP``](#tp)
+- [Exercices](#exercices)
+  - [Exercice 1](#exercice-1)
+  - [Exercice 2](#exercice-2)
+    - [URS, User Request Specification](#urs-user-request-specification)
+  - [Solution Exercice 1](#solution-exercice-1)
+  - [Solution Exercice 2](#solution-exercice-2)
+
+
 ## Programmable controllers - Part 1: General information
 
 ## Abstract (www.iec.ch)
@@ -131,11 +196,19 @@ Afin de pouvoir profiter de la puissance de calcul des automates pour faire de l
 
 ### Système minimum
 Dans de nombreux cas, cette architecture est suffisante.
-<figure>
-    <img src="img/Read Input Cyclic Write Output.png"
-         alt="Read Input Cyclic Write Output">
-    <figcaption>PLC with one task and one program</figcaption>
-</figure>
+
+```mermaid
+---
+title: PLC Principle
+---
+
+flowchart TD
+    A@{ shape: hourglass, label: "Collates" }
+    ReadInput(Read Inputs) --> CyclicProgram(Cyclic Program)
+    A -- "Cycle Time 10[ms]" --> CyclicProgram
+    CyclicProgram --> WriteOoutput(Write Outputs)
+    
+```
 
 > Le temps de cycle est géré par une horloge interne qui génère des événements à temps de cycle fixe pour lancer l'exécution d'un cycle de programme.
 
@@ -145,11 +218,32 @@ Le temps de cycle minimum dépendra principalement du type de processus à autom
 
 Les automates industriels modernes permettent de gérer des tâches avec des temps de cycle différents.
 
-<figure>
-    <img src="img/Slow Task vs Quick Task.png"
-         alt="Image not available Slow Task vs Quick Task">
-    <figcaption>Slow Task vs Quick Task</figcaption>
-</figure>
+```mermaid
+---
+title: PLC Many Tasks
+---
+
+flowchart TD
+
+
+    A@{ shape: hourglass, label: "Collates" }
+    B@{ shape: hourglass, label: "Collates" }
+    subgraph SlowTask
+      ProgramOne
+    end
+    subgraph QuickTask
+      ProgramTwo
+      ProgramMotion
+    end
+    ReadInput(Read Inputs) --> ProgramOne
+    ReadInput(Read Inputs) --> ProgramTwo
+    ReadInput(Read Inputs) --> ProgramMotion
+    A -- "Cycle Time 10[ms]" --> SlowTask
+    B -- "Cycle Time 1[ms]" --> QuickTask
+    ProgramOne --> WriteOoutput(Write Outputs)
+    ProgramTwo --> WriteOoutput(Write Outputs)
+    ProgramMotion --> WriteOoutput(Write Outputs)
+```
 
 # Les variables
 Contrairement à d'autres types de langages tels **Python**, le language des automates, normalisé selon IEC 61131-3 est fortement typé. C'est une question de robustesse.
@@ -186,6 +280,7 @@ END_VAR
 ```
 ## Les variables de sortie
 Il n'est pas possible d'écrire sur une variable de sortie depuis l'extérieur du block ou elle est déclarée.
+
 ```iecst
 VAR_OUT
     // Get the variable bMyBeeper from the block.
@@ -341,40 +436,6 @@ Base 16
 |SHR      |SHR(nInWord,nPos) |Décale *nInWord* de *nPos* bits vers la droite, les bits qui sortent vers la droite sont perdus. | 
 |ROL      |ROL(nInWord,nPos) |Décale *nInWord* de *nPos* bits vers la gauche, les bits qui sortent vers la gauche reviennent à droite. | 
 |ROR      |ROR(nInWord,nPos) |Décale *nInWord* de *nPos* bits vers la droite, les bits qui sortent vers la droite reviennet par la gauche. | 
-
-### Un exemple d'utilisation de WORD et DWORD
-On trouve encore beaucoup dans l'industrie de vieux protocols de communication comme **Modbus**. Ce protocol transmet les informations sur des registres de 16 bits, ``WORD``. Si l'on veut lire un ``REAL`` codé sur Modbus, il faudra lire deux ``WORD``, puis convertir ces deux registres en un REAL.
-Voici un exemple de code.
-```iecst
-//	Most Significant Word First
-//	Example :
-//	Word_1 --> registre 21037 = 0x440A
-//	Word_2 --> registre 21038 = oxC000
-//	Result for this example should be 555.00 A.
-FUNCTION F_ModbusRegisterTo_FLOAT32 : REAL
-VAR_INPUT
-	///	Most Significant Word
-	Word_1: WORD;
-	Word_2: WORD;
-END_VAR
-VAR
-	ForCheck_32: DWORD;
-	prResult_32: POINTER TO REAL;
-END_VAR
-
-// Code
-ForCheck_32 := Word_1;
-ForCheck_32 := SHL(ForCheck_32,16);
-ForCheck_32 := ForCheck_32 + Word_2;
-prResult_32 := ADR(ForCheck_32);
-
-(*
-	Note: this is not a type conversion.
-	The value in registers is not coded like a word, but like
-	a IEEE 754 float !!!
-*)
-F_ModbusRegisterTo_FLOAT32 := prResult_32^;
-```
 
 ## Datatype selon PLCopen
 On peut être un supporter de PLCopen sans pour autant être d’accord avec tout.
@@ -616,16 +677,6 @@ Quelles sont les valeurs suivantes converties au format spécifié dans le suffi
 [Solution exercice 1](#solution-exercice-1)
 
 ## Exercice 2
-Reprendre l'exemple de code de [conversion Modbus to REAL](#un-exemple-dutilisation-de-word-et-dword), mais écrire la fonction inverse.
-C'est à dire le code qui permettra d'écrire, par exemple, 1235.33 dans les registres suivant:
-```iecst
-    rData           : REAL := 1235.33;      // Test real data.
-    modBusRegisters : ARRAY[0..1] OF WORD;  // MSB First
-```
-
-[Solution exercice 2](#solution-exercice-2)
-
-## Exercice 3
 Une poignée "homme mort" est un module de sécurité qui contient un interrupteur qui n'est actif que si celui-ci est activé à mi-course. Si l'interrupteur est pressé jusqu'au bout, ce qui pourrait signfier une crispation de la main de l'opérateur, on active un arrêt d'urgence.
 
 <figure>
@@ -648,7 +699,7 @@ VAR_OUTPUT
 END_VAR
 ```
 
-[Solution exercice 3](#solution-exercice-3)
+[Solution exercice 2](#solution-exercice-2)
 
 ### URS, User Request Specification
 -   Au moment précis où les deux entrées quittent la position TRUE, on active la commande ``sendStop`` pendant un cycle unique du programme.
@@ -669,24 +720,6 @@ Quels sont les valeurs en décimal suivante ?
 ```
 
 ## Solution Exercice 2
-```iecst
-VAR
-    rData           : REAL := 1235.33;      // Test real data.
-    modBusRegisters : ARRAY[0..1] OF WORD;  // MSB First
-    dwValue         : DWORD;
-    pDword          : POINTER TO DWORD;   
-END_VAR
-
-// Code
-pDword := ADR(rData);
-dwValue :=pDword^;
-// MSB
-modBusRegisters[0] := DWORD_TO_WORD(SHR(dwValue,16));
-// LSB
-modBusRegisters[1] := DWORD_TO_WORD(dwValue AND 16#FFFF);
-```
-
-## Solution Exercice 3
 Notez la mise en forme et les alignements qui facilitent la lecture.
 > La mise en forme fait partie de la qualité du code !
 ```iecst

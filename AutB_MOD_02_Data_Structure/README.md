@@ -479,11 +479,20 @@ END_TYPE
 
 ### Intérêt principal de l'énumération
 Le principal intérêt de l'énumération est la description d'une machine d'état. Dans la figure ci-dessous, les transitions sont à titre d'exemple uniquement.
-<figure>
-    <img src="./puml/ENMotionStateMachineNoDefType/ENMotionStateMachineNoDefType.svg"
-         alt="Description des états à partir d'une énumération">
-    <figcaption>Description des états à partir d'une énumération</figcaption>
-</figure>
+
+```mermaid
+stateDiagram-v2
+    direction LR
+
+    [*] --> Idle
+    Idle --> MoveOne
+    MoveOne --> MoveOneCheckDone
+    MoveOneCheckDone --> MoveTwo
+    MoveTwo --> MoveTwoCheckDone
+    MoveTwoCheckDone --> ErrorStop
+    ErrorStop --> Stopped
+    Stopped --> [*]
+```
 
 ### Codage d'un ```CASE_OF```
 ```iecst
@@ -617,6 +626,32 @@ iSignal := WORD_TO_INT(u3Byte.a3Byte[1] * 256 + u3Byte.a3Byte[2]);
 > On pourra vérifier facilement quel devrait être le résulat si le Byte 1 vaut ```0E``` et le Byte 2 ```E6```
 
 > On pourra vérifier ensuite quel devrait être le résulat si le Byte 1 vaut ```FF``` et le Byte 2 ```FF```
+
+### Un type pour une conversion two Modbus Word --> Float
+```ìecst
+TYPE U_2_RegToFloat :
+UNION
+	mdbFloat_32	: REAL;
+	mdbReg_16	: ARRAY[1..2] OF WORD;
+END_UNION
+END_TYPE
+```
+
+```iecst
+VAR
+    reMyFloat   : REAL;¨
+    wReg_2      : WORD;
+    wReg_1      : WORD;
+
+    uRegToFloat : U_2_RegToFloat
+END_VAR
+// Code
+    uRegToFloat.mdbReg_16[1] := wReg_2;
+    uRegToFloat.mdbReg_16[2] := wReg_1;
+
+    reMyFloat := uRegToFloat.mdbFloat_32;
+```
+
 
 ## Big Endian vs Little Endian
 Une application d'une union pourra aider à la résolution de problèmes liés à l'```Endianness ```.

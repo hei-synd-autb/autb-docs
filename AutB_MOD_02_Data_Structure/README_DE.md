@@ -474,11 +474,20 @@ END_TYPE
 
 ### Hauptinteresse der Aufzählung
 Das Hauptinteresse der Aufzählung liegt in der Beschreibung eines Zustandsautomaten. In der folgenden Abbildung dienen die Übergänge nur als Beispiel.
-<figure>
-    <img src="./puml/ENMotionStateMachineNoDefType/ENMotionStateMachineNoDefType.svg"
-         alt="Description des états à partir d'une énumération">
-    <figcaption>Beschreibung von Zuständen aus einer Aufzählung</figcaption>
-</figure>
+
+```mermaid
+stateDiagram-v2
+    direction LR
+
+    [*] --> Idle
+    Idle --> MoveOne
+    MoveOne --> MoveOneCheckDone
+    MoveOneCheckDone --> MoveTwo
+    MoveTwo --> MoveTwoCheckDone
+    MoveTwoCheckDone --> ErrorStop
+    ErrorStop --> Stopped
+    Stopped --> [*]
+```
 
 ### Codierung von ```CASE_OF```
 ```iecst
@@ -613,6 +622,31 @@ iSignal := WORD_TO_INT(u3Byte.a3Byte[1] * 256 + u3Byte.a3Byte[2]);
 > Wir können leicht überprüfen, wie das Ergebnis aussehen sollte, wenn Byte 1 den Wert ``0E`` und Byte 2 ``E6`` hat
 
 > Wir können dann prüfen, wie das Ergebnis aussehen sollte, wenn Byte 1 den Wert ``FF`` und Byte 2 ``FF`` hat
+
+### Ein Typ für die Konvertierung von zwei Modbus-Wörtern -->Float
+```ìecst
+TYPE U_2_RegToFloat :
+UNION
+	mdbFloat_32	: REAL;
+	mdbReg_16	: ARRAY[1..2] OF WORD;
+END_UNION
+END_TYPE
+```
+
+```iecst
+VAR
+    reMyFloat   : REAL;¨
+    wReg_2      : WORD;
+    wReg_1      : WORD;
+
+    uRegToFloat : U_2_RegToFloat
+END_VAR
+// Code
+    uRegToFloat.mdbReg_16[1] := wReg_2;
+    uRegToFloat.mdbReg_16[2] := wReg_1;
+
+    reMyFloat := uRegToFloat.mdbFloat_32;
+```
 
 ## Big Endian gegen Little Endian
 Eine Union-Anwendung kann dabei helfen, Probleme im Zusammenhang mit Endianness zu lösen.
