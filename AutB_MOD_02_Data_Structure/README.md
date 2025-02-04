@@ -258,7 +258,42 @@ END_TYPE
 VAR
    getVelocity : REAL;
    stAxisInfo  : ST_AxisInfo;
+   ST_AxisInfo_Initialized stAxisInfoInit
 END_VAR
+```
+
+```mermaid
+classDiagram
+    class ST_AxisInfo {
+        UDINT AxisId
+        STRING AxisName
+        REAL SetVelocity
+        REAL SetDeceleration
+        REAL ActualPosition
+        REAL ActualVelocity
+        BOOL bAxisStopped
+        BOOL DigitalInput_1
+    }
+
+    class ST_AxisInfo_Initialized {
+        UDINT AxisId
+        STRING AxisName = 'Axe de base'
+        REAL SetVelocity
+        REAL SetDeceleration
+        REAL ActualPosition
+        REAL ActualVelocity = 0
+        BOOL bAxisStopped
+        BOOL DigitalInput_1
+    }
+
+    class Variables {
+        REAL getVelocity
+        ST_AxisInfo stAxisInfo
+        ST_AxisInfo_Initialized stAxisInfoInit
+    }
+
+    Variables *-- ST_AxisInfo
+    Variables *-- ST_AxisInfo_Initialized    
 ```
 
 ### Codage
@@ -302,11 +337,29 @@ END_STRUCT
 END_TYPE
 ```
 Ci dessous, la représentation UML de ```ST_AxisInfo``` **composé** avec ```ST_AxisLimits```.
-<figure>
-    <img src="./puml/STAxisInfoBase/STAxisInfoBase.svg"
-         alt="ST_AxisInfo with ST_AxisLimits">
-    <figcaption>ST_AxisInfo avec ST_AxisLimits en composition</figcaption>
-</figure>
+
+```mermaid
+classDiagram
+    class ST_AxisLimits {
+        REAL Positive_mm = 100
+        REAL Negative_mm = -100
+        REAL MaxVelocity_m_s = 1000
+    }
+
+    class ST_AxisInfo {
+        UDINT AxisId
+        STRING AxisName = 'Axe de base'
+        REAL SetVelocity
+        REAL SetDeceleration
+        REAL ActualPosition
+        REAL ActualVelocity = 0
+        BOOL bAxisStopped
+        BOOL DigitalInput_1
+        ST_AxisLimits stAxisLimit
+    }
+
+    ST_AxisInfo *-- ST_AxisLimits
+```
 
 ### Codage
 ```iecst
@@ -328,11 +381,31 @@ Ci dessous, la représentation UML de ```ST_AxisInfo``` **composé** avec ```ST_
 La notion de Structure Extends appartient à la spécification Object-Oriented Programming **OOP** du IEC 61131-3. *Certaines plateformes importantes comme Siemens ne la supportent pas en 2023*.
 
 
-<figure>
-    <img src="./puml/STAxisInfoBaseExtendedWithMoreInputs/STAxisInfoBaseExtendedWithMoreInputs.svg"
-         alt="ST_AxisInfo_Base MoreInputs Extends ST_AxisInfo">
-    <figcaption>ST_AxisInfo_Base MoreInputs Extends ST_AxisInfo</figcaption>
-</figure>
+```mermaid
+---
+title: ST_AxisInfo_Base MoreInputs Extends ST_AxisInfo   
+---
+classDiagram
+    class ST_AxisInfo_MoreInputs {
+        BOOL DigitalInput_2;
+        BOOL DigitalInput_3;
+        BOOL DigitalInput_4;
+    }
+
+    class ST_AxisInfo {
+        UDINT AxisId
+        STRING AxisName = 'Axe de base'
+        REAL SetVelocity
+        REAL SetDeceleration
+        REAL ActualPosition
+        REAL ActualVelocity = 0
+        BOOL bAxisStopped
+        BOOL DigitalInput_1
+        ST_AxisLimits stAxisLimit
+    }
+
+    ST_AxisInfo <|-- ST_AxisInfo_MoreInputs
+```
 
 La notion de Structure Extends permet de créer une structure existante à partir d'une nouvelle. En termes de programmation Orientée Objet, **OOP**, on parle d'héritage.
 
@@ -393,11 +466,17 @@ END_VAR
 ```
 
 ### Instanciation d'un FB avec ```VAR_IN_OUT```
-<figure>
-    <img src="./puml/fbStopAxisXwithInOut/fbStopAxisXwithInOut.svg"
-         alt="ST_AxisInfo with FB_StopAxis">
-    <figcaption>ST_AxisInfo with FB_StopAxis</figcaption>
-</figure>
+
+```mermaid
+---
+title: ST_AxisInfo with FB_StopAxis
+---
+classDiagram
+    class ST_AxisInfo
+    class FB_StopAxis
+    FB_StopAxis o-- ST_AxisInfo
+
+```
 
 Ce qu'il est **très important de comprendre** dans cette construction, c'est que ```stAxisInfo``` et ```fbStopAxis_X``` sont deux entités qui sont déclarées séparément. Une structure pour un axes complet contient parfois plusieurs dizaines de variables, il serait au niveau codage et à lors de l'exécution du code, absolument contre-productif de copier chaque valeur de ```stAxisInfo``` dans ```fbStopAxis_X```.
 
@@ -422,11 +501,18 @@ END_VAR
 
 Dans l'exemple ci-dessous, nous avons créé une structure d'axe **spéciale** avec **deux codeurs**.
 
-<figure>
-    <img src="./puml/VarInOutWithExtends/VarInOutWithExtends.svg"
-         alt="VAR_IN_OUT with Extends">
-    <figcaption>VAR_IN_OUT with Extends</figcaption>
-</figure>
+```mermaid
+---
+title: VAR_IN_OUT with Extends
+---
+classDiagram
+    class ST_AxisInfo
+    class FB_StopAxis
+    class ST_AxisTwoEncoder
+    FB_StopAxis o-- ST_AxisTwoEncoder
+    ST_AxisInfo <|-- ST_AxisTwoEncoder
+
+```
 
 Cependant, nous avons le droite de passer la nouvelle structure ```ST_AxisTwoEncoder``` en ```VAR_IN_OUT``` même si elle est de type différent, car elle possède exactement par héritage les variables attendues par ```fbAxisInfo```.
 
@@ -443,11 +529,21 @@ fbStopAxis_X(ioAxisInfo := stAxisTwoEncoder;
 
 ### Si Extends n'est pas disponible
 Il est possible en version **classique non OOP** d'obtenir le même résultat, mais c'est moins élégant:
-<figure>
-    <img src="./puml/VarInOutWithComposition/VarInOutWithComposition.svg"
-         alt="VAR_IN_OUT with Composition">
-    <figcaption>VAR_IN_OUT with Composition</figcaption>
-</figure>
+
+```mermaid
+---
+title: VAR_IN_OUT with Extends
+---
+classDiagram
+    class ST_AxisInfo
+    class FB_StopAxis
+    class ST_AxisTwoEncoder
+    class ST_SecondEncoder
+    FB_StopAxis o-- ST_AxisTwoEncoder
+    ST_AxisTwoEncoder *-- ST_AxisInfo
+    ST_AxisTwoEncoder *-- ST_SecondEncoder
+
+```
 
 Dans ce cas, on passera une partie de la structure seulement en ```VAR_IN_OUT```
 ```iecst
@@ -627,7 +723,7 @@ iSignal := WORD_TO_INT(u3Byte.a3Byte[1] * 256 + u3Byte.a3Byte[2]);
 
 > On pourra vérifier ensuite quel devrait être le résulat si le Byte 1 vaut ```FF``` et le Byte 2 ```FF```
 
-### Un type pour une conversion two Modbus Word --> Float
+### Un type pour une conversion two Modbus Word 2 Float
 ```ìecst
 TYPE U_2_RegToFloat :
 UNION
@@ -694,11 +790,25 @@ A chaque cycle, nous voulons obetenir:
 
 ## Exercice 2, State Machine
 Ecrire l'```Enum``` et la structure ```CASE_OF```, c'est à dire uniquement les états sans les transitions de la machine d'état ci-dessous.
-<figure>
-    <img src="./puml/ENExerciceCsvWriteSteps/ENExerciceCsvWriteSteps.svg"
-         alt="Machine d'état CSV Write">
-    <figcaption>Machine d'états CSV Write</figcaption>
-</figure>
+
+```mermaid
+---
+title: Write CSV File
+---
+stateDiagram-v2
+    [*] --> WAIT_RISING_EDGE
+    WAIT_RISING_EDGE --> GENERATE_FILENAME
+    GENERATE_FILENAME --> OPEN_SOURCE_FILE
+    OPEN_SOURCE_FILE --> WAIT_OPEN_NOT_BUSY
+    WAIT_OPEN_NOT_BUSY --> CONVERT_ONE_CSV_RECORD
+    CONVERT_ONE_CSV_RECORD --> WRITE_RECORD_TO_FILE
+    WRITE_RECORD_TO_FILE --> WAIT_UNTIL_WRITE_NOT_BUSY
+    WAIT_UNTIL_WRITE_NOT_BUSY --> CLOSE_SOURCE_FILE
+    CLOSE_SOURCE_FILE --> WAIT_UNTIL_CLOSE_NOT_BUSY
+    WAIT_UNTIL_CLOSE_NOT_BUSY --> ERROR_OR_READY_STEP
+    ERROR_OR_READY_STEP --> [*]
+
+```
 
 ### Contraintes:
 - le premier état à la valeur 999.
@@ -730,11 +840,18 @@ Nous devons lire la trame ci-dessus avec un processeur Intel ```Little-Endian```
 ## Exercice 4, VAR_IN_OUT with Extends
 Déclarer, instancier et coder l'exemple ci-dessus avec ```ST_AxisTwoEncoder```.
 
-<figure>
-    <img src="./puml/VarInOutWithExtends/VarInOutWithExtends.svg"
-         alt="VAR_IN_OUT with Extends">
-    <figcaption>VAR_IN_OUT with Extends</figcaption>
-</figure>
+```mermaid
+---
+title: VAR_IN_OUT with Extends
+---
+classDiagram
+    class ST_AxisInfo
+    class FB_StopAxis
+    class ST_AxisTwoEncoder
+    FB_StopAxis o-- ST_AxisTwoEncoder
+    ST_AxisInfo <|-- ST_AxisTwoEncoder
+
+```
 
 ```ST_SecondEncoder``` est composé de:
 ```iecst
@@ -833,17 +950,17 @@ VAR
 END_VAR
 
 CASE stateCsv OF
-	EN_CSV_WriteSteps.WAIT_RISING_EDGE:
-    ;
-	EN_CSV_WriteSteps.GENERATE_FILENAME:
-    ;
-	EN_CSV_WriteSteps.OPEN_SOURCE_FILE:
-    ;
-	EN_CSV_WriteSteps.WAIT_OPEN_NOT_BUSY:
-    ;
-	EN_CSV_WriteSteps.CONVERT_ONE_CSV_RECORD:
-    ;
-	EN_CSV_WriteSteps.WRITE_RECORD_TO_FILE:
+    EN_CSV_WriteSteps.WAIT_RISING_EDGE:
+        ;
+    EN_CSV_WriteSteps.GENERATE_FILENAME:
+        ;
+    EN_CSV_WriteSteps.OPEN_SOURCE_FILE:
+        ;
+    EN_CSV_WriteSteps.WAIT_OPEN_NOT_BUSY:
+        ;
+    EN_CSV_WriteSteps.CONVERT_ONE_CSV_RECORD:
+        ;
+    EN_CSV_WriteSteps.WRITE_RECORD_TO_FILE:
 	;
     EN_CSV_WriteSteps.WAIT_UNTIL_WRITE_NOT_BUSY:
 	;
@@ -852,7 +969,7 @@ CASE stateCsv OF
     EN_CSV_WriteSteps.WAIT_UNTIL_CLOSE_NOT_BUSY:
 	;
     EN_CSV_WriteSteps.ERROR_OR_READY_STEP:
-    ;
+        ;
 END_CASE
 ```
 

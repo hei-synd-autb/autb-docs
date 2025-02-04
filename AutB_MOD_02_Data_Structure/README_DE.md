@@ -14,6 +14,80 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 *Keywords:* **DUT Type Conversion  ARRAY STRUCT**
 
+# Inhaltsverzeichnis
+
+- [Modul 02 Datenstrukturen.](#modul-02-datenstrukturen)
+- [Inhaltsverzeichnis](#inhaltsverzeichnis)
+- [Präambel](#präambel)
+  - [Tippen](#tippen)
+    - [Ein paar Erinnerungen zu Typen.](#ein-paar-erinnerungen-zu-typen)
+    - [Einige Beispiele :](#einige-beispiele-)
+    - [Um zusammenzufassen:](#um-zusammenzufassen)
+  - [Datenbenutzertyp](#datenbenutzertyp)
+- [Type conversion](#type-conversion)
+- [ARRAY, Datentabellen](#array-datentabellen)
+    - [Definieren Sie Konstanten in: ```GVL_ARRAY_SIZE```.](#definieren-sie-konstanten-in-gvl_array_size)
+    - [Definieren Sie Arrays mithilfe von Konstanten.](#definieren-sie-arrays-mithilfe-von-konstanten)
+    - [Verwenden Sie Schleifen mit Konstanten.](#verwenden-sie-schleifen-mit-konstanten)
+  - [In der Praxis](#in-der-praxis)
+    - [Definieren Sie ein Array als Benutzertyp.](#definieren-sie-ein-array-als-benutzertyp)
+    - [Definieren Sie ein Array von Typen](#definieren-sie-ein-array-von-typen)
+    - [Verwenden Sie ein Array von Typen](#verwenden-sie-ein-array-von-typen)
+- [Data User Type, DUT](#data-user-type-dut)
+- [Struktur](#struktur)
+  - [Einfache Form einer Struktur für eine Achse.](#einfache-form-einer-struktur-für-eine-achse)
+    - [Strukturdefinition](#strukturdefinition)
+    - [Ursprünglicher Wert](#ursprünglicher-wert)
+    - [Instanziierung](#instanziierung)
+    - [Codierung](#codierung)
+    - [Struktur innerhalb einer Struktur](#struktur-innerhalb-einer-struktur)
+    - [Codierung](#codierung-1)
+  - [Struktur erstreckt sich](#struktur-erstreckt-sich)
+    - [Strukturdefinition](#strukturdefinition-1)
+    - [Strukturen mit Extends kodieren](#strukturen-mit-extends-kodieren)
+    - [Hauptvorteil des Konzepts von *Extends*](#hauptvorteil-des-konzepts-von-extends)
+  - [FB avec ```VAR_IN_OUT```](#fb-avec-var_in_out)
+    - [Deklaration eines FB mit```VAR_IN_OUT```](#deklaration-eines-fb-mitvar_in_out)
+    - [Instanciation d'un FB avec ```VAR_IN_OUT```](#instanciation-dun-fb-avec-var_in_out)
+    - [Codierung eines FB mit einer ``IN_OUT``-Struktur](#codierung-eines-fb-mit-einer-in_out-struktur)
+  - [Struktur ```EXTENDS``` mit ```VAR_IN_OUT```](#struktur-extends-mit-var_in_out)
+    - [UEine kleine Abstraktion mit ```EXTENDS```](#ueine-kleine-abstraktion-mit-extends)
+    - [Si Extends n'est pas disponible](#si-extends-nest-pas-disponible)
+- [Aufzählung](#aufzählung)
+  - [Erstes Beispiel](#erstes-beispiel)
+    - [Hauptinteresse der Aufzählung](#hauptinteresse-der-aufzählung)
+    - [Codierung von ```CASE_OF```](#codierung-von-case_of)
+    - [TextList-Unterstützung](#textlist-unterstützung)
+    - [Erweitert Enum](#erweitert-enum)
+  - [Zweites Beispiel](#zweites-beispiel)
+- [Alias](#alias)
+- [Union](#union)
+  - [Deklaration einer Bitstruktur.](#deklaration-einer-bitstruktur)
+    - [Deklaration einer UNION von 3 Bytes.](#deklaration-einer-union-von-3-bytes)
+    - [Instanziieren der UNION](#instanziieren-der-union)
+    - [Verwendung im Code](#verwendung-im-code)
+    - [Ein Typ für die Konvertierung von zwei Modbus-Wörtern 2 Float](#ein-typ-für-die-konvertierung-von-zwei-modbus-wörtern-2-float)
+  - [Big Endian gegen Little Endian](#big-endian-gegen-little-endian)
+    - [Endianness](#endianness)
+- [Übungen](#übungen)
+  - [Übung 1, Min/Max/RMS von ioBuffer](#übung-1-minmaxrms-von-iobuffer)
+  - [Übung 2, State Machine](#übung-2-state-machine)
+    - [Einschränkungen:](#einschränkungen)
+  - [Übung 3, Modbus avec ```Endianess```](#übung-3-modbus-avec-endianess)
+  - [Übung 4, VAR\_IN\_OUT with Extends](#übung-4-var_in_out-with-extends)
+- [Lösung der Übungen](#lösung-der-übungen)
+  - [Lösung Übung 1, Min/Max/RMS of ioBuffer](#lösung-übung-1-minmaxrms-of-iobuffer)
+    - [Codage](#codage)
+    - [Test](#test)
+  - [Lösung Übung  2, State Machine](#lösung-übung--2-state-machine)
+    - [Codage](#codage-1)
+  - [Lösung Übung 3, Modbus mit ```Endianess```](#lösung-übung-3-modbus-mit-endianess)
+    - [Liste der Konstanten in der Datei ``GVL_Modbus``.](#liste-der-konstanten-in-der-datei-gvl_modbus)
+    - [Definition von Gewerkschaft ```U_SolveModbus```](#definition-von-gewerkschaft-u_solvemodbus)
+    - [Definition der allgemeinen Struktur](#definition-der-allgemeinen-struktur)
+    - [Program](#program)
+  - [Lösung Übung 4, VAR\_IN\_OUT with Extends](#lösung-übung-4-var_in_out-with-extends)
+
 # Präambel
 ## Tippen
 Die IEC 61131-3-Programmiersprache für strukturierten Text ist eine stark typisierte Sprache. Dies bedeutet, dass der Compiler Typfehler während der Kompilierung erkennen kann.
@@ -303,11 +377,32 @@ END_STRUCT
 END_TYPE
 ```
 Unten die UML-Darstellung von ``ST_AxisInfo`` **zusammengesetzt** mit ``ST_AxisLimits``.
-<figure>
-    <img src="./puml/STAxisInfoBase/STAxisInfoBase.svg"
-         alt="ST_AxisInfo with ST_AxisLimits">
-    <figcaption>ST_AxisInfo mit ST_AxisLimits in der Komposition</figcaption>
-</figure>
+
+```mermaid
+---
+title: Aggregation  
+---
+classDiagram
+    class ST_AxisLimits {
+        REAL Positive_mm = 100
+        REAL Negative_mm = -100
+        REAL MaxVelocity_m_s = 1000
+    }
+
+    class ST_AxisInfo {
+        UDINT AxisId
+        STRING AxisName = 'Axe de base'
+        REAL SetVelocity
+        REAL SetDeceleration
+        REAL ActualPosition
+        REAL ActualVelocity = 0
+        BOOL bAxisStopped
+        BOOL DigitalInput_1
+        ST_AxisLimits stAxisLimit
+    }
+
+    ST_AxisInfo *-- ST_AxisLimits
+```
 
 ### Codierung
 ```iecst
@@ -328,12 +423,31 @@ Unten die UML-Darstellung von ``ST_AxisInfo`` **zusammengesetzt** mit ``ST_AxisL
 ## Struktur erstreckt sich
 Der Begriff „Structure Extends“ gehört zur objektorientierten Programmierung **OOP**-Spezifikation der IEC 61131-3. *Einige große Plattformen wie Siemens unterstützen es im Jahr 2023 nicht*.
 
+```mermaid
+---
+title: ST_AxisInfo_Base MoreInputs Extends ST_AxisInfo   
+---
+classDiagram
+    class ST_AxisInfo_MoreInputs {
+        BOOL DigitalInput_2;
+        BOOL DigitalInput_3;
+        BOOL DigitalInput_4;
+    }
 
-<figure>
-    <img src="./puml/STAxisInfoBaseExtendedWithMoreInputs/STAxisInfoBaseExtendedWithMoreInputs.svg"
-         alt="ST_AxisInfo_Base MoreInputs Extends ST_AxisInfo">
-    <figcaption>ST_AxisInfo_Base MoreInputs Extends ST_AxisInfo</figcaption>
-</figure>
+    class ST_AxisInfo {
+        UDINT AxisId
+        STRING AxisName = 'Axe de base'
+        REAL SetVelocity
+        REAL SetDeceleration
+        REAL ActualPosition
+        REAL ActualVelocity = 0
+        BOOL bAxisStopped
+        BOOL DigitalInput_1
+        ST_AxisLimits stAxisLimit
+    }
+
+    ST_AxisInfo <|-- ST_AxisInfo_MoreInputs
+```
 
 Das Konzept von Structure Extends ermöglicht es Ihnen, eine bestehende Struktur aus einer neuen zu erstellen. In Bezug auf die objektorientierte Programmierung (OOP) sprechen wir von Vererbung.
 
@@ -388,11 +502,17 @@ END_VAR
 ```
 
 ### Instanciation d'un FB avec ```VAR_IN_OUT```
-<figure>
-    <img src="./puml/fbStopAxisXwithInOut/fbStopAxisXwithInOut.svg"
-         alt="ST_AxisInfo with FB_StopAxis">
-    <figcaption>ST_AxisInfo with FB_StopAxis</figcaption>
-</figure>
+
+```mermaid
+---
+title: ST_AxisInfo with FB_StopAxis
+---
+classDiagram
+    class ST_AxisInfo
+    class FB_StopAxis
+    FB_StopAxis o-- ST_AxisInfo
+
+```
 
 Was in diesem Konstrukt **sehr wichtig zu verstehen** ist, ist, dass ``stAxisInfo`` und ``fbStopAxis_X`` zwei Entitäten sind, die separat deklariert werden. Da eine Struktur für eine komplette Achse manchmal mehrere Dutzend Variablen enthält, wäre es auf der Codierungsebene und bei der Ausführung des Codes absolut kontraproduktiv, jeden Wert von ``stAxisInfo`` in ``fbStopAxis_X`` zu kopieren.
 
@@ -417,11 +537,19 @@ END_VAR
 
 Im folgenden Beispiel haben wir eine **spezielle** Achsstruktur mit **zwei Encodern** erstellt.
 
-<figure>
-    <img src="./puml/VarInOutWithExtends/VarInOutWithExtends.svg"
-         alt="VAR_IN_OUT with Extends">
-    <figcaption>VAR_IN_OUT with Extends</figcaption>
-</figure>
+```mermaid
+---
+title: VAR_IN_OUT with Extends
+---
+classDiagram
+    class ST_AxisInfo
+    class FB_StopAxis
+    class ST_AxisTwoEncoder
+    FB_StopAxis o-- ST_AxisTwoEncoder
+    ST_AxisInfo <|-- ST_AxisTwoEncoder
+
+```
+
 
 Wir haben jedoch das Recht, die neue Struktur ``ST_AxisTwoEncoder`` an ``VAR_IN_OUT`` zu übergeben, auch wenn sie von einem anderen Typ ist, da sie genau die von ``fbAxisInfo`` erwarteten Variablen enthält Erbe..
 
@@ -438,6 +566,22 @@ fbStopAxis_X(ioAxisInfo := stAxisTwoEncoder;
 
 ### Si Extends n'est pas disponible
 Il est possible en version **classique non OOP** d'obtenir le même résultat, mais c'est moins élégant:
+
+```mermaid
+---
+title: VAR_IN_OUT with Extends
+---
+classDiagram
+    class ST_AxisInfo
+    class FB_StopAxis
+    class ST_AxisTwoEncoder
+    class ST_SecondEncoder
+    FB_StopAxis o-- ST_AxisTwoEncoder
+    ST_AxisTwoEncoder *-- ST_AxisInfo
+    ST_AxisTwoEncoder *-- ST_SecondEncoder
+
+```
+
 <figure>
     <img src="./puml/VarInOutWithComposition/VarInOutWithComposition.svg"
          alt="VAR_IN_OUT with Composition">
@@ -623,7 +767,7 @@ iSignal := WORD_TO_INT(u3Byte.a3Byte[1] * 256 + u3Byte.a3Byte[2]);
 
 > Wir können dann prüfen, wie das Ergebnis aussehen sollte, wenn Byte 1 den Wert ``FF`` und Byte 2 ``FF`` hat
 
-### Ein Typ für die Konvertierung von zwei Modbus-Wörtern -->Float
+### Ein Typ für die Konvertierung von zwei Modbus-Wörtern 2 Float
 ```ìecst
 TYPE U_2_RegToFloat :
 UNION
@@ -689,12 +833,25 @@ Bei jedem Zyklus möchten wir Folgendes erhalten:
 
 ## Übung 2, State Machine
 Schreiben Sie die Struktur ``Enum`` und ``CASE_OF``, d. h. nur die Zustände ohne die Zustandsmaschinenübergänge unten.
-<figure>
-    <img src="./puml/ENExerciceCsvWriteSteps/ENExerciceCsvWriteSteps.svg"
-         alt="Machine d'état CSV Write">
-    <figcaption>CSV-Schreibzustandsmaschine</figcaption>
-</figure>
 
+```mermaid
+---
+title: Write CSV File
+---
+stateDiagram-v2
+    [*] --> WAIT_RISING_EDGE
+    WAIT_RISING_EDGE --> GENERATE_FILENAME
+    GENERATE_FILENAME --> OPEN_SOURCE_FILE
+    OPEN_SOURCE_FILE --> WAIT_OPEN_NOT_BUSY
+    WAIT_OPEN_NOT_BUSY --> CONVERT_ONE_CSV_RECORD
+    CONVERT_ONE_CSV_RECORD --> WRITE_RECORD_TO_FILE
+    WRITE_RECORD_TO_FILE --> WAIT_UNTIL_WRITE_NOT_BUSY
+    WAIT_UNTIL_WRITE_NOT_BUSY --> CLOSE_SOURCE_FILE
+    CLOSE_SOURCE_FILE --> WAIT_UNTIL_CLOSE_NOT_BUSY
+    WAIT_UNTIL_CLOSE_NOT_BUSY --> ERROR_OR_READY_STEP
+    ERROR_OR_READY_STEP --> [*]
+
+```
 ### Einschränkungen:
 - Der erste Zustand hat den Wert 999.
 - Die anderen Zustände haben einen festen Wert.
@@ -725,13 +882,20 @@ Wir müssen den obigen Frame mit einem Intel **Little-Endian**-Prozess lesen, um
 ## Übung 4, VAR_IN_OUT with Extends
 Deklarieren, instanziieren und kodieren Sie das obige Beispiel mit ``ST_AxisTwoEncoder``.
 
-<figure>
-    <img src="./puml/VarInOutWithExtends/VarInOutWithExtends.svg"
-         alt="VAR_IN_OUT with Extends">
-    <figcaption>VAR_IN_OUT with Extends</figcaption>
-</figure>
+```mermaid
+---
+title: VAR_IN_OUT with Extends
+---
+classDiagram
+    class ST_AxisInfo
+    class FB_StopAxis
+    class ST_AxisTwoEncoder
+    FB_StopAxis o-- ST_AxisTwoEncoder
+    ST_AxisInfo <|-- ST_AxisTwoEncoder
 
-```ST_SecondEncoder``` est composé de:
+```
+
+``ST_SecondEncoder`` est composé de:
 ```iecst
 	ActualPosition  : REAL;
 	ActualVelocity  : REAL := 0;
@@ -739,12 +903,13 @@ Deklarieren, instanziieren und kodieren Sie das obige Beispiel mit ``ST_AxisTwoE
 ```
 ``FB_StopAxis`` wird unter dem Namen instanziiert ``fbStopAxisTwoEncoder``.
 
-Die Datenstruktur ``ST_AxisTwoEncoder`` wird unter dem Namen instanziiert```stAxisTwoEncoder```
+Die Datenstruktur ``ST_AxisTwoEncoder`` wird unter dem Namen instanziiert ``stAxisTwoEncoder``
 
 Die X-Achse wurde in folgender Form instanziiert:
 ```iecst
  (* With ST_AxisInfo *)
  fbStopAxis_X(ioAxisInfo := stAxisInfo);
+ ```
 
 [Lösung Übung 4](#lösung-übung-4-var_in_out-with-extends)
 
@@ -827,17 +992,17 @@ VAR
 END_VAR
 
 CASE stateCsv OF
-	EN_CSV_WriteSteps.WAIT_RISING_EDGE:
-    ;
-	EN_CSV_WriteSteps.GENERATE_FILENAME:
-    ;
-	EN_CSV_WriteSteps.OPEN_SOURCE_FILE:
-    ;
-	EN_CSV_WriteSteps.WAIT_OPEN_NOT_BUSY:
-    ;
-	EN_CSV_WriteSteps.CONVERT_ONE_CSV_RECORD:
-    ;
-	EN_CSV_WriteSteps.WRITE_RECORD_TO_FILE:
+    EN_CSV_WriteSteps.WAIT_RISING_EDGE:
+        ;
+    EN_CSV_WriteSteps.GENERATE_FILENAME:
+        ;
+    EN_CSV_WriteSteps.OPEN_SOURCE_FILE:
+        ;
+    EN_CSV_WriteSteps.WAIT_OPEN_NOT_BUSY:
+        ;
+    EN_CSV_WriteSteps.CONVERT_ONE_CSV_RECORD:
+        ;
+    EN_CSV_WriteSteps.WRITE_RECORD_TO_FILE:
 	;
     EN_CSV_WriteSteps.WAIT_UNTIL_WRITE_NOT_BUSY:
 	;
@@ -846,7 +1011,7 @@ CASE stateCsv OF
     EN_CSV_WriteSteps.WAIT_UNTIL_CLOSE_NOT_BUSY:
 	;
     EN_CSV_WriteSteps.ERROR_OR_READY_STEP:
-    ;
+        ;
 END_CASE
 ```
 
