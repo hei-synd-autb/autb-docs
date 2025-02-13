@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# MOD 01 Interfaces
+# MOD 03 Interfaces
 ## *2. Teil, Eingabe-Ausgabe-Module*
 
 ## Ein Kommunikationszentrum.

@@ -8,9 +8,7 @@
 
 Cours AutB
 
-Module MOD-01-Interfaces_AutB
-
-# Module 01 Interfaces
+# Module 03 Interfaces
 ## *2ème partie, les modules d'entrée sortie*
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)

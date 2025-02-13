@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# MOD 01 Interfaces
+# MOD 03 Interfaces
 ## *3ème partie, I/O mapping*
 
 *Keywords:* **TAG HDS SDS**
@@ -50,6 +50,8 @@ Im Hinblick auf das Projektmanagement vereint der DS im Allgemeinen zwei Arten v
 Die Liste der Tags bezieht sich auf Hardware. Im Allgemeinen handelt es sich um die Schnittstelle zwischen der Software und dem **elektrischen Diagramm** des Systems.
 
 > Die meisten professionellen Schaltplanbearbeitungsprogramme sind in der Lage, die für die Verknüpfung zwischen dem Namen des TAGs und der physischen Adresse der Karte erforderlichen Dateien direkt zu generieren. Um es ein wenig zu vereinfachen: Derzeit dominiert ein einzelnes Unternehmen diesen Markt so stark, dass fast alle im Bereich der Elektromontage tätigen Unternehmen die gleiche Software verwenden.
+
+### [Beispiel für Design-Spezifikation](./documentation/DS_TestBenchSpecification.xlsx)
 
 ### HDS
 Die Hardwarespezifikation fasst beispielsweise in Form einer Tabellenkalkulation *z. B. Excel, ganz zu schweigen von einer Marke* die Liste der Hardware und deren Verbindung zur Software zusammen.

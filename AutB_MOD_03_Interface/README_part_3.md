@@ -11,7 +11,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# MOD 01 Interfaces
+# MOD 03 Interfaces
 ## *3ème partie, I/O mapping*
 
 *Keywords:* **TAG HDS SDS**
@@ -51,6 +51,8 @@ En termes de gestion de projet, la DS regroupe en général deux types de docume
 La liste des tags fait référence au hardware. De manière générale, elle est l'înterface entre le logiciel et le **schéma électrique** du système.
 
 > La plupart des logiciels professionels d'édition schématique sont capable de générer directement les fichiers nécessaire à la liaison entre le nom du TAG et à l'adresse physique de la carte. Pour simplifier un peu, une seule compagnie domine acutellement à tel point ce marché, que presque toutes les entreprises actives dans le domaine du montage électrique utilisent le même logiciel.
+
+### [Exemple de Design Specification](./documentation/DS_TestBenchSpecification.xlsx) 
 
 ### HDS
 La spécification du hardware regroupe, par exemple sous forme de feuille de tableur, "*par exemple Excel pour ne pas citer de marque*", la liste du matériel et comment il est raccordé au logiciel.
