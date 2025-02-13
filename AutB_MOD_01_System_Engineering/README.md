@@ -8,7 +8,7 @@
 
 [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 06 /  System Engineering
+# Module 01 /  System Engineering
 
 ## Aperçu
 Ce module présente les outils de base de modélisation d'un sytème d'automation à l'aide de SysML.

@@ -332,4 +332,4 @@ WriteStationDataToModbus(simulateTags := simulateTags,
 
 > Der Code wird einfacher zu entwickeln sein, da alle Ein- und Ausgänge einfach in einer Baumstruktur angezeigt werden können, die der der Maschine entspricht.
 
-[Übungen](./MOD_01_Exercices.md)
+[Übungen](./MOD_03_Exercices.md)

@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 00 Quick Start
+# Module 02 PLC Quick Start
 
 *Keywords:* **Variables / Instructions / Cycle Time / Types / Triggers / Timers**
 
@@ -22,7 +22,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 ## Table des Matières
 
-- [Module 00 Quick Start](#module-00-quick-start)
+- [Module 02 PLC Quick Start](#module-02-plc-quick-start)
   - [Table des Matières](#table-des-matières)
   - [Programmable controllers - Part 1: General information](#programmable-controllers---part-1-general-information)
   - [Abstract (www.iec.ch)](#abstract-wwwiecch)

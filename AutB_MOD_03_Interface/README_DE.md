@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 01 Interfaces,
+# Module 03 Interfaces,
 ## *1. Teil, Prinzip*
 
 

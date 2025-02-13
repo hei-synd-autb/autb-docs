@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 01 Solutions / Lösungen,
+# Module 03 Solutions / Lösungen,
 
 ## Exercice / Übung 1 
 

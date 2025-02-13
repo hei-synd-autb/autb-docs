@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 01 Exercices / Übung,
+# Module 02 Exercices / Übung,
 
 ## Exercice / Übung 1 
 Représenter le diagramme donné en exemple pour Batch Processes sous forme de type structuré IEC 61131-3.

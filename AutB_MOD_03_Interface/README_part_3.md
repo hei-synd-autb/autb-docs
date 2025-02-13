@@ -333,4 +333,4 @@ WriteStationDataToModbus(simulateTags := simulateTags,
 
 > Le code sera plus facile à développer car il sera possible de visuliser simplement l'ensemble des entrées et des sorties sur une structure en arborescence qui correspond à celle de la machine.
 
-[Exercices](./MOD_01_Exercices.md)
+[Exercices](./MOD_03_Exercices.md)
