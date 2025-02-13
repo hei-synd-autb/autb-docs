@@ -15,47 +15,52 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 - The **LAB 0X** laboratories are all in separated repositories. [See links below on List of Labs](#industrial-automation-labs).
 
 # List of Modules
-[Module 00 Quick Start](./AutB_MOD_00_Quick_Start/README.md): Une brève introduction au monde du PLC
+[Module 01 System Engineering](./AutB_MOD_01_System_Engineering/README.md)
 
-[Module 00 Quick Start DE](./AutB_MOD_00_Quick_Start/README_DE.md): Eine kurze Einführung in die Welt der SPS
+[Module 01 System Engineering](./AutB_MOD_01_System_Engineering/README.md)
+
+
+[Module 02 Quick Start](./AutB_MOD_02_PLC_Quick_Start/README.md): Une brève introduction au monde du PLC
+
+[Module 02 Quick Start DE](./AutB_MOD_02_PLC_Quick_Start/README_DE.md): Eine kurze Einführung in die Welt der SPS
 
 ---
 
-[Module 01 Interface](./AutB_MOD_01_Interface/README.md): Gestion des interfaces de l'automate.
+[Module 03 Interface](./AutB_MOD_03_Interface/README.md): Gestion des interfaces de l'automate.
 
-[Module 01 Interface DE](./AutB_MOD_01_Interface/README_DE.md): Verwaltung von SPS-Schnittstellen.
+[Module 03 Interface DE](./AutB_MOD_03_Interface/README_DE.md): Verwaltung von SPS-Schnittstellen.
 
 ---
 
-[Module 02 Data Structure](./AutB_MOD_02_Data_Structure/README.md): Les structures de données.
+[Module 04 Data Structure](./AutB_MOD_04_Data_Structure/README.md): Les structures de données.
 
-[Module 03 Operation and Instruction](./AutB_MOD_03_Operation_And_Instruction/README.md): Les opération et instructions de base du langage IEC-61131-3.
+[Module 05 Operation and Instruction](./AutB_MOD_05_Operation_And_Instruction/README.md): Les opération et instructions de base du langage IEC-61131-3.
 
-[Module 04 Program Organisation Unit](./AutB_MOD_04_Program_Organisation_Unit/README.md): Les modules de programmation de IEC-61131-3
+[Module 06 Program Organisation Unit](./AutB_MOD_06_Program_Organisation_Unit/README.md): Les modules de programmation de IEC-61131-3
 
-[Module 05 Robust Programming with State Machine](./AutB_MOD_05_Robust_Programming_With_State_Machine/README.md): Utilisation des machines d'état pour une programmation robuste.
+[Module 07 Robust Programming with State Machine](./AutB_MOD_07_Robust_Programming_With_State_Machine/README.md): Utilisation des machines d'état pour une programmation robuste.
 
-[Module 06 Introduction_To_Pack](./AutB_MOD_06_Introduction_To_Pack/README.md): Introduction to PackML states.
+[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README.md): Introduction to PackML states.
 
-[Module 07 Mechatronics Soft](./AutB_MOD_07_Mechatronics_Soft/README.md): La structure et le fonctionnement d'un axe électrique.
+[Module 09 Mechatronics Soft](./AutB_MOD_09_Mechatronics_Soft/README.md): La structure et le fonctionnement d'un axe électrique.
 
-[Module 08 Motion Control with PLCopen](./AutB_MOD_08_Motion_Control_With_PLCopen/README.md): Utilisation d'une bibliothèque de fonctions standard pour le pilotage d'un mouvemement.
+[Module 10 Motion Control with PLCopen](./AutB_MOD_10_Motion_Control_With_PLCopen/README.md): Utilisation d'une bibliothèque de fonctions standard pour le pilotage d'un mouvemement.
 
-[Module 09 Synchronized Motion with Real-Time Ethernet](./AutB_MOD_09_Synchronized_Motion_With_Real_Time_Ethernet/README.md): Utilisation des propriétés d'un Ethernat Real-time pour asservir un axe par une tâche cyclique de l'automate.
+[Module 11 Synchronized Motion with Real-Time Ethernet](./AutB_MOD_11_Synchronized_Motion_With_Real_Time_Ethernet/README.md): Utilisation des propriétés d'un Ethernat Real-time pour asservir un axe par une tâche cyclique de l'automate.
 
-[Module 10 OPC-UA and Industrial Network](./AutB_MOD_10_OPC_UA/README.md): Un bref aperçu des réseaux indutriels et protocoles de communication.
+[Module 12 OPC-UA and Industrial Network](./AutB_MOD_12_OPC_UA/README.md): Un bref aperçu des réseaux indutriels et protocoles de communication.
 
-[Module 11 Design Specification](./AutB_MOD_11_Design_Specification/README.md) L'ancien module méchatronics hard dont le concept est revu.
+[Module 13 Design Specification](./AutB_MOD_13_Design_Specification/README.md) L'ancien module méchatronics hard dont le concept est revu.
 
 # Industrial Automation Labs
 
-- [autb-lab-01](https://github.com/hei-synd-autb/autb-lab-01) Quick Start, a kind of Hello PLC World!
-- [autb-lab-02](https://github.com/hei-synd-autb/autb-lab-02) A data structure to manage a conveyor
-- [autb-lab-03](https://github.com/hei-synd-autb/autb-lab-03) A function block for a sensor
-- [autb-lab-04](https://github.com/hei-synd-autb/autb-lab-04) A function block for an actuator
-- [autb-lab-05](https://github.com/hei-synd-autb/autb-lab-05) Mise en service d'un axe électrique couplé à un entraînement mécanique
-- [autb-lab-06](https://github.com/hei-synd-autb/autb-lab-06) Gestion d'un mouvement discret, MC_MoveAbsolute, basé sur PLCopen motion control.
-- [autb-lab-07](https://github.com/hei-synd-autb/autb-lab-07) Gestion d'un mouvement basé sur un polynôme d'ordre 5.
+- [autb-lab-01](https://github.com/hei-synd-autb/autb-lab-01_2025) Quick Start, a kind of Hello PLC World!
+- [autb-lab-02](https://github.com/hei-synd-autb/autb-lab-02_2025) A data structure to manage a conveyor
+- [autb-lab-03](https://github.com/hei-synd-autb/autb-lab-03_2025) A function block for a sensor
+- [autb-lab-04](https://github.com/hei-synd-autb/autb-lab-04_2025) A function block for an actuator
+- [autb-lab-05](https://github.com/hei-synd-autb/autb-lab-05_2025) Mise en service d'un axe électrique couplé à un entraînement mécanique
+- [autb-lab-06](https://github.com/hei-synd-autb/autb-lab-06_2025) Gestion d'un mouvement discret, MC_MoveAbsolute, basé sur PLCopen motion control.
+- [autb-lab-07](https://github.com/hei-synd-autb/autb-lab-07_2025) Gestion d'un mouvement basé sur un polynôme d'ordre 5.
 
 # The LAB.
 <figure>
