@@ -44,6 +44,17 @@ L'ensemble des outils sont sélectionnés d'une part car:
 - ils sont disponibles sur les platformes Windows, OSx et Linux,
 
 ## Mots clés
+-   Un **[State Diagram](https://mermaid.js.org/syntax/stateDiagram.html)** (ou diagramme d'état) est utilisé pour représenter les différents états d'un système ainsi que les transitions entre ces états. Il est particulièrement utile pour modéliser le comportement dynamique d'un système, comme les machines à états finis, où le système peut être dans un état à un moment donné et passer à un autre état en réponse à des événements ou des conditions spécifiques.
+
+-   Un **Activity Diagram**, diagramme d'activité ou encore **[Flow Chart](https://mermaid.js.org/syntax/flowchart.html)** est utilisé pour représenter le flux de contrôle ou de données entre différentes activités dans un système. Il est souvent utilisé pour modéliser les processus métier ou les algorithmes, montrant comment les activités sont enchaînées et comment les décisions et les boucles influencent le flux global.
+
+-   Un **[Class Diagram](https://mermaid.js.org/syntax/classDiagram.html)** ou diagramme de classes est utilisé pour représenter la structure statique d'un système en montrant les classes, leurs attributs, leurs méthodes et les relations entre elles. Il est essentiel pour la modélisation orientée objet, permettant de visualiser les composants principaux d'un système et leurs interactions.
+
+> En automation, on utilisera principalement le **State Diagram** pour la modélisation d'un programme. Il est particulièrment approprié aux programmes cycliques des automates.
+
+> On utilisera le **diagramme d'activité** ou **Activity Diagram**, pour modéliser les fonctions automatisée en faisant abstraction du codage. On parle de Function Specification, il permettra de valider les fonctionnalités avant de les coder.
+
+> En programmation orienté objet, on parle de **classes** et d'**objets**. Cette distinction ne fait pas vraiment sens en programmation PLC, dans la mesure où il n'y a pas d'allocation dynamique.
 
 # Introduction
 La méthode du cours tiens compte de l'évolution des outils de travail. Cela influe en partie sur la manière de travailler.
@@ -120,6 +131,21 @@ flowchart TD
     ProgramOne --> WriteOoutput(Write Outputs)
     ProgramTwo --> WriteOoutput(Write Outputs)
     ProgramMotion --> WriteOoutput(Write Outputs)
+```
+
+```mermaid
+---
+title: Fabrication de Confiture de Fraise
+---
+
+flowchart TD
+    A[Récolte des Fraises] --> B[Lavage des Fraises]
+    B --> C[Équeutage des Fraises]
+    C --> D[Cuisson des Fraises avec Sucre]
+    D --> E[Ajout de Pectine]
+    E --> F[Mise en Pots]
+    F --> G[Stérilisation des Pots]
+    G --> H[Étiquetage et Stockage]
 ```
 
 # [Class Diagram](https://mermaid.js.org/syntax/classDiagram.html)
@@ -228,3 +254,55 @@ stateDiagram-v2
 
 ```
 
+# Markdown
+
+## Résumé de Markdown selon Copilot
+
+Markdown est un langage de balisage léger qui permet de formater du texte en utilisant une syntaxe simple et lisible. Il est couramment utilisé pour rédiger des documents, des notes, des fichiers README, et des blogs. Voici quelques éléments de base de Markdown :
+
+- **Titres** : Utilisez `#` pour les titres. Par exemple, `# Titre 1`, `## Titre 2`, etc.
+- **Texte en gras** : Entourez le texte avec `**` ou `__`. Par exemple, `**texte en gras**`.
+- **Texte en italique** : Entourez le texte avec `*` ou `_`. Par exemple, `*texte en italique*`.
+- **Listes** : Utilisez `-` ou `*` pour les listes à puces, et des chiffres suivis d'un point pour les listes numérotées.
+- **Liens** : Utilisez `[texte du lien](URL)`. Par exemple, `[Google](https://www.google.com)`.
+- **Images** : Utilisez `![texte alternatif](URL de l'image)`. Par exemple, `![Logo](https://example.com/logo.png)`.
+- **Blocs de code** : Utilisez des accents graves triples (\`\`\`) pour les blocs de code.
+
+Markdown est largement supporté par de nombreuses plateformes et outils, ce qui en fait un choix populaire pour la documentation et la rédaction de contenu en ligne.
+
+## On ajoutera les éléments suivants:
+-   Markdown est l'éditeur utilisé pour tous les cours d'automation en S4 et S6.
+-   Il supporte les fichiers Mermaid.JS mentionnés ci-dessus.
+-   Il est supporté par l'interface utilisateur UI - Node-RED que nous utiliserons dans le cours d'automation, ce qui permet de fournir de la documentation directement dans l'interface utilisateur.
+-   C'est le format de fichier utilisé pour la documentation dans GitHub et GitLab.
+-   Accessoirement, c'est le format de fichier utilisé par ChatGPT, ce qui vous permet de coler directement le contenu dans un fichier Mardown.
+
+## Ci-dessous, la réponse de ChatGPT à la question de savoir ce qu'est Node-RED.
+
+> Le contenu est copié/collé dans le fichier Markdown sans mise en forme.
+
+Node-RED est un outil de développement open-source basé sur **Node.js**, conçu pour faciliter la création d'applications en connectant des **blocs fonctionnels** (appelés *nœuds*) via une interface graphique. Il est particulièrement utilisé pour l’**automatisation**, l’**IoT (Internet des objets)**, l’**intégration d’API** et la **domotique**.
+
+### 🚀 **Principales utilisations de Node-RED :**  
+✅ **Automatisation de flux de données** : Permet d'automatiser des tâches entre différents services et appareils.  
+✅ **IoT et domotique** : Intègre facilement des capteurs, des actionneurs et des plateformes cloud (MQTT, Home Assistant, etc.).  
+✅ **Intégration d'API et services web** : Connecte facilement des API REST, bases de données et services cloud.  
+✅ **Surveillance et alertes** : Peut être utilisé pour surveiller des systèmes en temps réel et générer des notifications.  
+
+### 🛠 **Comment ça fonctionne ?**  
+1. Interface graphique **drag-and-drop** pour créer des **flux**.  
+2. Connexion de **nœuds** représentant des entrées, traitements et sorties (ex: MQTT, HTTP, WebSocket, etc.).  
+3. Déploiement en un clic, exécution sur serveur, Raspberry Pi, ou cloud.  
+
+C'est un excellent outil pour ceux qui veulent automatiser des tâches sans coder en profondeur. Tu veux un exemple d’utilisation concrète ? 😊
+
+# Votre Job
+Installer Visual Studio Code ainsi que les extensions [mentionnées ci-dessus](#les-extensions-utilisées-pour-visual-studio-code) et vous familiariser avec l'utilisation de Markdown et Mermaid.
+
+## Option 1
+Vous pouvez installer GIT sur votre PC. Cela vous permettra de charger facilement les cours et de les éditer, puis si nécessaire de les sauvegarder sur GitHub. GitHub est un outil de base de la programmation. L'existance de GitHub fait que la perte de donnée d'un programme ne peut plus être considérée comme un accident, mais comme une grossière erreur du programmeur.
+
+Visual Studio Code permet nativement de charger et sauvegarder des données sur GitHub pour autant que GIT soit installé au préalable.
+
+## Option 2
+Dans le cadre du laboratoire d'automation, nous allons utiliser le logiciel Node-RED. [L'installation prend quelques minutes](https://nodered.org/docs/getting-started/local).
