@@ -73,7 +73,7 @@ Die in diesem Kurs auf VScode verwendeten Erweiterungen sind die folgenden:
 
 - [Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid): Diese Erweiterung fügt Unterstützung für das Rendern von Mermaid-Diagrammen in der Markdown-Vorschau hinzu, sodass Sie Flussdiagramme, Sequenzdiagramme und mehr direkt in VS Code visualisieren können.
 
-- [Structured Text Language Support](https://marketplace.visualstudio.com/items?itemName=stkb.restructuredtext): Diese Erweiterung bietet Syntaxhervorhebung, IntelliSense und andere Sprachunterstützungsfunktionen für Structured Text, eine Programmiersprache, die in der industriellen Automatisierung verwendet wird.
+- [Structured Text Language Support](https://marketplace.visualstudio.com/items?itemName=Serhioromano.vscode-st): Diese Erweiterung bietet Syntaxhervorhebung, IntelliSense und andere Sprachunterstützungsfunktionen für Structured Text, eine Programmiersprache, die in der industriellen Automatisierung verwendet wird.
 
 # [Mermaid Flussdiagramm](https://mermaid.js.org/syntax/flowchart.html)
 Dieser Diagrammtyp sollte hauptsächlich als Kommunikationsdiagramm betrachtet werden. Es ermöglicht die Validierung der Funktionsweise eines Prozesses, bevor mit der Codierung begonnen wird.

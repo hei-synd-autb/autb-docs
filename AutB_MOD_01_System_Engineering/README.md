@@ -74,7 +74,7 @@ Les extensions utilisées dans ce cours sur VScode sont les suivantes:
 
 - [Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid): This extension adds support for rendering Mermaid diagrams in the Markdown preview, allowing you to visualize flowcharts, sequence diagrams, and more directly within VS Code.
 
-- [Structured Text Language Support](https://marketplace.visualstudio.com/items?itemName=stkb.restructuredtext): This extension provides syntax highlighting, IntelliSense, and other language support features for Structured Text, a programming language used in industrial automation.
+- [Structured Text Language Support](https://marketplace.visualstudio.com/items?itemName=Serhioromano.vscode-st): This extension provides syntax highlighting, IntelliSense, and other language support features for Structured Text, a programming language used in industrial automation.
 
 # [Mermaid Flowchart](https://mermaid.js.org/syntax/flowchart.html)
 Ce type de diagramme doit être principalement vu comme un diagramme de communication. Il permet de valider le fonctionnement d'un processus avant de passer au codage.
