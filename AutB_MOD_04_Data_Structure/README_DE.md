@@ -33,6 +33,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
     - [Definieren Sie ein Array als Benutzertyp.](#definieren-sie-ein-array-als-benutzertyp)
     - [Definieren Sie ein Array von Typen](#definieren-sie-ein-array-von-typen)
     - [Verwenden Sie ein Array von Typen](#verwenden-sie-ein-array-von-typen)
+- [OOP, Objektorientierte Programmierung](#oop-objektorientierte-programmierung)
 - [Data User Type, DUT](#data-user-type-dut)
 - [Struktur](#struktur)
   - [Einfache Form einer Struktur für eine Achse.](#einfache-form-einer-struktur-für-eine-achse)
@@ -275,6 +276,19 @@ FOR iMyLoop := 1 TO GVL_ARRAY_SIZE.I_MAX_SIZE BY 1 DO
 END_FOR
 ```
 > Diese Art der Konstruktion macht die Anzahl der Dimensionen der Tabelle theoretisch **unendlich**. Die Anzahl der ineinander gekapselten Schleifen ist wahrscheinlich begrenzt.
+
+# OOP, Objektorientierte Programmierung
+Da es notwendig war, irgendwo in diesem Kurs daran zu erinnern, habe ich beschlossen, es hier einzufügen:
+
+Der **DUT**, **Data User Type**, insbesondere die Struktur **[STRUCT](#struktur)**, die wir weiter unten sehen werden, kann ebenso wie der Funktionsblock oder **[Funktionsblock](/AutB_MOD_06_Program_Organisation_Unit/README_DE.md#einen-funktionsblock-schreiben)**, den wir in einem zukünftigen Modul behandeln werden, als Objekte im OOP-Sinne des Begriffs betrachtet werden.
+
+> Die objektorientierte Programmiermethode bietet viele Vorteile.
+
+> Durch die Aufteilung der Software in Objekte ist es möglich, eine **übersichtliche** und **gut strukturierte** Anwendung zu entwickeln. Somit sind die Anwendung und die einzelnen Elemente leicht **verständlich** und einfach **erweiterbar**. Die **Wiederverwendbarkeit** von Programmierobjekten spart **Zeit** und reduziert **Kosten** bei der Entwicklung und Wartung von Anwendungen.
+
+> Die Verwendung hauptsächlich von **Strukturen** und dann von **Funktionsblöcken** ermöglicht es uns, teilweise oder sogar vollständig objektorientiert zu arbeiten, da die Begriffe Vererbung, Polymorphismus und Abstraktion, die in diesem Kurs nicht behandelt werden, zum Codieren der in unserem Kontext anvisierten einfachen Anwendungen nicht wirklich erforderlich sind.
+
+> Ein weiteres grundlegendes Werkzeug der objektorientierten Programmierung und der Verwendung der Sprache **UML**, in unserem Fall haben wir das leicht bearbeitbare Klassendiagramm mit **Mermaid Class Diagram**, siehe ein [Beispiel unten](#struktur-innerhalb-einer-struktur).
 
 # Data User Type, DUT
 Unabhängig von der Umgebung, in die ein Codesys-Compiler integriert ist, haben Sie die Möglichkeit, ein **DUT hinzufügen** auszuwählen.

@@ -33,6 +33,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
     - [Définir un tableau sous forme de type utilisateur.](#définir-un-tableau-sous-forme-de-type-utilisateur)
     - [Définir un tableau de types](#définir-un-tableau-de-types)
     - [Utiliser un tableau de types](#utiliser-un-tableau-de-types)
+- [OOP, Object Oriented Programming](#oop-object-oriented-programming)
 - [Data User Type, DUT](#data-user-type-dut)
 - [Structure](#structure)
   - [Forme simple d'une structure pour un axe.](#forme-simple-dune-structure-pour-un-axe)
@@ -274,6 +275,19 @@ FOR iMyLoop := 1 TO GVL_ARRAY_SIZE.I_MAX_SIZE BY 1 DO
 END_FOR
 ```
 > Ce type de construction rend le nombre de dimensions du tableau théoriquement **infinie**. Le nombre de boucles encapsulée les unes dans les autres est probablement limitée.
+
+# OOP, Object Oriented Programming
+Il fallait le rappeler quelque part dans ce cours, j'ai décidé de le mettre ici:
+
+Le **DUT**, **Data User Type**, en particulier la structure **[STRUCT](#structure)** que nous verrons ci-dessous, tout comme le bloque fonctionnel, ou **[Function Block](/AutB_MOD_06_Program_Organisation_Unit/README.md#function-block)** que nous aborderons dans un prochain module peuvent être considérés comme des objets au sens OOP du terme.
+
+> La méthode de programmation orientée objet offre de nombreux avantages.
+
+> En divisant le logiciel en objets, il est possible de développer une application **claire** et **bien structurée**. Ainsi, l'application et les éléments individuels sont facilement **compréhensibles** et faciles à **étendre**. La **réutilisabilité** des objets de programmation permet de gagner **du temps** et de réduire **les coûts** de développement et de maintenance des applications.
+
+> L'usage principalement des **structures**, puis des **blocs fonctionnels** nous permettrons de travailler de manière partiellement orientée objet, voir complètement orientée objet, puisque les notions d'héritage, de polymorphisme et d'abstraction qui ne seront pas abordées dans ce cours ne sont pas vraiment nécessaires pour coder les applications simples visées dans notre contexte.
+
+> Un autre outil fondamental de la programmation orientée objet et l'utilisation du language **UML**, dans notre cas nous disposons du diagramme de classe éditable facilement avec **Mermaid Class Diagram**, voir un [exemple ci-dessous](#instanciation).
 
 # Data User Type, DUT
 Quel que soit l'environnement dans lequel est intégré un compilateur Codesys, on a la posibilité de sélection un **Add DUT**
@@ -1147,3 +1161,5 @@ Appel du FB
  (* With ST_AxisTwoEncoder *)
  fbStopAxisTwoEncoder(ioAxisInfo := stAxisTwoEncoder);
 ```
+
+<!-- end of file -->

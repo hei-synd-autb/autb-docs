@@ -288,7 +288,7 @@ END_VAR
 // use of the function
 myResult := FC_ZeroInputIsOk();     // Accepted by the compiler
 ```
-### Mais
+### Aber
 ```iecst
 FUNCTION FC_NeedTwoInputs : DINT
 VAR_INPUT
