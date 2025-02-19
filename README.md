@@ -15,7 +15,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 - The **LAB 0X** laboratories are all in separated repositories. [See links below on List of Labs](#industrial-automation-labs).
 
 # List of Modules
-[Module 01 System Engineering](./AutB_MOD_01_System_Engineering/README.md)
+[Module 01 System Engineering FR](./AutB_MOD_01_System_Engineering/README.md)
 Ce document présente le module 01 de ce cours, axé sur l'utilisation de [Mermaid](https://mermaid.js.org) pour modéliser des systèmes d'automatisation. Il décrit les outils open source utilisés, notamment Mermaid.js pour les diagrammes et Visual Studio Code avec diverses extensions. Les types de diagrammes abordés incluent les diagrammes d'état, d'activité et de classes. Le document souligne l'importance de Markdown pour la documentation et l'intégration avec des plateformes comme GitHub et Node-RED. Enfin, il propose des options pour installer les outils nécessaires et se familiariser avec leur utilisation.
 
 [Module 01 System Engineering DE](./AutB_MOD_01_System_Engineering/README_DE.md)
@@ -24,9 +24,11 @@ Dieses Dokument stellt Modul 01 dieses Kurses vor und konzentriert sich auf die 
 ---
 
 
-[Module 02 Quick Start](./AutB_MOD_02_PLC_Quick_Start/README.md): Une brève introduction au monde du PLC
+[Module 02 Quick Start FR](./AutB_MOD_02_PLC_Quick_Start/README.md)
+Ce document est une introduction sur les automates programmables, PLC, et la norme IEC 61131-3. Il couvre les différents langages de programmation utilisés, avec un accent particulier sur le Structured Text. Le document explique les principes de base des automates, la gestion des variables et des types de données, ainsi que l'utilisation de blocs fonctionnels de base comme R_TRIG et TON. Il inclut également des exercices pratiques pour renforcer la compréhension des concepts abordés. Des exemples de code et des diagrammes sont fournis pour illustrer les explications.
 
-[Module 02 Quick Start DE](./AutB_MOD_02_PLC_Quick_Start/README_DE.md): Eine kurze Einführung in die Welt der SPS
+[Module 02 Quick Start DE](./AutB_MOD_02_PLC_Quick_Start/README_DE.md)
+Dieses Dokument ist eine Einführung in speicherprogrammierbare Steuerungen, SPS und den Standard IEC 61131-3. Es behandelt die verschiedenen verwendeten Programmiersprachen, mit besonderem Schwerpunkt auf Strukturiertem Text. Das Dokument erläutert die Grundprinzipien von Automaten, die Verwaltung von Variablen und Datentypen sowie die Verwendung grundlegender Funktionsblöcke wie R_TRIG und TON. Es enthält außerdem praktische Übungen zur Vertiefung des Verständnisses der behandelten Konzepte. Zur Veranschaulichung der Erklärungen werden Codebeispiele und Diagramme bereitgestellt.
 
 ---
 
