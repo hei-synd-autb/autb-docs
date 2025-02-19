@@ -16,8 +16,12 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 # List of Modules
 [Module 01 System Engineering](./AutB_MOD_01_System_Engineering/README.md)
+Ce document présente le module 01 de ce cours, axé sur l'utilisation de [Mermaid(https://mermaid.js.org)] pour modéliser des systèmes d'automatisation. Il décrit les outils open source utilisés, notamment Mermaid.js pour les diagrammes et Visual Studio Code avec diverses extensions. Les types de diagrammes abordés incluent les diagrammes d'état, d'activité et de classes. Le document souligne l'importance de Markdown pour la documentation et l'intégration avec des plateformes comme GitHub et Node-RED. Enfin, il propose des options pour installer les outils nécessaires et se familiariser avec leur utilisation.
 
-[Module 01 System Engineering](./AutB_MOD_01_System_Engineering/README.md)
+[Module 01 System Engineering DE](./AutB_MOD_01_System_Engineering/README_DE.md)
+Dieses Dokument stellt Modul 01 dieses Kurses vor und konzentriert sich auf die Verwendung von [Mermaid(https://mermaid.js.org)] zum Modellieren von Automatisierungssystemen. Es beschreibt die verwendeten Open-Source-Tools, darunter Mermaid.js für Diagramme und Visual Studio Code mit verschiedenen Erweiterungen. Zu den abgedeckten Diagrammtypen gehören Zustands-, Aktivitäts- und Klassendiagramme. Das Papier unterstreicht die Bedeutung von Markdown für die Dokumentation und Integration mit Plattformen wie GitHub und Node-RED. Schließlich bietet es Optionen zum Installieren der erforderlichen Tools und zum Kennenlernen ihrer Verwendung.
+
+---
 
 
 [Module 02 Quick Start](./AutB_MOD_02_PLC_Quick_Start/README.md): Une brève introduction au monde du PLC
@@ -34,21 +38,39 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 [Module 04 Data Structure](./AutB_MOD_04_Data_Structure/README.md): Les structures de données.
 
+---
+
 [Module 05 Operation and Instruction](./AutB_MOD_05_Operation_And_Instruction/README.md): Les opération et instructions de base du langage IEC-61131-3.
+
+---
 
 [Module 06 Program Organisation Unit](./AutB_MOD_06_Program_Organisation_Unit/README.md): Les modules de programmation de IEC-61131-3
 
+---
+
 [Module 07 Robust Programming with State Machine](./AutB_MOD_07_Robust_Programming_With_State_Machine/README.md): Utilisation des machines d'état pour une programmation robuste.
+
+---
 
 [Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README.md): Introduction to PackML states.
 
+---
+
 [Module 09 Mechatronics Soft](./AutB_MOD_09_Mechatronics_Soft/README.md): La structure et le fonctionnement d'un axe électrique.
+
+---
 
 [Module 10 Motion Control with PLCopen](./AutB_MOD_10_Motion_Control_With_PLCopen/README.md): Utilisation d'une bibliothèque de fonctions standard pour le pilotage d'un mouvemement.
 
-[Module 11 Synchronized Motion with Real-Time Ethernet](./AutB_MOD_11_Synchronized_Motion_With_Real_Time_Ethernet/README.md): Utilisation des propriétés d'un Ethernat Real-time pour asservir un axe par une tâche cyclique de l'automate.
+---
+
+[Module 11 Synchronized Motion with Real-Time Ethernet](./AutB_MOD_11_Synchronized_Motion_With_Real_Time_Ethernet/README.md): Utilisation des propriétés d'un Ethernet Real-time pour asservir un axe par une tâche cyclique de l'automate.
+
+---
 
 [Module 12 OPC-UA and Industrial Network](./AutB_MOD_12_OPC_UA/README.md): Un bref aperçu des réseaux indutriels et protocoles de communication.
+
+---
 
 [Module 13 Design Specification](./AutB_MOD_13_Design_Specification/README.md) L'ancien module méchatronics hard dont le concept est revu.
 
