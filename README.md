@@ -32,9 +32,11 @@ Dieses Dokument ist eine Einführung in speicherprogrammierbare Steuerungen, SPS
 
 ---
 
-[Module 03 Interface](./AutB_MOD_03_Interface/README.md): Gestion des interfaces de l'automate.
+[Module 03 Interface](./AutB_MOD_03_Interface/README.md)
+Ce document est un guide d'introduction des interfaces pour l'automatisation industrielle, couvrant les principes de base, les types de processus industriels, et les modules d'entrée/sortie. Il explique les normes et les spécifications des signaux numériques et analogiques, ainsi que les bus de terrain et les interfaces standards. Le document inclut des exemples de mapping I/O et des structures de données pour la programmation en Structured Text. Il met l'accent sur l'importance de la modularité et de la réutilisabilité du code pour une meilleure gestion des projets d'automatisation.
 
 [Module 03 Interface DE](./AutB_MOD_03_Interface/README_DE.md): Verwaltung von SPS-Schnittstellen.
+Dieses Dokument ist eine Einführung in Schnittstellen zur industriellen Automatisierung und behandelt Grundprinzipien, Arten industrieller Prozesse und Eingabe-/Ausgabemodule. Es erläutert die Standards und Spezifikationen digitaler und analoger Signale sowie Feldbusse und Standardschnittstellen. Das Dokument enthält Beispiele für E/A-Zuordnungen und Datenstrukturen für die strukturierte Textprogrammierung. Es betont die Bedeutung der Modularität und der Wiederverwendbarkeit des Codes für eine bessere Verwaltung von Automatisierungsprojekten.
 
 ---
 

@@ -778,5 +778,4 @@ enableMove := signalOneMiddle AND
               signalTwoMiddle AND
               NOT securityError;
 ```
-
-Checked.
+<!-- End of README.md -->
