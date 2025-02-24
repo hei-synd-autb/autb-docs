@@ -14,8 +14,12 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 ## Exercice / Übung 1 
 Représenter le diagramme donné en exemple pour Batch Processes sous forme de type structuré IEC 61131-3.
+-  Commencer par représenter un mermaid Class Diagram avec [Unit, EM, CM selon](./README.md#un-exemple-de-batch-process) 
+-  Pour chaque classe de mermaid, ajouter les variables des types structurés, **XV**, **SIC**, **PT**, **M**.
 
 Stellen Sie das Beispieldiagramm für Batch-Prozesse in strukturierter Typform gemäß IEC 61131-3 dar.
+- Beginnen Sie mit der Darstellung eines Mermaid-Klassendiagramms, mit [Unit, EM. CM nach](README_DE.md#ein-beispiel-für-einen-batch-prozess)
+- Fügen Sie für jede Mermaid-Klasse die Variablen der strukturierten Typen **XV**, **SIC**, **PT**, **M** hinzu.
 
 <figure>
     <img src="./img/PI_D_Drink Processing.svg"
