@@ -32,7 +32,7 @@ Dieses Dokument ist eine Einführung in speicherprogrammierbare Steuerungen, SPS
 
 ---
 
-[Module 03 Interface](./AutB_MOD_03_Interface/README.md)
+[Module 03 Interface](./AutB_MOD_03_Interface/README.md): Les interfaces.
 Ce document est un guide d'introduction des interfaces pour l'automatisation industrielle, couvrant les principes de base, les types de processus industriels, et les modules d'entrée/sortie. Il explique les normes et les spécifications des signaux numériques et analogiques, ainsi que les bus de terrain et les interfaces standards. Le document inclut des exemples de mapping I/O et des structures de données pour la programmation en Structured Text. Il met l'accent sur l'importance de la modularité et de la réutilisabilité du code pour une meilleure gestion des projets d'automatisation.
 
 [Module 03 Interface DE](./AutB_MOD_03_Interface/README_DE.md): Verwaltung von SPS-Schnittstellen.
@@ -41,6 +41,10 @@ Dieses Dokument ist eine Einführung in Schnittstellen zur industriellen Automat
 ---
 
 [Module 04 Data Structure](./AutB_MOD_04_Data_Structure/README.md): Les structures de données.
+Ce document est un guide sur les structures de données en langage IEC 61131-3 Structured Text. Il couvre les types de données utilisateur, **DUT**, les conversions de types, les tableaux, **ARRAY**, et quelques notions de programmation orientée objet, OOP. Il inclut des exemples de code pour la définition et l'utilisation de structures, d'énumérations, d'alias et d'unions. Le document propose également des exercices pratiques avec des solutions pour renforcer la compréhension des concepts abordés.
+
+[Module 04 Data Structure](./AutB_MOD_04_Data_Structure/README.md): Datenstrukturen.
+Dieses Dokument ist ein Leitfaden zu Datenstrukturen in der Strukturierten Textsprache IEC 61131-3. Es behandelt Benutzerdatentypen, **DUT**, Typkonvertierungen, Arrays, **ARRAY** und einige Begriffe der objektorientierten Programmierung, OOP. Es enthält Codebeispiele zum Definieren und Verwenden von Strukturen, Aufzählungen, Aliasen und Vereinigungen. Das Dokument bietet außerdem praktische Übungen mit Lösungen, um das Verständnis der behandelten Konzepte zu vertiefen.
 
 ---
 

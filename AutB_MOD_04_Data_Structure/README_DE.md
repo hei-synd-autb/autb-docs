@@ -10,13 +10,13 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Modul 02 Datenstrukturen.
+# Modul 04 Datenstrukturen.
 
 *Keywords:* **DUT Type Conversion  ARRAY STRUCT**
 
 # Inhaltsverzeichnis
 
-- [Modul 02 Datenstrukturen.](#modul-02-datenstrukturen)
+- [Modul 04 Datenstrukturen.](#modul-04-datenstrukturen)
 - [Inhaltsverzeichnis](#inhaltsverzeichnis)
 - [Präambel](#präambel)
   - [Tippen](#tippen)
