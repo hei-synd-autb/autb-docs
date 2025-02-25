@@ -63,19 +63,19 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 - [*3ème partie, I/O mapping*](#3ème-partie-io-mapping)
   - [Example de mapping dans le programme PLC](#example-de-mapping-dans-le-programme-plc)
   - [DS, Design Specification](#ds-design-specification)
-    - [Exemple de Design Specification](#exemple-de-design-specification)
+    - [Exemple de Design Specification.](#exemple-de-design-specification)
     - [HDS](#hds)
     - [SDS](#sds)
     - [Alarmes](#alarmes)
 - [Utilisation des ```tags``` au niveau du programme.](#utilisation-des-tags-au-niveau-du-programme)
   - [Règles](#règles)
   - [Structure de donnée](#structure-de-donnée)
+    - [Un tout petit peu de langage UML](#un-tout-petit-peu-de-langage-uml)
     - [Représentation UML du convoyeur](#représentation-uml-du-convoyeur)
     - [**C**ontrol **M**odule moteur](#control-module-moteur)
     - [**C**ontrol **M**odule capteur](#control-module-capteur)
     - [**C**ontrol **M**odule buzzer](#control-module-buzzer)
     - [**E**quipement **M**odule convoyeur](#equipement-module-convoyeur)
-    - [Représentation UML du convoyeur](#représentation-uml-du-convoyeur-1)
     - [Liaison des tags au convoyeur](#liaison-des-tags-au-convoyeur)
       - [Liaison des tags d'entrée](#liaison-des-tags-dentrée)
       - [Liaison des tags de sortie](#liaison-des-tags-de-sortie)
@@ -449,7 +449,7 @@ Les entées et sorties sont en général représentées par une adresse en entr�
 
 > Au niveau des entrées et des sorites, on ne fait pas la différence entre digital ou analogique, puisque les signaux analogiques passent nécessairement par des convertisseurs. Le plus souvent un ```WORD``` pour 12, 14 ou 16 bits.
 
-Le **mapping** des entrées sorties d'un PLC est souvent directement lié au type de matériel. Le principe peut être plus ou moins compliqué, mais rarement trivial quand il s'agit de se familiariser avec un nouveau type de matériel. Dans la mesure où l'objectif de ce cours concerne, au niveau de l'automate, la programmation en **Structured Text**, on ne s'attardera pas à une notion qui varie en fonction de chaque IDE de chaque fabricant.
+Le **mapping** des entrées sorties d'un PLC est souvent directement lié au type de matériel. Le principe peut être plus ou moins compliqué, mais rarement trivial quand il s'agit de se familiariser avec un nouveau type de matériel. Dans la mesure où l'objectif de ce cours concerne, au niveau de l'automate, la programmation en **Structured Text**, *on ne s'attardera pas à une notion qui varie en fonction de chaque IDE de chaque fabricant*.
 
 Il n'y a jamais de **simple** carte. Même pour un signal d'entrée **Digital In**, il faudra vérifier le niveau de tension. le plus souvent ```24 [Vdc]```. Mais on peut aussi trouver des tension ```48 [Vdc / Vac]``` ou ```230 [Vac]```.
 
@@ -477,12 +477,15 @@ En termes de gestion de projet, la DS regroupe en général deux types de docume
 **HDS** *Hardware Design Specification* et **SDS** *Software Design Specification*.
 La liste des tags fait référence au hardware. De manière générale, elle est l'înterface entre le logiciel et le **schéma électrique** du système.
 
-> La plupart des logiciels professionels d'édition schématique sont capable de générer directement les fichiers nécessaire à la liaison entre le nom du TAG et à l'adresse physique de la carte. Pour simplifier un peu, une seule compagnie domine acutellement à tel point ce marché, que presque toutes les entreprises actives dans le domaine du montage électrique utilisent le même logiciel.
+> La plupart des logiciels professionels d'édition schématique sont capables de générer directement les fichiers nécessaires à la liaison entre le nom du TAG et à l'adresse physique de la carte. Pour simplifier un peu, une seule compagnie domine acutellement à tel point ce marché, que presque toutes les entreprises actives dans le domaine du montage électrique utilisent le même logiciel.
 
-### [Exemple de Design Specification](./documentation/DS_TestBenchSpecification.xlsx) 
+> 
+
+### [Exemple de Design Specification](./documentation/DS_TestBenchSpecification.xlsx).
+L'exemple en pièce jointe pourrait suffir à réaliser les schémas électriques, puis à passer à la phase de réalisation.
 
 ### HDS
-La spécification du hardware regroupe, par exemple sous forme de feuille de tableur, "*par exemple Excel pour ne pas citer de marque*", la liste du matériel et comment il est raccordé au logiciel.
+La spécification du hardware regroupe, par exemple sous forme de feuille de tableur, "*exemple Excel pour ne pas citer de marque*", la liste du matériel et comment il est raccordé au logiciel.
 On retrouvera parfois une référence à la schématique afin de permettre de retrouver les informations nécessaires au diagnostic.
 
 ### SDS
@@ -534,6 +537,10 @@ Comme nous avons largement passé le moyen âge, nous allons travailler de mani�
 - Les tags sont organisés dans une structure de donnée.
 - Les tags devraient pouvoir être découplés facilement du coeur du programme afin de permettre une simulation.
 
+---
+
+> Les exemples ci-dessous correspondent à des structures utilisées dans le cadre des travaux pratiques en laboratoire.
+
 ## Structure de donnée
 Si l'on prend l'exemple de l'équipement d'un machine, un convoyeur, équipés de différents modules.
 |Name                 |Type|Logical Address|
@@ -556,22 +563,76 @@ Si l'on prend l'exemple de l'équipement d'un machine, un convoyeur, équipés d
 
 Le convoyeur est équipés de différents type de modules. Voir **EM Equipment Module** et **CM Control Module** selon **ISA-88**.
 
+### Un tout petit peu de langage UML
+> Dans la suite de ce cours nous allons parfois utiliser un peu de  notation UML. Voici les deux notations qu'il **faut retenir absolument**.
+
+```mermaid
+classDiagram
+class FB_CAR {
+    + ST_Driver stDrive 
+    + ST_Body stBody 
+    - ST_Motor stMotor 
+}
+class ST_Driver
+
+FB_CAR o-- ST_Driver : aggregation
+FB_CAR *-- ST_Body : composition
+FB_CAR *-- ST_Motor
+
+note for ST_Driver "ST_Driver existe indépendamment de FB_CAR"
+note for FB_CAR "Si on supprime FB_CAR, on supprime ST_Body"
+
+class ST_Body{
+    +Roof roof
+    +Bonnet bonnet
+}
+class ST_Motor
+
+```
+
+> Dans le diagramme ci-dessus, nous utilisons l'agrégation et la composition.
+> > La **composition** signifie d'une classe est composée de une ou plusieurs autres.
+> > L'**agrégation** signfie qu'une classe agrège une ou plusieurs classes qui ne lui appartiennent pas en prope. C'est à dire, ci-dessus, que la classe ST_Driver **doit** exister indépendament de FB_CAR.
+
 ### Représentation UML du convoyeur
-Je n'ai pas la possibilité de représenter *exactement* une représentation de la structure. Quitte à porter un peu à confusion, deux alternatives sont proposées. **Je préfère la première**
 
-La version ci-dessous, en tant qu'objet, devrait pouvoir afficher 4 blocs ```CM_ActiveSensor_typ```, ce que le logiciel ne permet pas.
-<figure>
-    <img src="./puml/ConveyorPlcTags/ConveyorPlcTags.svg"
-         alt="EM_ConveyorThreeStations_typ variante A">
-    <figcaption>EM_ConveyorThreeStations_typ variante A</figcaption>
-</figure>
+```mermaid
+classDiagram
+    class CM_Motor_typ {
+        BOOL K_ActivatePositiveDirection
+        BOOL K_ActivateNegativeDirection
+    }
 
-La version ci-dessous, en tant qu'objet ```EM_ConveyorThreeStations_typ``` est correcte, car l'affichage des blocs ``CM_Motor_typ``, ``CM_ActiveSensor_typ`` et ``CM_Buzzer_typ`` qui le composent n'est pas obligatoire. Le traitillé signifie simplement **Un certain lien existe**, ce qui est correct.
-<figure>
-    <img src="./puml/ConveyorPlcTagsVariantCorrect/ConveyorPlcTagsVariantCorrect.svg"
-         alt="EM_ConveyorThreeStations_typ variante A">
-    <figcaption>EM_ConveyorThreeStations_typ variante A</figcaption>
-</figure>
+    class CM_ActiveSensor_typ {
+        BOOL S_PushButon
+        BOOL B_SensorActive
+        BOOL H_LedStation
+    }
+
+    class CM_Buzzer_typ {
+        BOOL Active
+    }
+
+    class EM_ConveyorThreeStations_typ {
+        CM_Motor_typ Motor
+        CM_ActiveSensor_typ StationInput
+        CM_ActiveSensor_typ StationOne
+        CM_ActiveSensor_typ StationTwo
+        CM_ActiveSensor_typ StationThree
+        CM_Buzzer_typ Buzzer
+    }
+
+    EM_ConveyorThreeStations_typ *-- CM_Motor_typ
+    EM_ConveyorThreeStations_typ *-- CM_ActiveSensor_typ : StationInput
+    EM_ConveyorThreeStations_typ *-- CM_ActiveSensor_typ : StationOne
+    EM_ConveyorThreeStations_typ *-- CM_ActiveSensor_typ : StationTwo
+    EM_ConveyorThreeStations_typ *-- CM_ActiveSensor_typ : StationThree
+    EM_ConveyorThreeStations_typ *-- CM_Buzzer_typ
+```
+
+
+
+> **<span style="color:red">Attention ! </span>**: si vous posez une question à une AI, elle vous retournera probablement un autre type de lien. La sémantique UML/SysML pour IEC 61131-3 pourrait être débattue, mais le modèle représenté dans [FB_CAR](#un-tout-petit-peu-de-langage-uml) **représente le formalisme utilisé dans ce cours et devra être respcté**. Nous aborderons plus tard des exemples utilisant l'agrégation.
 
 ### **C**ontrol **M**odule moteur
 ```iecst
@@ -623,24 +684,6 @@ TYPE EM_ConveyorThreeStations_typ
    END_STRUCT;
 END_TYPE
 ```
-
-### Représentation UML du convoyeur
-Je n'ai pas la possibilité de représenter *exactement* une représentation de la structure. Quitte à porter un peu à confusion, deux alternatives sont proposées. **Je préfère la première**
-
-La version ci-dessous, en tant qu'objet, devrait pouvoir afficher 4 blocs ```CM_ActiveSensor_typ```, ce que le logiciel ne permet pas.
-<figure>
-    <img src="./puml/ConveyorPlcTags/ConveyorPlcTags.svg"
-         alt="EM_ConveyorThreeStations_typ variante A">
-    <figcaption>EM_ConveyorThreeStations_typ variante A</figcaption>
-</figure>
-
-La version ci-dessous, en tant qu'objet ```EM_ConveyorThreeStations_typ``` est correcte, car l'affichage des blocs ``CM_Motor_typ``, ``CM_ActiveSensor_typ`` et ``CM_Buzzer_typ`` qui le composent n'est pas obligatoire. Le traitillé signifie simplement **Un certain lien existe**, ce qui est correct.
-<figure>
-    <img src="./puml/ConveyorPlcTagsVariantCorrect/ConveyorPlcTagsVariantCorrect.svg"
-         alt="EM_ConveyorThreeStations_typ variante B">
-    <figcaption>EM_ConveyorThreeStations_typ variante B</figcaption>
-</figure>
-
 
 ### Liaison des tags au convoyeur
 Le problème avec les tags, c'est qu'ils ne sont pas structurés, ils existent uniquemet sous forme de liste. Quoi qu'il en soit, l'utilisation des tags dans le programme n'est pas souhaité.

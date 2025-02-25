@@ -70,6 +70,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 - [Verwendung von „Tags“ auf Programmebene.](#verwendung-von-tags-auf-programmebene)
   - [Regeln](#regeln)
   - [Datenstruktur](#datenstruktur)
+    - [Ein bisschen UML-Sprache](#ein-bisschen-uml-sprache)
     - [UML-Darstellung des Förderers](#uml-darstellung-des-förderers)
     - [**C**ontrol **M**odule moteur](#control-module-moteur)
     - [**C**ontrol **M**odule capteur](#control-module-capteur)
@@ -479,6 +480,8 @@ Die Liste der Tags bezieht sich auf Hardware. Im Allgemeinen handelt es sich um 
 > Die meisten professionellen Schaltplanbearbeitungsprogramme sind in der Lage, die für die Verknüpfung zwischen dem Namen des TAGs und der physischen Adresse der Karte erforderlichen Dateien direkt zu generieren. Um es ein wenig zu vereinfachen: Derzeit dominiert ein einzelnes Unternehmen diesen Markt so stark, dass fast alle im Bereich der Elektromontage tätigen Unternehmen die gleiche Software verwenden.
 
 ### [Beispiel für Design-Spezifikation](./documentation/DS_TestBenchSpecification.xlsx)
+Das beigefügte Beispiel könnte ausreichen, um die Schaltpläne zu erstellen und anschließend mit der Produktionsphase fortzufahren.
+
 
 ### HDS
 Die Hardwarespezifikation fasst beispielsweise in Form einer Tabellenkalkulation *z. B. Excel, ganz zu schweigen von einer Marke* die Liste der Hardware und deren Verbindung zur Software zusammen.
@@ -556,22 +559,72 @@ Nehmen wir als Beispiel die Ausstattung einer Maschine, einer Förderanlage, bes
 
 Der Förderer ist mit verschiedenen Modultypen ausgestattet. Siehe **EM Equipment Module** und **CM Control Module** gemäß **ISA-88**.
 
+### Ein bisschen UML-Sprache
+> Im weiteren Verlauf dieses Kurses werden wir manchmal ein wenig UML-Notation verwenden. Hier sind die beiden Notationen, die Sie sich **unbedingt merken müssen**.
+
+```mermaid
+classDiagram
+class FB_CAR {
+    + ST_Driver stDrive 
+    + ST_Body stBody 
+    - ST_Motor stMotor 
+}
+class ST_Driver
+
+FB_CAR o-- ST_Driver : aggregation
+FB_CAR *-- ST_Body : composition
+FB_CAR *-- ST_Motor
+
+note for ST_Driver "ST_Driver existiert unabhängig von FB_CAR"
+note for FB_CAR "Wenn FB_CAR unterdrückt wird, wird ST_Body unterdrückt"
+
+class ST_Body{
+    +Roof roof
+    +Bonnet bonnet
+}
+class ST_Motor
+```
+
+> Im obigen Diagramm verwenden wir Aggregation und Zusammensetzung.
+> > **Composition** bedeutet, dass eine Klasse aus einer oder mehreren anderen zusammengesetzt ist.
+> > **Aggregation** bedeutet, dass eine Klasse eine oder mehrere Klassen aggregiert, die nicht zu ihr gehören. Das bedeutet, dass die Klasse ST_Driver **unabhängig** von FB_CAR existieren **muss**.
+
 ### UML-Darstellung des Förderers
-Ich bin nicht in der Lage, die Struktur *genau* darzustellen. Auch wenn es ein wenig Verwirrung stiftet, werden zwei Alternativen vorgeschlagen. **Ich bevorzuge das erste**
+```mermaid
+classDiagram
+    class CM_Motor_typ {
+        BOOL K_ActivatePositiveDirection
+        BOOL K_ActivateNegativeDirection
+    }
 
-Die folgende Version sollte als Objekt in der Lage sein, 4 ``CM_ActiveSensor_typ``-Blöcke anzuzeigen, was die Software nicht zulässt.
-<figure>
-    <img src="./puml/ConveyorPlcTags/ConveyorPlcTags.svg"
-         alt="EM_ConveyorThreeStations_typ variante A">
-    <figcaption>EM_ConveyorThreeStations_typ variante A</figcaption>
-</figure>
+    class CM_ActiveSensor_typ {
+        BOOL S_PushButon
+        BOOL B_SensorActive
+        BOOL H_LedStation
+    }
 
-Die folgende Version als Objekt ``EM_ConveyorThreeStations_typ`` ist korrekt, da die Anzeige der Blöcke ``CM_Motor_typ``, ``CM_ActiveSensor_typ`` und ``CM_Buzzer_typ``, aus denen es besteht, nicht zwingend erforderlich ist. Die gestrichelte Linie bedeutet einfach **Es besteht eine Verbindung**, was richtig ist.
-<figure>
-    <img src="./puml/ConveyorPlcTagsVariantCorrect/ConveyorPlcTagsVariantCorrect.svg"
-         alt="EM_ConveyorThreeStations_typ variante A">
-    <figcaption>EM_ConveyorThreeStations_typ variante A</figcaption>
-</figure>
+    class CM_Buzzer_typ {
+        BOOL Active
+    }
+
+    class EM_ConveyorThreeStations_typ {
+        CM_Motor_typ Motor
+        CM_ActiveSensor_typ StationInput
+        CM_ActiveSensor_typ StationOne
+        CM_ActiveSensor_typ StationTwo
+        CM_ActiveSensor_typ StationThree
+        CM_Buzzer_typ Buzzer
+    }
+
+    EM_ConveyorThreeStations_typ *-- CM_Motor_typ
+    EM_ConveyorThreeStations_typ *-- CM_ActiveSensor_typ : StationInput
+    EM_ConveyorThreeStations_typ *-- CM_ActiveSensor_typ : StationOne
+    EM_ConveyorThreeStations_typ *-- CM_ActiveSensor_typ : StationTwo
+    EM_ConveyorThreeStations_typ *-- CM_ActiveSensor_typ : StationThree
+    EM_ConveyorThreeStations_typ *-- CM_Buzzer_typ
+```
+
+> **<span style="color:red">Achtung! </span>**: Wenn Sie einer KI eine Frage stellen, wird sie wahrscheinlich einen anderen Linktyp zurückgeben. Über die UML/SysML-Semantik für IEC 61131-3 könnte diskutiert werden, aber das in [FB_CAR](#a-little-bit-of-uml-language) dargestellte Modell **repräsentiert den in diesem Kurs verwendeten Formalismus und sollte respektiert werden**. Beispiele zur Verwendung der **Aggregation** werden wir später behandeln.
 
 ### **C**ontrol **M**odule moteur
 ```iecst
