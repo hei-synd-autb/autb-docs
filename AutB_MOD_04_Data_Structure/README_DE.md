@@ -47,13 +47,13 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
     - [Strukturdefinition](#strukturdefinition-1)
     - [Strukturen mit Extends kodieren](#strukturen-mit-extends-kodieren)
     - [Hauptvorteil des Konzepts von *Extends*](#hauptvorteil-des-konzepts-von-extends)
-  - [FB avec ```VAR_IN_OUT```](#fb-avec-var_in_out)
+  - [FB mit ```VAR_IN_OUT```](#fb-mit-var_in_out)
     - [Deklaration eines FB mit```VAR_IN_OUT```](#deklaration-eines-fb-mitvar_in_out)
     - [Instanciation d'un FB avec ```VAR_IN_OUT```](#instanciation-dun-fb-avec-var_in_out)
     - [Codierung eines FB mit einer ``IN_OUT``-Struktur](#codierung-eines-fb-mit-einer-in_out-struktur)
   - [Struktur ```EXTENDS``` mit ```VAR_IN_OUT```](#struktur-extends-mit-var_in_out)
     - [UEine kleine Abstraktion mit ```EXTENDS```](#ueine-kleine-abstraktion-mit-extends)
-    - [Si Extends n'est pas disponible](#si-extends-nest-pas-disponible)
+    - [Wenn Extends nicht verfügbar ist](#wenn-extends-nicht-verfügbar-ist)
 - [Aufzählung](#aufzählung)
   - [Erstes Beispiel](#erstes-beispiel)
     - [Hauptinteresse der Aufzählung](#hauptinteresse-der-aufzählung)
@@ -505,7 +505,11 @@ Bei der Verwendung von ```EXTENDS``` reicht es aus, die Variable in der Grundstr
 
 Vorzugsweise verwenden wir ``VAR_IN_OUT``, das die Adresse der Struktur übergibt, daher arbeiten wir mit den Originalwerten
 
-## FB avec ```VAR_IN_OUT```
+## FB mit ```VAR_IN_OUT```
+
+<h2 style="color:red">BAD code with AI</h2>
+
+[2025 Verwenden Sie einen pointer anstelle eines VAR_IN_OUT](./VAR_IN_OUT_BAD_AI_CODE.md)
 
 ### Deklaration eines FB mit```VAR_IN_OUT```
 ```iecst
@@ -578,8 +582,8 @@ fbStopAxis_X(ioAxisInfo := stAxisTwoEncoder;
 
 > Vorteil, es ist nicht notwendig, für diese neue Struktur einen FB ``FB_StopAxis`` neu zu schreiben.
 
-### Si Extends n'est pas disponible
-Il est possible en version **classique non OOP** d'obtenir le même résultat, mais c'est moins élégant:
+### Wenn Extends nicht verfügbar ist
+Es ist möglich, in der **klassischen Nicht-OOP**-Version dasselbe Ergebnis zu erzielen, aber es ist weniger elegant:
 
 ```mermaid
 ---
