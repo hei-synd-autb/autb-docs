@@ -14,10 +14,10 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 *Keywords:* **DUT Type Conversion ARRAY STRUCT**
 
-## Table des matières
+## Table des matières.
 
 - [Module 04 Structures de données.](#module-04-structures-de-données)
-  - [Table des matières](#table-des-matières)
+  - [Table des matières.](#table-des-matières)
 - [Préambule](#préambule)
   - [Typage](#typage)
     - [Quelques rappels concernant les types.](#quelques-rappels-concernant-les-types)

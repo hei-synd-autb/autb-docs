@@ -14,10 +14,10 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 *Keywords:* **DUT Type Conversion  ARRAY STRUCT**
 
-# Inhaltsverzeichnis
+# Inhaltsverzeichnis.
 
 - [Modul 04 Datenstrukturen.](#modul-04-datenstrukturen)
-- [Inhaltsverzeichnis](#inhaltsverzeichnis)
+- [Inhaltsverzeichnis.](#inhaltsverzeichnis)
 - [Präambel](#präambel)
   - [Tippen](#tippen)
     - [Ein paar Erinnerungen zu Typen.](#ein-paar-erinnerungen-zu-typen)
