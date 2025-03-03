@@ -346,7 +346,7 @@ END_TYPE
 VAR
    getVelocity : REAL;
    stAxisInfo  : ST_AxisInfo;
-   ST_AxisInfo_Initialized stAxisInfoInit
+   stAxisInfoInit : ST_AxisInfo_Initialized
 END_VAR
 ```
 
