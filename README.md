@@ -54,7 +54,7 @@ Dieses Dokument ist ein Leitfaden zu Datenstrukturen in der Strukturierten Texts
 
 ---
 
-[Module 06 Program Organisation Unit](./AutB_MOD_06_Program_Organisation_Unit/README.md): Programmiermodule, POU, für IEC-61131-3.
+[Module 06 Program Organisation Unit](./AutB_MOD_06_Program_Organisation_Unit/README.md): Les modules de programmation, POU, pour IEC-61131-3.
 
 [Module 06 Program Organisation Unit](./AutB_MOD_06_Program_Organisation_Unit/README_DE.md): Programmiermodule, POU, für IEC-61131-3.
 
