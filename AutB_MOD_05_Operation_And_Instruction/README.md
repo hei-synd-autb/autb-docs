@@ -12,7 +12,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 *Keywords:* **IF ELSE FOR WHILE REPEAT CASE**
 
-# Module 03 Operations and Instructions
+# Module 05 Operations and Instructions
 
 # Les opérations de base
 |Operation        |Symbol              |Niveau de priorité              |
