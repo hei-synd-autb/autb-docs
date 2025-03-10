@@ -48,15 +48,21 @@ Dieses Dokument ist ein Leitfaden zu Datenstrukturen in der Strukturierten Texts
 
 ---
 
-[Module 05 Operation and Instruction](./AutB_MOD_05_Operation_And_Instruction/README.md): Les opération et instructions de base du langage IEC-61131-3.
+[Module 05 Operation and Instruction](./AutB_MOD_05_Operation_And_Instruction/README.md): Les opérations et instructions de base du langage IEC-61131-3.
+
+[Module 05 Operation and Instruction](./AutB_MOD_05_Operation_And_Instruction/README_DE.md): Die grundlegenden Operationen und Anweisungen der Sprache IEC-61131-3.
 
 ---
 
-[Module 06 Program Organisation Unit](./AutB_MOD_06_Program_Organisation_Unit/README.md): Les modules de programmation de IEC-61131-3
+[Module 06 Program Organisation Unit](./AutB_MOD_06_Program_Organisation_Unit/README.md): Programmiermodule, POU, für IEC-61131-3.
+
+[Module 06 Program Organisation Unit](./AutB_MOD_06_Program_Organisation_Unit/README_DE.md): Programmiermodule, POU, für IEC-61131-3.
 
 ---
 
 [Module 07 Robust Programming with State Machine](./AutB_MOD_07_Robust_Programming_With_State_Machine/README.md): Utilisation des machines d'état pour une programmation robuste.
+
+[Module 07 Robust Programming with State Machine](./AutB_MOD_07_Robust_Programming_With_State_Machine/README_DE.md): Verwenden von Zustandsmaschinen für robuste Programmierung.
 
 ---
 
