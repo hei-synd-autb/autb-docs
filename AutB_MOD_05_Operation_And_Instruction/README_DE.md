@@ -94,11 +94,17 @@ ELSE
 END_IF
 ```
 ### Activity diagram for instruction ```IF...ELSIF...ELSE```
-<figure>
-    <img src="./puml/IfElseInstructionQuickStart/IfElseInstructionQuickStart.svg"
-         alt="If Elsif Else Instruction">
-    <figcaption>If Elsif Else Instruction</figcaption>
-</figure>
+```mermaid
+graph TD
+    A[Start] --> B{Is xMyCondition true?}
+    B -->|Yes| C[diToRegister := 7]
+    B -->|No| D{Is xMySecondCondition true?}
+    D -->|Yes| E[diToRegister := 14]
+    D -->|No| F[diToRegister := 0]
+    C --> G[End]
+    E --> G[End]
+    F --> G[End]
+```
 
 > Die Sprache des strukturierten Texts ermöglicht zwei Arten von Kommentaren. ``//`` *Kommentar* am Zeilenanfang oder ``(* Kommentar *)`` vor und nach dem Kommentar.
 
@@ -146,11 +152,15 @@ FOR diCounter := 5 TO 1 BY -1 DO
 END_FOR
 ``` 
 ### Aktivitätsdiagramm der Anweisung ```FOR```
-<figure>
-    <img src="./puml/ForInstructionQuickStart/ForInstructionQuickStart.svg"
-         alt="For Loop Instruction">
-    <figcaption>For Loop Instruction</figcaption>
-</figure>
+```mermaid
+graph TD
+    A[Start] --> B[Initialize diCounter := 5]
+    B --> C{diCounter >= 1}
+    C -->|Yes| D[diNumber1 := diNumber1 * 2]
+    D --> E[diCounter := diCounter - 1]
+    E --> C
+    C -->|No| F[End]
+```
 
 > **Achtung!**
 Zyklische Programme mögen keine Schleifen. Wenn Sie also ein Array mit 2000 Werten initialisieren müssen, fragen Sie sich, ob dies in Ihren Positionszyklus bei 400 Mikrosekunden passt. Im schlimmsten Fall dauert es bei einem Wert pro Zyklus 0,8 Sekunden.
@@ -186,7 +196,7 @@ END_FOR
 
 > Im obigen Code stellt die Tatsache, dass der Wert ``I_END_OF_LOOP`` nicht genau erreicht wird, für den Compiler kein Problem dar. Es verwendet einen Komparator ``iLoopVar <= I_END_OF_LOOP``, um die Schleife fortzusetzen, was das System robuster macht als ein Unentschieden.
 
-## ``WHILE...DO```-Anweisung
+### ```WHILE...DO```-Anweisung
 Eine WHILE-Anweisung wird ausgeführt, **bis** eine Bedingung erfüllt ist.
 
 - Wenn die Startbedingung zunächst falsch ist, wird der interne Block nie ausgeführt.
@@ -209,11 +219,15 @@ END_WHILE
 > Das obige Beispiel birgt ein Risiko. Wenn die exakte Bedingung „diCounter = 0“ nie erreicht wird, riskieren wir eine **Endlosschleife**. Wir bevorzugen eine Ungleichung vom Typ ```<=``` oder ```>=```, siehe ```<``` oder ```>```. *Die vorherige Aussage ist für reelle Zahlen noch kritischer*.
 
 ### Aktivitätsdiagramm ``WHILE...DO``
-<figure>
-    <img src="./puml/WhileInstructionQuickStar/WhileInstructionQuickStar.svg"
-         alt="Instruction WHILE">
-    <figcaption>Activity diagram for WHILE..DO </figcaption>
-</figure> 
+```mermaid
+flowchart TD
+    A[Start] --> B[Initialize diCounter to 33]
+    B --> C{diCounter <> 0}
+    C -->|Yes| D[Multiply diNumber1 by 2]
+    D --> E[Decrement diCounter by 1]
+    E --> C
+    C -->|No| F[End]
+```
  
 ## ``REPEAT...UNTIL```-Anweisung
 Die ``REPEAT``-Anweisung wird erneut ausgeführt, solange eine Bedingung wahr ist.
@@ -241,11 +255,17 @@ diResult := diNumber;
 > Die Anweisung ``REPEAT...UNTIL`` mit einer Gleichheit ``=`` ist **gefährlich**. Wenn die genaue Bedingung nie erreicht wird, riskieren wir eine **Endlosschleife**. Wir bevorzugen eine Ungleichung vom Typ ```<=``` oder ```>=```, siehe ```<``` oder ```>```.
 
 ### Aktivitätsdiagramm ```REPEAT...UNTIL```
-<figure>
-    <img src="./puml/RepeatInstructionQuickStar/RepeatInstructionQuickStar.svg"
-         alt="Instruction REPEAT">
-    <figcaption>Activity diagram for REPEAT</figcaption>
-</figure> 
+```mermaid
+flowchart TD
+    A[Start] --> B[Initialize diNumber := 2]
+    B --> C[Initialize diCounter := 21]
+    C --> D{diCounter = 0?}
+    D -- No --> E[diNumber := diNumber * 2]
+    E --> F[diCounter := diCounter - 1]
+    F --> D
+    D -- Yes --> G[diResult := diNumber]
+    G --> H[End]
+```
 
 ## ``RETURN``-Anweisung
 Ermöglicht das sofortige Verlassen eines Anweisungsblocks.
@@ -295,11 +315,18 @@ Wie im Fall von ``IF`` kann ``ELSE`` weggelassen werden, dies wird jedoch als sc
 
 ### Aktivitätsdiagramm vom Typ ``CASE..OF``.
 
-<figure>
-    <img src="./puml/CaseActivityInstruction/CaseActivityInstruction.svg"
-         alt="Case comme diagramme d'activité">
-    <figcaption>Boxanweisungen als Aktivitätsdiagramm</figcaption>
-</figure>
+```mermaid
+flowchart TD
+    A[Start] --> B{diCounter}
+    B -->|1, 5| C[xMyCondition := TRUE]
+    C --> D[xMyThirdCondition := FALSE]
+    B -->|2| E[xMySecondCondition := FALSE]
+    E --> F[xMyThirdCondition := TRUE]
+    B -->|10..20| G[xMyCondition := TRUE]
+    G --> H[xMyThirdCondition := TRUE]
+    B -->|ELSE| I[xMyCondition := NOT xMyCondition]
+    I --> J[xMySecondCondition := xMyCondition OR xMySecondCondition]
+```
 
 
 > Die Verwendung eines ``CASE..OF`` **mit Zahlen ist eine schlechte Programmierpraxis**. Wir werden ``ENUM`` verwenden. Im speziellen Fall des Siemens TIA Portals, das keine Aufzählung unterstützt, werden wir Konstanten verwenden.
@@ -330,17 +357,17 @@ END_VAR
 *) 
 CASE doorState OF 
 CLOSE_DOOR:    
-      xMyCondition := TRUE; 
-      xMyThirdCondition := FALSE; 
+      xMyStatus := TRUE; 
+      xMyThirdStatus := FALSE; 
 WAIT_DOOR_CLOSED:
-      xMySecondCondition := FALSE; 
-      xMyThirdCondition := TRUE; 
+      xMySecondStatus := FALSE; 
+      xMyThirdStatus := TRUE; 
 DOOR_CLOSED:
-      xMyCondition := TRUE; 
-      xMyThirdCondition= TRUE; 
+      xMyStatus := TRUE; 
+      xMyThirdStatus= TRUE; 
 DOOR_POSITION_UNKNOWN:
-      xMyCondition := NOT xMyCondition; 
-      xMySecondCondition := xMyCondition OR xMySecondCondition; 
+      xMyStatus := FALSE; 
+      xMySecondStatus := FALSE; 
 END_CASE
 ```
 ### Hinweise zu ``CASE..OF``.
@@ -350,13 +377,68 @@ END_CASE
 
 ### Aktivitätsdiagramm von „CASE..OF“.
 
-<figure>
-    <img src="./puml/StateMachineQuickStartOpenDoor/StateMachineQuickStartOpenDoor.svg"
-         alt="State Machine Close Door">
-    <figcaption>In einer Zustandsmaschine gibt es keine ELSE-Bedingung!</figcaption>
-</figure>
+```mermaid
+flowchart TD
+    A[doorState] -->|CLOSE_DOOR| B[xMyStatus := TRUE; xMyThirdStatus := FALSE]
+    A -->|WAIT_DOOR_CLOSED| C[xMySecondStatus := FALSE; xMyThirdStatus := TRUE]
+    A -->|DOOR_CLOSED| D[xMyStatus := TRUE; xMyThirdStatus := TRUE]
+    A -->|DOOR_POSITION_UNKNOWN| E[xMyStatus := FALSE; xMySecondStatus := FALSE]
+```
 
 > Stellen Sie sich vor, Ihre Zustandsmaschine wird für den Autopiloten eines Flugzeugs verwendet. Was tun wir im Falle eines unbestimmten Zustands? **Der Schleudersitz-Aktuator ist auch ein Zustand!**
+
+### Mit einem Zustandsdiagramm
+
+**<span style="color:red;">Problem</span>**: Im obigen Beispiel sind die Variablen xMyStatus, ``xMySecondStatus`` und ``xMyThirdStatus`` nicht in allen Zuständen eindeutig bestimmt. Beispiel: ``xMyStatus`` in ``WAIT_DOOR_CLOSED``.
+
+In der Praxis werden wir, wie wir später im Kurs sehen werden, **immer** lieber Status außerhalb von ``CASE..OF`` zuweisen. Im folgenden Beispiel werden die Übergangsbedingungen weggelassen. *Das Verhalten ist jedoch nicht genau identisch mit dem vorherigen Code*.
+
+> Eine genaue Definition der Zustände finden Sie in den Karnaugh-Tabellen und im Kurs zur kombinatorischen Logik.
+
+### Code mit Status außerhalb von ``CASE..OF``
+
+```ìecst
+CASE doorState OF 
+CLOSE_DOOR:
+    IF startTimer then    
+        doorState = EN_DOOR.WAIT_DOOR_CLOSED;
+    END_IF
+WAIT_DOOR_CLOSED:
+    IF timeToBig then    
+        doorState = EN_DOOR.DOOR_POSITION_UNKNOWN;
+    ELSIF closedSensor then    
+        doorState = EN_DOOR.DOOR_CLOSED
+    END_IF
+DOOR_CLOSED:
+    IF NOT closedSensor then
+        doorState = EN_DOOR.DOOR_POSITION_UNKNOWN;
+    END_IF
+DOOR_POSITION_UNKNOWN:
+    IF closedSensor then
+        doorState = EN_DOOR.DOOR_CLOSED;
+    END_IF
+END_CASE
+
+xMyStatus := (doorState = EN_DOOR.CLOSE_DOOR) OR 
+             (doorState = EN_DOOR.DOOR_CLOSED);
+xMySecondStatus := FALSE;
+xMyThirdStatus := (doorState = EN_DOOR.WAIT_DOOR_CLOSED) OR 
+                  (doorState = EN_DOOR.DOOR_CLOSED);
+
+```
+
+#### Zustandsmaschine ohne Zustände
+```mermaid
+stateDiagram-v2
+    [*] --> CLOSE_DOOR
+    CLOSE_DOOR --> WAIT_DOOR_CLOSED: startTimer
+    WAIT_DOOR_CLOSED --> DOOR_POSITION_UNKNOWN: timeToBig
+    WAIT_DOOR_CLOSED --> DOOR_CLOSED: closedSensor
+    DOOR_CLOSED --> DOOR_POSITION_UNKNOWN: NOT closedSensor
+    DOOR_POSITION_UNKNOWN --> DOOR_CLOSED: closedSensor
+```
+
+---
 
 # Codierungsübungen/-technik
 ## Übung 1, ```WHILE...DO```
