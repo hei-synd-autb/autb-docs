@@ -92,6 +92,34 @@ END_IF
 diInternalMemory := diNewValue;
 ```
 
+```mermaid
+classDiagram
+    class FB_CheckFunctionBlock {
+        +BOOL diNewValue
+        +BOOL bReset
+        +BOOL Q
+        -DINT diInternalMemory
+    }
+
+    FB_CheckFunctionBlock : +()
+    
+note for FB_CheckFunctionBlock "There is no syntax for VAR_IN VAR_OUT in UML"   
+note for FB_CheckFunctionBlock " *+* Means public, can be seen from outside"
+note for FB_CheckFunctionBlock " *-* Means private, like VAR..END_VAR"
+```
+
+> A function block has a method by default, this is the method to call it.
+
+```
+PRG_Test
+VAR
+    fbCheckFunctionBlock    : FB_CheckFunctionBlock;
+END_VAR
+
+// Call FB
+fbCheckFunctionBlock();
+```
+
 > Ce sont les ``variables internes`` qui différentient une simple fonction, ``Function`` d'un ``Function Block``.
 
 C'est cette variable interne, ci-dessus ``diInternalMemory``, qui fait la différence. Sans cette variable interne, il ne serait pas possible de savoir si la nouvelle valeur est supérieure à l'ancienne. C'est la raison pour laquelle, pour pouvoir être utilisé, un ``Function Block`` doit être ``instancié``.
@@ -180,11 +208,44 @@ En alternative, comme pour les fonctions de Motion Control, on peut faire préc�
 ## Le Function Block dans la logique ISA-88
 Nous reprenons la représentation ISA-88 pour la représentation logicielle du Unit Vertical Filler. A l'aide des Function Block, il devient aisé de représenter la structure du programme de la machine.
 
-<figure>
-    <img src="./puml/Unit_Vertical_Filler_With_FB/Unit_Vertical_Filler_With_FB.svg"
-         alt="Image lost, Unit_Vertical_Filler_With_FB">
-    <figcaption>Structure of Program for Unit Vertical Filler</figcaption>
-</figure>
+```mermaid
+classDiagram
+    class PRG_Unit_Filler {
+        EM_WeigthScale emWeigthScale
+        EM_BagForming emBagForming
+        EM_FeedRoller emFeedRoller
+        EM_Sealer emSealer
+    }
+
+    class EM_WeigthScale {
+        CM_InfeedGate cmInfeedGate
+        CM_Scale cmScale
+        CM_DumpGate cmDumpGate        
+    }
+
+    class EM_BagForming {
+    }
+
+    PRG_Unit_Filler *-- EM_WeigthScale
+    PRG_Unit_Filler *-- EM_BagForming
+    PRG_Unit_Filler *-- EM_FeedRoller
+    PRG_Unit_Filler *-- EM_Sealer
+
+    EM_WeigthScale *-- CM_InfeedGate
+    EM_WeigthScale *-- CM_Scale
+    EM_WeigthScale *-- CM_DumpGate
+
+    EM_BagForming *-- CM_LeftServo
+    EM_BagForming *-- CM_RightServo
+
+    EM_FeedRoller *-- CM_LeftServoFeed
+    EM_FeedRoller *-- CM_RightServoFeed
+
+    EM_Sealer *-- CM_ServoCutter
+
+```
+
+> note for **EM_WeigthScale** "Writing the name of the instance in the class is optional. It does not provide very important information about the structure of the system."
 
 Nous avons un programme PRG_Unit_Filler qui implémente l'unité qui contient quatre Function Block que nous écrivons avec le préfixe ``EM_`` pour **Equipment Module**.
 
@@ -361,12 +422,13 @@ Ce paragraphe n'est pas une contrainte technique, mais uniquement une bonne prat
 -   Décomposer son code en plusieurs programmes est déjà une bonne idée en soi.
 -   Le principe pourrait être: créer un ``Function Block`` à partir d'un programme qui mérite ou nécessite d'être répété.
 
+---
+
 # VAR_IN_OUT
 
 Le descripteur de variable ``VAR_IN_OUT ``est un outil puissant et particulièrement utile pour la robustesse d'un Function Block ou d'un Function.
 
-## En Python
-En python, en principe, le problème n'existe pas vraiment dans la mesure ou tout est objet et que tout objet est passé en paramètre.
+> **En python**, en principe, le problème n'existe pas vraiment dans la mesure ou tout est objet et que tout objet est passé en paramètre.
 
 ### Cependant, ou néanmoins !!
 Ce que ne vérifie pas Python, c'est la validité de l'object passé en paramètre. Ce qui serait compliqué, puisque Python permet de modifier dynamiquement à peu près n'importe quoi, n'importe ou dans le code.
@@ -381,11 +443,39 @@ Le descripteur VAR_IN_OUT vérifie plusieurs choses.
 
 ### Utilisation
 Reprenons l'exemple vu lors du traitement des interfaces:
-<figure>
-    <img src="./puml/ConveyorPlcTags/ConveyorPlcTags.svg"
-         alt="EM_ConveyorThreeStations_typ variante A">
-    <figcaption>EM_ConveyorThreeStations_typ variante A</figcaption>
-</figure>
+```mermaid
+classDiagram
+    class CM_Motor_typ {
+        BOOL K_ActivatePositiveDirection
+        BOOL K_ActivateNegativeDirection
+    }
+
+    class CM_ActiveSensor_typ {
+        BOOL S_PushButon
+        BOOL B_SensorActive
+        BOOL H_LedStation
+    }
+
+    class CM_Buzzer_typ {
+        BOOL Active
+    }
+
+    class EM_ConveyorThreeStations_typ {
+        CM_Motor_typ Motor
+        CM_ActiveSensor_typ StationInput
+        CM_ActiveSensor_typ StationOne
+        CM_ActiveSensor_typ StationTwo
+        CM_ActiveSensor_typ StationThree
+        CM_Buzzer_typ Buzzer
+    }
+
+    EM_ConveyorThreeStations_typ *-- CM_Motor_typ
+    EM_ConveyorThreeStations_typ *-- CM_ActiveSensor_typ : StationInput
+    EM_ConveyorThreeStations_typ *-- CM_ActiveSensor_typ : StationOne
+    EM_ConveyorThreeStations_typ *-- CM_ActiveSensor_typ : StationTwo
+    EM_ConveyorThreeStations_typ *-- CM_ActiveSensor_typ : StationThree
+    EM_ConveyorThreeStations_typ *-- CM_Buzzer_typ
+```
 
 Ici, nous avons un total de 15 tags pour le convoyeur, et c'est un système simplifié. Dans la vrai vie, nous aurons parfois des structures de données de plusieurs centaines de tags.
 
@@ -418,13 +508,42 @@ timer := myConveyor.Motor.K:ActivatePositiveDirection;
 PROGRAM PRG_Simulator
 VAR
      SetSimulator           : BOOL;
-     SetSimulator           : EM_ConveyorThreeStations_typ;
+     conveyorOne           : EM_ConveyorThreeStations_typ;
      fbConveyorSimulatorOne : FB_ConveyorSimulator;
 EN_VAR
 
 // Code
 fbConveyorSimulatorOne(Enable := SetSimulator,
-                       myConveyor := ConveyorOne);
+                       myConveyor := conveyorOne);
+```
+
+```mermaid
+classDiagram
+    class PRG_Simulator {
+        BOOL SetSimulator
+        EM_ConveyorThreeStations_typ conveyorOne
+        FB_ConveyorSimulator fbConveyorSimulatorOne 
+    }
+
+    class FB_ConveyorSimulator {
+    }
+
+    class EM_ConveyorThreeStations_typ {
+        CM_Motor_typ Motor
+        CM_ActiveSensor_typ StationInput
+        CM_ActiveSensor_typ StationOne
+        CM_ActiveSensor_typ StationTwo
+        CM_ActiveSensor_typ StationThree
+        CM_Buzzer_typ Buzzer
+    }
+
+    PRG_Simulator *-- FB_ConveyorSimulator
+    PRG_Simulator *-- EM_ConveyorThreeStations_typ
+
+    FB_ConveyorSimulator o-- EM_ConveyorThreeStations_typ
+
+note for FB_ConveyorSimulator "Memory for EM_ConveyorThreeStations_typ is 
+                            in PRG_Simulator"
 ```
 
 #### Notes sur l'utilisation de ```VAR_IN_OUT```
@@ -437,6 +556,106 @@ C'est la raison pour laquelle une variable de type ``VAR_IN_OUT`` **doit toujour
 Cela permet, comme nous le verrons avec les Function Block de type Motion Control, à plusieurs Function Block de se partager le même espace mémoire. Ce qui n'est pas vraiment un problème, vu que le système cyclique fait que plusieurs blocs ne travaillerons en principe jamais en même temps sur la même structure.
 
 > Il est possible avec la plupart des compilateurs actuels de travailler directement avec des adresse et des pointeurs. Ceci principalement pour des aspects pratiques quand le langage IEC 61131-3 doit communiquer avec des portions de code écrites dans d'autres langages. **Néanmoins VAR_IN_OUT reste la solution la plus simple et la plus robuste pour passer des structures en paramètres**.
+
+## VAR_IN_OUT pour des Function Block
+
+On peut aussi passer des Function Block and VAR_IN_OUT.
+Cas d'utilisation. On revient sur le Unit Filler vu plus haut et on suppose que l'on veut.
+1.  Pouvoir utiliser les équipements de manière indépendante, par exemple en mode manuel.
+2.  Utiliser les équipements avec un algotithme, pour ne pas dire programme:  **UnitFiller_One**.
+3.  Utiliser le système sans la balance EM_WeigthScale avec un **FB_UnitFiller_Two**.
+4.  UnitFiller_One et UnitFiller_Two fonctionnent différemment.
+
+voici la structure du programme
+
+```mermaid
+classDiagram
+    class PRG_Unit_Filler {
+        EM_WeigthScale emWeigthScale
+        EM_BagForming emBagForming
+        EM_FeedRoller emFeedRoller
+        EM_Sealer emSealer
+        FB_UnitFiller_One fbUnitFiller_One
+        FB_UnitFiller_Two fbUnitFiller_Two        
+
+    }
+
+    PRG_Unit_Filler *-- EM_WeigthScale
+    PRG_Unit_Filler *-- EM_BagForming
+    PRG_Unit_Filler *-- EM_FeedRoller
+    PRG_Unit_Filler *-- EM_Sealer
+
+    FB_UnitFiller_One o-- EM_WeigthScale
+    FB_UnitFiller_One o-- EM_BagForming
+    FB_UnitFiller_One o-- EM_FeedRoller
+    FB_UnitFiller_One o-- EM_Sealer
+
+    FB_UnitFiller_Two o-- EM_BagForming
+    FB_UnitFiller_Two o-- EM_FeedRoller
+    FB_UnitFiller_Two o-- EM_Sealer
+```
+
+> On a parfaitement le droit de n'utiliser que des parties des diagrammes UML pour rendre les choses plus claires.
+
+<div style="text-align: center;">
+
+```mermaid
+---
+title: FB_UnitFiller_One
+---
+
+classDiagram
+    class FB_UnitFiller_One {
+        EM_WeigthScale emWeigthScale
+        EM_BagForming emBagForming
+        EM_FeedRoller emFeedRoller
+        EM_Sealer emSealer       
+    }
+
+    FB_UnitFiller_One o-- EM_WeigthScale
+    FB_UnitFiller_One o-- EM_BagForming
+    FB_UnitFiller_One o-- EM_FeedRoller
+    FB_UnitFiller_One o-- EM_Sealer
+```
+
+
+```mermaid
+---
+title: FB_UnitFiller_Two
+---
+
+classDiagram
+
+    class FB_UnitFiller_Two{
+        +BOOL Enable
+        +BOOL InOperation
+        EM_BagForming emBagForming
+        EM_FeedRoller emFeedRoller
+        EM_Sealer emSealer         
+    }
+
+    FB_UnitFiller_Two o-- EM_BagForming
+    FB_UnitFiller_Two o-- EM_FeedRoller
+    FB_UnitFiller_Two o-- EM_Sealer
+```
+</div>
+
+```iecst
+FUNCTION_BLOCK FB_UnitFiller_Two
+VAR_INPUT
+    Enable           : BOOL;
+END_VAR
+VAR_IN_OUT
+    emBagForming     : EM_BagForming;
+    emFeedRoller     : EM_FeedRoller;
+    emSealer         : EM_Sealer;
+END_VAR
+VAR_OUTPUT
+    InOperation      : BOOL;
+END_VAR
+```
+
+---
 
 # Namespace
 En français, Opérateurs d'espace de nommage, on utiliser le terme anglais dans la suite du cours.
