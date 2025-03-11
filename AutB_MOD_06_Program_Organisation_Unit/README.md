@@ -563,7 +563,7 @@ On peut aussi passer des Function Block and VAR_IN_OUT.
 Cas d'utilisation. On revient sur le Unit Filler vu plus haut et on suppose que l'on veut.
 1.  Pouvoir utiliser les équipements de manière indépendante, par exemple en mode manuel.
 2.  Utiliser les équipements avec un algotithme, pour ne pas dire programme:  **UnitFiller_One**.
-3.  Utiliser le système sans la balance EM_WeigthScale avec un **FB_UnitFiller_Two**.
+3.  Utiliser le système sans la balance EM_WeigthScale avec un **UnitFiller_Two**.
 4.  UnitFiller_One et UnitFiller_Two fonctionnent différemment.
 
 voici la structure du programme
