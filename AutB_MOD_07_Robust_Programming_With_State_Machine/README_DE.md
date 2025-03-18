@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Modul 05 Robuste Programmierung
+# Modul 07 Robuste Programmierung
 
 *Schlüsselwörter: CASE..OF / ENUM / State Machine / Enable / Execute*
 
