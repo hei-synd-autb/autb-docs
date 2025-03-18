@@ -193,7 +193,7 @@ Einige Compiler enthalten Erweiterungen zu IEC 61131-3, die die Begriffe „VAR_
 PROGRAM PRG_CALL_A_FB
 VAR
     fbCheckOne  : FB_CheckFunctionBlock;
-    fbCheckTwi  : FB_CheckFunctionBlock;
+    fbCheckTwo  : FB_CheckFunctionBlock;
     diTestOne   : DINT;
     diTestTwo   : DINT;
     bReset      : BOOL;
@@ -214,6 +214,7 @@ END_VAR
 
     diTestTwo := fbCheckTwo.diOut;
 
+    // This is a Function
     bAnd := AND_OUT(IN1 := fbCheckOne.Q,
                     IN2 := fbCheckTwo.Q);
 ```
