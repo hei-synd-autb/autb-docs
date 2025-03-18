@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 05 Programmation robuste
+# Module 07 Programmation robuste
 
 *Keywords : CASE..OF / ENUM / State Machine / Enable / Execute*
 
@@ -18,6 +18,51 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 - La structure du code avec Finite State Machine et appel aux blocs fonctionnels
 - Gestion des alarmes
 - Les Coding Rules
+
+# Sommaire
+- [Module 07 Programmation robuste](#module-07-programmation-robuste)
+- [Contenu](#contenu)
+- [Sommaire](#sommaire)
+- [Généralités](#généralités)
+  - [Théorie de base](#théorie-de-base)
+    - [Traiter les entrées](#traiter-les-entrées)
+    - [Machine d'état](#machine-détat)
+    - [Gérer les sorties en fonction des états](#gérer-les-sorties-en-fonction-des-états)
+  - [Pseudo code.](#pseudo-code)
+- [Modèles de Enable et Execute](#modèles-de-enable-et-execute)
+  - [Modèle Enable InOperation](#modèle-enable-inoperation)
+    - [Enable In Operation Base / State machine](#enable-in-operation-base--state-machine)
+    - [Définition des états](#définition-des-états)
+    - [Déclaration de l'ENUM et commentaire.](#déclaration-de-lenum-et-commentaire)
+    - [Pragma](#pragma)
+      - [Attribute qualified\_only](#attribute-qualified_only)
+      - [Attribute strict](#attribute-strict)
+    - [Traitement des entrées/sorties.](#traitement-des-entréessorties)
+  - [Modèle Execute Done](#modèle-execute-done)
+    - [Execute Done Base / State machine](#execute-done-base--state-machine)
+    - [Définition des états](#définition-des-états-1)
+    - [Un bloc fonctionnel de type Enable](#un-bloc-fonctionnel-de-type-enable)
+    - [Un bloc fonctionnel de type Execute](#un-bloc-fonctionnel-de-type-execute)
+- [On insiste sur l'appel en continu](#on-insiste-sur-lappel-en-continu)
+  - [Un premier exemple qui peut poser problème](#un-premier-exemple-qui-peut-poser-problème)
+  - [Un deuxième exemple qui peut poser, ou posera obligatoirement un problème](#un-deuxième-exemple-qui-peut-poser-ou-posera-obligatoirement-un-problème)
+- [Autres pratiques utiles](#autres-pratiques-utiles)
+  - [State nm1, état précédent](#state-nm1-état-précédent)
+  - [Texte des états](#texte-des-états)
+  - [Ne jamais sous-estimer les aides à la lecture du programme](#ne-jamais-sous-estimer-les-aides-à-la-lecture-du-programme)
+- [Les alarmes, events.](#les-alarmes-events)
+  - [Exemple d'event](#exemple-devent)
+    - [Code](#code)
+    - [Commentaire](#commentaire)
+  - [Event Manager](#event-manager)
+    - [Alarm](#alarm)
+    - [Warning](#warning)
+    - [Statuts](#statuts)
+  - [Pour résumer les alarmes](#pour-résumer-les-alarmes)
+    - [*A decision support system for identifying abnormal operating procedures in a nuclear power plant, by MH Hsieh · 2012*](#a-decision-support-system-for-identifying-abnormal-operating-procedures-in-a-nuclear-power-plant-by-mh-hsieh--2012)
+- [Coding Rules](#coding-rules)
+- [Exercices](#exercices)
+- [Pour aller un peu plus loin](#pour-aller-un-peu-plus-loin)
 
 # Généralités
 Il existe quelques principes qui permettent d'écrire **un code robuste**.
