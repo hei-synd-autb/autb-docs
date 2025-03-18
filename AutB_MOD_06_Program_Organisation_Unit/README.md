@@ -10,13 +10,56 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 04 Program Oranization Unit
+# Module 06 Program Oranization Unit
 
 En langage IEC 61131-3, les unité de programmation ou Program Organisation Units, POU, sont au nombre de trois.
 
 -   Le bloc fonctionnel ou **Function Block FB**
 -   La fonction ou **Function, FC**,
 -   Le programme, ou **Program PRG**.
+
+## Sommaire
+
+- [Module 06 Program Oranization Unit](#module-06-program-oranization-unit)
+  - [Sommaire](#sommaire)
+- [Reference à ISA-88](#reference-à-isa-88)
+- [Function Block](#function-block)
+    - [Des variables d'entrée.](#des-variables-dentrée)
+    - [Des variables de sortie.](#des-variables-de-sortie)
+    - [Des variables dites IN\_OUT](#des-variables-dites-in_out)
+    - [Des variables mémorisées en interne.](#des-variables-mémorisées-en-interne)
+    - [Un algorithme.](#un-algorithme)
+  - [Ecriture d'un Function Block](#ecriture-dun-function-block)
+  - [Instanciation et déclaration d'un Function Block](#instanciation-et-déclaration-dun-function-block)
+  - [Utilisation des entrées et sorties d'un Function Block](#utilisation-des-entrées-et-sorties-dun-function-block)
+    - [Coding rules](#coding-rules)
+  - [Le Function Block dans la logique ISA-88](#le-function-block-dans-la-logique-isa-88)
+- [Function](#function)
+  - [Ecriture d'un fonction, Function.](#ecriture-dun-fonction-function)
+    - [Coding rules](#coding-rules-1)
+  - [Appel d'une fonction, Function.](#appel-dune-fonction-function)
+  - [Fonction avec sorties supplémentaire](#fonction-avec-sorties-supplémentaire)
+    - [Appel avec sorties supplémentaires](#appel-avec-sorties-supplémentaires)
+  - [Subtilité du compilateur](#subtilité-du-compilateur)
+    - [Exemple](#exemple)
+    - [Mais](#mais)
+- [Programme, ou Program](#programme-ou-program)
+  - [Coding rules](#coding-rules-2)
+  - [Ordre d'exécution des programmes](#ordre-dexécution-des-programmes)
+    - [Conseil](#conseil)
+  - [Temps de cycle du programme (ou de la tâche)](#temps-de-cycle-du-programme-ou-de-la-tâche)
+  - [Méthode de travail ou d'implémentation.](#méthode-de-travail-ou-dimplémentation)
+- [VAR\_IN\_OUT](#var_in_out)
+    - [Cependant, ou néanmoins !!](#cependant-ou-néanmoins-)
+    - [Utilisation](#utilisation)
+      - [Declaration ``VAR_IN_OUT``](#declaration-var_in_out)
+      - [Pass parameter for ``VAR_IN_OUT``](#pass-parameter-for-var_in_out)
+      - [Notes sur l'utilisation de ```VAR_IN_OUT```](#notes-sur-lutilisation-de-var_in_out)
+  - [VAR\_IN\_OUT pour des Function Block](#var_in_out-pour-des-function-block)
+- [Namespace](#namespace)
+  - [Namespace pour les listes de variables globales](#namespace-pour-les-listes-de-variables-globales)
+    - [Déclaration dans la liste GVL\_Config](#déclaration-dans-la-liste-gvl_config)
+    - [Utlisation dans le code](#utlisation-dans-le-code)
 
 # Reference à ISA-88
 La référence à ISA-88 n'est pas le sujet de ce cours, mais, comme dans d'autres chapitres, elle est utilisée pour replacer ce cours dans son contexte de système industriel. Ci-dessous, une unité pour le remplissage de sacs. Si dans le module consacré aux interfaces, nous nous étions intéressé à la **structure** des données, le **Function Block** va servir à donner un **comportement** à cette structure.
@@ -56,10 +99,22 @@ Le principe est de ne pas réécrire plusieurs fois le même code.
 
 La structure du **Function Block** en IEC 61131-3 correspond aux applications PLC/hardware avec une séparation claire des entrées et des sorties.
 
-- Des variables d'entrée.
-- Des variables de sortie.
-- Des variables mémorisées en interne.
-- Un algorithme.
+### Des variables d'entrée.
+Nommées ``VAR_INPUT``, les entrées sont visibles à l'extérieur du Function Block, elles sont prévues pour être accédées en écriture.
+
+### Des variables de sortie.
+Nommées ``VAR_OUTPUT``, les sorties sont visibles à l'extérieur du Function Block, elles sont prévues pour être accédées en lecture.
+
+### Des variables dites IN_OUT
+Les ``VAR_IN_OUT`` font l'objet d'un [paragraphe dédié: VAR_IN_OUT](#var_in_out).
+
+### Des variables mémorisées en interne.
+Nommées ``VAR``, elles de sont pas accessibles à l'exérieur du Function Block, mais peuvent cependant être visualisées et modifiée par l'outil de développement, IDE.
+
+> Il existe d'autres types de variables internes avec des fonctions spécifiques, par exemple:  RETAIN, CONSTANT, le traitement détaillé de ces variables sors du cadre de ce cours de base. On se référera à la documentation du fournisseur de l'IDE.
+
+### Un algorithme.
+Dans un Function Block, l'algorithme peut être visualisé par l'IDE, ceci de manière séparée pour chaque instance du Function Block
 
 ## Ecriture d'un Function Block
 

@@ -10,12 +10,54 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 04 Program Oranization Unit
+# Module 06 Program Oranization Unit
 In der Sprache IEC 61131-3 gibt es drei Programmiereinheiten oder Programmorganisationseinheiten (POUs).
 
 - Der Funktionsblock oder **Funktionsblock FB**
 - Die Funktion oder **Funktion, FC**,
 - Das Programm oder **Programm PRG**.
+
+## Zusammenfassung
+
+- [Module 06 Program Oranization Unit](#module-06-program-oranization-unit)
+  - [Zusammenfassung](#zusammenfassung)
+- [Verweis auf ISA-88](#verweis-auf-isa-88)
+    - [Eingangsvariablen](#eingangsvariablen)
+    - [Ausgangsvariablen](#ausgangsvariablen)
+    - [IN\_OUT-Variablen](#in_out-variablen)
+    - [Intern gespeicherte Variablen](#intern-gespeicherte-variablen)
+    - [Ein Algorithmus](#ein-algorithmus)
+  - [Einen Funktionsblock schreiben](#einen-funktionsblock-schreiben)
+  - [Instanziierung und Deklaration eines Funktionsblocks](#instanziierung-und-deklaration-eines-funktionsblocks)
+  - [Verwendung der Ein- und Ausgänge eines Funktionsblocks](#verwendung-der-ein--und-ausgänge-eines-funktionsblocks)
+    - [Codierungsregeln](#codierungsregeln)
+  - [Der Funktionsblock in der ISA-88-Logik](#der-funktionsblock-in-der-isa-88-logik)
+- [Function](#function)
+  - [Eine Funktion schreiben, Funktion.](#eine-funktion-schreiben-funktion)
+    - [Codierungsregeln](#codierungsregeln-1)
+  - [Aufrufen einer Funktion, Funktion.](#aufrufen-einer-funktion-funktion)
+  - [Funktion mit zusätzlichen Ausgängen](#funktion-mit-zusätzlichen-ausgängen)
+    - [Aufruf mit zusätzlichen Ausgängen](#aufruf-mit-zusätzlichen-ausgängen)
+  - [Compiler-Feinheit](#compiler-feinheit)
+    - [Beispiel](#beispiel)
+    - [Aber](#aber)
+- [Programm](#programm)
+  - [Codierungsregeln](#codierungsregeln-2)
+  - [Reihenfolge der Programmausführung](#reihenfolge-der-programmausführung)
+    - [Beratung](#beratung)
+  - [Zykluszeit des Programms (oder der Task)](#zykluszeit-des-programms-oder-der-task)
+  - [Arbeits- oder Implementierungsmethode.](#arbeits--oder-implementierungsmethode)
+- [VAR\_IN\_OUT](#var_in_out)
+    - [Allerdings, oder trotzdem!!](#allerdings-oder-trotzdem)
+    - [Verwenden](#verwenden)
+      - [Deklaration ``VAR_IN_OUT``](#deklaration-var_in_out)
+      - [Pass parameter for ``VAR_IN_OUT``](#pass-parameter-for-var_in_out)
+      - [Hinweise zur Verwendung von ``VAR_IN_OUT``.](#hinweise-zur-verwendung-von-var_in_out)
+  - [``VAR_IN_OUT`` mit Function Block](#var_in_out-mit-function-block)
+- [Namespace](#namespace)
+  - [Namespace für globale Variablenlisten](#namespace-für-globale-variablenlisten)
+    - [Deklaration in der GVL\_Config-Liste](#deklaration-in-der-gvl_config-liste)
+    - [Im Code verwenden](#im-code-verwenden)
 
 # Verweis auf ISA-88
 Der Verweis auf ISA-88 ist nicht Gegenstand dieses Kurses, wird aber wie in anderen Kapiteln verwendet, um diesen Kurs in seinen industriellen Systemkontext einzuordnen. Unten ist eine Einheit zum Befüllen von Beuteln. Wenn wir in dem den Schnittstellen gewidmeten Modul an der **Struktur** der Daten interessiert waren, wird der **Funktionsblock** verwendet, um dieser Struktur ein **Verhalten** zu verleihen.
@@ -55,10 +97,22 @@ Das Prinzip besteht darin, denselben Code nicht mehrmals neu zu schreiben.
 
 Der Aufbau des **Funktionsblocks** in IEC 61131-3 entspricht SPS-/Hardware-Anwendungen mit einer klaren Trennung von Ein- und Ausgängen.
 
-- Eingabevariablen.
-- Ausgabevariablen.
-- Intern gespeicherte Variablen.
-- Ein Algorithmus.
+### Eingangsvariablen
+Genannt ``VAR_INPUT``, die Eingänge sind von außen sichtbar und für den Schreibzugriff vorgesehen.
+
+### Ausgangsvariablen
+Genannt ``VAR_OUTPUT``, die Ausgänge sind von außen sichtbar und für den Lesezugriff vorgesehen.
+
+### IN_OUT-Variablen
+Die ``VAR_IN_OUT`` werden in einem [eigenen Abschnitt: VAR_IN_OUT](#var_in_out) behandelt.
+
+### Intern gespeicherte Variablen
+Genannt ``VAR``, sie sind von außen nicht zugänglich, können jedoch vom Entwicklungswerkzeug, IDE, visualisiert und geändert werden.
+
+> Es gibt andere Arten von internen Variablen mit spezifischen Funktionen, z.B.: RETAIN, CONSTANT. Die detaillierte Behandlung dieser Variablen liegt außerhalb des Rahmens dieses Grundkurses. Siehe die Dokumentation des IDE-Anbieters.
+
+### Ein Algorithmus
+In einem Funktionsblock kann der Algorithmus vom IDE visualisiert werden, und zwar getrennt für jede Instanz des Funktionsblocks.
 
 ## Einen Funktionsblock schreiben
 
