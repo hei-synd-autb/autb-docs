@@ -172,11 +172,30 @@ Der unten erwähnte Funktionsblock [MC_Power](#an-Functional-Block-of-Type-Enabl
 Solange ``Status`` ``TRUE`` ist, bedeutet dies, dass die Achse unter Drehmoment steht. Wenn es eine pneumatische Achse wäre, könnten wir sagen, unter Druck.
 
 ### Enable In Operation Base / State machine
-<figure>
-    <img src="./puml/EnableInOpBase/EnableInOpBase.svg"
-         alt="Lost image : EnableInOpBase">
-    <figcaption>Function Block Enable InOperation Base</figcaption>
-</figure>
+
+<div align="center">
+
+```mermaid
+---
+title: Function Block Enable InOperation Base
+---
+
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Init : Enable
+    Init --> Idle : not Enable
+    Init --> InOp
+    Init --> Error : SetError
+    InOp --> Idle : not Enable
+    InOp --> Error : Set Error
+    Error --> Idle : not Enable
+
+note left of Idle : InOperation = FALSE    Error = FALSE
+note right of Init : InOperation = FALSE     Error = FALSE
+note left of InOp : InOperation = TRUE     Error = FALSE
+note left of Error : InOperation = FALSE    Error = TRUE
+```
+</div>
 
 ### Definition von Zuständen
 
@@ -296,11 +315,28 @@ Funktionsbausteine ​​dieser Art werden für einmalige Aufgaben eingesetzt, d
 Im folgenden Beispiel wird **MC_RESET** in Motion Control-Anwendungen verwendet, um einen ``ERROR_STOP``-Zustand zu verlassen, der die Achse beispielsweise aufgrund eines übermäßigen Folgefehlers gestoppt hat.
 
 ### Execute Done Base/State Machine
-<figure>
-    <img src="./puml/ExecuteDoneBase/ExecuteDoneBase.svg"
-         alt="Lost image : ExecuteDoneBase">
-    <figcaption>Function Block Execute Done Base</figcaption>
-</figure>
+
+<div align="center">
+
+```mermaid
+---
+title: Function Block Execute Done Base (Partial)
+---
+
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Init : Execute Up
+    Done --> Idle : Execute Down
+    Init --> InOp
+    Init --> Error : SetError
+    InOp --> Error : SetError
+    Error --> Idle : Execute Down
+    InOp --> Done
+
+```
+</div>
+
+
 
 ### Definition von Zuständen
 
@@ -419,13 +455,25 @@ Mit dieser Praxis, der **GUTEN Praxis**, sind wir sicher, dass:
 3. *Dieses Beispiel ist theoretisch, da ``MC_Reset`` in der Bewegungssteuerung im Allgemeinen verwendet wird, um das System nach einem Fehler zurückzusetzen*.
 
 ## Ein zweites Beispiel, das zwangsläufig ein Problem darstellen kann oder wird
-Kehren wir zum Fall einer Zustandsmaschine zurück, die zur Steuerung von Ampeln verwendet wird und in einem vorherigen Modul [Ampeln mit 4 Zuständen](https://github.com/hei-synd-autb/autb-docs/tree /main/AutB_MOD_03_Operation_And_Instruction) gezeigt wurde #exercise-8-ampeln-%C3%A0-4-%C3%A9states).
 
-<Abbildung>
-     <img src="./puml/4-state Traffic Lights/4-state Traffic Lights.svg"
-          alt="Bild verloren: 4-Staaten-Ampel">
-     <figcaption>Zustandsdiagramm: 4-Zustands-Ampeln</figcaption>
-</figure>
+Kehren wir zum Fall einer Zustandsmaschine zurück, die zur Steuerung von Ampeln verwendet wird und in einem vorherigen Modul [4-Zustands-Ampel](../AutB_MOD_05_Operation_And_Instruction/README.md#exercice-8-feux-de-circulation-à-4-états).
+
+<div align="center">
+
+```mermaid
+---
+title: State Diagram 4-state traffic lights
+---
+
+stateDiagram-v2
+    [*] --> Red
+    Red --> Red_Orange : xConditionRedOrange
+    Red_Orange --> Green : xConditionGreen
+    Green --> Orange : xConditionOrange
+    Orange --> Red : xConditionRed
+```
+
+</div>
 
 Mit dem folgenden Code: *Einige der Übergänge wurden entfernt, um ein klareres Beispiel zu erhalten*. Im Vergleich zum Beispiel in der zitierten Übung wollte ein neuer Programmierer einen neuen Zustand ``SpecialCase`` hinzufügen.
 

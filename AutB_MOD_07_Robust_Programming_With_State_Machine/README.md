@@ -176,11 +176,31 @@ Le bloc fonctionnel [MC_Power](#un-bloc-fonctionnel-de-type-enable) mentionné c
 Tant que la ``Status`` est ``TRUE``, cela signfie que l'axe est sous couple. Si il s'agissait d'un axe pneumatique, on pourrait dire sous pression.
 
 ### Enable In Operation Base / State machine
-<figure>
-    <img src="./puml/EnableInOpBase/EnableInOpBase.svg"
-         alt="Lost image : EnableInOpBase">
-    <figcaption>Function Block Enable InOperation Base</figcaption>
-</figure>
+
+
+<div align="center">
+
+```mermaid
+---
+title: Function Block Enable InOperation Base
+---
+
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Init : Enable
+    Init --> Idle : not Enable
+    Init --> InOp
+    Init --> Error : SetError
+    InOp --> Idle : not Enable
+    InOp --> Error : Set Error
+    Error --> Idle : not Enable
+
+note left of Idle : InOperation = FALSE    Error = FALSE
+note right of Init : InOperation = FALSE     Error = FALSE
+note left of InOp : InOperation = TRUE     Error = FALSE
+note left of Error : InOperation = FALSE    Error = TRUE
+```
+</div>
 
 ### Définition des états
 
@@ -297,11 +317,26 @@ Les blocs fonctionnels de ce type sont utilisés pour des tâches non récurrent
 Dans l'exemple ci-dessous, MC_RESET un utilisé dans les application de Motion Control pour sortir d'un état ERROR_STOP qui a stoppé l'axe, par exemple en raison d'un écart de poursuite trop important.
 
 ### Execute Done Base / State machine
-<figure>
-    <img src="./puml/ExecuteDoneBase/ExecuteDoneBase.svg"
-         alt="Lost image : ExecuteDoneBase">
-    <figcaption>Function Block Execute Done Base</figcaption>
-</figure>
+
+<div align="center">
+
+```mermaid
+---
+title: Function Block Execute Done Base (Partial)
+---
+
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Init : Execute Up
+    Done --> Idle : Execute Down
+    Init --> InOp
+    Init --> Error : SetError
+    InOp --> Error : SetError
+    Error --> Idle : Execute Down
+    InOp --> Done
+
+```
+</div>
 
 ### Définition des états
 
@@ -420,14 +455,24 @@ Avec cette pratique, **GOOD practice**, on a la certitude que:
 3.  *Cet exemple est théorique, car en motion control, MC_Reset est en général utilisé pour réinitialiser le sytème après une erreur*.
 
 ## Un deuxième exemple qui peut poser, ou posera obligatoirement un problème
-Reprenons le cas d'une machine d'état utilisée pour piloter des feux de signailisation vu dans une module précédent [Feux de circulation à 4 états](https://github.com/hei-synd-autb/autb-docs/tree/main/AutB_MOD_03_Operation_And_Instruction#exercice-8-feux-de-circulation-%C3%A0-4-%C3%A9tats).
+Reprenons le cas d'une machine d'état utilisée pour piloter des feux de signailisation vu dans une module précédent [Feux de circulation à 4 états](../AutB_MOD_05_Operation_And_Instruction/README.md#exercice-8-feux-de-circulation-à-4-états).
 
-<figure>
-    <img src="./puml/4-state traffic lights/4-state traffic lights.svg"
-         alt="Image lost: 4-state traffic lights">
-    <figcaption>State Diagram: 4-state traffic lights</figcaption>
-</figure>
+<div align="center">
 
+```mermaid
+---
+title: State Diagram 4-state traffic lights
+---
+
+stateDiagram-v2
+    [*] --> Red
+    Red --> Red_Orange : xConditionRedOrange
+    Red_Orange --> Green : xConditionGreen
+    Green --> Orange : xConditionOrange
+    Orange --> Red : xConditionRed
+```
+
+</div>
 Avec le code suivant: *une partie des transitions ont été enlevées pour obtenir un exemple plus clair*. Par rapport à l'exemple de l'exercice cité, un nouveau programmeur a voulu ajouter un nouvel état ``SpecialCase``.
 
 L'exemple de codage montre qu'il est possible d'avoir soit un feu vert soit un feu rouge pour l'état ``E_StateMachine_typ.SpecialCase``.
