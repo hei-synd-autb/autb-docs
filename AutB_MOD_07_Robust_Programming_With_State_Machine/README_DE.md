@@ -750,7 +750,7 @@ Wenn es zu viele sind...
 
 # [Coding Rules](./Coding_rules.md)
 
-# [Exercices](./Mod05_Exercices.md)
+# [Exercices](./Mod07_Exercices_DE.md)
 
 # Pour aller un peu plus loin
 

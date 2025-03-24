@@ -741,7 +741,7 @@ Si il y en a trop...
 
 # [Coding Rules](./Coding_rules.md)
 
-# [Exercices](./Mod05_Exercices.md)
+# [Exercices](./Mod07_Exercices.md)
 
 # Pour aller un peu plus loin
 
