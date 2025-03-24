@@ -14,7 +14,8 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 # Exercices
 
-Reprendre ## Exercice Work on data structure with VAR_IN_OUT, mais avec le calcul en continu avec un FB doté de InOp.
+## A corriger
+Reprendre Exercice Work on data structure with VAR_IN_OUT, mais avec le calcul en continu avec un FB doté de InOp.
 
 ## Exercice 1, ``StateMachine_typ``
 *Exercice court.*

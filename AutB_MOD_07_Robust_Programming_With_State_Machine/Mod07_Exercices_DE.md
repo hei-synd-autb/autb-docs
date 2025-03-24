@@ -14,6 +14,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 # Übungen
 
+## A corriger
 Resume ## Übung Arbeiten Sie an der Datenstruktur mit VAR_IN_OUT, aber mit kontinuierlicher Berechnung mit einem FB, der mit InOp ausgestattet ist.
 
 ## Übung 1, ``StateMachine_typ``.
