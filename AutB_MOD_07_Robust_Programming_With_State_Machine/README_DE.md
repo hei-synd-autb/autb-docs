@@ -471,6 +471,9 @@ stateDiagram-v2
     Red_Orange --> Green : xConditionGreen
     Green --> Orange : xConditionOrange
     Orange --> Red : xConditionRed
+
+    Red --> Special_Case : SpecialCondition
+    Green --> Special_Case : SpecialCondition    
 ```
 
 </div>

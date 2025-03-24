@@ -150,7 +150,7 @@ Enum pour machine d'état.
 {attribute 'strict'}
 TYPE E_SevenDigitDriver :
 (
-	STATE_IDLE  := 999,
+    STATE_IDLE  := 999,
     STATE_INIT := 1,
     STATE_INOP_ZERO := 2,
     STATE_INOP_ONE := 3,

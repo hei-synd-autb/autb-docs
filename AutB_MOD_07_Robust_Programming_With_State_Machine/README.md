@@ -159,10 +159,6 @@ fbAlarm(Enable := (selector = E_Color.red));
 
 
 
-<h2 style="color:red">Voir nouvelle version dans le lien suivant: </h2>
-
-[2025 EnableInOp](./Mod05_2025_EnableInOp.md)
-
 #	Modèles de Enable et Execute
 En utilisant la programmation orientée objet, il existerait plusieurs variantes possible. Dont celle qui consiste à utiliser l'héritage, les interfaces et les méthodes pour définir des blocs fonctionnels de base avec un comportement commun. Voir [ci-dessous, Pour aller un peu plus loin](#pour-aller-un-peu-plus-loin). Les deux références mentionnées dépassent toutefois le cadre de ce cour, *de base*, ils permettent de montrer que le IEC 61131-3 dans sa version actuelle permet de structurer du code avec une architecture complexe et ne sont pas commentés.
 
@@ -470,6 +466,9 @@ stateDiagram-v2
     Red_Orange --> Green : xConditionGreen
     Green --> Orange : xConditionOrange
     Orange --> Red : xConditionRed
+    
+    Red --> Special_Case : SpecialCondition
+    Green --> Special_Case : SpecialCondition
 ```
 
 </div>
