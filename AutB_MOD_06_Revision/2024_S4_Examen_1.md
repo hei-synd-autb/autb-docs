@@ -33,7 +33,7 @@ stateDiagram-v2
     Aborting --> Aborted
 ```
 
-#### Réponse
+#### Réponse / Lösung
 ```iecst
 TYPE E_State :
 (
@@ -123,6 +123,8 @@ END_VAR
 
 -   Das System ist ein Gerät **Equipment Module**. Stellen Sie das ISA-88-Diagramm dar.
 
+#### Réponse / Lösung
+
 <div style="text-align: center;">
 
 ```mermaid
@@ -141,6 +143,7 @@ classDiagram
 
 -   Stellen Sie eine vollständige Datenstruktur, **DUT** dar, um die Hardware mit den verschiedenen Elementen zu verbinden TAGS
 
+#### Réponse / Lösung
 
 ```iecst
 TYPE ST_Axis
@@ -181,6 +184,9 @@ END_TYPE
 -   On utiliser le schéma ISA 88 pour représenter la structure UML des différents Function Block qui seront intégrés dans un PRG_Machine. **Dessiner le schéma UML des FBs**.
 
 -   Wir verwenden das ISA 88-Diagramm, um die UML-Struktur der verschiedenen Funktionsblöcke darzustellen, die in eine PRG_Machine integriert werden. **Zeichnen Sie das UML-Diagramm des FBs**.
+
+#### Réponse / Lösung
+
 
 <div style="text-align: center;">
 
@@ -228,6 +234,8 @@ END_FUNCTION_BLOCK
 ```
 
 > Copilot donne une réponse rigoureusement exacte.
+
+#### Réponse / Lösung
 
 ### Tâche Cinq / Task Fünf 9 pts
 Proposer un en-tête et un portion de code pour un FB_Gripper qui permette de générer une erreur si la pince n’est pas dans la bonne position après un délai ActivationDelay paramétrable en entrée. Mettre un délai par défaut de 200 [ms].

@@ -31,7 +31,7 @@ stateDiagram-v2
     ProcessCheck --> ProcessError : Failure
 ```
 
-### Solution
+#### Solution / Lösung
 
 Voici l’Enum **EN_ModbusSensor** en langage ST (Structured Text) pour réaliser la machine d’état décrite :
 
@@ -76,6 +76,8 @@ Das obige System besteht aus verschiedenen Equipment Module, die durch die Recht
 -   Geben Sie das ISA-88-Diagramm des P&ID-Diagramms an « Unit = Drink Preparation ».
 
 -   Donner le schéma ISA-88 du diagramme P&ID « Unit = Drink Preparation ».
+
+#### Solution / Lösung
 
 <div style="text-align: center;">
 
@@ -123,6 +125,8 @@ Représenter **une** structure **<span style="color: red;">ST_HwInOut</span>** d
 Stellen Sie eine vollständige Datenstruktur **<span style="color: red;">ST_HwInOut</span>**, **DUT** dar, um die Hardware mit den verschiedenen Elementen zu verbinden **TAGS**. Hier: ein einzelner Eingang oder Ausgang für jedes Control.
 **xxx** zur Identifizierung von Geräten Modul.
 
+#### Solution / Lösung
+
 ```iecst
 TYPE ST_HwInOut :
 STRUCT
@@ -144,6 +148,8 @@ END_TYPE
 -   Définissez une liste de Function Blocks et représentez le schéma UML de l’installation **<span style="color: red;">FB_UnitDrinkPreparation</span>**. Les XV sont tous identiques. Utiliser les symboles de Composition. Ne pas donner les détails internes des FBs.
 
 -   Definieren Sie eine Liste von Function Blocks und stellen Sie das UML-Diagramm der Installation **<span style="color: red;">FB_UnitDrinkPreparation</span>** dar. Die XV sind alle identisch. Verwenden von Composition symbolen. Geben Sie keine internen Details von FBs weiter.
+
+#### Solution / Lösung
 
 ```mermaid
 classDiagram
@@ -191,6 +197,8 @@ classDiagram
     fbEM_BottleFeeding *-- fbCM_M_51
     fbEM_BottleFeeding *-- fbCM_XV_52
 ```
+
+#### Solution / Lösung
 
 ### Tâche quatre / Task Vier 5 pts
 Proposer **l’en tête** d’un Function Block **CM_Valve** pour **une** vanne XV qui intègre :
@@ -244,6 +252,8 @@ Mit:
 -   Output **InOp**, wenn das EM Modul aktiv ist.
 -   InOut : **hw** für hardware ST_HwInOut von Task zwei.
 -   Steuermodule müssen integriert werden.
+
+#### Solution / Lösung
 
 ```iecst
 FUNCTION_BLOCK EM_TemperatureControl
