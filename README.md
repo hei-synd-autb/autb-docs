@@ -60,6 +60,12 @@ Dieses Dokument ist ein Leitfaden zu Datenstrukturen in der Strukturierten Texts
 
 ---
 
+[Révision modules 01 à 06](./AutB_MOD_06_Revision/README.md#révision-modules-01-à-06)
+
+[Wiederholung der Module 01 bis 06](./AutB_MOD_06_Revision/README.md#wiederholung-der-module-01-bis-06)
+
+---
+
 [Module 07 Robust Programming with State Machine](./AutB_MOD_07_Robust_Programming_With_State_Machine/README.md): Utilisation des machines d'état pour une programmation robuste.
 
 [Module 07 Robust Programming with State Machine](./AutB_MOD_07_Robust_Programming_With_State_Machine/README_DE.md): Verwenden von Zustandsmaschinen für robuste Programmierung.
