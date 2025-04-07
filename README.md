@@ -72,7 +72,10 @@ Dieses Dokument ist ein Leitfaden zu Datenstrukturen in der Strukturierten Texts
 
 ---
 
-[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README.md): Introduction to PackML states.
+[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README.md): **FR** Introduction to PackML states.
+
+
+[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README_DE.md): **DE** Introduction to PackML states.
 
 ---
 

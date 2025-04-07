@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Modul 06 Einführung in PackML-Zustände
+# Modul 08 Einführung in PackML-Zustände
 
 *Schlüsselwörter:* **PackML PackTag**
 
@@ -664,62 +664,56 @@ Die Hauptaktivität der Maschine wird nur im Teil ``Execute`` programmiert. Dadu
 
 ```ìecst
 IF fbPackStates.state.Execute THEN
-	fbPackStates.Execute_SC := FALSE;
-	(*
-		Execute State Machine.
-	*)
-	CASE eExecute OF
-		E_Execute.eIdle :
-			strState := 'Idle';
-			stSetParam_X.rPosition_mm := stRemote.lrPositionFwd_X;
-			eExecute := E_Execute.eMotionFwd;
+    fbPackStates.Execute_SC := FALSE;
+    (*
+        Execute State Machine.
+    *)
+    CASE eExecute OF
+        E_Execute.eIdle :
+            strState := 'Idle';
+            stSetParam_X.rPosition_mm := stRemote.lrPositionFwd_X;
+            eExecute := E_Execute.eMotionFwd;
 
-		E_Execute.eMotionFwd :
-			strState := 'Motion Fwd';
-			IF mcMoveAbs_X.Done THEN
-				eExecute := E_Execute.eMotionFwdDone; 
-			END_IF
+        E_Execute.eMotionFwd :
+            strState := 'Motion Fwd';
+            IF mcMoveAbs_X.Done THEN
+                eExecute := E_Execute.eMotionFwdDone; 
+            END_IF
 
-		E_Execute.eMotionFwdDone :
-			strState := 'Motion Fwd Done, Close Gripper';
-			IF fbCloseGripper.Done THEN
-				stSetParam_X.rPosition_mm := stRemote.lrPositionBck_X;
-				eExecute := E_Execute.eMotionBack;
-			END_IF
+        E_Execute.eMotionFwdDone :
+            strState := 'Motion Fwd Done, Close Gripper';
+            IF fbCloseGripper.Done THEN
+                stSetParam_X.rPosition_mm := stRemote.lrPositionBck_X;
+                eExecute := E_Execute.eMotionBack;
+            END_IF
 
-		E_Execute.eMotionBack :
-			strState := 'Motion Back';
-			IF mcMoveAbs_X.Done THEN
-				eExecute := E_Execute.eMotionBackDone; 
-			END_IF
+        E_Execute.eMotionBack :
+            strState := 'Motion Back';
+            IF mcMoveAbs_X.Done THEN
+                eExecute := E_Execute.eMotionBackDone; 
+            END_IF
 
-		E_Execute.eMotionBackDone :
-			strState := 'Motion Back Done, Open Gripper'; 
-			IF fbOpenGripper.Done THEN
-				stSetParam_X.rPosition_mm := stRemote.lrPositionFwd_X;
-				eExecute := E_Execute.eMotionFwd;
-			END_IF
+        E_Execute.eMotionBackDone :
+            strState := 'Motion Back Done, Open Gripper'; 
+            IF fbOpenGripper.Done THEN
+                stSetParam_X.rPosition_mm := stRemote.lrPositionFwd_X;
+                eExecute := E_Execute.eMotionFwd;
+            END_IF
 
-	END_CASE
-	;
+    END_CASE
+    ;
 ELSE
-	strState := 'Idle';
-	eExecute := E_Execute.eIdle;
+    strState := 'Idle';
+    eExecute := E_Execute.eIdle;
 END_IF
 ```
 
-> Beachten Sie abschließend die Verwaltung eines Greifers, Gripper, mithilfe der beiden Funktionsblöcke ``FB_OpenGripper`` und ``FB_CloseGripper``.
+# Fazit
+Es gibt mehrere gute Gründe, PackML zu verwenden. Wenn man nur einen hervorheben müsste, dann wäre es der, dass Sie, nachdem Sie einmal die Verwendung mehrerer Achsbefehle mit und ohne PackML erlebt haben, nie wieder darauf verzichten möchten.
 
-```iecst
-fbOpenGripper.Execute := (eExecute = E_Execute.eMotionBackDone);
-fbCloseGripper.Execute := (eExecute = E_Execute.eMotionFwdDone);
+Nebenbei bemerkt ist es auch möglich, PackML für sehr einfache Maschinen mit nur zwei oder drei Zuständen zu verwenden.
 
-fbOpenGripper(hwEV := GVL_Abox.uaAboxInterface.uaSchunkGripper,
-	          hwSensor := GVL_Abox.uaAboxInterface.uaSchunk);
-			  
-fbCloseGripper(hwEV := GVL_Abox.uaAboxInterface.uaSchunkGripper,
-	           hwSensor := GVL_Abox.uaAboxInterface.uaSchunk);
-```
+Die Verwaltung der Modi ist ebenfalls komfortabel. Es ist möglich, wie im Fall des Labors, einige der Zustände in allen Modi für die Initialisierung der Maschine zu verwenden, um anschließend mehrere Betriebsarten im Ausführungsmodus (Execute) je nach ausgewähltem Modus vorzusehen.
 
-# MCF
+<!-- End of document -->
 

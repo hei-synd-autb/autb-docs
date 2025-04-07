@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 06 Introduction to PackML
+# Module 08 Introduction to PackML
 
 *Keywords:* **PackML**
 
