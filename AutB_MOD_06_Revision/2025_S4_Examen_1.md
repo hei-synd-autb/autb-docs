@@ -258,8 +258,10 @@ Mit:
 -   Steuermodule müssen integriert werden.
 
 #### Solution / Lösung
-
 ```iecst
+//
+// Header EM_TemperatureControl
+//
 FUNCTION_BLOCK EM_TemperatureControl
 VAR_INPUT
     Enable : BOOL;
@@ -275,7 +277,9 @@ VAR
     cmXV_31  : CM_Valve;
 END_VAR
 
-// Main logic
+//
+// Code of EM_TemperatureControl
+//
 IF Enable THEN
     // Activate FB
     cmPT_32.Enable := TRUE;
