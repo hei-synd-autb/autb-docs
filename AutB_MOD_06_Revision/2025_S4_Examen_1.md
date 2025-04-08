@@ -60,6 +60,8 @@ END_TYPE
 
 > Ne pas laisser une ENUM à 0, car à l'initialisation, l'état sera peut-être dans cet état sans que cela ne soit explicitement décrit / *Lassen Sie eine ENUM nicht auf 0, da sich der Zustand bei der Initialisierung in diesem Zustand befinden kann, ohne dass dies explizit beschrieben wird*.
 
+> Attention, on laisse souvent une virgule après le dernier ENUM, le compilateur affichera une erreur. / *Seien Sie vorsichtig, wir lassen oft ein Komma nach dem letzten ENUM, der Compiler zeigt einen Fehler an*.
+
 ## Exercice 2
 
 <div style="text-align: center;">
