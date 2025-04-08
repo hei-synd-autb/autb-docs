@@ -58,6 +58,8 @@ END_TYPE
 > 
 > > Copilot a utilisé des chiffres dans l'ordre, 0, 1, 2... je veux pouvoir insérer un chiffre intermédiaire, même si pour être honnête, la valeur des chiffre n'est pas vraiment importante, sinon que je ne veux pas de zero.
 
+> Ne pas laisser une ENUM à 0, car à l'initialisation, l'état sera peut-être dans cet état sans que cela ne soit explicitement décrit / *Lassen Sie eine ENUM nicht auf 0, da sich der Zustand bei der Initialisierung in diesem Zustand befinden kann, ohne dass dies explizit beschrieben wird*.
+
 ## Exercice 2
 
 <div style="text-align: center;">
