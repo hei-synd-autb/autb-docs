@@ -757,3 +757,5 @@ Wenn es zu viele sind...
 -   [Stefan Henneken, IEC 61131-3: The State Pattern](https://stefanhenneken.net/2018/11/17/iec-61131-3-the-state-pattern/#more-1285)
 
 -   Design Patterns: Elements of Reusable Object-Oriented Software
+
+<!-- End of file -->

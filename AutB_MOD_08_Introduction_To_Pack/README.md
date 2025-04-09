@@ -1065,4 +1065,5 @@ Accessoirement, il est aussi possible d'utiliser PackML pour des machines très 
 
 La gestion des modes est aussi confortable. Il est possible, comme dans le cas du laboratoire d'utiliser les une partie des états dans tous les modes pour l'initialisation de la machine, pour ensuite prévoir plusieurs types de fonctionnement en Execute selon le mode sélectionné.
 
+
 <!-- End of document -->

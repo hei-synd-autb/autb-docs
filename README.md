@@ -50,32 +50,37 @@ Dieses Dokument ist ein Leitfaden zu Datenstrukturen in der Strukturierten Texts
 
 [Module 05 Operation and Instruction](./AutB_MOD_05_Operation_And_Instruction/README.md): Les opérations et instructions de base du langage IEC-61131-3.
 
+
 [Module 05 Operation and Instruction](./AutB_MOD_05_Operation_And_Instruction/README_DE.md): Die grundlegenden Operationen und Anweisungen der Sprache IEC-61131-3.
 
 ---
 
-[Module 06 Program Organisation Unit](./AutB_MOD_06_Program_Organisation_Unit/README.md): Les modules de programmation, POU, pour IEC-61131-3.
+[Module 06 Program Organisation Unit](./AutB_MOD_06_Program_Organisation_Unit/README.md): Ce module explique les concepts de base des Program Organisation Units (POU) en langage IEC 61131-3, incluant les Function Blocks, Functions et Programmes, ainsi que leur utilisation dans une architecture modulaire. Il détaille les bonnes pratiques de codage, les règles de nommage, et l'usage des descripteurs comme `VAR_IN_OUT`.
+Ojectif: **lisibilité** et **réutilisabilité** du code.
+Des exemples concrets et des diagrammes UML illustrent l'organisation des systèmes industriels selon la norme ISA-88.
 
-[Module 06 Program Organisation Unit](./AutB_MOD_06_Program_Organisation_Unit/README_DE.md): Programmiermodule, POU, für IEC-61131-3.
-
----
-
-[Révision modules 01 à 06](./AutB_MOD_06_Revision/README.md#révision-modules-01-à-06)
-
-[Wiederholung der Module 01 bis 06](./AutB_MOD_06_Revision/README.md#wiederholung-der-module-01-bis-06)
+[Module 06 Program Organisation Unit](./AutB_MOD_06_Program_Organisation_Unit/README_DE.md): Dieses Modul erläutert die grundlegenden Konzepte von Programmorganisationseinheiten (POUs) in der Sprache IEC 61131-3, einschließlich Funktionsblöcken, Funktionen und Programmen, und deren Verwendung in einer modularen Architektur. Es beschreibt ausführlich gute Codierungspraktiken, Benennungsregeln und die Verwendung von Deskriptoren wie ``VAR_IN_OUT``.
+Ziel: **Lesbarkeit** und **Wiederverwendbarkeit** des Codes.
+Konkrete Beispiele und UML-Diagramme veranschaulichen die Organisation industrieller Systeme nach dem ISA-88-Standard. .
 
 ---
 
-[Module 07 Robust Programming with State Machine](./AutB_MOD_07_Robust_Programming_With_State_Machine/README.md): Utilisation des machines d'état pour une programmation robuste.
+[Révision modules 01 à 06](./AutB_MOD_06_Revision/README.md#révision-modules-01-à-06) : Contient les évaluations d'années précédentes comme source d'aide à la révision.
 
-[Module 07 Robust Programming with State Machine](./AutB_MOD_07_Robust_Programming_With_State_Machine/README_DE.md): Verwenden von Zustandsmaschinen für robuste Programmierung.
+[Wiederholung der Module 01 bis 06](./AutB_MOD_06_Revision/README.md#wiederholung-der-module-01-bis-06) : Enthält Beurteilungen aus früheren Jahren als Hilfestellung zur Wiederholung.
 
 ---
 
-[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README.md): **FR** Introduction to PackML states.
+[Module 07 Robust Programming with State Machine](./AutB_MOD_07_Robust_Programming_With_State_Machine/README.md): Ce module présente des techniques de programmation robuste basées sur les machines à états finis **FSM**. Il couvre la gestion des entrées, des sorties, des états, et des alarmes, tout en insistant sur l'importance d'appels continus des blocs fonctionnels. Les bonnes pratiques incluent l'utilisation d'énumérations, de transitions claires, et de diagnostics lisibles. Les alarmes sont abordées brièvement comme des événements critiques pour la fiabilité et la sécurité des systèmes et seront reprise dans le cadre du PackML.
+
+[Module 07 Robust Programming with State Machine](./AutB_MOD_07_Robust_Programming_With_State_Machine/README_DE.md): Dieses Modul stellt robuste Programmiertechniken basierend auf endlichen Zustandsmaschinen **FSM** vor. Es behandelt die Verwaltung von Eingängen, Ausgängen, Zuständen und Alarmen und betont gleichzeitig die Bedeutung kontinuierlicher Aufrufe von Funktionsblöcken. Zu den Best Practices gehören die Verwendung von Aufzählungen, klaren Übergängen und lesbaren Diagnosen. Alarme werden kurz als Ereignisse besprochen, die für die Systemzuverlässigkeit und -sicherheit von entscheidender Bedeutung sind, und im PackML-Framework behandelt.
+
+---
+
+[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README.md): Ce module présente le standard PackML, une norme d'automatisation qui simplifie la conception et la gestion des machines en structurant leurs états et commandes. Il met l'accent sur l'importance d'une méthodologie rigoureuse pour garantir la robustesse et l'efficacité des systèmes automatisés. Les concepts clés incluent la machine d'état PackML, les commandes associées, et leur implémentation dans des environnements PLC.
 
 
-[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README_DE.md): **DE** Introduction to PackML states.
+[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README_DE.md): Dieses Modul stellt den PackML-Standard vor, einen Automatisierungsstandard, der die Konstruktion und Verwaltung von Maschinen durch die Strukturierung ihrer Zustände und Befehle vereinfacht. Es betont die Bedeutung einer strengen Methodik, um die Robustheit und Effizienz automatisierter Systeme sicherzustellen. Zu den Schlüsselkonzepten gehören die PackML-Zustandsmaschine, zugehörige Befehle und ihre Implementierung in SPS-Umgebungen..
 
 ---
 
