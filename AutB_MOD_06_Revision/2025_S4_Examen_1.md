@@ -58,6 +58,10 @@ END_TYPE
 > 
 > > Copilot a utilisé des chiffres dans l'ordre, 0, 1, 2... je veux pouvoir insérer un chiffre intermédiaire, même si pour être honnête, la valeur des chiffre n'est pas vraiment importante, sinon que je ne veux pas de zero.
 
+> Ne pas laisser une ENUM à 0, car à l'initialisation, l'état sera peut-être dans cet état sans que cela ne soit explicitement décrit / *Lassen Sie eine ENUM nicht auf 0, da sich der Zustand bei der Initialisierung in diesem Zustand befinden kann, ohne dass dies explizit beschrieben wird*.
+
+> Attention, on laisse souvent une virgule après le dernier ENUM, le compilateur affichera une erreur. / *Seien Sie vorsichtig, wir lassen oft ein Komma nach dem letzten ENUM, der Compiler zeigt einen Fehler an*.
+
 ## Exercice 2
 
 <div style="text-align: center;">
@@ -254,8 +258,10 @@ Mit:
 -   Steuermodule müssen integriert werden.
 
 #### Solution / Lösung
-
 ```iecst
+//
+// Header EM_TemperatureControl
+//
 FUNCTION_BLOCK EM_TemperatureControl
 VAR_INPUT
     Enable : BOOL;
@@ -271,7 +277,9 @@ VAR
     cmXV_31  : CM_Valve;
 END_VAR
 
-// Main logic
+//
+// Code of EM_TemperatureControl
+//
 IF Enable THEN
     // Activate FB
     cmPT_32.Enable := TRUE;
