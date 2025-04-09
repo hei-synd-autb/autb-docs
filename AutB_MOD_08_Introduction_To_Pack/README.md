@@ -181,13 +181,13 @@ elle facilite la communication entre machines ce qui facilite leur intégration.
 
 ##    PackML State Machine
 
-###    Identifier une Unit/Machine (rappel et extension)
+###    Identifier une Unit/Machine
 -   Une **Unit** / machine, est définie comme un ensemble d'équipements physiques et de fonctions de commande qui exécutent une ou plusieurs fonctions de traitement majeures.
   
 
--   Une unité / machine peut être une seule machine ou un sous-ensemble d'une ligne d'emballage entière.
+-   Une **Unit**  / machine peut être une seule machine ou un sous-ensemble d'une ligne d'emballage entière.
 
--   Une Unit / machine est définie fonctionnellement ou physiquement via une interface unité / machine commune. Le gestionnaire d'état de l'interface PackML fournit une interface de communication unique entre les HMI, Human Machine Interface ou autres systèmes de commande externe et l'unité / la machine, comme illustré à la Figure *Bumotec S1000C*.
+-   Une **Unit**  / machine est définie fonctionnellement ou physiquement via une interface unité / machine commune. Le gestionnaire d'état de l'interface PackML fournit une interface de communication unique entre les HMI, Human Machine Interface ou autres systèmes de commande externe et l'unité / la machine, comme illustré à la Figure *Bumotec S1000C*.
 
 <div style="text-align: center;">
   <figure>
@@ -251,10 +251,29 @@ On notera l'intérêt ici d'une construction modulaire. Le module central peut �
 La syntaxe du PackML State Model
 Le modèle d'état de l'interface PackML repose sur deux éléments principaux, les commandes, [commands](#commands) et les états, [States](#states).
 
+###	States
+-   **Acting States**, ci-dessous en **blanc** un état dans lequel la machine effectue une action)
+-   **Waiting States**, ci-dessous en **bleu** situation stable pour la machine. Un état d'attente nécessite une **commande** pour entrer dans l'état suivant.
+-   **Execute** est un état particulier, car même si il est considéré comme un **Acting State**, il ne possède pas la notion de **SC**, **State Complete**. Il continue à s'exécuter tant qu'il n'a pas reçu de commande,
+
+> Attention, la norme a changé en **2022**. Une bonne partie des exemples de machine d'état PackML que vous trouverez sur le Web correspondent à une ancienne version, 2008 ou 2015.
+ 
+<div style="text-align: center;"> 
+  <figure>
+      <img src="./img/Beckhoff_PackMLFullStateMachine_Full.png"
+          alt="Image of Beckhoff_PackMLFullStateMachine_Full.png">
+      <figcaption>PackML Full State Machine 2022, Source: Beckhoff USA.</figcaption>
+  </figure>
+</div>
+
 ###	Commands
-•	Un déclencheur qui fait passer la machine d'un état à un autre, par exemple un bouton poussoir **Start** sur la machine ou une commande interne ou une alarme.
+Un déclencheur qui fait passer la machine d'un état à un autre, par exemple un bouton poussoir **Start** ou **Hold** sur la machine ou une commande interne ou une alarme.
 
 ```mermaid
+---
+title: From Idle to Execute
+---
+
     stateDiagram-v2
         direction LR
         state PackML{
@@ -272,6 +291,10 @@ Le modèle d'état de l'interface PackML repose sur deux éléments principaux, 
 ```
 
 ```mermaid
+---
+title: From Execute to Held
+---
+
     stateDiagram-v2
         direction LR
         state PackML{
@@ -284,20 +307,60 @@ Le modèle d'état de l'interface PackML repose sur deux éléments principaux, 
         }
 ```
 
-###	States
--   **Acting States**, ci-dessous en **blanc** un état dans lequel la machine effectue une action)
--   **Waiting States**, ci-dessous en **bleu** situation stable pour la machine. Un état d'attente nécessite une **commande** pour entrer dans l'état suivant.
--   **Execute** est un état particulier, car même si il est considéré comme un **Acting State**, il ne possède pas la notion de **SC**, **State Complete**. Il continue à s'exécuter tant qu'il n'a pas reçu de commande,
+### State Complete
 
-> Attention, la norme a changé en **2022**. Une bonne partie des exemples de machine d'état PackML que vous trouverez sur le Web correspondent à une ancienne version, 2008 ou 2015.
- 
-<div style="text-align: center;"> 
-  <figure>
-      <img src="./img/Beckhoff_PackMLFullStateMachine_Full.png"
-          alt="Image of Beckhoff_PackMLFullStateMachine_Full.png">
-      <figcaption>PackML Full State Machine 2022, Source: Beckhoff USA.</figcaption>
-  </figure>
-</div>
+Une commande SC State Complete est émise lorsque tous les modules définis de la machine ont terminé leur propre phase de l'état actif dans lequel la machine se trouve.
+
+Dans l'exemple ci-dessous, trois axes, X, Y et Z doivent se sychroniser avant de passer en Execute.
+
+> Ici, on imagine synchroniser 3 axes électromécaniques indépendants qui doivent ensuite pouvoir être déplacés ensemble dans un espace à trois dimensions.
+
+```mermaid
+---
+title: SC State Complete when all modules completed
+---
+
+stateDiagram-v2
+    direction LR
+
+    state join_state <<join>>
+    state "Starting CM_Axis_X" as  Starting_X
+    state "Starting CM_Axis_Y" as  Starting_Y
+    state "Starting CM_Axis_Z" as  Starting_Z
+
+    Idle --> Starting
+    state Starting{
+        Starting_X
+        Starting_Y
+        Starting_Z
+    }
+
+    Starting_X --> join_state : SC
+    Starting_Y --> join_state : SC
+    Starting_Z --> join_state : SC
+
+    join_state --> Execute
+```
+
+Dans le cas particulier ci-dessous, on déplace l'axe X au point de départ d'une trajectoire, puis on le synchronise avec la trajectoire.
+
+```mermaid
+---
+title: Example of Starting Axis X, Move to Synch and Synch.
+---
+
+stateDiagram-v2
+
+    state "Starting CM_Axis_X" as  Starting_X
+
+    state Starting_X{
+        Idle --> MoveToSynchPoint
+        MoveToSynchPoint --> Synchronize
+        Synchronize --> Done 
+    }
+
+    note left of Done : SC State Complete.
+```
 
 ### Minimum state machine
 La norme ISA-88 décrit aussi un machine d'état. Les états sont approximativement les mêmes et si vous avez compris le principe de la machine d'état du PackML, vous aurez compris la machine d'état de ISA 88.
@@ -326,7 +389,7 @@ Il est recommandé d’implémenter l’ensemble des **17 états du State Model*
 
 ###	Suppression d’états
 -   Les 17 états sont implémentés.
--   Selon les implémentation, il est possible de désactiver certains états, parmi lesquels Complete, Completing, Suspending, Suspended, Unsupending, Holding, Held et Unhoding, notamment en mode manuel.
+-   Selon les implémentation, il est possible de désactiver certains états, parmi lesquels Complete, Completing, Suspending, Suspended, Unsupending, Holding, Held et Unholding, notamment en mode manuel.
 
 Certaines implémentations, comme Siemens, permettent de configurer les états actifs.
 Dans le plus simple cas, uniquement les états Stopped et Execute sont implémentés.
@@ -394,7 +457,7 @@ State Type: <span style="color:red; font-weight:bold">Wait</span>
 </div>
 <br>
 
-Cet état conserve les informations sur l'état de la machine relatives à la condition d'abandon. La machine ne peut sortir de l'état ABORTED qu'après une commande Clear explicite, puis une intervention manuelle pour corriger et réinitialiser les défauts machine détectés.
+Cet état conserve les informations sur l'état de la machine relatives à la condition d'abandon. La machine ne peut sortir de l'état **Aborted** qu'après une commande **Clear** explicite, puis une intervention manuelle pour corriger et réinitialiser les défauts machine détectés.
 
 ###	Clearing 
 State Type: <span style="color:green; font-weight:bold">Acting</span>
@@ -466,7 +529,7 @@ State Type: <span style="color:red; font-weight:bold">Wait</span>
 </div>
 <br>
 
-C'est un état qui indique que la **RESETTING** est terminée. Cet état maintient les conditions de la machine qui ont été atteintes pendant l'état de **RESETTING** et effectue les opérations requises lorsque la machine est au repos.
+C'est un état qui indique que la **Resetting** est terminée. Cet état maintient les conditions de la machine qui ont été atteintes pendant l'état de **Resetting** et effectue les opérations requises lorsque la machine est au repos.
 
 ###	Starting
 > State Type: <span style="color:green; font-weight:bold">Acting</span>
@@ -585,7 +648,7 @@ State Type: <span style="color:green; font-weight:bold">Acting</span>
 </div>
 <br>
 
-Cet état est le résultat d'une demande de type machine depuis l'état SUSPENDED pour revenir à l'état EXECUTE. Les actions de cet état peuvent inclure l'accélération des vitesses, la mise en marche des aspirateurs et le réengagement des embrayages. Cet état est effectué avant l'état EXECUTE et prépare la machine à l'état EXECUTE.
+Cet état est le résultat d'une demande de type machine depuis l'état **SUSPENDED** pour revenir à l'état **EXECUTE**. Les actions de cet état peuvent inclure l'accélération des vitesses, la mise en marche des aspirateurs et le réengagement des embrayages. Cet état est effectué avant l'état **EXECUTE** et prépare la machine à l'état **EXECUTE**.
 
 Remarque : **à la différence de l’action UNHOLD, UNSUSPENDING peut être initié automatiquement**. Par exemple lorsque des pièces sont à nouveau disponibles à l’entrée de la machine.
 
@@ -650,7 +713,7 @@ Au niveau de la logique interne du système, l’état **ABORTING** devrait avoi
 Le délai accordé par le système pour exécuter l’état **ABORTING** dépend de critères de sécurité.
 
 ##	Les commandes
-Les commandes sont au nombre de 9. Il suffit de se référer à la figure du PackML State Model. 
+**Les commandes sont au nombre de 9**. Il suffit de se référer à la figure du PackML State Model. 
 Toute description supplémentaire semble superflue. Dans la formalisation du PackTag, leur valeur va de 0, pas de commande, à 9.
 
 Le tableau ci-dessous est donné à titre indicatif.
@@ -679,7 +742,8 @@ Pour rappel, dans une machine, chaque alarme doit posséder un numéro d’ident
 
 ### Exemple de boutons de commandes
 
-Les boutons sont un exemple d’extension, ils sont par exemple présents dans l’implémentation Siemens. Ces boutons sont simplement l’équivalent de commandes PackML
+Les boutons sont un exemple d’extension, ils sont par exemple présents dans l’implémentation Siemens. Ces boutons sont simplement l’équivalent de commandes PackML.
+
 - Vert	Start
 - Noir	Stop
 - Bleu	Reset ou Clear
