@@ -1,83 +1,57 @@
-# This section is intended to be modified for various tests with mermaid and/or copilot.
-
-## PackML Base
 
 
 
+### State Complete
+
+Ein **SC State Complete**-Befehl wird ausgegeben, wenn alle definierten Module der Maschine ihre eigene Phase des aktiven Zustands, in dem sich die Maschine befindet, abgeschlossen haben.
+
+Im folgenden Beispiel müssen drei Achsen, X, Y und Z, synchronisiert werden, bevor der Befehl „Ausführen“ ausgeführt wird.
+
+> Dabei stellen wir uns die Synchronisierung von 3 unabhängigen elektromechanischen Achsen vor, die dann gemeinsam im dreidimensionalen Raum bewegt werden können müssen.
 
 ```mermaid
-
 ---
-title: One Pack ML Interface for each Unit
+title: SC State Complete when all modules completed
 ---
 
-classDiagram
-namespace A{
-    class Unit_A{
-        PLC : UnitController_A
-        Interface_A : PackML
-    }
-    class Unit_A{
-        PLC : UnitController_A
-        Interface_A : PackML
-    }
+stateDiagram-v2
+    direction LR
 
-    class UnitController_A{
-    }
+    state join_state <<join>>
+    state "Starting CM_Axis_X" as  Starting_X
+    state "Starting CM_Axis_Y" as  Starting_Y
+    state "Starting CM_Axis_Z" as  Starting_Z
 
-    class PackInterface_A {
-        +State : DINT
-        +Mode : DINT
-        +Transition()
-    }
-    
-    class PhysicalUnit_A{
-
-    }
-}
-
-namespace B{
-     class Unit_B{
-        PLC : UnitController_B
-        Interface_B : PackML
+    Idle --> Starting
+    state Starting{
+        Starting_X
+        Starting_Y
+        Starting_Z
     }
 
-    class PackInterface_B {
-        +State : DINT
-        +Mode : DINT
-        +Transition()
-    } 
+    Starting_X --> join_state : SC
+    Starting_Y --> join_state : SC
+    Starting_Z --> join_state : SC
 
-    class UnitController_B_1{
+    join_state --> Execute
+```
+
+Im folgenden Sonderfall bewegen wir die X-Achse zum Startpunkt einer Trajektorie und synchronisieren sie dann mit der Trajektorie.
+
+```mermaid
+---
+title: Example of Starting Axis X, Move to Synch and Synch.
+---
+
+stateDiagram-v2
+
+    state "Starting CM_Axis_X" as  Starting_X
+
+    state Starting_X{
+        Idle --> MoveToSynchPoint
+        MoveToSynchPoint --> Synchronize
+        Synchronize --> Done 
     }
 
-    class UnitController_B_2{
-    }
-    
-    class EquipmentModule_1{
-
-    }
-
-    class EquipmentModule_2{
-        
-    }
-}
-  
-    Unit_B *-- PackInterface_B  
-    Unit_B *-- UnitController_B_1  
-    Unit_B *-- UnitController_B_2
-   
-
-    UnitController_B_1 *-- EquipmentModule_1 
-    UnitController_B_2 *-- EquipmentModule_2        
-
-
-
-    Unit_A *-- PackInterface_A  
-    Unit_A *-- UnitController_A  
-    UnitController_A *-- PhysicalUnit_A 
-
-    PackInterface_B ..|> PackML 
-    PackInterface_A ..|> PackML
-
+    note left of Done : SC State Complete.
 ```
