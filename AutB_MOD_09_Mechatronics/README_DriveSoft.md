@@ -10,9 +10,9 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 07 le drive, software.
+# Module 08 le drive, software.
 
-# Cette partie est actuellement traitée directement dans le cadre du laboratoire: Voir: [LAB 05 Mise en service d'un axe électrique avec une vis à bille](https://github.com/hei-synd-autb/autb-lab-05)
+> Cette partie est actuellement traitée directement dans le cadre du laboratoire: Voir: [LAB 05 Mise en service d'un axe électrique avec une vis à bille](https://github.com/hei-synd-autb/autb-lab-05)
 
 # Régulateur PI
 La théorie sur les régulateurs PI repose sur certains principes de linéarité des signaux. Dans la réalité, comme nous pouvons le voir dans le cadre du laboratoire, de nombreuses composantes ne sont absolument pas linéaires.
@@ -153,7 +153,7 @@ END_IF
 Write(Output)
 ```
 
-## Your job
+## Ce que vous devriez être capable de réaliser.
 -   Utiliser le modèle d'un FB **Enable In Operation Base** pour réaliser un régulateur PI dans un FB_PI.
 -   Utiliser l'état Init pour réinitialiser le sommateur de l'intégrateur: ``sumError``.
 
