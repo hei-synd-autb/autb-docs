@@ -84,7 +84,7 @@ Konkrete Beispiele und UML-Diagramme veranschaulichen die Organisation industrie
 
 ---
 
-[Module 09 Mechatronics Soft](./AutB_MOD_09_Mechatronics_Soft/README.md): La structure et le fonctionnement d'un axe électrique.
+[Module 09 Mechatronics](./AutB_MOD_09_Mechatronics/README.md): Actuateurs.
 
 ---
 
