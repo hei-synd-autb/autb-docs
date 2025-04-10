@@ -10,7 +10,12 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 08 Elements mechatronics software
+# Module 08 Elements mechatronics
+
+Ce modules est constitué de trois partie.
+-   Une introduction aux principaux types d'actuateurs par type de vecteur d'énergie.
+-   [Une introduction au système de pilotage des moteurs](README_DriveHw.md), avec un accent particulier sur ceux du laboratoire d'automation de la HEVS.
+-   [Une introduction aux différents paramètres des commandes de moteur](README_DriveSoft.md) du laboratoire d'automation de la HEVS.
 
 ## Introduction
 Dans la suite du cours, nous allons aborder l'utilisation d'un actuateur pneumatique, puis plus en détail des actuateurs électriques.
@@ -179,7 +184,7 @@ On aurait pu y ajouter une restriction en sortie pour limiter la vitesse de ferm
     <a href="https://www.festo.com">
         <img src="./img/FestoRestriction.jpg" alt="Source Festo" width="200">
     </a>
-    <p><em>Distributeur Festo 5/2</em></p>
+    <p><em>Restriction Festo 5/2</em></p>
 </div>
 
 Avec le croquis suivant:
@@ -188,7 +193,7 @@ Avec le croquis suivant:
     <a href="https://www.festo.com">
         <img src="./img/FestoRestriction_Croquis.jpg" alt="Source Festo" width="200">
     </a>
-    <p><em>Distributeur Festo 5/2</em></p>
+    <p><em>Restriction Festo 5/2</em></p>
 </div>
 
 > Pour ceux qui ne connaitraient pas l'entreprise [Festo](https://www.festo.com), ne pas hésiter à s'y référer pour toute référence d'éléments didactiques. C'est probablement la meilleure source d'information possible dans ce domaine.

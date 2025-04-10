@@ -18,7 +18,7 @@ Ci dessous les différentes vue d'un système de commande d'axe particulier. La 
 -    Prosposer un système de sécurité, STO, Safe Torque Off, présent en standard sur la plupart des commandes d'axe du marché.
 -    Permettre une connexion avec un Ethernet Realtime.
 
-# Alimentation AC/DC
+## Alimentation AC/DC
 
 |Entrée secteur avec un simple redresseur|Entrée secteur avec alimentation régulée|
 |-----------|--------------|
@@ -62,14 +62,14 @@ Les systèmes les plus courants travaillent selon le principe suivant:
     <figcaption>Aperçu de l’alimentation du moteur de l'axe X</figcaption>
 </figure>
 
-# Les drives du laboratoire d'automation de la HEVS.
+## Les drives du laboratoire d'automation de la HEVS.
 |Single Axis X|Double Axis Y-Z|
 |-----------|--------------|
 |![](./img/XCS-SingleAxisConverter.png)|![](./img/XMD%20Double%20Axis%20Converter.png)|
 
 Le convertisseur XCS alimente le convertisseur XMD en tension continue de l'ordre de 600 [Vdc].
 
-## Front View
+### Front View
 
 <figure align="center">
     <img src="./img/MechaDriveFrontConnect.png"
@@ -78,11 +78,12 @@ Le convertisseur XCS alimente le convertisseur XMD en tension continue de l'ordr
 </figure>
 
 
-### DC bus connexion (ici XD02). 
+#### DC bus connexion (ici XD02). 
 Le drive représenté ici, celui où se trouve le processeur du PLC, axe X, est alimenté en 3x400 [Vac]. Son convertisseur AC/DC est suffisamment puissant pour alimenter d’autres drives en tension continue. Le deuxième drive dans le laboratoire, pour les axes Y et Z ne contient pas de convertisseur AC/DC, il est alimenté via le bus DC de l’axe X.
 
-## Sécurité (ici XG41)
-### Sécurité, STO, Safe Torque Off
+### Sécurité (ici XG41)
+
+#### Sécurité, STO, Safe Torque Off
 La plupart des drives de cette catégories présents sur le marché son livrés avec une fonction de sécurité de base qui garanti l’absence du courant dans le moteur via un connexion dédiée, dans le cas du laboratoire, lié via un bouton d’arrêt d’urgence.
 
 > Attention, dans de nombreux cas, les fonctions de sécurité sont des options qui ne sont disponibles qu'à la commande. **Si on devait ajouter par exemple une fonction SLS, Safe Limited Speed, aux axes du laboratoire, il faudrait commander de nouveaux systèmes !**. Il est important de connaître les contraintes de sécurité avant de commander le matériel.
@@ -128,21 +129,21 @@ Dans certains cas, il reste nécessaire de disposer de signaux plus rapides que 
 </div>
 
 
-## Bus de terrain, ici XF50, XF51, XF24 et XF24
+### Bus de terrain, ici XF50, XF51, XF24 et XF24
 Les connecteurs XF50, XF51, XF24 et XF24 servent à la connexion avec un Ethernet Realtime. En général, les fabricants ne fournissent qu’un seul type de bus de terrain.
 Parfois, il existe la possibilité de choisir une option à la commande, mais non modifiable, par exemple linmot. Parfois, ce bus peut être configuré, mais c’est rare, Rexroth est le seul cas que je connaisse.
 
 Dans le cadre du laboratoire, le drive X est équipé d’un Ethercat Master et d’un Profinet Slave.
 Le Profinet Slave est en présérie, prerelease et n’est pas encore en service.
 
-## Motor, ici XD03
+### Motor, ici XD03
 Connection du moteur, le plus souvent sur trois phases, mais il existe quelques rares moteurs qui travaillent avec deux phases, Linmot. Les drives pour deux phases sont spécifiques à ce constructeur.
 
-## Frein XG03
+### Frein XG03
 Dans certains cas, il est nécessaire de prévoir un frein, intégré ou auxiliaire.
 Il est important de noter que le frein, en particulier **celui intégré dans un moteur n’est pas destiné à décélérer le moteur**, mais à le maintenir en position lorsque l’asservissement électrique n’est pas actif.
 
-## Sonde de température XG03
+### Sonde de température XG03
 > En finalité, ce qui va en général limiter la plage d'utilisation d'un moteur, c'est sa température.
 
 Sans risque de destruction des conducteurs électrique par fusion, perte des caractéristiques magnétiques temporaires ou perte des aimants et d'autres risques liés à la température, la plage d'utilisation d'un moteur pourrait être considérablement élargies.
@@ -177,21 +178,21 @@ Pour certaines applications, il peut être nécessaire d’ajouter un deuxième 
 Deuxième exemple d’application d’un deuxième codeur, pour les broches d’usinage à haute vitesse sur une machine d’usinage. Un codeur précis pour le positionnement angulaire de la broche à basse vitesse fournira un signal avec une fréquence trop élevée à haute vitesse. On équipera la broche avec une résolution plus faible pour la régulation de la vitesse lorsque la vitesse de rotation dépasse un certain seuil.
 
 
-# Top View
+## Top View
  <figure align="center">
     <img src="./img/MechaDriveTopConnect.png"
          alt="Image Lost: MechaDriveTopConnect">
     <figcaption>Vue de dessus, le plus souvent pour l'alimentation en puissance</figcaption>
 </figure>
 
-## Alimentation DC, XD10
+### Alimentation DC, XD10
 La plupart des drives sont conçus avec une alimentation en puissance, pour le bus DC, Direct Current, courant continue et électronique interne séparées. Dans le milieu industriel, 24 [Vdc].
 
-## Contact auxiliaire pour l’alimentation, XG02
+### Contact auxiliaire pour l’alimentation, XG02
 Ce contact reste ouvert tant que l’électronique interne n’est pas prête pour gérer la puissance électrique d’alimentation. Il sert en général à piloter un contacteur auxiliaire qui permet de couper l’alimentation AC.
 
 
-# Bottom View
+## Bottom View
 
  <figure align="center">
     <img src="./img/MechaDriveBottomConnect.png"
@@ -199,7 +200,7 @@ Ce contact reste ouvert tant que l’électronique interne n’est pas prête po
     <figcaption>Vue de dessous, le plus souvent connexion du moteur</figcaption>
 </figure>
 
-## Sonde de température, XG03
+### Sonde de température, XG03
 La température de moteur dépend principalement de trois facteurs :
 -    Le taux d’utilisation, c’est-à-dire la puissance moyenne pendant une période donnée.
 -    Le couplage mécanique du moteur et la résistance thermique ce de couplage.
@@ -208,25 +209,25 @@ La température de moteur dépend principalement de trois facteurs :
 Il est important de noter que la sonde de température sert de référence à un modèle de température interne. La sonde de température ne donne en effet qu’une mesure locale à un endroit particulier du moteur, il est important de protéger l’ensemble du moteur dont certaines parties pourraient changer de température plus rapidement que l’emplacement de la sonde.
 Certains moteurs sont équipés de plusieurs sondes de température, par exemple une par bobine.
 
-## Résistance de freinage externe XD04
+### Résistance de freinage externe XD04
 Sauf exception avec des alimentations haut de gamme permettant de réinjecter du courant dans le réseau, l’énergie produite par le moteur en décélération sera en partie dissipée sous forme de chaleur par une résistance électrique interne au drive.
 Dans certain cas, si l’énergie générée par le moteur est plus importante que celle que peut dissiper la résistance interne, il sera nécessaire d’ajouter une résistance externe supplémentaire.
 
-# Quelque exemples de moteurs
+## Quelque exemples de moteurs
 Les drives tels que ceux qui sont disponibles au laboratoire permettent de piloter le plupart des moteurs dits AC synchrones, dits aussi à aimants permanents, du marché, ainsi que des moteurs asynchrones ou à induction.
 
 > Pour les moteurs asynchrones, pour les applications simples sans contrainte de position, par exemple un convoyeur ou une pompe, de simples convertisseurs de fréquence sont souvent une solution meilleur marché. Parfois un convertisseur de fréquence ne se justifiera pas et un simple contacteur triphasé suffira.
 
 <div align="center">
     <a href="https://www.se.com/ch/de/work/products/master-ranges/altivar/">
-        <img src="./img/Schneider Altivar_ATV71H075N4Z.jpg" alt="SE" width="400">
+        <img src="./img/Schneider Altivar_ATV71H075N4Z.jpg" alt="SE" width="300">
     </a>
     <p><em>Frequency Converter Altivar ATV71H075N4Z</em></p>
 </div>
 
 <div align="center">
     <a href="https://montech.com">
-        <img src="./img/Montech_Conveyor.webp" alt="Source Montec" width="400">
+        <img src="./img/Montech_Conveyor.webp" alt="Source Montec" width="300">
     </a>
     <p><em>Montech_Conveyor</em></p>
 </div>
@@ -238,7 +239,7 @@ Pour une broche à haute vitesse, moteur **asynchrone**, de l'ordre de 50'000 [r
 
 <div align="center">
     <a href="http://www.tdmspindles.com/">
-        <img src="./img/HighSpeedSpindle.png" alt="Source TDM" width="400">
+        <img src="./img/HighSpeedSpindle.png" alt="Source TDM" width="300">
     </a>
     <p><em>Broche d'origine TDM, Tessin</em></p>
 </div>
@@ -254,19 +255,12 @@ Moteur linéaire sans fer, permet des vitesse et des accélérations très impor
     <figcaption>Etel ILF+ avec refroidissement à air forcé</figcaption>
 </figure>
 
-# Quelque exemples de codeurs
+## Quelque exemples de codeurs
 Si les moteurs rotatifs sont le plus souvent équipés de codeurs rotatifs intégrés...
 
 <div align="center">
-    <a href="http://www.tdmspindles.com/">
-        <img src="./img/HighSpeedSpindle.png" alt="Source TDM" width="400">
-    </a>
-    <p><em>Broche d'origine TDM, Tessin</em></p>
-</div>
-
-<div align="center">
     <a href="https://www.heidenhain.ch">
-        <img src="./img/Heindenhain Internal Rotary Encoder.webp" alt="Source Heidenhain" width="400">
+        <img src="./img/Heindenhain Internal Rotary Encoder.webp" alt="Source Heidenhain" width="300">
     </a>
     <p><em>Heindenhain Internal Rotary Encoder</em></p>
 </div>
@@ -275,7 +269,7 @@ Si les moteurs rotatifs sont le plus souvent équipés de codeurs rotatifs inté
 
 <div align="center">
     <a href="https://www.renishaw.com">
-        <img src="./img/Renishaw Absolute Linear Encoder.jpg" alt="Source Renishaw" width="400">
+        <img src="./img/Renishaw Absolute Linear Encoder.jpg" alt="Source Renishaw" width="300">
     </a>
     <p><em>Renishaw Absolute Linear Encoder</em></p>
 </div>
