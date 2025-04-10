@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Modul 07 das Antrieb, Hardware.
+# Modul 08 das Antrieb, Hardware.
 Nachfolgend finden Sie die verschiedenen Ansichten eines bestimmten Achssteuerungssystems. Die meisten industriellen elektrischen Achssteuerungen weisen die gleichen Eigenschaften auf. Das System bleibt grundsätzlich dasselbe:
 
 - Steuern Sie einen Motor über eine dreiphasige Stromversorgung.
