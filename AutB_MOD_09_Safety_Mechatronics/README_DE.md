@@ -2,15 +2,15 @@
   <br>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
   <br>
-  HEI-Vs Engineering School - Advanced Automation Safety Pack
+  Industrial Automation Base
   <br>
 </h1>
 
--   Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
+Cours AutB
 
+Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# AAut_MOD_10_SafetyPack
-
+# Module 09 2 Elements mechatronics Safety
 
 
 ## Aperçu
@@ -26,102 +26,7 @@ Les différents états de fonctionnement permettent de bien définir ce qui est 
 
 L'absence de gestion claire et stricte des états et des modes de fonctionnement peut pasablement compliquer la mise en oeuvre de la sécurité, voir rendre la machine dangereuse.
 
-## Sommaire
-
-- [AAut\_MOD\_10\_SafetyPack](#aaut_mod_10_safetypack)
-  - [Aperçu](#aperçu)
-  - [Sommaire](#sommaire)
-  - [Ce qu'il faut retenir](#ce-quil-faut-retenir)
-  - [Ce qu'il faut savoir](#ce-quil-faut-savoir)
-    - [Mais encore](#mais-encore)
-- [Sécurité et bases légales](#sécurité-et-bases-légales)
-  - [Sécurité machine](#sécurité-machine)
-    - [Contexte](#contexte)
-    - [Introduction à la sécurité des systèmes automatisés](#introduction-à-la-sécurité-des-systèmes-automatisés)
-    - [Droits et obligations](#droits-et-obligations)
-    - [Sécurité des machines et commandes de machines](#sécurité-des-machines-et-commandes-de-machines)
-    - [Lexique législatif](#lexique-législatif)
-    - [Base Légale](#base-légale)
-    - [Selon source SUVA](#selon-source-suva)
-      - [Sécurité des machines et commandes de machines](#sécurité-des-machines-et-commandes-de-machines-1)
-      - [Loi fédérale sur la sécurité des produits, LSPro.](#loi-fédérale-sur-la-sécurité-des-produits-lspro)
-      - [Ordonnance sur les machines, OMach et directive 2006/42/CE relative aux machines](#ordonnance-sur-les-machines-omach-et-directive-200642ce-relative-aux-machines)
-      - [Directive CFST 6512 «Equipements de travail»](#directive-cfst-6512-equipements-de-travail)
-      - [Comment garantir la sécurité des machines](#comment-garantir-la-sécurité-des-machines)
-        - [Preuve de la sécurité des produits](#preuve-de-la-sécurité-des-produits)
-        - [Concept de sécurité](#concept-de-sécurité)
-        - [Déclaration de conformité](#déclaration-de-conformité)
-    - [Selon source Union Européenne](#selon-source-union-européenne)
-      - [Extraits de la directive machine](#extraits-de-la-directive-machine)
-        - [Article 2 « Machine »](#article-2--machine-)
-        - [Article 5](#article-5)
-        - [Article 6 Libre circulation, §1](#article-6-libre-circulation-1)
-  - [Sécurité et normes](#sécurité-et-normes)
-    - [Préambule](#préambule)
-    - [Principe](#principe)
-  - [ISO 12100](#iso-12100)
-    - [Principes généraux ISO 12100](#principes-généraux-iso-12100)
-    - [Selon SUVA](#selon-suva)
-        - [Mesures de prévention intrinsèque :](#mesures-de-prévention-intrinsèque-)
-        - [Protection et/ou mesures de prévention complémentaires :](#protection-etou-mesures-de-prévention-complémentaires-)
-        - [Informations pour l’utilisation :](#informations-pour-lutilisation-)
-      - [Mesures de prévention intrinsèque :](#mesures-de-prévention-intrinsèque--1)
-      - [Protection et/ou mesures de prévention complémentaires :](#protection-etou-mesures-de-prévention-complémentaires--1)
-      - [Informations pour l'utilisation](#informations-pour-lutilisation)
-    - [Informations pour l'évaluation des risques](#informations-pour-lévaluation-des-risques)
-    - [Détermination des limites de la machine](#détermination-des-limites-de-la-machine)
-      - [Limites d'utilisation dans toutes les phases de vie et modes de fonctionnement](#limites-dutilisation-dans-toutes-les-phases-de-vie-et-modes-de-fonctionnement)
-      - [Limites spatiales](#limites-spatiales)
-      - [Limites de temps](#limites-de-temps)
-      - [Autres limites](#autres-limites)
-    - [Identification des dangers](#identification-des-dangers)
-    - [Estimation du risque](#estimation-du-risque)
-      - [A considérer:](#a-considérer)
-    - [Évaluation du risque](#évaluation-du-risque)
-      - [Les normes type C](#les-normes-type-c)
-      - [Comparaison des risques :](#comparaison-des-risques-)
-  - [Type de norme à utiliser](#type-de-norme-à-utiliser)
-    - [IEC ou ISO ? Ce que dit ISO 13849](#iec-ou-iso--ce-que-dit-iso-13849)
-      - [CEI 62061 « style »](#cei-62061--style-)
-      - [ISO 13489-1 « style »](#iso-13489-1--style-)
-    - [Sistema 2](#sistema-2)
-      - [SISTEMA Cookbooks](#sistema-cookbooks)
-  - [Principes de ISO 13489](#principes-de-iso-13489)
-    - [Niveau de performance requis PLr](#niveau-de-performance-requis-plr)
-      - [Ordres de grandeur](#ordres-de-grandeur)
-    - [Structure du système matériel et logiciel (catégories)](#structure-du-système-matériel-et-logiciel-catégories)
-    - [Mécanisme de pannes, couverture de diagnostic, DC](#mécanisme-de-pannes-couverture-de-diagnostic-dc)
-      - [Diagnostic coverage](#diagnostic-coverage)
-    - [Que signifie MTTFd ?](#que-signifie-mttfd-)
-      - [Reliability levels of components](#reliability-levels-of-components)
-    - [Qu’est ce qu’une défaillance de cause commune CCF ?](#quest-ce-quune-défaillance-de-cause-commune-ccf-)
-      - [Common Cause Failure CCF](#common-cause-failure-ccf)
-      - [Safety over Ethercat / Sercos / Profinet](#safety-over-ethercat--sercos--profinet)
-  - [Pour résumer](#pour-résumer)
-- [Prévention des explosions](#prévention-des-explosions)
-    - [Quelles sont les zones Ex ou ATEX ?](#quelles-sont-les-zones-ex-ou-atex-)
-      - [La directive ATEX définit six différentes zones Ex.](#la-directive-atex-définit-six-différentes-zones-ex)
-        - [Zone 0 :](#zone-0-)
-        - [Zone 1 :](#zone-1-)
-        - [Zone 2 :](#zone-2-)
-        - [Zone 20 :](#zone-20-)
-        - [Zone 21 :](#zone-21-)
-        - [Zone 22 :](#zone-22-)
-    - [Ethernet-APL en Zone Ex](#ethernet-apl-en-zone-ex)
-      - [Caractéristiques principales d'Ethernet-APL :](#caractéristiques-principales-dethernet-apl-)
-      - [Avantages pour les zones Ex :](#avantages-pour-les-zones-ex-)
-      - [Ressources supplémentaires :](#ressources-supplémentaires-)
-    - [Qu'est-ce que la sécurité intrinsèque ?](#quest-ce-que-la-sécurité-intrinsèque-)
-      - [Principes de la sécurité intrinsèque :](#principes-de-la-sécurité-intrinsèque-)
-      - [Avantages de la sécurité intrinsèque :](#avantages-de-la-sécurité-intrinsèque-)
-      - [Applications typiques :](#applications-typiques-)
-      - [Ressources supplémentaires :](#ressources-supplémentaires--1)
-- [Quelques questions...](#quelques-questions)
-  - [... à propos des cellules du laboratoire d'automation.](#-à-propos-des-cellules-du-laboratoire-dautomation)
-  - [Evaluer ce robot dans un contexte ISO 12100](#evaluer-ce-robot-dans-un-contexte-iso-12100)
-  - [Dans le contexte de l'exercice précédent.](#dans-le-contexte-de-lexercice-précédent)
-  - [Timer sur relais safety](#timer-sur-relais-safety)
-  - [PackML with safety](#packml-with-safety)
+## Sommaire To Be Completed
 
 ## Ce qu'il faut retenir
 - Il existe selon les types d'industrie des loi précises liées à la sécurité.

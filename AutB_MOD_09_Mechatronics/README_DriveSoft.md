@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 08 le drive, software.
+# Module 09 le drive, software.
 
 > Cette partie est actuellement traitée directement dans le cadre du laboratoire: Voir: [LAB 05 Mise en service d'un axe électrique avec une vis à bille](https://github.com/hei-synd-autb/autb-lab-05)
 

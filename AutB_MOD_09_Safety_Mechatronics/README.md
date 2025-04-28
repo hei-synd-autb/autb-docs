@@ -2,34 +2,19 @@
   <br>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
   <br>
-  HEI-Vs Engineering School - Advanced Automation Safety Pack
+  Industrial Automation Base
   <br>
 </h1>
 
--   Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
+Cours AutB
 
+Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# AAut_MOD_10_SafetyPack
-
-
-
-## Aperçu
-L'utilisation de PackML permet de simplifier la conformité de la sécurité de la machine avec sa conception logicielle.
-
-Les différents états de fonctionnement permettent de bien définir ce qui est possible ou non dans différents états, par exemple:
-- On peut définir que l'état **Aborted** correspond à une absence d'énergie à risque sur différents éléments, appliqué aux moteurs, cela se traduit le plus souvent par un état **STO**, **Safe Torque Off**, ce qui correspond à une absence garantie de courant dans le moteur.
-- On peut définir un état **Stopped**, comme la garantie d'une absence de mouvement sur les éléments mobile. Ici aussi, pour les éléments moteur, il est possible d'installer ce que l'on nomme souvent **SOS**, **Safe Operating Stop**.
-- Il est aussi possible de différentier clairement les modes de fonctionnement. Certaines machine peuvent être équipées d'un système de sécurité qui permet de faire fonctionner une machine avec des portes ouvertes sous certaines conditions.
-  - La prermière de ces conditions sera de garantir que la machine se trouve en mode manuel.
-  - La deuxième condition sera que l'opérateur utilise une commande de type poignée homme mort.
-  - La troisième condition sera que les éléments mobiles, typiquement les axes électriques soient équipés d'un système de sécurité de type **SLS**, **Safe Low Speed**, qui garanti que les éléments mobiles ne pourront pas excéder une certaines limite, typiquement de l'ordre de 2 mètres par minute.
-
-L'absence de gestion claire et stricte des états et des modes de fonctionnement peut pasablement compliquer la mise en oeuvre de la sécurité, voir rendre la machine dangereuse.
+# Module 09 2 Elements mechatronics Safety
 
 ## Sommaire
 
-- [AAut\_MOD\_10\_SafetyPack](#aaut_mod_10_safetypack)
-  - [Aperçu](#aperçu)
+- [Module 09 2 Elements mechatronics Safety](#module-09-2-elements-mechatronics-safety)
   - [Sommaire](#sommaire)
   - [Ce qu'il faut retenir](#ce-quil-faut-retenir)
   - [Ce qu'il faut savoir](#ce-quil-faut-savoir)

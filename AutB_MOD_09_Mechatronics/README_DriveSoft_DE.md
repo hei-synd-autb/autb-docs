@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Modul 08 das Antrieb, Software.
+# Modul 09 das Antrieb, Software.
 
 #### Dieser Teil wird derzeit direkt im Labor bearbeitet: Siehe: [LAB 05 Inbetriebnahme einer elektrischen Achse mit Kugelumlaufspindel](https://github.com/hei-synd-autb/autb-lab -05)
 
