@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 09 2 Mechatronische Sicherheitselemente
+# Module 09-2 Mechatronische Sicherheitselemente
 
 
 ## Vorschau

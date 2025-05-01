@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 09 2 Elements mechatronics Safety
+# Module 09-2 Elements mechatronics Safety
 
 ## Sommaire
 

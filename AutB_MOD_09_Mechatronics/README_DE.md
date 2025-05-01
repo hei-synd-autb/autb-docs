@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 09 Elements mechatronics
+# Module 09-1 Elements mechatronics
 
 Dieses Modul besteht aus drei Teilen.
 - Eine Einführung in die wichtigsten Aktuatortypen nach Art des Energievektors.
