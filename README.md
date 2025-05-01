@@ -77,15 +77,20 @@ Konkrete Beispiele und UML-Diagramme veranschaulichen die Organisation industrie
 
 ---
 
-[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README.md): Ce module présente le standard PackML, une norme d'automatisation qui simplifie la conception et la gestion des machines en structurant leurs états et commandes. Il met l'accent sur l'importance d'une méthodologie rigoureuse pour garantir la robustesse et l'efficacité des systèmes automatisés. Les concepts clés incluent la machine d'état PackML, les commandes associées, et leur implémentation dans des environnements PLC.
+[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README.md): PackML
+Ce module présente le standard PackML, une norme d'automatisation qui simplifie la conception et la gestion des machines en structurant leurs états et commandes. Il met l'accent sur l'importance d'une méthodologie rigoureuse pour garantir la robustesse et l'efficacité des systèmes automatisés. Les concepts clés incluent la machine d'état PackML, les commandes associées, et leur implémentation dans des environnements PLC.
 
 
-[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README_DE.md): Dieses Modul stellt den PackML-Standard vor, einen Automatisierungsstandard, der die Konstruktion und Verwaltung von Maschinen durch die Strukturierung ihrer Zustände und Befehle vereinfacht. Es betont die Bedeutung einer strengen Methodik, um die Robustheit und Effizienz automatisierter Systeme sicherzustellen. Zu den Schlüsselkonzepten gehören die PackML-Zustandsmaschine, zugehörige Befehle und ihre Implementierung in SPS-Umgebungen..
+[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README_DE.md): PackML
+Dieses Modul stellt den PackML-Standard vor, einen Automatisierungsstandard, der die Konstruktion und Verwaltung von Maschinen durch die Strukturierung ihrer Zustände und Befehle vereinfacht. Es betont die Bedeutung einer strengen Methodik, um die Robustheit und Effizienz automatisierter Systeme sicherzustellen. Zu den Schlüsselkonzepten gehören die PackML-Zustandsmaschine, zugehörige Befehle und ihre Implementierung in SPS-Umgebungen..
 
 ---
 
 [Module 09 Mechatronics](./AutB_MOD_09_Mechatronics/README.md): Actuateurs.
+Présente les actuateur sous formes de trois catégories, électriques, pneumatiques et hydrauliques.
+
 [Module 09 Mechatronics](./AutB_MOD_09_Mechatronics/README_DE.md_): Aktuatoren.
+Präsentiert Antriebe in drei Kategorien: elektrisch, pneumatisch und hydraulisch.
 
 ---
 
@@ -101,7 +106,14 @@ Zur Anwendung der Konzepte werden praktische Beispiele und Tools wie SISTEMA gen
 
 ---
 
-[Module 10 Motion Control with PLCopen](./AutB_MOD_10_Motion_Control_With_PLCopen/README.md): Utilisation d'une bibliothèque de fonctions standard pour le pilotage d'un mouvemement.
+[Module 10 Motion Control avec PLCopen](./AutB_MOD_10_Motion_Control_With_PLCopen/README.md): PLCopen Motion Control
+
+PLCopen standardise les blocs fonctionnels pour le contrôle de mouvement, facilitant l'interopérabilité et la maintenance dans l'automatisation industrielle. Ce document explore les concepts clés, comme les diagrammes d'état et les meilleures pratiques de programmation, tout en intégrant des exemples concrets. L'approche PackML est également abordée pour gérer la complexité des systèmes multi-modules.
+
+[Module 10 Motion Control mit PLCopen](./AutB_MOD_10_Motion_Control_With_PLCopen/README_DE.md):  PLCopen Motion Control
+
+PLCopen standardisiert Funktionsblöcke für die Bewegungssteuerung und erleichtert so die Interoperabilität und Wartung in der industriellen Automatisierung. Dieses Dokument untersucht wichtige Konzepte wie Zustandsdiagramme und bewährte Programmiermethoden und integriert Beispiele aus der Praxis. Der PackML-Ansatz zur Bewältigung der Komplexität von Mehrmodulsystemen wird ebenfalls erläutert.
+
 
 ---
 
