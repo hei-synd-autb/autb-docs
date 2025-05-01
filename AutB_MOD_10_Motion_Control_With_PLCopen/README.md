@@ -21,6 +21,36 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 - Introduction aux systèmes robotisés, principalement dans le module suivant.
 - Combinaison de systèmes mécatroniques et pilotage en temps réel.
 
+## Sommaire
+
+- [Module 10 PLCopen Motion Control](#module-10-plcopen-motion-control)
+- [Aperçu et objectifs](#aperçu-et-objectifs)
+- [Objectifs du module](#objectifs-du-module)
+  - [Renforcer les notions de programmation robuste en IEC 61131-3](#renforcer-les-notions-de-programmation-robuste-en-iec-61131-3)
+  - [Présenter les éléments du Motion Control en PLCopen](#présenter-les-éléments-du-motion-control-en-plcopen)
+- [PLCopen Motion Control](#plcopen-motion-control)
+  - [Qu'est-ce que PLCopen ?](#quest-ce-que-plcopen)
+  - [La chaine de commande](#la-chaine-de-commande)
+  - [Le type de moteur](#le-type-de-moteur)
+- [PLCopen Généralité](#plcopen-généralité)
+  - [Technical Specification PLCopen Function blocks for motion control](#technical-specification-plcopen-function-blocks-for-motion-control)
+  - [State Diagram](#state-diagram)
+- [Motion Control State Machine](#motion-control-state-machine)
+  - [Les différents états](#les-différents-états)
+- [Cas typique MC_MoveAbsolute](#cas-typique-mc_moveabsolute)
+- [Accès aux axes](#accès-aux-axes)
+  - [AXIS_REF Data type](#axis_ref-data-type)
+- [Administrative and Motion Function Blocks](#administrative-and-motion-function-blocks)
+- [Introduction au codage Motion Control](#introduction-au-codage-motion-control)
+  - [Pourquoi l'entrée de commande est sensible aux fronts](#pourquoi-lentrée-de-commande-est-sensible-aux-fronts)
+  - [Exemple de codage MC_MoveAbsolute](#exemple-de-codage-mc_moveabsolute)
+  - [Bonne pratique](#bonne-pratique)
+  - [Machine d'état complète](#machine-détat-complète)
+- [Motion Control avec PackML](#motion-control-avec-packml)
+  - [Principe de PackML](#principe-de-packml)
+  - [Complexité ?](#complexité-)
+- [Conclusion](#conclusion)
+
 ## Objectifs du module
 
 ### Renforcer les notions de programmation robuste en IEC 61131-3

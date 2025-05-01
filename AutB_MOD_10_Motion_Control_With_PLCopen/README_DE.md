@@ -23,6 +23,36 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 ## Modulziele
 
+## Inhaltsverzeichnis
+
+1. [Übersicht und Ziele](#übersicht-und-ziele)
+2. [Modulziele](#modulziele)
+  - [Vertiefung der Konzepte der robusten Programmierung nach IEC 61131-3](#vertiefung-der-konzepte-der-robuten-programmierung-nach-iec-61131-3)
+  - [Einführung in die Elemente der Bewegungssteuerung in PLCopen](#einführung-in-die-elemente-der-bewegungssteuerung-in-plcopen)
+3. [PLCopen Motion Control](#plcopen-motion-control)
+  - [Was ist PLCopen?](#was-ist-plcopen)
+  - [La chaine de commande](#la-chaine-de-commande)
+  - [Motortyp](#motortyp)
+4. [PLCopen – Allgemeines](#plcopen--allgemeines)
+  - [Technische Spezifikation PLCopen-Funktionsbausteine für die Bewegungssteuerung](#technische-spezifikation-plcopen-funktionsbausteine-für-die-bewegungssteuerung)
+  - [State Diagram](#state-diagram)
+  - [Die verschiedenen Zustände](#die-verschiedenen-zustände)
+5. [Typischer Fall: MC_MoveAbsolute](#typischer-fall-mc_moveabsolute)
+6. [Accès aux axes](#accès-aux-axes)
+  - [AXIS_REF Data type](#axis_ref-data-type)
+  - [Dans le contexte du laboratoire d'automation HEVS](#dans-le-contexte-du-laboratoire-dautomation-hevs)
+7. [Verwaltungs- und Bewegungsfunktionsblöcke](#verwaltungs--und-bewegungsfunktionsblöcke)
+8. [Einführung in die Motion-Control-Codierung](#einführung-in-die-motion-control-codierung)
+  - [Warum der Befehlseingang flankensensitiv ist](#warum-der-befehlseingang-flankensensitiv-ist)
+  - [MC_MoveAbsolute-Codierungsbeispiel](#mc_moveabsolute-codierungsbeispiel)
+  - [Best Practice](#best-practice)
+  - [Vollständiger Zustandsautomat](#vollständiger-zustandsautomat)
+9. [Bewegungssteuerung mit PackML](#bewegungssteuerung-mit-packml)
+  - [PackML-Prinzip](#packml-prinzip)
+  - [Clearing](#clearing)
+  - [Komplexität?](#komplexität)
+10. [Fazit](#fazit)
+
 ### Vertiefung der Konzepte der robusten Programmierung nach IEC 61131-3
 – Verstehen von Best Practices für strukturierten, lesbaren und wartbaren Code.
 – Verwendung verschiedener Variablentypen und Funktionsbausteine ​​zur Gewährleistung der Programmrobustheit.
