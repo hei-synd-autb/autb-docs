@@ -38,7 +38,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
   - [State Diagram](#state-diagram)
   - [Die verschiedenen Zustände](#die-verschiedenen-zustände)
 5. [Typischer Fall: MC_MoveAbsolute](#typischer-fall-mc_moveabsolute)
-6. [Accès aux axes](#accès-aux-axes)
+6. [Zugriff auf die Achsen](#zugriff-auf-die-achsen)
   - [AXIS_REF Data type](#axis_ref-data-type)
   - [Dans le contexte du laboratoire d'automation HEVS](#dans-le-contexte-du-laboratoire-dautomation-hevs)
 7. [Verwaltungs- und Bewegungsfunktionsblöcke](#verwaltungs--und-bewegungsfunktionsblöcke)
@@ -367,7 +367,7 @@ Die Beispieltrajektorie dient nur zu Informationszwecken.
 
 ---
 
-# Accès aux axes
+# Zugriff auf die Achsen
 
 ## AXIS_REF Data type
 - The **AXIS_REF** is a structure that contains information on the corresponding axis. It is used as a **VAR_IN_OUT** in all  Motion Control Function Blocks defined in this document.

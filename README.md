@@ -87,7 +87,7 @@ Dieses Modul stellt den PackML-Standard vor, einen Automatisierungsstandard, der
 ---
 
 [Module 09 Mechatronics](./AutB_MOD_09_Mechatronics/README.md): Actuateurs.
-Présente les actuateur sous formes de trois catégories, électriques, pneumatiques et hydrauliques.
+Présente les actuateurs sous forme de trois catégories, électriques, pneumatiques et hydrauliques.
 
 [Module 09 Mechatronics](./AutB_MOD_09_Mechatronics/README_DE.md_): Aktuatoren.
 Präsentiert Antriebe in drei Kategorien: elektrisch, pneumatisch und hydraulisch.
@@ -99,7 +99,7 @@ Ce module traite des bases légales et normes de sécurité des machines, notamm
 Des exemples pratiques et des outils comme SISTEMA sont mentionnés pour l'application des concepts.
 
 
-[Module 09 Mechatronics Sécurité](./AutB_MOD_09_Safety_Mechatronics/README_DE.md): Sicherheit.
+[Module 09 Mechatronics Sicherheit](./AutB_MOD_09_Safety_Mechatronics/README_DE.md): Sicherheit.
 
 Dieses Modul behandelt die gesetzlichen Grundlagen und Normen zur Maschinensicherheit, darunter ISO 12100 und ISO 13489, mit Schwerpunkt auf Risikobewertung und -minderung. Es deckt auch Explosionsschutz, ATEX-Zonen und Technologien wie Ethernet-APL für gefährliche Umgebungen ab.
 Zur Anwendung der Konzepte werden praktische Beispiele und Tools wie SISTEMA genannt.

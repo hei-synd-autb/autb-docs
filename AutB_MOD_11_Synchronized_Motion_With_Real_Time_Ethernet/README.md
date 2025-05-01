@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 08 Synchronized Motion with Ethernet Real-Time 
+# Module 11 Synchronized Motion with Ethernet Real-Time 
 
 
 *Keywords: SYNCHRONIZATION POLYNOMIAL*
