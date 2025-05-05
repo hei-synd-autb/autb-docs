@@ -24,31 +24,51 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 ## Sommaire
 
 - [Module 10 PLCopen Motion Control](#module-10-plcopen-motion-control)
-- [Aperçu et objectifs](#aperçu-et-objectifs)
-- [Objectifs du module](#objectifs-du-module)
-  - [Renforcer les notions de programmation robuste en IEC 61131-3](#renforcer-les-notions-de-programmation-robuste-en-iec-61131-3)
-  - [Présenter les éléments du Motion Control en PLCopen](#présenter-les-éléments-du-motion-control-en-plcopen)
-- [PLCopen Motion Control](#plcopen-motion-control)
-  - [Qu'est-ce que PLCopen ?](#quest-ce-que-plcopen)
-  - [La chaine de commande](#la-chaine-de-commande)
-  - [Le type de moteur](#le-type-de-moteur)
-- [PLCopen Généralité](#plcopen-généralité)
-  - [Technical Specification PLCopen Function blocks for motion control](#technical-specification-plcopen-function-blocks-for-motion-control)
-  - [State Diagram](#state-diagram)
+  - [Aperçu et objectifs.](#aperçu-et-objectifs)
+  - [Sommaire](#sommaire)
+  - [Objectifs du module](#objectifs-du-module)
+    - [Renforcer les notions de programmation robuste en IEC 61131-3](#renforcer-les-notions-de-programmation-robuste-en-iec-61131-3)
+    - [Présenter les éléments du Motion Control en PLCopen](#présenter-les-éléments-du-motion-control-en-plcopen)
+  - [PLCopen Motion Control](#plcopen-motion-control)
+    - [Qu'est-ce que PLCopen ?](#quest-ce-que-plcopen-)
+      - [Objectifs principaux :](#objectifs-principaux-)
+      - [Domaines d'application :](#domaines-dapplication-)
+    - [La chaine de commande](#la-chaine-de-commande)
+    - [Le type de moteur](#le-type-de-moteur)
+  - [PLCopen Généralité](#plcopen-généralité)
+    - [Technical Specification PLCopen Function blocks for motion control](#technical-specification-plcopen-function-blocks-for-motion-control)
+    - [State Diagram](#state-diagram)
 - [Motion Control State Machine](#motion-control-state-machine)
-  - [Les différents états](#les-différents-états)
-- [Cas typique MC_MoveAbsolute](#cas-typique-mc_moveabsolute)
+    - [Les différents états.](#les-différents-états)
+      - [Disabled](#disabled)
+      - [Errorstop](#errorstop)
+        - [MC\_Reset](#mc_reset)
+        - [Quelque causes de défaut](#quelque-causes-de-défaut)
+      - [Standstill](#standstill)
+      - [Homing](#homing)
+      - [Stopping](#stopping)
+      - [Discrete Motion](#discrete-motion)
+      - [Synchronized Motion](#synchronized-motion)
+      - [Continuous Motion](#continuous-motion)
+  - [Cas typique MC\_MoveAbsolute](#cas-typique-mc_moveabsolute)
+    - [Trajectoire MC\_MoveAbsolute](#trajectoire-mc_moveabsolute)
 - [Accès aux axes](#accès-aux-axes)
-  - [AXIS_REF Data type](#axis_ref-data-type)
-- [Administrative and Motion Function Blocks](#administrative-and-motion-function-blocks)
+  - [AXIS\_REF Data type](#axis_ref-data-type)
+    - [Dans le contexte du laboratoire d'automation HEVS](#dans-le-contexte-du-laboratoire-dautomation-hevs)
+- [Admininstrative and Motion Function Blocks](#admininstrative-and-motion-function-blocks)
 - [Introduction au codage Motion Control](#introduction-au-codage-motion-control)
   - [Pourquoi l'entrée de commande est sensible aux fronts](#pourquoi-lentrée-de-commande-est-sensible-aux-fronts)
-  - [Exemple de codage MC_MoveAbsolute](#exemple-de-codage-mc_moveabsolute)
-  - [Bonne pratique](#bonne-pratique)
-  - [Machine d'état complète](#machine-détat-complète)
+  - [Exemple de codage MC\_MoveAbsolute.](#exemple-de-codage-mc_moveabsolute)
+    - [Problème avec machine simplifiée](#problème-avec-machine-simplifiée)
+    - [Autre mauvaise pratique](#autre-mauvaise-pratique)
+    - [Bonne pratique](#bonne-pratique)
+    - [Machine d'état complète](#machine-détat-complète)
+      - [Codage de la machine complete](#codage-de-la-machine-complete)
 - [Motion Control avec PackML](#motion-control-avec-packml)
   - [Principe de PackML](#principe-de-packml)
-  - [Complexité ?](#complexité-)
+    - [Clearing](#clearing)
+    - [Complexité ?](#complexité-)
+        - [Exemple](#exemple)
 - [Conclusion](#conclusion)
 
 ## Objectifs du module
@@ -101,7 +121,7 @@ En encapsulant les données et en cachant les détails spécifiques au matériel
     <p><em>HW Independence via Function Blocks</em></p>
 </div>
 
-L'image ci-dessus mentionne un ``Sercos Drive``. La notion Sercos, à l'origine un bus sur fibre optique, dans les années 90, a modifié l'approche du pilotage des commandes d'axe, dans la mesure ou ce bus permettait de piloter directement les axes en position numérique à cadence fixe. En pratique, de l'ordre de quelques centaines de $[\mu s]$.
+L'image ci-dessus mentionne un ``Sercos Drive``. La notion Sercos, à l'origine un bus sur fibre optique, dans les années 90, a modifié l'approche du pilotage des commandes d'axe, dans la mesure où ce bus permettait de piloter directement les axes en position numérique à cadence fixe. En pratique, de l'ordre de quelques centaines de $[\mu s]$.
 
 Ethernet Real-Time, plus simple et moins onéreux a remplacé les solutions en Sercos I et II. EtherCAT a gagné la bataille de l'Ethernet Real-Time sur le plan commercial et remplacé Sercos III.
 
@@ -127,13 +147,13 @@ flowchart TD
 
 </div>
 
-La notion de Motion Control ci dessus est en général une partie logicielle propriétaire du fournisseur de PLC. Dans certains cas, elle peut être sous forme de matériel.
+La notion de Motion Control ci-dessus est en général une partie logicielle propriétaire du fournisseur de PLC. Dans certains cas, elle peut être sous forme de matériel.
 
 ### Le type de moteur
-Nous supposons des moteurs pilotés en position et équpés d'un codeur.
+Nous supposons des moteurs pilotés en position et équipés d'un codeur.
 La majorité des moteurs utilisés pour être pilotés en position dans l'industrie sont des moteurs synchrones à aimants permanents.
 
-Il reste toutefois possible de piloter des moteurs asychrones en position.
+Il reste toutefois possible de piloter des moteurs asynchrones en position.
 
 <div align="center">
     <a href="http://www.tdmspindles.com/milling.html">
@@ -142,7 +162,7 @@ Il reste toutefois possible de piloter des moteurs asychrones en position.
     <p><em>Broche d'usinage asynchrone à haute vitesse. Doit pouvoir être pilotée en position pour changer d'outil, Source: Source TDM</em></p>
 </div>
 
-Par défaut, les moteurs sont supposés rotatif, c'est pourquoi on retoure par exemple un MC_TorqueControl. Les librairies peuvent toutefois parfaitement être utilisées autant pour des moteurs rotatifs que linéaires.
+Par défaut, les moteurs sont supposés rotatif, c'est pourquoi on retrouve par exemple un ``MC_TorqueControl``. Les librairies peuvent toutefois parfaitement être utilisées autant pour des moteurs rotatifs que linéaires.
 
 
 <div align="center">
@@ -156,20 +176,20 @@ Par défaut, les moteurs sont supposés rotatif, c'est pourquoi on retoure par e
 
 
 ## PLCopen Généralité
-Le marché du **motion control**, commande de mouvement, au niveau de l'industrie du PLC est réparti entre différentes entrerprises qui utilisent toutes des systèmes qui ne sont pas compatibles entre eux.
+Le marché du **motion control**, commande de mouvement, au niveau de l'industrie du PLC est réparti entre différentes entreprises qui utilisent toutes des systèmes qui ne sont pas compatibles entre eux.
 
-L'idée de **PLCopen Motion Control** est de fournir un ensemble de **blocs fonctionnels** qui forment, du point de vue **IEC-61131-3**, des interfaces stantdards.
+L'idée de **PLCopen Motion Control** est de fournir un ensemble de **blocs fonctionnels** qui forment, du point de vue **IEC-61131-3**, des interfaces standards.
 
-Une librairie **Motion Control** sous forme de blocs fonctionnels existe chez la majorité des fournisseurs de PLC dont la gamme de produit comprend des commandes moteur.
+Une librairie **Motion Control** sous forme de blocs fonctionnels existe chez la majorité des fournisseurs de PLC dont la gamme de produit comprend des commandes de moteur.
 
-> Une fois le principe d'utilsation aquis pour une plateforme, il sera valable pour les autres plateforme avec de modifications mineures.
+> Une fois le principe d'utilisation acquis pour une plateforme, il sera valable pour les autres plateformes avec des modifications mineures.
 
 > Le document de référence est disponible en libre accès, moyennant un enregistrement, sur le site [PLCopen](https://plcopen.org/).
 
 ### Technical Specification PLCopen Function blocks for motion control
 La norme fournit autant des blocs pour des systèmes à un axe, **Single-Axis Function Blocks**, que mutli axes, **Multi-Axis Function Blocks**. Dans le cadre du cours d'automatisation de base, nous nous limiterons à quelques exemples de blocs pour un seul axe.
 
-> La norme n'est pas seulement utile en tant que spécification, mais fournit aussi de nombreux cas d'utilisation, [Part 3 - User Guidelines](https://plcopen.org/technical-activities/motion-control), qui peuvent être **très **utile à un programeur peu expérimenté.
+> La norme n'est pas seulement utile en tant que spécification, mais fournit aussi de nombreux cas d'utilisation, [Part 3 - User Guidelines](https://plcopen.org/technical-activities/motion-control), qui peuvent être **très **utile à un programmeur peu expérimenté.
 
 ### State Diagram
 *Ce paragraphe est directement issu de la spécification PLCopen*.
@@ -222,7 +242,7 @@ ContinuousMotion --> Stopping : Stop
 ```
 </div>
 
-> Dans certains cas, comme le sytème Bosch Rexroth du laboratoire de la HEVS, il existe un état complémentaire nommé **Coordinated Motion** proche, ou qui remplace, l'état Synchronized Motion que nous décrivons ci-dessous.
+> Dans certains cas, comme le système Bosch Rexroth du laboratoire de la HEVS, il existe un état complémentaire nommé **Coordinated Motion** proche, ou qui remplace, l'état Synchronized Motion que nous décrivons ci-dessous.
 
 ---
 
@@ -280,20 +300,20 @@ Il ne sera pas possible de quitter un état **Errorstop** sans exécuter le Func
 - **Temperature** limit
 - **...**
 
-> Si l'on prend le cas d'un moteur synchrone, **la perte de la position du codeur peut provoquer des mouvements totalement incontrolés du moteur**. Dans le cas d'une commande d'axe bien conçue, le couple du moteur sera interrompu immédiatement.
+> Si l'on prend le cas d'un moteur synchrone, **la perte de la position du codeur peut provoquer des mouvements totalement incontrôlés du moteur**. Dans le cas d'une commande d'axe bien conçue, le couple du moteur sera interrompu immédiatement.
 
 #### Standstill
 La vitesse de l'axe est considérée comme zero.
 
 #### Homing
-Cet état est nécessaire pour tout axe piloté en position et équipé d'un codeur relatif. Cela signifie que avant la séquence de homing, la position exacte de l'axe n'est pas connue.
+Cet état est nécessaire pour tout axe piloté en position et équipé d'un codeur relatif. Cela signifie que: avant la séquence de homing, la position exacte de l'axe n'est pas connue.
 
-> La séquence de homing n'est pas nécessaire dans le cadre des laboratoire d'automation de la HEVS, car chaque moteur est équipé d'un codeur absolu. **Il faut retenir que la séquence de homing peut s'avévérer complexe dans certaines configurations mécaniques**.
+> La séquence de homing n'est pas nécessaire dans le cadre des laboratoires d'automation de la HEVS, car chaque moteur est équipé d'un codeur absolu. **Il faut retenir que la séquence de homing peut s'avérer complexe dans certaines configurations mécaniques**.
 
 > Pour un moteur, qui tournerait toujours dans le même sens, la position ne sera pas toujours garantie même avec un codeur absolu, si il est équipé d'un engrenage dont le ratio n'est pas un nombre entier.
 
 #### Stopping
-L'axe reçoit une commande Stop, c'est à dire, passage contrôlé en vitesse considérée comme nulle. Aucune autre commande ne sera accetpée tant que l'axe ne sera pas en état **StandStill**.
+L'axe reçoit une commande Stop, c'est à dire, passage contrôlé en vitesse considérée comme nulle. Aucune autre commande ne sera acceptée tant que l'axe ne sera pas en état **StandStill**.
 
 #### Discrete Motion
 Correspond à un mouvement point à point.
@@ -302,7 +322,7 @@ Correspond à un mouvement point à point.
 - Un axe est synchronisé avec un autre axe qui est souvent virtuel.
 - Un axe virtuel est un axe qui n'existe que dans sa forme logicielle sans liaison avec un axe physique. Il est utilisé pour synchroniser un ou plusieurs axes virtuels.
 
-> **Exemple d'axe virtuel**: si plusieurs axes sont synchronisés sur un axe virtuel, il suffira de modifier uniquement la vitesse de l'axe virtuel pour adapter automatiqument l'ensemble des autres axes qui y sont synchronisés.
+> **Exemple d'axe virtuel**: si plusieurs axes sont synchronisés sur un axe virtuel, il suffira de modifier uniquement la vitesse de l'axe virtuel pour adapter automatiquement l'ensemble des autres axes qui y sont synchronisés.
 
 > **Exemple simple de Function Block de sychronisation**, ``MC_GearIn``. Si l'axe **Slave** utilise un ``MC_GearIn`` avec un ration de 2, il évoluera avec une vitesse correspondant au double de la vitesse de l'axe **Master**.
 
@@ -316,7 +336,7 @@ Correspond à un mouvement point à point.
 #### Continuous Motion
 Cette catégorie de mouvement définit l'ensemble des mouvements pour lesquels la position finale de la commande n'est pas définie.
 
-On trouve notament les notion de vitesse et de couple.
+On trouve notamment les notions de vitesse et de couple.
 - **MC_MoveVelocity** : This Function Block commands a never ending controlled motion at a specified velocity.
 - **MC_TorqueControl** : This Function Block continuously exerts a torque or force of the specified magnitude.
 
@@ -352,7 +372,7 @@ Ce Function Block sert à effectuer un mouvement discret jusqu'à une position d
 | ErrorIdent     | ERROR_STRUCT | Error Diagnostics                              |
 
 - **AXIS_REF** est souvent donné du type VAR_INPUT, mais le principe est d'être une variable de type **VAR_IN_OUT**.
-- Le détail d'implémentation peux varier d'un fabricant à l'autre. PLCopen décrit les variables obligatoire.
+- Le détail d'implémentation peut varier d'un fabricant à l'autre. PLCopen décrit les variables obligatoires.
 
 <div align="center">
     <img src="img/MC_MoveAbsoluteTrace.png" width="600">
@@ -365,7 +385,7 @@ L'exemple de trajectoire est donné à titre d'information.
 - La **vitesse** n'est pas toujours atteinte car elle est limitée par l'accélération.
 - Les paramètres de **Jerk**, **accélération**, **vitesse**, voir **position** peuvent être limités par le Drive ou par le module de Motion Control qui traduit les commandes de FB_MoveAbsolute en séquence de points à destination du drive via le bus, en général Ethernet Real-Time.
 - Il faut garder en tête qu'entre le moteur, par exemple un moteur rotatif, et le déplacement réel, il y a souvent une transformation mécanique, par exemple une vis à bille et un réducteur. La transformation d'unités, rotatif vers linéaire dans le cas d'une vis à bille, se fait souvent directement dans le drive.
-- Finalement, il s'agit de la consigne de l'axe, la position réele en fin de cinématique peut encore être influencée par la **qualité du régulateur** et la **qualité de la mécanique.**
+- Finalement, il s'agit de la consigne de l'axe, la position réelle en fin de cinématique peut encore être influencée par la **qualité du régulateur** et la **qualité de la mécanique.**
 
 ---
 
@@ -482,7 +502,7 @@ Pour ensuite utiliser ce Function Block dans le code.
 ---
 
 # Admininstrative and Motion Function Blocks
-Il existe deux catégories de Function Block pour le Motion Control. Tous ne sont pas implémentés par chaque fournisseur. En voici quelques uns, pour une lise compllète, on se référera à la [documentation de PLCopen](https://plcopen.org/technical-activities/motion-control) disponible librement. On se limite dans la liste ci-dessous aux Function Blocks pour un seul axe.
+Il existe deux catégories de Function Block pour le Motion Control. Tous ne sont pas implémentés par chaque fournisseur. En voici quelques-uns, pour une lise complète, on se référera à la [documentation de PLCopen](https://plcopen.org/technical-activities/motion-control) disponible librement. On se limite dans la liste ci-dessous aux Function Blocks pour un seul axe.
 
 
 |Admministrative |Motion|
@@ -496,7 +516,7 @@ Il existe deux catégories de Function Block pour le Motion Control. Tous ne son
 |MC_Reset              |MC_TorqueControl|
 |MC_ReadActualPosition ||
 
-On trouve aussi chez certain fournisseurs des Function Blocks spécifiques. Par exemple, dans la boite à outils de Bosch Rexroth, ils sont identifés par le préfixe **MB_**.
+On trouve aussi chez certains fournisseurs des Function Blocks spécifiques. Par exemple, dans la boite à outils de Bosch Rexroth, ils sont identifiés par le préfixe **MB_**.
 
 - **MB_CyclicSetPoint** : The function block MB_CyclicSetPoint cyclically sends the external command
 value of an axis without direct change at the drive.
@@ -661,7 +681,7 @@ mcHalt(Axis := axisRef,
 ```
 
 ### Bonne pratique
-On active la commande ``Execute`` **uniquement avec l'état E_AxisMove.eHalt**. On a ainsi la garantie que si on quitte l'état Halt, la commande ``Execute`` sera à nouveau à ``FALSE`` et sera disponible pour le prochaine passage par cet état.
+On active la commande ``Execute`` **uniquement avec l'état E_AxisMove.eHalt**. On a ainsi la garantie que si on quitte l'état Halt, la commande ``Execute`` sera à nouveau à ``FALSE`` et sera disponible pour le prochain passage par cet état.
 
 ```iecst
 mcHalt(Axis := axisRef,
@@ -675,11 +695,11 @@ mcHalt(Axis := axisRef,
 ### Machine d'état complète
 Ci-dessous, nous décrivons un exemple de codage complet avec les bonnes pratiques.
 
-Ces bonnes pratiques ne se limitent pas à l'usage du Motion Control, elles sont valables pour tout code développé en IEC 61131-3. **Un code qui ne tiendrait pas compte de ces bonnes pratiques est considéré comme partiellement faux car même si il peut fonctionner une fois, il risque de conduire à des probèmes de maintenance et de robustesse.**
+Ces bonnes pratiques ne se limitent pas à l'usage du Motion Control, elles sont valables pour tout code développé en IEC 61131-3. **Un code qui ne tiendrait pas compte de ces bonnes pratiques est considéré comme partiellement faux car même si il peut fonctionner une fois, il risque de conduire à des problèmes de maintenance et de robustesse.**
 
-Dans la machine d'état, chaque état de la machine prédédente est doublé, cela présente deux avantages.
+Dans la machine d'état, chaque état de la machine précédente est doublé, cela présente deux avantages.
 - On propose une phase d'activation et une phase de contrôle.
-- On garanti que chaque état d'activation d'une commande ``Execute``, **MoveOneStart**, **MoveTwoStart** et **Halt** est complété d'une phase qui permet à Execute de revenir à ``FALSE``. 
+- On garantit que chaque état d'activation d'une commande ``Execute``, **MoveOneStart**, **MoveTwoStart** et **Halt** est complété d'une phase qui permet à Execute de revenir à ``FALSE``. 
 
 <div align="center">
 
@@ -713,7 +733,7 @@ stateDiagram-v2
 
 La version ci-dessous n'est pas la version de Copilot.
 
-La version ci-dessous n'est pas complète car elle devrait idéalement encore être complétée, entre autre, avec la gestion des exceptions et des alarmes. Elle sert à illustrer le concept de gestion des Function Blocks avec une machine d'état.
+La version ci-dessous n'est pas complète car elle devrait idéalement encore être complétée, entre autres, avec la gestion des exceptions et des alarmes. Elle sert à illustrer le concept de gestion des Function Blocks avec une machine d'état.
 
 ```iecst
 // Enum for state machine
@@ -812,7 +832,7 @@ mcMoveAbs(Axis := axisRef,
 ---
 
 # Motion Control avec PackML
-Nous l'avons vu ci-dessus avec le codage d'un simple aller et retour entre deux positions. La gestion d'un axe électrique demande rapidement une machine d'état relativement complexe. Si de plus nous devions intégrer les notions de mise sous tension, **MC_Power**, de réinitialisation après une défaut, **MC_Reset**, un arrêt rapide sans condition, **MC_Stop**, la prise de référence, **MC_Home** si le moteur est équipé d'un codeur relatif, la compexité de la machine d'état deviendrait rapidement hors de contrôle.
+Nous l'avons vu ci-dessus avec le codage d'un simple aller et retour entre deux positions. La gestion d'un axe électrique demande rapidement une machine d'état relativement complexe. Si de plus nous devions intégrer les notions de mise sous tension, **MC_Power**, de réinitialisation après une défaut, **MC_Reset**, un arrêt rapide sans condition, **MC_Stop**, la prise de référence, **MC_Home** si le moteur est équipé d'un codeur relatif, la complexité de la machine d'état deviendrait rapidement hors de contrôle.
 
 C'est la raison pour laquelle nous avons intégré dans ce cours les bases élémentaires du PackML.
 
@@ -853,7 +873,7 @@ ErrorStop --> isPowerOn : reset
 
 ```
 
-On se rend rapidement compte que c'est ingérable et programmer ce genre de séquence serait contre productif.
+On se rend rapidement compte que c'est ingérable et programmer ce genre de séquence serait contreproductif.
 
 ## Principe de PackML
 On encapsule le comportement des différents modules de la machine dans différents états du PackML.
@@ -864,7 +884,7 @@ On encapsule le comportement des différents modules de la machine dans différe
 </div>
 
 ### Clearing
-Ici on encapsulte toutes les actions nécessaires à enclencher les différents modules. Quand ``stActing.Clearing_SC := TRUE;`` cela signifie que le module est prêt.
+Ici on encapsule toutes les actions nécessaires à enclencher les différents modules. Quand ``stActing.Clearing_SC := TRUE;`` cela signifie que le module est prêt.
 
 ```iecst
 (*
@@ -879,7 +899,7 @@ END_IF
 
 ```
 
-Une portion de code regroupe le SC des différents modules. Ici dans **PRG_Process**. Concrêtement, cela signifie que quand chaque axe est sous couple et le template est prêt, on passe en **Stopped**.
+Une portion de code regroupe le SC des différents modules. Ici dans **PRG_Process**. Concrètement, cela signifie que quand chaque axe est sous couple et le template est prêt, on passe en **Stopped**.
 
 ```iecst
 xProcess_SC := fbModuleAxis_X.SC AND
@@ -979,13 +999,13 @@ mcPower(Axis := axisRef,
         NOT (axisClearing = E_AxisClearing.eErrorStop));                    
 ```
 
-Pour chaque etat du PackML et pour chaque module, mais seulement quand c'est nécessaire, le code est complété.
+Pour chaque état du PackML et pour chaque module, mais seulement quand c'est nécessaire, le code est complété.
 
 ### Complexité ?
 Oui, mais... le code de chaque module est encapsulé individuellement, donc
  -  le système est relativement simple à analyser en cas de problème, puisque l'on sait rapidement où se situe le problème.
 - le code du système est robuste, en un semestre complet, quatre laboratoires par semaine et 10 cellules, un seul cas connu pour lequel il a fallu redémarrer le programme alors que la cellule est accessible par 3 types d'interfaces différent, câblé, Simatic et Node-RED.
-- Pour toute nouvelle fonctionnalité, on sait exactement oû ajouter le code nécessaire et si nécessaire avec un nouveau mode de fonctionnement de la machine.
+- Pour toute nouvelle fonctionnalité, on sait exactement où ajouter le code nécessaire et si nécessaire avec un nouveau mode de fonctionnement de la machine.
 
 ##### Exemple
 Soit une nouvelle action pour l'axe Z en Execute, dans une nouveau mode **User_05**.
@@ -1017,7 +1037,7 @@ ELSE
 END_IF
 ```
 
-Il ne sera pas nécesaire de revoir la phase d'initialisation de la machine et il n'y aura peu de risque de conflit avec les autres modes de fonctionnement de la machine.
+Il ne sera pas nécessaire de revoir la phase d'initialisation de la machine et il n'y aura peu de risque de conflit avec les autres modes de fonctionnement de la machine.
 
 On notera l'importance de la ligne de commande ``axisExecute_U_05 := E_AxisExecute_U_05.eIdle;``. Elle garantit que si on quitte l'état **Execute**, la machine d'état soit initialisée pour la prochaine exécution. On peut aussi modifier cette ligne de code si l'on veut, par exemple suite à une commande **Suspend**, mémoriser le nouveau point d'entrée dans la machine d'état ``axisExecute_U_05`` après une commande **Unsuspend**.
 
