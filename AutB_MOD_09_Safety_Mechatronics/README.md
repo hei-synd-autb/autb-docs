@@ -14,7 +14,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 ## Sommaire
 
-- [Module 09 2 Elements mechatronics Safety](#module-09-2-elements-mechatronics-safety)
+- [Module 09-2 Elements mechatronics Safety](#module-09-2-elements-mechatronics-safety)
   - [Sommaire](#sommaire)
   - [Ce qu'il faut retenir](#ce-quil-faut-retenir)
   - [Ce qu'il faut savoir](#ce-quil-faut-savoir)
@@ -173,6 +173,10 @@ Au niveau des travaux pratiques, on traitera un cas particulier d’arrêt d’u
 - Normes
 ###	Base Légale
 La base légale est constituée par l'ordonnance du 2 avril 2008 sur la sécurité des machines (OMach; RS 819.14), qui transpose dans le droit suisse les prescriptions de la Directive 2006/42/CE relative aux machines.
+
+> La Machinery Regulation EU 2023/1230 est une réglementation européenne qui remplace la directive Machines 2006/42/CE. Elle vise à moderniser les exigences de sécurité pour les machines en tenant compte des avancées technologiques, notamment en matière de connectivité et d'intelligence artificielle.
+> > La Machinery Regulation EU 2023/1230 a été adoptée en 2023 et entrera en application à partir du **14 janvier 2027**. Les fabricants de machines doivent se conformer à cette réglementation pour pouvoir commercialiser leurs produits dans l'Union européenne.
+
 ###	Selon source SUVA
 [Comment les fabricants peuvent-ils garantir la sécurité des machines?](https://www.suva.ch/fr-ch/prevention/themes-specialises/securite-des-machines-et-commandes-de-machines)
 ####	Sécurité des machines et commandes de machines

@@ -158,6 +158,9 @@ Die für das Inverkehrbringen von Produkten Verantwortlichen (Hersteller, Import
 #### Maschinenverordnung, OMach und Maschinenrichtlinie 2006/42/EG
 Die [Maschinenverordnung](http://www.admin.ch/ch/f/sr/c819_14.html) regelt das Inverkehrbringen von Maschinen und die Marktüberwachung gemäss Richtlinie [2006/42/EG](http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=OJ:L:2006:157:0024:0086:FR:PDF) . Um die Anwendung dieser europäischen Richtlinie zu erleichtern, wurde ein [Leitfaden](http://ec.europa.eu/DocsRoom/documents/9483/attachments/1/translations/fr/renditions/native) veröffentlicht.
 
+> Die Maschinenverordnung **EU 2023/1230** ist eine europäische Verordnung, die die Maschinenrichtlinie 2006/42/EG ersetzt. Ziel ist es, die Sicherheitsanforderungen für Maschinen unter Berücksichtigung des technologischen Fortschritts, insbesondere in den Bereichen Konnektivität und künstliche Intelligenz, zu modernisieren.
+> > Die Maschinenverordnung EU 2023/1230 wurde 2023 verabschiedet und tritt ab **14. Januar 2027** in Kraft. Maschinenhersteller müssen diese Verordnung einhalten, um ihre Produkte in der Europäischen Union vermarkten zu dürfen.
+
 #### CFST-Richtlinie 6512 „Arbeitsmittel“
 Die [CFST-Richtlinie, Arbeitsmittel](https://www.suva.ch/fr-ch/prevention/themes-specialises/securite-des-machines-et-commandes-de-machines#uxlibrary-material=dd14bcc187d79ec7b2d9d3d85279d94c) gibt vor, wie die Anforderungen an die Sicherheit und den Gesundheitsschutz der Arbeitnehmer im Zusammenhang mit der Beschäftigung, Verwendung und Wartung von Arbeitsmitteln eingehalten werden können.
 
