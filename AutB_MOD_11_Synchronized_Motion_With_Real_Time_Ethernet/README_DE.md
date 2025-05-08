@@ -56,6 +56,9 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
     - [Einschränkungen](#einschränkungen-1)
     - [Anwendungsfälle für Echtzeit-Ethernet](#anwendungsfälle-für-echtzeit-ethernet)
     - [Vorteile von Real-Time Ethernet (EtherCAT-basiert)](#vorteile-von-real-time-ethernet-ethercat-basiert)
+  - [Ein paar Worte zu Ethernet-APL](#ein-paar-worte-zu-ethernet-apl)
+  - [Ein paar Worte zur TSN-Technologie](#ein-paar-worte-zur-tsn-technologie)
+  - [**Aufgrund meiner TSN-Erfahrung kann ich nicht behaupten, dass APL die Prozessautomatisierung revolutionieren wird, wie es EtherCAT oder Sercos im Bereich Motion Control getan haben.**](#aufgrund-meiner-tsn-erfahrung-kann-ich-nicht-behaupten-dass-apl-die-prozessautomatisierung-revolutionieren-wird-wie-es-ethercat-oder-sercos-im-bereich-motion-control-getan-haben)
 - [EtherCAT](#ethercat)
   - [So beenden Sie die Bewegungssteuerung](#so-beenden-sie-die-bewegungssteuerung)
     - [Was ist eine IEPE-Schnittstelle?](#was-ist-eine-iepe-schnittstelle)
@@ -556,6 +559,25 @@ Um einen Blick auf einige Schweizer Anbieter von Antriebslösungen für die Bewe
 -   Linmot
 -   Jenny Science
 
+## Ein paar Worte zu Ethernet-APL
+[Ethernet-APL, Advanced Physical Layer, Two-Wire Ethernet For Process Automation](https://www.ethernet-apl.org/) ist eine sehr neue Technologie. Die ersten Geräte kamen 2021 auf den Markt. Sie ermöglichen die Einbindung von Ethernet in die Prozesswelt, beispielsweise in die Chemie mit einer Zweidraht-Netzwerkschicht.
+Es ist wahrscheinlich noch zu früh, um sagen zu können, ob sich diese Technologie tatsächlich durchsetzen wird.
+
+**Ethernet-APL bietet hinsichtlich **Latenzzeit** und **Jitter** nicht dieselben Echtzeitqualitäten wie echte Echtzeit. Dafür ist es nicht ausgelegt.
+
+**Es ist noch etwas zu früh, um sagen zu können, ob diese Technologie tatsächlich Erfolg haben wird**.
+
+<div align="center">
+<img src="./img/Ethernet-APL_White-Papper_Figure-06.png" alt="Quelle: ethernet apl.com" width="700">
+<p><em>Vom Gefahrenbereich bis zum Unternehmen mit Ethernet.</em></p>
+</div>
+
+## Ein paar Worte zur TSN-Technologie
+Als ich den vorherigen Automatisierungskurs im Jahr 2020 schrieb, habe ich ein ganzes Kapitel über die **TSN**-Technologie für [Time Sensitive Network](https://1.ieee802.org/tsn/) geschrieben. Das Ziel dieser Technologie besteht darin, **alle Echtzeit-Ethernet-Geräte auf dem Markt durch eine einzige Standardtechnologie zu ersetzen**, mit zusätzlichen erweiterten Funktionen, die beispielsweise die Koexistenz mehrerer Zykluszeiten im selben Netzwerk ermöglichen würden.
+
+Obwohl bereits einige Geräte auf den Markt gebracht wurden, **kommt diese Technologie derzeit nicht in Schwung und wird es wahrscheinlich auch nie tun**. Einer Quelle bei Bekchoff zufolge können sich die Beteiligten nicht auf das endgültige Standardisierungsdokument einigen. Grundsätzlich ist es attraktiv, aber wahrscheinlich zu komplex und folglich zu teuer.
+
+**Aufgrund meiner TSN-Erfahrung kann ich nicht behaupten, dass APL die Prozessautomatisierung revolutionieren wird, wie es EtherCAT oder Sercos im Bereich Motion Control getan haben.**
 ---
 
 # EtherCAT

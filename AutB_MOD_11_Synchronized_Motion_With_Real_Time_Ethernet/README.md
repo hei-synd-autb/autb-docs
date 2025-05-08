@@ -565,9 +565,7 @@ Il est sans doute trop tôt pour savoir si cette technologie va réellement dém
 **Il est un peu tôt pour savoir si cette technologie va réellement démarrer**.
 
 <div align="center">
-    <a href="https://www.baumer.com/ch/en/product-overview/cable-connectivity/io-link-master/io-link-master-profinet/io-link-master-profinet-8-port-ip67/p/42518">
     <img src="./img/Ethernet-APL_White-Papper_Figure-06.png" alt="Source: ethernet apl.com" width="700">
-    <\a>
     <p><em>From Hazardous Areas to the Enterprise with Ethernet.</em></p>
 </div>
 
