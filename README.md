@@ -114,18 +114,24 @@ PLCopen standardise les blocs fonctionnels pour le contrôle de mouvement, facil
 
 PLCopen standardisiert Funktionsblöcke für die Bewegungssteuerung und erleichtert so die Interoperabilität und Wartung in der industriellen Automatisierung. Dieses Dokument untersucht wichtige Konzepte wie Zustandsdiagramme und bewährte Programmiermethoden und integriert Beispiele aus der Praxis. Der PackML-Ansatz zur Bewältigung der Komplexität von Mehrmodulsystemen wird ebenfalls erläutert.
 
+---
+
+[Module 11 Mouvement synchronisé avec Ethernet en temps réel](./AutB_MOD_11_Synchronized_Motion_With_Real_Time_Ethernet/README.md):
+Ce document explore les concepts de mouvements synchronisés et d'Ethernet temps réel, en mettant l'accent sur les protocoles comme EtherCAT pour garantir une communication déterministe et une faible latence. Il détaille les trajectoires polynomiales, les contraintes mécaniques, et les avantages des technologies modernes pour l'automatisation industrielle. Enfin, il présente des applications concrètes et des fournisseurs de solutions CNC professionnelles.
+
+[Modul 11 ​​Synchronisierte Bewegung mit Echtzeit-Ethernet](./AutB_MOD_11_Synchronized_Motion_With_Real_Time_Ethernet/README_DE.md):
+In diesem Dokument werden die Konzepte synchronisierter Bewegung und Echtzeit-Ethernet untersucht, wobei der Schwerpunkt auf Protokollen wie EtherCAT liegt, um eine deterministische Kommunikation und geringe Latenz sicherzustellen. Es beschreibt detailliert polynomische Trajektorien, mechanische Einschränkungen und die Vorteile moderner Technologien für die industrielle Automatisierung. Abschließend werden konkrete Anwendungen und Anbieter professioneller CNC-Lösungen vorgestellt.
 
 ---
 
-[Module 11 Synchronized Motion with Real-Time Ethernet](./AutB_MOD_11_Synchronized_Motion_With_Real_Time_Ethernet/README.md): Utilisation des propriétés d'un Ethernet Real-time pour asservir un axe par une tâche cyclique de l'automate.
+[Module 12 OPC-UA and Node-RED](./AutB_MOD_12_OPC_UA/README.md): Doit être revu
+Un protocole standard et un outil pour accéder et visualiser les données
 
 ---
 
-[Module 12 OPC-UA and Industrial Network](./AutB_MOD_12_OPC_UA/README.md): Un bref aperçu des réseaux indutriels et protocoles de communication.
+[Module 13 Design Specification](./AutB_MOD_13_Design_Specification/README.md): Doit être revu
+Une forme de synthèse du cours
 
----
-
-[Module 13 Design Specification](./AutB_MOD_13_Design_Specification/README.md) L'ancien module méchatronics hard dont le concept est revu.
 
 # Industrial Automation Labs
 
@@ -135,7 +141,7 @@ PLCopen standardisiert Funktionsblöcke für die Bewegungssteuerung und erleicht
 - [autb-lab-04](https://github.com/hei-synd-autb/autb-lab-04_2025) A function block for an actuator
 - [autb-lab-05](https://github.com/hei-synd-autb/autb-lab-05_2025) Mise en service d'un axe électrique couplé à un entraînement mécanique
 - [autb-lab-06](https://github.com/hei-synd-autb/autb-lab-06_2025) Gestion d'un mouvement discret, MC_MoveAbsolute, basé sur PLCopen motion control.
-- [autb-lab-07](https://github.com/hei-synd-autb/autb-lab-07_2025) Gestion d'un mouvement basé sur un polynôme d'ordre 5.
+- [autb-lab-07](https://github.com/hei-synd-autb/autb-lab-07_2025) Gestion d'un mouvement basé sur un polynôme d'ordre 5. (Ou un mouvment 3D, à revoir.)
 
 # The LAB.
 <figure>
