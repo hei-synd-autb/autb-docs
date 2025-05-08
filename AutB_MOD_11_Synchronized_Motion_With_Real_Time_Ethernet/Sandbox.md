@@ -153,3 +153,41 @@ Would you like more details on any specific protocol or guidance on selecting th
 
 
 **<span style="color:red;">la suite du paragraphe EtherCAT est à titre principalement d'information générale. A lire, mais pas à connaitre par coeur.</span>**
+
+### Historical Milestones of Ethernet-APL
+
+The first devices with Ethernet-APL (Advanced Physical Layer) began appearing on the market around **2021**. This marked a significant milestone in industrial automation, as Ethernet-APL brought Ethernet communication to the field level in process industries.
+
+#### Key Developments
+- **2018**: The Ethernet-APL project was initiated as a collaboration between leading industry organizations, including the FieldComm Group, ODVA, OPC Foundation, and PROFIBUS & PROFINET International (PI).
+- **2021**: The first Ethernet-APL devices were launched, enabling robust, long-distance communication with intrinsic safety for hazardous areas.
+- **Adoption**: Since its introduction, Ethernet-APL has been increasingly adopted in industries such as oil and gas, chemicals, and pharmaceuticals, where reliable communication in harsh environments is critical.
+
+Would you like more details on the evolution of Ethernet-APL or its adoption in specific industries?
+
+### Why Has TSN Technology Not Fully Taken Off in the Market?
+
+Time-Sensitive Networking (TSN) is a promising technology designed to bring deterministic communication to standard Ethernet. Despite its potential, TSN has faced several challenges that have slowed its widespread adoption in the market:
+
+#### **1. Complexity of Implementation**
+- TSN introduces a range of new standards and protocols, such as time synchronization (IEEE 802.1AS) and traffic scheduling (IEEE 802.1Qbv). Implementing these features requires significant expertise and specialized hardware, which can be a barrier for many organizations.
+
+#### **2. Lack of Interoperability**
+- While TSN is based on open standards, ensuring interoperability between devices from different vendors remains a challenge. This has led to hesitation among manufacturers and end-users who require seamless integration in their systems.
+
+#### **3. High Initial Costs**
+- Deploying TSN often requires upgrading existing infrastructure, including switches, network interfaces, and software. These upfront costs can be prohibitive, especially for small and medium-sized enterprises.
+
+#### **4. Limited Ecosystem**
+- The ecosystem of TSN-compatible devices and solutions is still growing. Compared to more established industrial Ethernet protocols like PROFINET or EtherCAT, TSN lacks the same level of maturity and market penetration.
+
+#### **5. Competing Technologies**
+- Established real-time communication protocols, such as EtherCAT, PROFINET IRT, and SERCOS III, already meet the needs of many industrial applications. These technologies are well-supported and widely adopted, reducing the urgency to transition to TSN.
+
+#### **6. Industry-Specific Requirements**
+- Different industries have unique requirements, and TSN may not yet address all of them effectively. For example, process industries prioritize robustness and long-distance communication, which are not the primary focus of TSN.
+
+### Outlook for TSN
+Despite these challenges, TSN continues to gain traction in specific applications, such as automotive manufacturing and Industry 4.0 initiatives. As the technology matures and the ecosystem expands, its adoption is expected to grow.
+
+Would you like more information on TSN standards or its potential use cases in industrial automation?

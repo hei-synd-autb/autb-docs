@@ -56,6 +56,8 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
     - [Limitations](#limitations)
     - [Cas d'utilisation de l'Ethernet temps réel](#cas-dutilisation-de-lethernet-temps-réel)
     - [Avantages d'Ethernet en temps réel (basé sur EtherCAT)](#avantages-dethernet-en-temps-réel-basé-sur-ethercat)
+  - [Deux mots à propos de Ethernet-APL](#deux-mots-à-propos-de-ethernet-apl)
+  - [Deux mots à propos de la technologie TSN](#deux-mots-à-propos-de-la-technologie-tsn)
 - [EtherCAT](#ethercat)
   - [Pour sortir du Motion Control](#pour-sortir-du-motion-control)
     - [Qu'est-ce qu'une interface IEPE ?](#quest-ce-quune-interface-iepe-)
@@ -267,6 +269,7 @@ Soit la synchronisation se faisait mécaniquement à l'aide, par exemple d'un ar
 </div>
 
 Soit les profils de mouvements étaient chargés à l'avance sur des commandes d'axes qui étaient ensuite sychronisés avec une sorte de codeur virtuel qui représentait l'échelle de temps.
+
 <div align="center">
     <img src="./img/Electronic Cam System.png"
          alt="Image lost Eletronic Cam System">
@@ -552,6 +555,35 @@ Pour prendre quelques fournisseurs helvétiques de solutions Drives pour motion 
 -   Maxon
 -   Linmot
 -   Jenny Science
+
+## Deux mots à propos de Ethernet-APL
+[Ethernet-APL, Advanced Phyiscal Layer, Two-Wire Ethernet For Process Automation](https://www.ethernet-apl.org/) est une technologie très récente. Les premiers appareils sont apparus sur le marché en 2021. Elle permet d'amener Ethernet dans le monde du Process, par exemple la chimie avec une couche réseau sur deux fils.
+Il est sans doute trop tôt pour savoir si cette technologie va réellement démarrer.
+
+**Ethernet-APL ne fournit pas les même qualités temps réel qu'un vrai Real-Time** en termes de **latency time** et **jitter**. Il n'est pas conçu pour cela.
+
+**Il est un peu tôt pour savoir si cette technologie va réellement démarrer**.
+
+<div align="center">
+    <a href="https://www.baumer.com/ch/en/product-overview/cable-connectivity/io-link-master/io-link-master-profinet/io-link-master-profinet-8-port-ip67/p/42518">
+    <img src="./img/Ethernet-APL_White-Papper_Figure-06.png" alt="Source: ethernet apl.com" width="700">
+    <\a>
+    <p><em>From Hazardous Areas to the Enterprise with Ethernet.</em></p>
+</div>
+
+## Deux mots à propos de la technologie TSN
+Lors de la rédaction du précédent cours d'automation en 2020, j'avais rédigé un chapitre entier sur la technologie **TSN**, pour [Time Sensitive Network](https://1.ieee802.org/tsn/). Le but de cette technologie est de **remplacer tous les Ethernet Real-Time du marché par une seule technologie standard**, avec de plus des fonctions avancées qui auraient par exemple permis de faire coexister plusieurs temps de cycle sur le même réseau.
+
+Actuellement cette technologie, même si quelques appareils sont sortis sur le marché, **ne décolle pas et ne décollera sans doute jamais**. Selon une source orale de chez Bekchoff, les parties prenantes ne parviennent pas à se mettre d'accord sur le document final de normalisation. Sur le principe, séduisant, mais sans doute trop complexe, avec comme corrolaire, trop chère.
+
+**C'est l'expérience TSN qui m'empêche de dire que APL va révolutionner l'automation dans le process comme l'a fait un EtherCAT ou un Sercos dans le domaine du Motion Control.**
+
+
+<div align="center">
+    <img src="./img/System architecture diagram for OPC UA Unified Architecture over Time Sensitive Networks.webp" alt="Source iebmedia.com" width="700">
+    <p><em>System architecture diagram for OPC UA (Unified Architecture) over Time Sensitive Networks.</em></p>
+</div>
+
 
 ---
 
