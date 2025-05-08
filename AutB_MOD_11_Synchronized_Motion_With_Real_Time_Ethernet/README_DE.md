@@ -183,7 +183,7 @@ Durch die Kombination von synchronisierter Bewegung und Echtzeit-Ethernet erreic
 Konzept des **Jitters**.
 **Deterministische Kommunikation** bezieht sich auf eine Datenübertragungsmethode, bei der Kommunikationsverzögerungen **vorhersehbar und garantiert** sind. Dies bedeutet, dass zwischen Geräten in einem Netzwerk ausgetauschte Nachrichten immer innerhalb eines definierten Zeitrahmens ankommen, ohne unvorhersehbare Schwankungen, sogenanntes Jitter. *Die Übersetzung wird absichtlich weggelassen, da sie verwirrend sein kann.* Diese Eigenschaft ist in Systemen von entscheidender Bedeutung, in denen Synchronisierung und Präzision entscheidend sind, wie beispielsweise in der industriellen Automatisierung.
 
-> Wir sprechen bei EtherCAT von einer Jitterzeit $ ≤ 1 µs$.
+> Wir sprechen bei EtherCAT von einer Jitterzeit $\ ≤ 1 µs$.
 
 > Umgekehrt lässt sich bei einem Modbus TCP-System, das auch als Real-Time Ethernet klassifiziert wird, kein präziser Wert für den Jitter angeben. Dies hängt von der Netzwerklast ab.
 
