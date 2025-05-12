@@ -635,7 +635,9 @@ Principales caractéristiques / avantages
 
 Une grande partie de ce qui suit provient directement du [site de présentation de EtherCAT](https://www.ethercat.org.cn/en/technology.html)
 
-**<span style="color:red;">La suite du paragraphe EtherCAT est à titre d'information générale. A lire, mais pas à connaitre par coeur.</span>**
+<div style="color:red;"><b>La suite du paragraphe EtherCAT est à titre d'information générale. A lire, mais pas à connaitre par coeur.
+</b>
+</div>
 
 ### Principe de fonctionnement
 

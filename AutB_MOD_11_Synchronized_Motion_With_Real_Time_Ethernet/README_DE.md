@@ -630,7 +630,9 @@ Hauptmerkmale / Vorteile
 
 Vieles von dem Folgenden stammt direkt von der [EtherCAT-Präsentationsseite](https://www.ethercat.org.cn/en/technology.html).
 
-**<span style="color:red;">Der restliche EtherCAT-Absatz dient allgemeinen Informationszwecken. Zum Lesen, aber nicht zum Auswendiglernen.</span>**
+<div style="color:red;"><b>Der restliche EtherCAT-Absatz dient allgemeinen Informationszwecken. Zum Lesen, aber nicht zum Auswendiglernen.
+</b>
+</div>
 
 ### Funktionsprinzip
 
