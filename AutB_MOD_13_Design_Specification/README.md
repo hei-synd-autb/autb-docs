@@ -685,6 +685,9 @@ Au module précédent sur la sécurité, on pourra ajouter encore la **sécurit�
 
 ---
 
+
+<h3 style="text-align:center;">Les meilleurs projets sont ceux menés avec rigueur.</h3>
+
 # Mémo
 Ici, la liste des documents à fournir.
 - [ ] URS  
@@ -700,6 +703,8 @@ Ici, la liste des documents à fournir.
 - [ ] SOP
 - [ ] Mode d'emploi et documentation
 - [ ] FMEA
+
+
 
 <!-- end of document -->
 

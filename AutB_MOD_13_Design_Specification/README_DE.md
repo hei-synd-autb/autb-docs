@@ -685,6 +685,8 @@ Zum vorherigen Modul zur Sicherheit können wir auch **OT-Sicherheit** hinzufüg
 
 ---
 
+<h3 style="text-align:center;">Die besten Projekte sind diejenigen, die mit Sorgfalt durchgeführt werden.</h3>
+
 # Mémo
 Hier ist die Liste der vorzulegenden Dokumente.
 - [ ] URS  
