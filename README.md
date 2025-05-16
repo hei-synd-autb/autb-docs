@@ -117,9 +117,11 @@ PLCopen standardisiert Funktionsblöcke für die Bewegungssteuerung und erleicht
 ---
 
 [Module 11 Mouvement synchronisé avec Ethernet en temps réel](./AutB_MOD_11_Synchronized_Motion_With_Real_Time_Ethernet/README.md):
+
 Ce document explore les concepts de mouvements synchronisés et d'Ethernet temps réel, en mettant l'accent sur les protocoles comme EtherCAT pour garantir une communication déterministe et une faible latence. Il détaille les trajectoires polynomiales, les contraintes mécaniques, et les avantages des technologies modernes pour l'automatisation industrielle. Enfin, il présente des applications concrètes et des fournisseurs de solutions CNC professionnelles.
 
 [Modul 11 ​​Synchronisierte Bewegung mit Echtzeit-Ethernet](./AutB_MOD_11_Synchronized_Motion_With_Real_Time_Ethernet/README_DE.md):
+
 In diesem Dokument werden die Konzepte synchronisierter Bewegung und Echtzeit-Ethernet untersucht, wobei der Schwerpunkt auf Protokollen wie EtherCAT liegt, um eine deterministische Kommunikation und geringe Latenz sicherzustellen. Es beschreibt detailliert polynomische Trajektorien, mechanische Einschränkungen und die Vorteile moderner Technologien für die industrielle Automatisierung. Abschließend werden konkrete Anwendungen und Anbieter professioneller CNC-Lösungen vorgestellt.
 
 ---
@@ -129,9 +131,14 @@ Un protocole standard et un outil pour accéder et visualiser les données
 
 ---
 
-[Module 13 Design Specification](./AutB_MOD_13_Design_Specification/README.md): Doit être revu
-Une forme de synthèse du cours
+[Module 13 Design Specification](./AutB_MOD_13_Design_Specification/README.md): URS User Request Specifications
 
+Ce module présente les étapes clés pour réussir un projet d'automatisation, de la définition des besoins URS à la validation finale PQ, en passant par la gestion des risques FMEA et la documentation qualité. Il insiste sur l'importance de la rigueur documentaire, de l'anticipation des tests et de la validation client à chaque étape. L'approche structurée GMP, GAMP5, V-Diagram garantit la conformité, la traçabilité et la pérennité des systèmes automatisés.
+
+[Module 13 Design Specification](./AutB_MOD_13_Design_Specification/README_DE.md): URS User Request Specifications
+
+Dieses Modul stellt die wichtigsten Schritte für ein erfolgreiches Automatisierungsprojekt vor, von der Definition der URS-Anforderungen bis zur abschließenden PQ-Validierung, einschließlich FMEA-Risikomanagement und Qualitätsdokumentation. Er betont, wie wichtig es ist, in jeder Phase die Dokumentation genau zu prüfen, Tests vorzubereiten und die Validierung durch den Kunden durchzuführen. Der strukturierte GMP-, GAMP5- und V-Diagramm-Ansatz garantiert die Konformität, Rückverfolgbarkeit und Nachhaltigkeit automatisierter Systeme.
+---
 
 # Industrial Automation Labs
 
