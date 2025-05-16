@@ -100,7 +100,6 @@ Des exemples pratiques et des outils comme SISTEMA sont mentionnés pour l'appli
 
 
 [Module 09 Mechatronics Sicherheit](./AutB_MOD_09_Safety_Mechatronics/README_DE.md): Sicherheit.
-
 Dieses Modul behandelt die gesetzlichen Grundlagen und Normen zur Maschinensicherheit, darunter ISO 12100 und ISO 13489, mit Schwerpunkt auf Risikobewertung und -minderung. Es deckt auch Explosionsschutz, ATEX-Zonen und Technologien wie Ethernet-APL für gefährliche Umgebungen ab.
 Zur Anwendung der Konzepte werden praktische Beispiele und Tools wie SISTEMA genannt.
 
@@ -138,6 +137,7 @@ Ce module présente les étapes clés pour réussir un projet d'automatisation, 
 [Module 13 Design Specification](./AutB_MOD_13_Design_Specification/README_DE.md): URS User Request Specifications
 
 Dieses Modul stellt die wichtigsten Schritte für ein erfolgreiches Automatisierungsprojekt vor, von der Definition der URS-Anforderungen bis zur abschließenden PQ-Validierung, einschließlich FMEA-Risikomanagement und Qualitätsdokumentation. Er betont, wie wichtig es ist, in jeder Phase die Dokumentation genau zu prüfen, Tests vorzubereiten und die Validierung durch den Kunden durchzuführen. Der strukturierte GMP-, GAMP5- und V-Diagramm-Ansatz garantiert die Konformität, Rückverfolgbarkeit und Nachhaltigkeit automatisierter Systeme.
+
 ---
 
 # Industrial Automation Labs
