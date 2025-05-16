@@ -160,7 +160,7 @@ Le V-Diagram met en évidence une approche séquentielle et structurée, où cha
 Aujourd'hui, le V-Diagram est largement adopté dans divers secteurs industriels et reste un outil clé pour assurer le succès des projets complexes.
 
 <div align="center">
-  <img src="./img/v-diagram.png" alt="V-Diagram" width="700">
+  <img src="./img/V_Diagram.png" alt="V-Diagram" width="700">
   <p><em>Représentation du V-Diagram</em></p>
 </div>
 
