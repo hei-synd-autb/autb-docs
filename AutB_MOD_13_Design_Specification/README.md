@@ -119,7 +119,7 @@ Ne pas anticiper les risques potentiels peut aggraver les problèmes lorsqu'ils 
     -   Une modélisation du système que ce soit au niveau de sa structure, les diagrammes de classe et d'objet, ou son comportement principalement représenté sous forme de diagrammes d'état.
     -   La sécurisation de l'ensemble.
     -   Des systèmes de contrôle composés de un, mais souvent plusieurs régulateurs.
-  - La complexité revient à gérer un ensemble de domaine sans perdre de vue l'objectif qui est de répondre à une spécification donnée.
+  - La complexité revient à gérer un ensemble de domaines sans perdre de vue l'objectif qui est de répondre à une spécification donnée.
 
 ## GMP
 GMP est un acronyme qui est principalement utilisé dans le monde de l'industrie pharmaceutique. Des entreprises actives en automatisation industrielles appliquent ce principe aussi pour d'autres types d'industrie car l'expérience montre que cela permet d'améliorer significativement le résultat final du projet.
