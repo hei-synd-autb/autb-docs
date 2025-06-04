@@ -146,9 +146,9 @@ Dieses Modul stellt die wichtigsten Schritte für ein erfolgreiches Automatisier
 - [autb-lab-02](https://github.com/hei-synd-autb/autb-lab-02_2025) A data structure to manage a conveyor
 - [autb-lab-03](https://github.com/hei-synd-autb/autb-lab-03_2025) A function block for a sensor
 - [autb-lab-04](https://github.com/hei-synd-autb/autb-lab-04_2025) A function block for an actuator
-- [autb-lab-05](https://github.com/hei-synd-autb/autb-lab-05_2025) Mise en service d'un axe électrique couplé à un entraînement mécanique
+- [autb-lab-05](https://github.com/hei-synd-autb/autb-lab-05_2025) Commissioning of an electric axis coupled with a mechanical drive
 - [autb-lab-06](https://github.com/hei-synd-autb/autb-lab-06_2025) Gestion d'un mouvement discret, MC_MoveAbsolute, basé sur PLCopen motion control.
-- [autb-lab-07](https://github.com/hei-synd-autb/autb-lab-07_2025) Gestion d'un mouvement basé sur un polynôme d'ordre 5. (Ou un mouvment 3D, à revoir.)
+- [autb-lab-07](https://github.com/hei-synd-autb/autb-lab-07_2025) Asynchronous programming with Node-RED for user interface.
 
 # The LAB.
 <figure>

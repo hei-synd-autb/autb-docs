@@ -86,7 +86,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 <figure>
     <img src="img/Logo_IEC.png"
-         alt="Logo IEC">
+         alt="Logo IEC" width="100">
     <figcaption>Logo International Electrotechnical Commission</figcaption>
 </figure>
 
@@ -122,11 +122,13 @@ Au niveau logiciel, l'**augmentation de la modularité** d'un programme rime sou
 ### ISA-88 Physical Diagram
 ISA-88 propose un model qui permet de representer un processus industriel selon un model générique. Si ISA-88 est initialement une norme développée pour le **Batch Processing**, elle peut aussi être utilisée pour modéliser d'autres type de processus, ce qui nous permet de présenter ce cours comme une approche générale valable pour d'autre types de processus susceptibles d'être automatisés.
 
+<div align="center">
 <figure>
     <img src="img/S88_Physical_Model_UML_Generic.svg"
-         alt="lost image S88_Physical_Model_UML_Generic">
+         alt="lost image S88_Physical_Model_UML_Generic" width="500">
     <figcaption>ISA-88 Physical Model Generic vesion UML</figcaption>
 </figure>
+</div>
 
 - Pour résumer, une machine se situe au niveau **Unit**.
 - Dans le cadre de ce cours, nous nous limiterons à un élément de cette machine, un **Equipment Module**
@@ -260,7 +262,7 @@ Il n'est pas du tout dans l'objectif de ce cours de rentrer dans les détails du
 
 <figure>
     <img src="img/Bare Metal Hypervisor.png"
-         alt="Bare Metal Hypervisor">
+         alt="Bare Metal Hypervisor" width="300">
     <figcaption>PLC et OS de type Windows ou Linux sur le même hardware</figcaption>
 </figure>
 
@@ -381,11 +383,13 @@ Il existe des choix d’entreprise. Si une grosse entreprise, telle Nestlé a no
 ## Nouveauté 2023-2024
 Actuellement une nouvelle technologie est en phase d'essais pilote par différents fournisseurs. [Ethernet-APL](https://www.ethernet-apl.org) Advanced Physical Layer. Cette technologie est destinée à remplacer les Profibus-PA dans l'industrie dite du Process, chimie, biotechnologies. Pour les ingénieurs actifs dans ce type d'industrie, il vaudra la peine d'envisager ce type de bus pour tout nouveau projet. Cette technologie est prévue pour pouvoir utiliser les supports physiques des anciennes installations, elle est donc aussi pertinente pour des projets de rénovation.
 
+<div align="center">
 <figure>
     <img src="./img/Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png"
          alt="Image lost Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png">
     <figcaption>Ethernet-APL</figcaption>
 </figure>
+</div>
 
 
 ## Les normes
