@@ -405,6 +405,8 @@ Die obigen Absätze dienen einerseits dem Aufbau eines robusten Funktionsblocks,
 
 > Wird der Baustein nicht aufgerufen, kann die Zustandsmaschine nicht arbeiten und die Ausgänge sind nicht mehr gültig.
 
+---
+
 ## Ein Beispiel, das möglicherweise ein Problem darstellt
 Betrachten Sie das folgende Codebeispiel: **BAD Practice**.
 
@@ -453,6 +455,8 @@ Mit dieser Praxis, der **GUTEN Praxis**, sind wir sicher, dass:
 1. ``mcReset.Execute`` ist nur im Status ``E_EnableInOperation.STATE_INIT`` ``TRUE`` und in allen anderen Status von ``eEnableInOperation`` ``FALSE``.
 2. Die interne ``mcReset``-Maschine wird immer ausgeführt.
 3. *Dieses Beispiel ist theoretisch, da ``MC_Reset`` in der Bewegungssteuerung im Allgemeinen verwendet wird, um das System nach einem Fehler zurückzusetzen*.
+
+---
 
 ## Ein zweites Beispiel, das zwangsläufig ein Problem darstellen kann oder wird
 
@@ -517,6 +521,18 @@ CASE eStateMachine OF
          // Irgendein Übergang
 END_CASE
 ```
+
+---
+
+## Ein drittes Beispiel
+**Der häufigste Fehler** ist das Vergessen des Aufrufs des Funktionsbausteins im Code.
+Wenn Sie sich angewöhnen, den Funktionsbaustein an derselben Stelle wie seinen eigentlichen Aufruf aufzurufen, ist dieser Fehler sehr unwahrscheinlich.
+
+```iecst
+mcReset(Execute := (eEnableInOperation = E_EnableInOperation.STATE_INIT),
+        Axis := GVL_OneAxis.X_Axis)
+```
+---
 
 # Andere nützliche Praktiken
 ## Zustand nm1, vorheriger Zustand
@@ -752,7 +768,7 @@ Wenn es zu viele sind...
 
 # [Exercices](./Mod07_Exercices_DE.md)
 
-# Pour aller un peu plus loin
+# Um noch ein bisschen weiter zu gehen
 
 -   [Stefan Henneken, IEC 61131-3: The State Pattern](https://stefanhenneken.net/2018/11/17/iec-61131-3-the-state-pattern/#more-1285)
 
