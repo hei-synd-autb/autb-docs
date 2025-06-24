@@ -401,6 +401,8 @@ Les paragraphes ci-dessus servent d'une part à construire un bloc fonctionnel r
 
 > Si le bloc n'est pas appelé, la machine d'état ne peut pas fonctionner et les sorties ne sont plus valides.
 
+---
+
 ## Un premier exemple qui peut poser problème
 Soit l'exemple de code ci-dessous, **BAD Practice**.
 
@@ -449,6 +451,8 @@ Avec cette pratique, **GOOD practice**, on a la certitude que:
 1.  ``mcReset.Execute`` sera ``TRUE`` uniquement dans l'état ``E_EnableInOperation.STATE_INIT`` et ``FALSE`` dans tous les autes états de ``eEnableInOperation``.
 2.  La machine interne de ``mcReset`` sera toujours exécutée.
 3.  *Cet exemple est théorique, car en motion control, MC_Reset est en général utilisé pour réinitialiser le sytème après une erreur*.
+
+---
 
 ## Un deuxième exemple qui peut poser, ou posera obligatoirement un problème
 Reprenons le cas d'une machine d'état utilisée pour piloter des feux de signailisation vu dans une module précédent [Feux de circulation à 4 états](../AutB_MOD_05_Operation_And_Instruction/README.md#exercice-8-feux-de-circulation-à-4-états).
@@ -511,6 +515,15 @@ CASE eStateMachine OF
         // Some transition
 END_CASE
 ```
+## Un troisième exemple
+**L'erreur la plus classique** consiste à oublier d'appeler le Function Block dans le code.
+En prenant l'habitude de piloter le Function Block au même endroit que son appel, il est très peu problable de faire ce genre d'erreur.
+
+```iecst
+mcReset(Execute := (eEnableInOperation = E_EnableInOperation.STATE_INIT),
+        Axis := GVL_OneAxis.X_Axis)
+```
+---
 
 # Autres pratiques utiles
 ## State nm1, état précédent
