@@ -159,10 +159,12 @@ fbAlarm(Enable := (selector = E_Color.red));
 ```
 > Der obige Pseudocode ist das wichtigste Element des Semesters. **Auswendig wissen**.
 
-# Modelle aktivieren und ausführen
+# Modelle Enable und Execute
 Bei der objektorientierten Programmierung gibt es mehrere Variationsmöglichkeiten. Einschließlich dessen, was darin besteht, Vererbung, Schnittstellen und Methoden zu verwenden, um grundlegende Funktionsblöcke mit gemeinsamem Verhalten zu definieren. Siehe [unten, Um ein wenig weiter zu gehen](#to-go-a-little-forther). Die beiden genannten Referenzen gehen jedoch über den Rahmen dieses Kurses *basic* hinaus, sie ermöglichen den Nachweis, dass IEC 61131-3 in seiner aktuellen Fassung die Strukturierung von Code mit komplexer Architektur ermöglicht und werden nicht kommentiert.
 
-Das Design durch Funktionsblöcke greift jedoch das erste Prinzip der objektorientierten Programmierung auf, die **Kapselung**. **Um genau zu sein, ist der Funktionsblock eine Klasse, seine Instanz ist ein Objekt**. Andererseits werden wir nicht über Vererbung oder Polymorphismen sprechen. Dies bedeutet, dass die Funktionsblöcke nicht durch Methoden, sondern durch boolesche BOOL-Signale aktiviert werden, die in zwei Hauptkategorien eingeteilt werden können: ``Ausführen`` und ``Aktivieren``.
+Das Design durch Funktionsblöcke greift jedoch das erste Prinzip der objektorientierten Programmierung auf, die **Kapselung**. **Um genau zu sein, ist der Funktionsblock eine Klasse, seine Instanz ist ein Objekt**. Andererseits werden wir nicht über Vererbung oder Polymorphismen sprechen. Dies bedeutet, dass die Funktionsblöcke nicht durch Methoden, sondern durch boolesche BOOL-Signale aktiviert werden, die in zwei Hauptkategorien eingeteilt werden können: ``Execute`` und ``Enable``.
+
+> Wir finden das Konzept Enable und Execute in einem PLCopen-Dokument: [creating plcopen compliant function block libraries](./documentation/plcopen_motion_control_part_1_version_2.0.pdf), §1, **Level controlled versus Edge triggering**.
 
 ## InOperation-Modell aktivieren
 Typische Verwendung: ein Regler, der kontinuierlich arbeitet. Sobald der Block betriebsbereit ist, erscheint ``InOperation``. Der Regler funktioniert normal.
