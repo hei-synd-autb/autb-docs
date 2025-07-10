@@ -21,17 +21,20 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
   - [Abstract (www.iec.ch)](#abstract-wwwiecch)
 - [Classes de processus industriels](#classes-de-processus-industriels)
   - [Pourquoi parler des types de processus ?](#pourquoi-parler-des-types-de-processus-)
-    - [ISA-88 Physical Diagram](#isa-88-physical-diagram)
+    - [ISA-88](#isa-88)
+    - [ISA-88 Physical Model](#isa-88-physical-model)
+      - [Le module de contrôle.](#le-module-de-contrôle)
+      - [Le module d'équipement.](#le-module-déquipement)
   - [Processus, lots et traitements par lots](#processus-lots-et-traitements-par-lots)
   - [Continuous processes](#continuous-processes)
   - [Discrete parts manufacturing processes](#discrete-parts-manufacturing-processes)
   - [Batch processes](#batch-processes)
     - [Un exemple de Batch Process](#un-exemple-de-batch-process)
-  - [Autres aspects de ISA-88, *à titre d'information*](#autres-aspects-de-isa-88-à-titre-dinformation)
+  - [Autres aspects de ISA-88,](#autres-aspects-de-isa-88)
     - [Procedural Control Model](#procedural-control-model)
     - [Process Model](#process-model)
-    - [](#)
-- [*2ème partie, les modules d'entrée sortie*](#2ème-partie-les-modules-dentrée-sortie)
+    - [Le modèle ISA-88 complet](#le-modèle-isa-88-complet)
+- [Les modules d'entrée sortie](#les-modules-dentrée-sortie)
   - [Un centre de communication.](#un-centre-de-communication)
     - [Un automate permet en particulier:](#un-automate-permet-en-particulier)
   - [La notion de programme temps réel.](#la-notion-de-programme-temps-réel)
@@ -119,7 +122,28 @@ Un des intérêts de la production par Batch est d'être plus facilement modulab
 
 Au niveau logiciel, l'**augmentation de la modularité** d'un programme rime souvent avec **augmentation de la complexité**. D'ou l'importance d'un programme parfaitement structuré.
 
-### ISA-88 Physical Diagram
+### ISA-88
+ISA-88 est un standard développé pour réaliser des processus industriels par batch. De nombreux concepts peuvent toutefois s'appliquer à l'ensemble des types de processus et c'est la raison pour laquelle nous nous y référons régulièrement dans ce cours. Il va nous permettre de modéliser une installation afin de structurer proprement notre système d'automatisation.
+
+```mermaid
+---
+title: Simplified model
+---
+
+flowchart LR
+    PCM[Procedural Control Model]---PHM[Physical Model]---PRM[Process Model]
+
+```
+
+Le modèle simplifié sépare un système industriel en trois partie.
+
+-   **Process Model**, c'est la partie à automatiser. Dans un processus discret, ce sont les pièces à assembler, ou les bouteilles à remplir. Dans un processus par batch, ce sont les différents ingrédients à mélanger ou à chauffer en quantité donnée. Dans un processus continu, ce pourrait être un flux de matière à transformer ou filtrer.
+-   **Physical Model**, c'est notre système d'automatisation à proprement parler, qui va utiliser un PLC comme élément central.
+-   **Procedural Control Model**, c'est la recette que nous allons utiliser pour piloter le modèle physique.
+
+**Dans ce cours, nous allons nous concentrer sue le modèle physique**.
+
+### ISA-88 Physical Model
 ISA-88 propose un model qui permet de representer un processus industriel selon un model générique. Si ISA-88 est initialement une norme développée pour le **Batch Processing**, elle peut aussi être utilisée pour modéliser d'autres type de processus, ce qui nous permet de présenter ce cours comme une approche générale valable pour d'autre types de processus susceptibles d'être automatisés.
 
 <div align="center">
@@ -131,12 +155,56 @@ ISA-88 propose un model qui permet de representer un processus industriel selon 
 </div>
 
 - Pour résumer, une machine se situe au niveau **Unit**.
-- Dans le cadre de ce cours, nous nous limiterons à un élément de cette machine, un **Equipment Module**
+- Dans le cadre de ce cours, nous aborderons principalement les notions de : **Equipment Module** et **Control Module**.
+
+#### Le module de contrôle.
+Le plus bas niveau de contrôle Exemple:
+
+-   Les capteurs.
+-   Les actionneurs.
+-   Une combinaison de capteurs et actionneurs. Par exemple une pince avec ses détecteurs qui contrôlent les positions ouvert ou fermé.
+
+> C'est la raison pour laquelle, nous verrons comment encapsuler et programmer différents éléments pour constituer un Control Module.
+
+#### Le module d'équipement.
+
+Les modules d'équipement, ou **Equipment Modules**, **EM**, sont les **objets matériels** qui regroupent des **contrôles modules**, **CM** et qui sont **fonctionnellement interdépendant en toutes circonstances**.
+
+Exemple :
+-  Débimètre avec vanne, circuit de vidage.
+-  Pompe et vanne pour un circuit de refroidissement.
+-  Axe robotisé avec un vis à bille équipée d'un moteur avec sont codeur de position et une pince.
+
+<div align="center">
+
+```mermaid
+---
+title: Equipment Module
+---
+classDiagram
+    class EM_RobotAxis {
+    }
+
+    class CM_LinearAxis {
+        Motor
+        Encoder
+    }
+    class CM_Gripper {
+        PneumaticValve
+        SensorOpen
+        SensorClosed
+    }
+
+    EM_RobotAxis *-- CM_LinearAxis
+    EM_RobotAxis *-- CM_Gripper
+```
+</div>
 
 ## Processus, lots et traitements par lots
-Selon ISA 88, un processus est une séquence d'activités chimiques, physiques ou biologiques pour la conversion, le transport ou stockage de matière ou d'énergie. Les procédés de fabrication industrielle peuvent généralement être classés sous forme de fabrication continue de pièces discrètes ou par lots. La classification d'un processus dépend de si la sortie du processus apparaît dans un flux continu, « Continuous », en quantités finies de pièces « Discrete parts manufacturing », ou en quantités finies de matière « Batches ».
-Bien que certains aspects de cette norme puissent s'appliquer à la fabrication de pièces discrètes ou aux processus continus, la norme ISA88 ne traite pas spécifiquement de ces types de processus.
-La réalité est que de nombreux ingénieurs, dont l’auteur de ce cours se sont intéressés à l’application de la norme aux processus discret et continus. On peut notamment se référer à l’ouvrage « WBF, Applying ISA-88 in discrete and continuous manufacturing ».
+Selon ISA 88, un processus est une séquence d'activités chimiques, physiques ou biologiques pour la conversion, le transport ou stockage de matière ou d'énergie. Les procédés de fabrication industrielle peuvent généralement être classés sous forme de fabrication continue de pièces discrètes ou par lots. La classification d'un processus dépend de si la sortie du processus apparaît dans un flux continu, « Continuous », en quantités finies de pièces, **Discrete parts manufacturing**, ou en quantités finies de matière, **Batches**.
+
+Bien que certains aspects de cette norme puissent s'appliquer à la fabrication de pièces discrètes ou aux processus continus, la norme ISA-88 ne traite pas spécifiquement de ces types de processus.
+La réalité est que de nombreux ingénieurs, dont l’auteur de ce cours se sont intéressés à l’application de la norme aux processus discret et continus. On peut notamment se référer à l’ouvrage WBF, Applying ISA-88 in discrete and continuous manufacturing.
 
 ## Continuous processes
 Dans un processus continu, les matériaux sont passés en flux continu à travers l'équipement de traitement. Une fois établi dans un état de fonctionnement stable, la nature du processus ne dépend pas de la durée de fonctionnement. Les démarrages, transitions et arrêts ne contribuent généralement pas à la réalisation du traitement souhaité. Au niveau de l’ISA, les processus continus sont traités dans « ISA106, Procedure Automation for Continuous Process Operations »
@@ -153,7 +221,7 @@ discret ni continus ; cependant, ils présentent les deux caractéristiques.
 <figure>
     <img src="img/PI_D_Drink Processing.svg"
          alt="Lost image PI_D_Drink_Processing">
-    <figcaption>Drink Processing version Pipe & Process Diagram</figcaption>
+    <figcaption>Drink Processing version Pipe & Process Diagram, <strong>P&ID</strong></figcaption>
 </figure>
 
 > La signification des labels P&ID est donnée à titre indicative dans le document annexe [Piping and Instrumentation Diagram](./PID_Diagram.md).
@@ -161,19 +229,20 @@ discret ni continus ; cependant, ils présentent les deux caractéristiques.
 <figure>
     <img src="img/S88_Drink_Processing.svg"
          alt="Lost image S88_Drink_Processing">
-    <figcaption>Drink Processing version ISA-88</figcaption>
+    <figcaption>Drink Processing version <strong>ISA-88</strong></figcaption>
 </figure>
 
 <figure>
     <img src="./puml/UML_DrinkProcessing/UML_DrinkProcessing.svg"
          alt="Lost image S88_Drink_Processing">
-    <figcaption>Drink Processing version ISA-88</figcaption>
+    <figcaption>Drink Processing version <strong>UML</strong></figcaption>
 </figure>
 
 
 Le travail sur les intefaces consiste à relier le processus représenté par exemple par le schéma **P&ID**, **Pipe & Process Diagram** que l'on retrouve fréquement dans l'industrie chimique avec le software représenté par le schéma UML.
 
-## Autres aspects de ISA-88, *à titre d'information*
+## Autres aspects de ISA-88,
+*à titre d'information*
 ### Procedural Control Model
 ISA-88 gère aussi un modèle procédural, Procedural Control Model, que l'on pourrait simplement traduire par la gestion des recettes.
 Les élément traités dans le cadre de ce cours se limitent au bas de l'échelle procédurale. Ils seronts ensuite pilotés par une **phase**.
@@ -197,14 +266,40 @@ Une opération pourrait être par exemple:
 -   Insérer le bouton en caoutchouc
 -   Contrôler la qualité du montage avec une caméra intelligente
 
-###
+### Le modèle ISA-88 complet
+
 <figure>
     <img src="./img/S88_Relations.svg"
          alt="Lost image S88_Relations">
     <figcaption>Relation entre les différents éléments ISA-88</figcaption>
-</figure
+</figure>
 
-# *2ème partie, les modules d'entrée sortie*
+
+# Les modules d'entrée sortie
+Les entrées et les sorties vont nous permettre de piloter et contrôler les éléments physiques à partir de l'automate.
+
+<div align="center">
+
+```mermaid
+---
+title: PLC Simplified model
+---
+
+flowchart LR
+
+    subgraph CPU
+        RI[Input Register]
+        RO[Output Register]
+        Memory<-->Code
+        RI-->Code
+        Code --> RO
+    end
+    
+    I[Input Module] --> RI
+    RO --> O[Ouput Module]
+```
+
+</div>
 
 ## Un centre de communication.
 Un automate moderne est avant tout un centre de communication qui permet dans un environnement donné d’utiliser une large gamme de protocoles et de matériel.
@@ -364,6 +459,48 @@ EL1008 | EtherCAT Terminal, 8-channel digital input, 24 V DC, 3 ms
 Chercher une carte permettant de faire l’acquisition de signaux à 1MHz.
 
 # Les bus de terrain, ou bus industriels
+
+<div align="center"> 
+
+```mermaid
+---
+title: PLC with fieldbus
+---
+
+flowchart TB
+
+    subgraph CPU
+        RI[Input Register]
+        RO[Output Register]
+        RI-->Code
+        Code --> RO
+        Memory<-->Code
+    end
+
+    subgraph Fieldbus
+
+       subgraph Input
+            direction BT       
+            I1[Input Module 1] 
+            I2[Input Module 2] 
+            Ix[Input Module ...] 
+        end
+        subgraph Output
+            direction BT     
+            O1[Output Module 1] 
+            O2[Output Module 2] 
+            Ox[Output Module ...] 
+        end
+    end
+
+    CM[Communication Module]    
+    CM <--> Fieldbus
+    CM --> RI
+    RO --> CM
+
+ ```
+
+</div>
 
 ## Qu’est ce qu’un bus de terrain ?
 Un bus de terrain, ou bus industriel est un système de communication qui implique un support physique, le câble, une partie électronique physique et une partie logicielle qui permet la communication entre des capteurs, actuateurs et automates industriels.

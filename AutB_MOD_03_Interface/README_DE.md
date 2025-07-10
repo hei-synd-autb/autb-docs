@@ -16,22 +16,26 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 - [Module 03 Interfaces,](#module-03-interfaces)
   - [Inhaltsverzeichnis](#inhaltsverzeichnis)
-- [*1. Teil, Prinzip*](#1-teil-prinzip)
+- [Prinzip\*](#prinzip)
   - [Industrial-process measurement and control - Programmable controllers - Part 2: Equipment requirements and tests](#industrial-process-measurement-and-control---programmable-controllers---part-2-equipment-requirements-and-tests)
   - [Abstract (www.iec.ch)](#abstract-wwwiecch)
 - [Industrielle Prozessklassen](#industrielle-prozessklassen)
   - [Warum über Prozesstypen sprechen?](#warum-über-prozesstypen-sprechen)
-    - [Physikalisches ISA-88-Diagramm](#physikalisches-isa-88-diagramm)
+    - [ISA-88](#isa-88)
+    - [ISA-88 Physical Model](#isa-88-physical-model)
+      - [Das Steuermodul.](#das-steuermodul)
+      - [Das Equipment-Modul.](#das-equipment-modul)
+    - [Physikalisches ISA-88-Physical Model](#physikalisches-isa-88-physical-model)
   - [Prozesse, Chargen und Stapelverarbeitung](#prozesse-chargen-und-stapelverarbeitung)
   - [Kontinuierliche Prozesse](#kontinuierliche-prozesse)
   - [Herstellungsprozesse für diskrete Teile](#herstellungsprozesse-für-diskrete-teile)
   - [Batch-Prozesse](#batch-prozesse)
     - [Ein Beispiel für einen Batch-Prozess](#ein-beispiel-für-einen-batch-prozess)
-  - [Andere Aspekte von ISA-88, *zu Ihrer Information*](#andere-aspekte-von-isa-88-zu-ihrer-information)
+  - [Andere Aspekte von ISA-88,](#andere-aspekte-von-isa-88)
     - [Verfahrenskontrollmodell](#verfahrenskontrollmodell)
     - [Prozessmodell](#prozessmodell)
-    - [](#)
-- [*2. Teil, Eingabe-Ausgabe-Module*](#2-teil-eingabe-ausgabe-module)
+    - [Das vollständige ISA-88-Modell](#das-vollständige-isa-88-modell)
+- [Eingabe-Ausgabe-Module](#eingabe-ausgabe-module)
   - [Ein Kommunikationszentrum.](#ein-kommunikationszentrum)
     - [Ein Automat erlaubt insbesondere:](#ein-automat-erlaubt-insbesondere)
 - [Der Begriff des Echtzeitprogramms.](#der-begriff-des-echtzeitprogramms)
@@ -81,7 +85,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
       - [Bindung von Eingabe-Tags](#bindung-von-eingabe-tags)
       - [Liaison des tags de sortie](#liaison-des-tags-de-sortie)
 
-# *1. Teil, Prinzip*
+# Prinzip*
 
 
 *Keywords:* **61131-2 hardware tags**
@@ -120,7 +124,87 @@ Einer der Vorteile der Batch-Produktion besteht darin, dass sie einfacher modula
 
 Auf Softwareebene ist die **Erhöhung der Modularität** eines Programms oft gleichbedeutend mit der **Erhöhung der Komplexität**. Daher ist ein perfekt strukturiertes Programm wichtig.
 
-### Physikalisches ISA-88-Diagramm
+### ISA-88
+ISA-88 ist ein Standard für die Implementierung industrieller Batch-Prozesse. Viele Konzepte lassen sich jedoch auf alle Prozesstypen übertragen, weshalb wir in diesem Kurs regelmäßig darauf zurückgreifen. Er ermöglicht uns die Modellierung einer Anlage, um unser Automatisierungssystem optimal zu strukturieren.
+
+```mermaid
+---
+title: Simplified model
+---
+
+flowchart LR
+    PCM[Procedural Control Model]---PHM[Physical Model]---PRM[Process Model]
+
+```
+
+Le modèle simplifié sépare un système industriel en trois partie.
+
+-   **Process Model** ist der zu automatisierende Teil. In einem diskreten Prozess sind dies die zu montierenden Teile oder die zu befüllenden Flaschen. In einem Batch-Prozess sind dies die verschiedenen Zutaten, die in einer bestimmten Menge gemischt oder erhitzt werden. In einem kontinuierlichen Prozess könnte dies ein zu transformierender oder zu filternder Materialstrom sein.
+
+-   **Physical Model** ist unser Automatisierungssystem selbst, dessen zentrales Element eine SPS ist.
+
+-   **Procedural Control Model** ist die Grundlage zur Steuerung des physikalischen Modells.
+
+In diesem Kurs konzentrieren wir uns auf das physikalische Modell.
+
+### ISA-88 Physical Model
+ISA-88 bietet ein Modell, mit dem Sie einen industriellen Prozess mithilfe eines generischen Modells darstellen können. Obwohl ISA-88 ursprünglich ein Standard für die **Batch Processing** ist, kann er auch zur Modellierung anderer Prozesstypen verwendet werden. Daher können wir diesen Kurs als allgemeinen Ansatz präsentieren, der für andere automatisierbare Prozesstypen gültig ist.
+
+<div align="center">
+<figure>
+    <img src="img/S88_Physical_Model_UML_Generic.svg"
+         alt="lost image S88_Physical_Model_UML_Generic" width="500">
+    <figcaption>ISA-88 Physical Model Generic vesion UML</figcaption>
+</figure>
+</div>
+
+-   Zusammenfassend lässt sich sagen, dass sich eine Maschine auf der Einheitenebene befindet.
+-   In diesem Kurs behandeln wir hauptsächlich die Konzepte des  **Equipment Module** und des **Control Module**.
+
+#### Das Steuermodul.
+Die unterste Steuerungsebene. Beispiele:
+
+-   Sensoren.
+-   Aktoren.
+-   Eine Kombination aus Sensoren und Aktoren. Beispielsweise ein Greifer mit seinen Sensoren, die die Öffnungs- oder Schließposition steuern.
+
+> Deshalb werden wir sehen, wie man verschiedene Elemente kapselt und programmiert, um ein **Control Module** zu erstellen.
+
+#### Das Equipment-Modul.
+
+**Equipment-Module**, **EM** sind Hardware-Objekte, die  **contrôles modules**, **CM** zusammenfassen und unter allen Umständen funktional voneinander abhängig sind.
+
+Beispiel:
+- Durchflussmesser mit Ventil, Ablaufkreis.
+- Pumpe und Ventil für einen Kühlkreislauf.
+- Roboterachse mit Kugelumlaufspindel, ausgestattet mit Motor, Positionsgeber und Greifer.
+
+<div align="center">
+
+```mermaid
+---
+title: Equipment Module
+---
+classDiagram
+    class EM_RobotAxis {
+    }
+
+    class CM_LinearAxis {
+        Motor
+        Encoder
+    }
+    class CM_Gripper {
+        PneumaticValve
+        SensorOpen
+        SensorClosed
+    }
+
+    EM_RobotAxis *-- CM_LinearAxis
+    EM_RobotAxis *-- CM_Gripper
+```
+</div>
+
+### Physikalisches ISA-88-Physical Model
 ISA-88 bietet ein Modell, das es ermöglicht, einen industriellen Prozess nach einem generischen Modell darzustellen. Obwohl es sich bei ISA-88 ursprünglich um einen Standard handelt, der für die **Stapelverarbeitung** entwickelt wurde, kann er auch zur Modellierung anderer Arten von Prozessen verwendet werden, sodass wir diesen Kurs als allgemeinen Ansatz präsentieren können, der für andere Arten von Prozessen gilt, die automatisiert werden können.
 
 <figure>
@@ -152,7 +236,7 @@ diskret oder kontinuierlich; Sie weisen jedoch beide Merkmale auf.
 <figure>
     <img src="./img/PI_D_Drink Processing.svg"
          alt="Lost image PI_D_Drink_Processing">
-    <figcaption>Drink Processing version Pipe & Process Diagram</figcaption>
+    <figcaption>Drink Processing version Pipe & Process Diagram <strong>P&ID</strong></figcaption>
 </figure>
 
 > Die Bedeutung der P&ID-Beschriftungen ist als Hinweis im beigefügten Dokument [Piping and Instrumentation Diagram](./PID_Diagram.md) angegeben.
@@ -160,18 +244,19 @@ diskret oder kontinuierlich; Sie weisen jedoch beide Merkmale auf.
 <figure>
     <img src="./img/S88_Drink_Processing.svg"
          alt="Lost image S88_Drink_Processing">
-    <figcaption>Drink Processing version ISA-88</figcaption>
+    <figcaption>Drink Processing version <strong>ISA-88</strong></figcaption>
 </figure>
 
 <figure>
     <img src="./puml/UML_DrinkProcessing/UML_DrinkProcessing.svg"
          alt="Lost image S88_Drink_Processing">
-    <figcaption>Drink Processing version ISA-88</figcaption>
+    <figcaption>Drink Processing version <strong>UML</strong></figcaption>
 </figure>
 
 Die Arbeit an den Schnittstellen besteht darin, den Prozess, der beispielsweise durch das **P&ID**-Diagramm, das in der chemischen Industrie häufig vorkommende **Pipe & Process Diagram** dargestellt wird, mit der durch das UML-Diagramm dargestellten Software zu verbinden.
 
-## Andere Aspekte von ISA-88, *zu Ihrer Information*
+## Andere Aspekte von ISA-88,
+*zu Ihrer Information*
 ### Verfahrenskontrollmodell
 ISA-88 verwaltet auch ein Verfahrensmodell, das Procedural Control Model, das einfach als Rezeptverwaltung übersetzt werden könnte.
 Die in diesem Kurs behandelten Elemente beschränken sich auf das untere Ende der Verfahrensskala. Sie werden dann von einer **Phase** gesteuert.
@@ -195,14 +280,39 @@ Eine Operation könnte zum Beispiel sein:
 - Setzen Sie den Gummiknopf ein
 - Kontrollieren Sie die Bearbeitungsqualität mit einer Smart-Kamera
 
-###
+### Das vollständige ISA-88-Modell
+
 <figure>
     <img src="./img/S88_Relations.svg"
          alt="Lost image S88_Relations">
     <figcaption>Beziehung zwischen verschiedenen ISA-88-Elementen</figcaption>
-</figure
+</figure>
 
-# *2. Teil, Eingabe-Ausgabe-Module*
+# Eingabe-Ausgabe-Module
+Die Ein- und Ausgänge ermöglichen uns die Steuerung und Überwachung der physischen Elemente von der SPS aus.
+
+<div align="center">
+
+```mermaid
+---
+title: PLC Simplified model
+---
+
+flowchart LR
+
+    subgraph CPU
+        RI[Input Register]
+        RO[Output Register]
+        Memory<-->Code
+        RI-->Code
+        Code --> RO
+    end
+    
+    I[Input Module] --> RI
+    RO --> O[Ouput Module]
+```
+
+</div>
 
 ## Ein Kommunikationszentrum.
 Eine moderne SPS ist vor allem ein Kommunikationszentrum, das den Einsatz verschiedenster Protokolle und Hardware in einer gegebenen Umgebung ermöglicht.
@@ -362,6 +472,48 @@ EL1008 | EtherCAT Terminal, 8-channel digital input, 24 V DC, 3 ms
 Suchen Sie nach einer Karte, mit der Sie Signale mit 1 MHz erfassen können.
 
 # Feldbusse oder Industriebusse
+
+<div align="center"> 
+
+```mermaid
+---
+title: PLC with fieldbus
+---
+
+flowchart TB
+
+    subgraph CPU
+        RI[Input Register]
+        RO[Output Register]
+        RI-->Code
+        Code --> RO
+        Memory<-->Code
+    end
+
+    subgraph Fieldbus
+
+       subgraph Input
+            direction BT       
+            I1[Input Module 1] 
+            I2[Input Module 2] 
+            Ix[Input Module ...] 
+        end
+        subgraph Output
+            direction BT     
+            O1[Output Module 1] 
+            O2[Output Module 2] 
+            Ox[Output Module ...] 
+        end
+    end
+
+    CM[Communication Module]    
+    CM <--> Fieldbus
+    CM --> RI
+    RO --> CM
+
+ ```
+
+</div>
 
 ## Was ist ein Feldbus?
 Ein Feldbus oder Industriebus ist ein Kommunikationssystem, das einen physischen Träger, das Kabel, einen physischen elektronischen Teil und einen Softwareteil umfasst, der die Kommunikation zwischen Sensoren, Aktoren und Industriesteuerungen ermöglicht.
