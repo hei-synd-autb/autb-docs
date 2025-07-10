@@ -83,7 +83,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
       - [Liaison des tags d'entrée](#liaison-des-tags-dentrée)
       - [Liaison des tags de sortie](#liaison-des-tags-de-sortie)
 
-# *1ère partie, principe*
+# Principe
 
 *Keywords:* **61131-2 hardware tags**
 
