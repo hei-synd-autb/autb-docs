@@ -30,7 +30,7 @@ Il faut être capable d'utiliser et coder trois types de diagrammes qui seront u
 - Flowchart diagrams, ou Activity Diagram selon l'appelation SysML.
 - State diagrams, ou A StateMachine diagram selon l'appelation SysML.
 
-Les diagrammes choisis ne respectent pas la définitions stricte de SysML, mais de même, il n'existe pas de diagrammes permettant une représentation stricte de la norme IEC-61131-3, en particulier le fonctionnement propres au bloques fonctionnels.
+Les diagrammes choisis ne respectent pas la définitions stricte de SysML, mais de même, il n'existe pas de diagrammes permettant une représentation stricte de la norme IEC-61131-3, en particulier le fonctionnement propres au blocs fonctionnels.
 
 Nous utiliserons la base [Mermaid](https://mermaid.js.org) pour représenter ces diagrammes dans des documents [Markdown](https://www.markdownguide.org/).
 Ces représentations offrent l'avantage de pouvoir être utilisée, archivées et visualisées à l'aide des platformes basées sur [GIT](https://git-scm.com/), à savoir [GitHub](https://github.com/) et [GitLab](https://about.gitlab.com/).
@@ -79,6 +79,23 @@ Les extensions utilisées dans ce cours sur VScode sont les suivantes:
 # [Mermaid Flowchart](https://mermaid.js.org/syntax/flowchart.html)
 Ce type de diagramme doit être principalement vu comme un diagramme de communication. Il permet de valider le fonctionnement d'un processus avant de passer au codage.
 
+**Le diagramme d'activité, ou flowchart ne permet en général pas de passer à la programmation**, on passera en général encore par la phase du digramme d'état mentionné ci-dessous.
+
+## Gripper, préhenseur.
+Le gripper ou préhenseur est un des éléments de base pour beaucoup de sytèmes d'automatisation. 
+
+Dans l'image ci-dessous, deux grippers mécaniques à gauche, et un gripper à ventouse à droite. Le troisième gripper depuis la gauche et un peu particulier, [Festo parle de adaptive shape gripper](https://www.youtube.com/watch?v=c1vxuhYwPKY).
+
+<div align="center">
+    <img src="./img/gripper-kit-universal-robots_collection_large_fix1920x880.webp"
+         alt="Image lost: gripper-kit-universal-robots_collection_large_fix1920x880.webp" width="600">
+    <figcaption>Festo Gripper for Universal Robot</figcaption>
+</div>
+
+Dans le diagramme ci-dessous, nous expliquons quelles sont les étapes à exécuter avant que le robot ne descende pour prendre une pièce, **to grip**. Cela n'explique en rien comment le système sera programmé, nous expliquons ce que nous devons faire. Ce pourrait même être une commande manuelle.
+
+<div align="center">
+
 ```mermaid
 
 ---
@@ -93,6 +110,17 @@ flowchart TD
     StateGripper -- Yes ----> Ready[Move Down]
 ```
 
+</div>
+
+## Principe basique du PLC
+-   Lire et traiter les entrées de l'automate.
+-   Traiter les données selon **un temps de cycle fixe** et plus ou moins strictement borné.
+-   Ecrire sur les sorties de l'automate
+
+Les systèmes PLC peuvent être plus ou moins strictes dans leur manière de traiter un temps de cycle. Dans les cas extrèmes, un programme qui conduirait à un dépassement de ce temps de cycle peut provoquer à un crash du système, et par extension de l'ensemble de l'installation.
+
+<div align="center">
+
 ```mermaid
 ---
 title: PLC Principle
@@ -105,6 +133,19 @@ flowchart TD
     CyclicProgram --> WriteOoutput(Write Outputs)
     
 ```
+
+</div>
+
+## Principe du PLC avec plusieurs tâches.
+En automatisation de base, nous travaillerons en principe avec une seule tâche. Il faut savoir que les automates, selon leur niveau de perfectionnement, ou parfois de licence, permeettent de traiter plusieurs temps de cycle. C'est ce qui est reproduit ci-dessous.
+
+-   **1 [ms]** Temps de cycle standard pour pilotage direct de moteurs synchrones.
+-   **10 [ms]** Temps de cycle standard pour l'industrie des machines, hors moteurs.
+-   **100 [ms] voir plus** Temps de cycle standard pour l'industrie chimique.
+
+> La disponibilité du nombre de tâches et leur temps de cycle plus ou moins rapide dépend de le puissance du processeur, mais aussi de la vitesse de transfert des signaux entre les capteurs, les entrées et sorties de l'automate et la transmission des signaux aux actionneurs.
+
+<div align="center">
 
 ```mermaid
 ---
@@ -133,12 +174,23 @@ flowchart TD
     ProgramMotion --> WriteOoutput(Write Outputs)
 ```
 
+</div>
+
+## Recette
+La notion de recette est très présente dans l'industrie du processus. Cependant, il s'agit de la partie procédurale d'un système d'automatisation, celle qui pilote l'ensemble des équipements. Dans le cadre de ce cours, nous nous focaliserons sur la réalisation d'équipements, par exemple, ici les équipements pour la mise en pot.
+
+Ici, la **phase** Mise en Pot pilotera les **équipements** nécessaires, moteurs, régulateurs, balance, etc...
+
+<div align="center">
+
 ```mermaid
 ---
 title: Fabrication de Confiture de Fraise
 ---
 
 flowchart TD
+    F:::someclass
+    
     A[Récolte des Fraises] --> B[Lavage des Fraises]
     B --> C[Équeutage des Fraises]
     C --> D[Cuisson des Fraises avec Sucre]
@@ -146,11 +198,17 @@ flowchart TD
     E --> F[Mise en Pots]
     F --> G[Stérilisation des Pots]
     G --> H[Étiquetage et Stockage]
+
+    classDef someclass fill:#f96
 ```
 
-# [Class Diagram](https://mermaid.js.org/syntax/classDiagram.html)
-Ce type de diagramme permet de représenter l'architecture du programme.
+</div>
 
+# [Class Diagram](https://mermaid.js.org/syntax/classDiagram.html)
+Ce type de diagramme permet de représenter l'**architecture** du programme.
+
+
+<div align="center">
 
 ```mermaid
 classDiagram
@@ -164,52 +222,108 @@ classM ..|> classN : Realization
 classO .. classP : Link(Dashed)
 ```
 
+</div>
+
 ## Les liens suivants sont à connaitre
+
+
+<div align="center">
 
 ```mermaid
 classDiagram
 classA --|> classB : Inheritance
 classC --* classD : Composition
 classE --o classF : Aggregation
-classM ..|> classN : Realization
 
 ```
+
+</div>
+
+-   **Inheritance**, l'héritage en IEC 61131-3 oo, très peu utilisé en automatisation de base. Voir [l'extension des structures de données](../AutB_MOD_04_Data_Structure/README.md#structure-extends).
+-   **Composition**, permet de composer un bloc de programme ou de données à partir de plusieurs autres. Un gripper est composé d'un actuateur pneumatique et d'un capteur.
+-   **Aggregation**, très présent dans le cours d'automatisaion de base. On pourrait traduire par possédé par. Sachant que cette possession peut être partagée.
+
+### Explication du diagramme
+
+#### Composition
+Les blocs avec l'entête **FB_** sont des classe ou objets une fois instanciés qui contiennent des variables et une section de programme.
+La bloc de programme **FB_GripperOneSensor** est **composé** de deux classes **FB_Actuator** et **FB_SensorClosed** qui sont des variables qui sont déclarée dans sont en-tête.
+
+```iecst
+FUNCTION_BLOCK FB_GripperOneSensor
+VAR
+    fbActuator      : FB_Actuator;
+    fbSensorClosed  : FB_SensorClosed;  
+END_VAR
+```
+
+#### Aggregation
+Le bloc de donnés **hwValveOut** est utilisé pour communiquer avec un actuateur pneumatique.
+-   Si FB_GripperOneSensor disparait, **hwValveOut continue à exister car il est déclarré à l'extérieur**, contrairement à fbActuator et fbSensorClosed.
+-   Nous verrons que le langage IEC 61131-3 utilise un formaliste VAR_IN_OUT qui **oblige** **FB_GripperOneSensor** à utiliser, ou posséder, hwValveOut, car effectivement, il ne peut pas travailler sans ce type d'information.
+
+> Une agrégation peut être considéré comme un passage par référence. **Ce n'est pas un pointeur**.
+
+#### Inheritance
+Ci-dessous, la classe FB_GripperTwoSensor **hérite** des variables de FB_GripperOneSensor et peu exécuter son code. On peut ensuite compléter les variables et/ou le code de FB_GripperTwoSensor. En automatisation de base nous utiliserons l'héritage uniquement pour les structures de données.
+
+<div align="center">
 
 ```mermaid
 
 ---
-title: The link can be written in both directions
+title: A gripper
 ---
 classDiagram
 
-class iMotor
-<<Interface>> iMotor
+FB_GripperOneSensor o-- hwValveOut
 
-class iMotor{
-    +BOOL     PowerOn
-    +E_STATUS eStatus
-    }
-
-class LinearMotor{
-    +REAL Position_mm
+class FB_GripperOneSensor{
+    fbActuator      : FB_Actuator
+    fbSensorClosed  : FB_SensorClosed
 }
 
-class TorqueMotor{
-    +REAL Position_deg
+
+class FB_Actuator
+
+class FB_SensorClosed
+
+class hwValveOut
+
+FB_GripperOneSensor *-- FB_Actuator
+FB_GripperOneSensor *-- FB_SensorClosed
+
+
+class FB_GripperTwoSensor{
+    fbSensorOpen  : FB_SensorOpen
 }
+FB_GripperOneSensor <|-- FB_GripperTwoSensor
+FB_GripperTwoSensor *-- FB_SensorOpen
 
-iMotor <|.. DirectMotor
-iMotor <|.. StarDeltaMotor
-iMotor <|.. VFDMotor
-note for VFDMotor "Variable_FrequencyDrive"
-DirectMotor <|-- LinearMotor
-DirectMotor <|-- TorqueMotor
 
-VFDMotor : +REAL SetFrequency_Hz
+
 ```
+
+</div>
+
+## Particularité des objet en IEC 61131-3:2013
+
+Je précise ici 2013, car la norme a changé au 22 mai 2025 et je ne l'ai pas encore analysée. Cependant, il n'a pas d'indice qui montre un changement majeur.
+
+-   Dans la norme IEC 61131-3, les objets de type bloc fonctionel ou variable sont **statiques**, ce qui signifie qu'ils sont **toujours** déclarés comme variables avant l'exécution du code.
+-   La notion d'agrégation via VAR_IN_OUT est particulière au IEC 61131-3
+-   En IEC 61131-3 on travaiile en général selon un temps de cycle fixe, de fait, les blocs fonctionnels doivent en principe être appelés en continu.
+
+Ces particularité font que nombre de structure de données et comportement provenant d'autres langages tels que C/C++, Java ou Python ne sont pas directement applicables. **Il faudra être prudent lors de la génération de code via IA qui s'inspire de ces structures**.
 
 # [State Diagram](https://mermaid.js.org/syntax/stateDiagram.html)
 Ce type de diagramme permet de représenter le comportement interne du programme, principalement l'utilisation du code de type IEC-61131-3 ``CASE..OF``.
+
+-   Dans le cas particulier du système cyclique d'un automate, **un seul état sera exécuté par temps de cycle** d'un automate.
+-   Il est par contre possible que plusieur temps de cycle soient nécessaire pour le processus d'un état.
+
+<div align="center">
+
 
 ```mermaid
 ---
@@ -229,6 +343,8 @@ stateDiagram-v2
     ERROR_OR_READY_STEP --> [*]
 
 ```
+
+</div>
 
 ## On peut ajouter les transitions
 L'exemple ci-dessous n'est pas complet, c'est un extrait.
