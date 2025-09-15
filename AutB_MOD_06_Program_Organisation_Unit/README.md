@@ -225,7 +225,7 @@ END_VAR
 
 -   Une implémentation.
 -   Une instance.
--   Un appel au ``Function Block``.
+-   Un appel à l'instance du ``Function Block``.
 
 > De l'implémentation ci-dessus, on relèvera que les paramètres d'entrée et de sortie ne sont pas nécessessairement intégrés dans les parenthèses de l'appel.
 
