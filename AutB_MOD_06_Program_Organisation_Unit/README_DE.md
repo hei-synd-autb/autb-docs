@@ -22,6 +22,9 @@ In der Sprache IEC 61131-3 gibt es drei Programmiereinheiten oder Programmorgani
 - [Module 06 Program Oranization Unit](#module-06-program-oranization-unit)
   - [Zusammenfassung](#zusammenfassung)
 - [Verweis auf ISA-88](#verweis-auf-isa-88)
+- [Funktionsblock / Function Block](#funktionsblock--function-block)
+  - [Function Block, formale Definition](#function-block-formale-definition)
+  - [Function Block-Fortsetzung](#function-block-fortsetzung)
     - [Eingangsvariablen](#eingangsvariablen)
     - [Ausgangsvariablen](#ausgangsvariablen)
     - [IN\_OUT-Variablen](#in_out-variablen)
@@ -90,8 +93,69 @@ Der Verweis auf ISA-88 ist nicht Gegenstand dieses Kurses, wird aber wie in ande
 
 > Die Erfahrung zeigt: Wenn ein Projekt nicht funktioniert, liegt es viel häufiger an den Spezifikationen als an der technischen Qualität des Ingenieurs. Indem Sie Ihren Softwareteil modellieren, **bevor** Sie mit der Codierung fortfahren, können Sie Ihr Konzept validieren, ohne Ihre Arbeit dreimal wiederholen zu müssen.
 
-#Funktionsblock
-Der Funktionsblock ist das Grundelement der Automatenprogrammierung, er entspricht der **Klasse** oder dem **Objekt** in C++. Er ist es, der eine strukturierte und modulare Programmierung ermöglicht.
+# Funktionsblock / Function Block
+
+## Function Block, formale Definition
+Bevor wir den Function Block erläutern, geben wir eine formale Definition. **Dies ist besonders wichtig für Benutzer, die mit der Verwendung von Klassen in anderen Sprachen wie Java oder C++ vertraut sind.**
+
+– Formal ist ein **Function Block** gemäß der Norm IEC 61131-3:2013 & 2025 eine Klasse** mit einem **Hauptteil**, einem *body* und den Variablen `VAR_IN`, `VAR_OUT` und `VAR_IN_OUT`.
+
+– Eine Instanz eines Function Block wird **normalerweise zyklisch** aufgerufen. Dieser Aufruf führt den Inhalt des Hauptteils aus.
+
+– Die meisten Compiler der IEC 61131-3 ignorieren das Konzept einer Klasse.
+
+> Dieses Konzept eines zyklisch ausgeführten Hauptteils ist das Grundprinzip des Function Block.
+> 
+
+```mermaid
+---
+title: Class vs Function Block
+---
+classDiagram
+    note for `Function Block` "The body should be called cyclically"
+    note for Class "Does not exist in Codesys compiler"
+    Class <|-- `Function Block`  : Inheritance
+  
+    class Class{
+    }
+    class `Function Block`{
+        +VAR_IN
+        +VAR_OUT
+        +VAR_IN_OUT
+        +body()
+    }
+
+```
+
+Nach der Instanziierung wird ein Function Block zu einem Objekt. Der Name dieses Objekts wird zum Aufruf des Function Block verwendet.
+
+Im Gegensatz zu anderen Sprachen **ist es nicht möglich, einen Funktionsblock dynamisch zu instanziieren**; das Konzept von „new“ wie in Java oder C++ existiert nicht!
+
+```mermaid
+---
+title: The instance of a Function Block is an object.
+---
+classDiagram
+
+note for `myFunctionBlock : MY_FUNCTION_BLOCK` "You shoud call myFunctionBlock() to execute the Function Block"
+  
+    class MY_FUNCTION_BLOCK{
+    }
+
+    class `myFunctionBlock : MY_FUNCTION_BLOCK`{
+        +VAR_IN
+        +VAR_OUT
+        +VAR_IN_OUT
+        +myFunctionBlock()
+    }
+
+```
+
+Um einen Function Block zu verwenden, müssen Sie ihn <strong style="color: red;"> instanziieren </strong> und <strong style="color: red;"> aufrufen </strong>.
+
+## Function Block-Fortsetzung
+
+Der Funktionsblock ist das Grundelement der Automatenprogrammierung. Er ist es, der eine strukturierte und modulare Programmierung ermöglicht.
 
 Das Prinzip besteht darin, denselben Code nicht mehrmals neu zu schreiben.
 
