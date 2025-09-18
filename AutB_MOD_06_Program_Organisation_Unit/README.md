@@ -66,25 +66,33 @@ En langage IEC 61131-3, les unité de programmation ou Program Organisation Unit
 # Reference à ISA-88
 La référence à ISA-88 n'est pas le sujet de ce cours, mais, comme dans d'autres chapitres, elle est utilisée pour replacer ce cours dans son contexte de système industriel. Ci-dessous, une unité pour le remplissage de sacs. Si dans le module consacré aux interfaces, nous nous étions intéressé à la **structure** des données, le **Function Block** va servir à donner un **comportement** à cette structure.
 
+<div align="center">
 <figure>
     <img src="./img/Remplissage de futs Image Burgener AG.png"
-         alt="Remplissage de futs Image Burgener AG">
+         alt="Remplissage de futs Image Burgener AG"
+         width="300">
     <figcaption>Remplissage de futs, Image Burgener AG</figcaption>
 </figure>
+</div>
 
 > L'image de la machine de Burger AG à Viège est à titre d'illustration, elle n'utilise pas la même technologie que celle décrite ci-dessous. Par contre, sur le plan ISA-88, c'est une unité. **Unit**. 
 
+<div align="center">
 <figure>
     <img src="./img/Vertical Filler Automated Machines using the ISA 88 Models.png"
-         alt="Image lost Vertical Filler Automated Machines using the ISA 88 Models">
+         alt="Image lost Vertical Filler Automated Machines using the ISA 88 Models"
+         width="300">
     <figcaption>Vertical Filler Automated Machines using the ISA 88 Models</figcaption>
 </figure>
+</div>
 
+<div align="center">
 <figure>
     <img src="img/Unit Vertical Filler.png"
          alt="Unit Vertical Filler">
     <figcaption>Unit Vertical Filler</figcaption>
 </figure>
+</div>
 
 > Ce qu'il faut retenir: la machine illustrée ci-dessus doit remplir plusieurs critères pour être mise sur le marché. Pour que l'ingénieur puisse travailler, il va falloir que quelqu'un puisse la vendre à un tarif acceptable pour faire vivre l'ingénieur qui l'a construite.
 

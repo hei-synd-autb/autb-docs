@@ -65,25 +65,33 @@ In der Sprache IEC 61131-3 gibt es drei Programmiereinheiten oder Programmorgani
 # Verweis auf ISA-88
 Der Verweis auf ISA-88 ist nicht Gegenstand dieses Kurses, wird aber wie in anderen Kapiteln verwendet, um diesen Kurs in seinen industriellen Systemkontext einzuordnen. Unten ist eine Einheit zum Befüllen von Beuteln. Wenn wir in dem den Schnittstellen gewidmeten Modul an der **Struktur** der Daten interessiert waren, wird der **Funktionsblock** verwendet, um dieser Struktur ein **Verhalten** zu verleihen.
 
+<div align="center">
 <figure>
     <img src="./img/Remplissage de futs Image Burgener AG.png"
-         alt="Remplissage de futs Image Burgener AG">
+         alt="Remplissage de futs Image Burgener AG"
+         width="300">
     <figcaption>Fassabfüllung, Image Burgener AG</figcaption>
 </figure>
+</div>
 
 > Das Bild der Maschine der Burger AG in Visp dient der Veranschaulichung, sie verwendet nicht die gleiche Technologie wie unten beschrieben. Beim ISA-88-Plan hingegen handelt es sich um eine Einheit. **Einheit**.
 
+<div align="center">
 <figure>
     <img src="./img/Vertical Filler Automated Machines using the ISA 88 Models.png"
-         alt="Image lost Vertical Filler Automated Machines using the ISA 88 Models">
+         alt="Image lost Vertical Filler Automated Machines using the ISA 88 Models"
+         width="300">
     <figcaption>Vertical Filler Automated Machines using the ISA 88 Models</figcaption>
 </figure>
+</div>
 
+<div align="center">
 <figure>
     <img src="img/Unit Vertical Filler.png"
          alt="Unit Vertical Filler">
     <figcaption>Unit Vertical Filler</figcaption>
 </figure>
+</div>
 
 > Was Sie beachten müssen: Die oben abgebildete Maschine muss mehrere Kriterien erfüllen, um auf den Markt gebracht zu werden. Damit der Ingenieur arbeiten kann, muss jemand es zu einem akzeptablen Preis verkaufen können, um den Ingenieur zu unterstützen, der es gebaut hat.
 
