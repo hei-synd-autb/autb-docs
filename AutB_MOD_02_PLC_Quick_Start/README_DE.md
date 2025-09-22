@@ -138,7 +138,7 @@ Zur Darstellung körperlicher Kontakte. Typischerweise zur Darstellung beispiels
 <figure>
     <img src="./img/SFC Programming Source Beckhoff.png"
          alt="SFC Programming Source Beckhoff">
-    <figcaption>Ladder Programming Source: <a href="https://www.beckhoff.com/fr-ch/">Beckhoff</a></figcaption>
+    <figcaption>SFC Programming Source: <a href="https://www.beckhoff.com/fr-ch/">Beckhoff</a></figcaption>
 </figure>
 
 ### Ders Function Block Diagram FBD
