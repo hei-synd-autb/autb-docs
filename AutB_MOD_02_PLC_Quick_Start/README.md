@@ -273,7 +273,7 @@ C’est dans la gestion des **variables d'interface** que le langage ST présent
 ## Les variables d'entrée
 Variable d'entrée du block, le block a toutefois le droit d'écrire sur cette variable.
 ```iecst
-VAR_IN
+VAR_INPUT
     // Set the variable bMyButton to the block.
     bMyButton   : BOOL;
 END_VAR
@@ -282,7 +282,7 @@ END_VAR
 Il n'est pas possible d'écrire sur une variable de sortie depuis l'extérieur du block ou elle est déclarée.
 
 ```iecst
-VAR_OUT
+VAR_OUTPUT
     // Get the variable bMyBeeper from the block.
     bMyBeeper   : BOOL;
 END_VAR

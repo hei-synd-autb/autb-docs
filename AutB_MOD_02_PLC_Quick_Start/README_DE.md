@@ -273,16 +273,18 @@ Gerade bei der Verwaltung von **Schnittstellenvariablen** zeigt die ST-Sprache i
 
 ## Eingabevariablen
 Eingangsvariable des Bausteins, der Baustein hat jedoch das Recht, auf diese Variable zu schreiben.
+
 ```iecst
-VAR_IN
+VAR_INPUT
     // Set the variable bMyButton to the block.
     bMyButton   : BOOL;
 END_VAR
 ```
 ## Ausgabevariablen
 Es ist nicht möglich, von außerhalb des Blocks, in dem sie deklariert ist, auf eine Ausgangsvariable zu schreiben.
+
 ```iecst
-VAR_OUT
+VAR_OUTPUT
     // Get the variable bMyBeeper from the block.
     bMyBeeper   : BOOL;
 END_VAR
