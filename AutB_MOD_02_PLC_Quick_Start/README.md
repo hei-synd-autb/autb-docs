@@ -250,11 +250,13 @@ Contrairement à d'autres types de langages tels **Python**, le language des aut
 
 ## Chaque variable doit être déclarée avec son **type**.
 ```iecst
+VAR
     bMyFirstVar     : BOOL;
     strMyFirsText   : STRING;
+END_VAR
 ```
 
-## Chaque variable doit être délarée **avant** son utilisation.
+## Chaque variable doit être délarée <span style="color: red;">avant</span> son utilisation.
 Dans le cas du compilateur/IDE que nous utiliserons dans le cadre de ce cours, les variables et le code sont séparés dans deux espaces différents, les variables, en haut, et le code, en bas.
 
 <figure>
@@ -263,10 +265,7 @@ Dans le cas du compilateur/IDE que nous utiliserons dans le cadre de ce cours, l
     <figcaption>Variables Avant Le Code</figcaption>
 </figure>
 
-En principe, dans un PLC codé en IEC 61131-3 il y a peu, voir pas d'allocation dynmique de la mémoire. Là encore, c'est une question de **robustesse**. C'était aussi, mais c'est moins vrai aujourd'hui, afin de mieux maitriser un espace mémoire limité.
-
-> J'ai eu un cas d'une machine qui se *crashait* environ tous les six mois. Comme la machine était rapide et puissante, cela provoquait souvent des dégats matériels importants et des arrêts de production coûteux. La machine était programmée partiellement en Delphi, un language orienté objet qui comme le IEC 61131-3 Structured Text est inspiré du Pascal.
-La cause était une allocation dynmique de mémoire mal gérée de quelques bytes qui petit à petit augmentait la taille de l'espace mémoire allouée au donnée pour finir par déborder sur l'espace mémoire alloué au programme et finissait par le détruire. En sus d'être destructeur, ce problème fut particulièrement complexe et long à identifier.
+> <span style="color: red;">Il n'y a pas d'allocation dynamique en IEC 61131-3.</span>
 
 C’est dans la gestion des **variables d'interface** que le langage ST présente sa supériorité par rapport aux autres dans le monde industriel. Nous allons voir pourquoi.
 

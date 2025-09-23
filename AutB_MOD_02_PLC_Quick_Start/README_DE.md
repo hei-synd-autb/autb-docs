@@ -250,12 +250,15 @@ flowchart TD
 Im Gegensatz zu anderen Sprachtypen wie **Python** ist die nach IEC 61131-3 standardisierte Automatensprache stark typisiert. Es ist eine Frage der Robustheit.
 
 ## Jede Variable muss mit ihrem **Typ** deklariert werden.
+
 ```iecst
+VAR
     bMyFirstVar     : BOOL;
     strMyFirsText   : STRING;
+END_VART
 ```
 
-## Jede Variable muss **vor** ihrer Verwendung deklariert werden.
+## Jede Variable muss <span style="color: red;">vor</span> ihrer Verwendung deklariert werden.
 Im Fall des Compilers/der IDE, den wir in diesem Kurs verwenden werden, sind die Variablen und der Code in zwei verschiedene Bereiche unterteilt: die Variablen oben und der Code unten.
 
 <figure>
@@ -264,10 +267,7 @@ Im Fall des Compilers/der IDE, den wir in diesem Kurs verwenden werden, sind die
     <figcaption>Variablen vor dem Code</figcaption>
 </figure>
 
-Grundsätzlich gibt es in einer in IEC 61131-3 codierten SPS keine oder nur eine geringe dynamische Speicherzuweisung. Auch hier ist es eine Frage der **Robustheit**. Dies war auch der Fall, trifft aber heute weniger zu, um den begrenzten Speicherplatz besser kontrollieren zu können.
-
-> Etwa alle sechs Monate hatte ich den Fall, dass eine Maschine *abstürzte*. Da die Maschine schnell und leistungsstark war, führte dies häufig zu erheblichen Materialschäden und kostspieligen Produktionsausfällen. Die Maschine wurde teilweise in Delphi programmiert, einer objektorientierten Sprache, die wie IEC 61131-3 Structured Text von Pascal inspiriert ist.
-Die Ursache war eine schlecht verwaltete dynamische Speicherzuweisung von einigen Bytes, die nach und nach die Größe des den Daten zugewiesenen Speicherplatzes vergrößerte, so dass es schließlich zu einem Überlauf in den dem Programm zugewiesenen Speicherplatz kam und dieser schließlich zerstört wurde. Dieses Problem war nicht nur destruktiv, sondern auch besonders komplex und zeitaufwändig zu identifizieren.
+> <span style="color: red;">IEs gibt keine dynamische Zuordnung in IEC 61131-3.</span>
 
 Gerade bei der Verwaltung von **Schnittstellenvariablen** zeigt die ST-Sprache ihre Überlegenheit gegenüber anderen in der industriellen Welt. Wir werden sehen warum.
 
