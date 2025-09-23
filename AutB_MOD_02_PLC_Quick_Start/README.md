@@ -525,7 +525,7 @@ END_IF
 ```
 
 ## Function Block ```R_TRIG``` et ```F_TRIG```
-Cest deux bloques fonctionnels sont des classiques de la programmation PLC. Même si ils sont simples à programmer, ils existent en standard dans la plupart des environnements.
+Ces deux bloques fonctionnels sont des classiques de la programmation PLC. Même si ils sont simples à programmer, ils existent en standard dans la plupart des environnements.
 
 > On verra plus tard que les Function Block se placent en principe à la fin du programme. ``R_TRIG`` et ``F_TRIG`` **sont l'exception qui confirment la règle**. Il se placent toujours avant la partie du code qui utilise leur sortie car la sortie n'est active que pendant le cycle d'activation.
 
