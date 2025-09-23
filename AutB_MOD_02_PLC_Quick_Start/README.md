@@ -101,7 +101,7 @@ Ce module est destiné à présenter les notions de base nécessaires pour abord
 - [Triggers](#function-block-r_trig-et-f_trig)
 - [Timers](#function-block-ton-tof-et-tp)
 
-> A la fin **des** modules, vous devriez être capable de gérer ce genre d'axes.
+> A la fin **des** modules, vous devriez être capable de gérer ce genre d'axe.
 
 <figure>
     <img src="./img/Application Example 5 Axis Handling Solution.png"
@@ -116,6 +116,8 @@ Ou encore aborder le pilotage d'axes pour ce genre d'application:
          alt="EMPA Laser Metal Deposition">
     <figcaption>Laser Metal Deposition, Source: EMPA (Eidgenössische Materialprüfungs- und Forschungsanstalt)</figcaption>
 </figure>
+
+---
 
 # Les langages de IEC 61131-3
 Ce paragraphe sur les langages est donné à titre d'information. Nous n'utiliserons que le langage **Structured Text** qui sera largement détaillé dans la suite de ce cours.
@@ -155,6 +157,8 @@ Le texte structuré est inspiré du langage Pascal développé dans les années 
 Depuis 2013, *third edition*, le texte structuré existe avec une extension orientée objet. Il n’existe pas actuellement d’information faisant penser à une réelle transformation du langage dans les années à venir, au même titre que le langage C pour les systèmes embarqués, il est fort probable qu’il reste longtemps le langage de base pour la programmation des automates.
 
 > On ne peut citer Niklaus Wirth sans citer sa loi empirique: **les programmes ralentissent plus vite que le matériel accélère**.
+
+---
 
 # Principe de base
 Ce qui différencie principalement un automate programmable, PLC ou Programmable Logic Controller est son fonctionnement purement cyclique.
@@ -245,6 +249,8 @@ flowchart TD
     ProgramMotion --> WriteOoutput(Write Outputs)
 ```
 
+---
+
 # Les variables
 Contrairement à d'autres types de langages tels **Python**, le language des automates, normalisé selon IEC 61131-3 est fortement typé. C'est une question de robustesse.
 
@@ -310,8 +316,9 @@ END_VAR
 ```
 
 ## Les variables globales
-Les variables sont accessibles partout dans le programme.
-*Elles sont a utiliser avec parcimonie car elles sont un obstactle à la modularité du code. Un module de code qui utilise une variable globale ne pourra être réutiliser sans ajouts ou modifications dans un autre programme*.
+Les variables globales sont accessibles partout dans le programme.
+*Elles sont a utiliser avec parcimonie car elles sont un obstactle à la modularité du code. Un module de code qui utilise une variable globale ne pourra être réutilisé sans ajouts ou modifications dans un autre programme*.
+
 ```iecst
 VAR_GLOBAL
     iMyProgramParameter   : INT;
