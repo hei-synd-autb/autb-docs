@@ -161,7 +161,7 @@ Depuis 2013, *third edition*, le texte structuré existe avec une extension orie
 ---
 
 # Principe de base
-Ce qui différencie principalement un automate programmable, PLC ou Programmable Logic Controller est son fonctionnement purement cyclique.
+Ce qui caracérise principalement un automate programmable, PLC ou Programmable Logic Controller est son fonctionnement purement cyclique.
 
 ## Fondamentalement un automate présente deux caractéristiques principales.
 > Les programmes sont exécutés en **boucle**...
