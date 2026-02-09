@@ -25,17 +25,17 @@ Dieses Dokument stellt Modul 01 dieses Kurses vor und konzentriert sich auf die 
 
 
 [Module 02 Quick Start FR](./AutB_MOD_02_PLC_Quick_Start/README.md)
-Ce document est une introduction sur les automates programmables, PLC, et la norme IEC 61131-3. Il couvre les différents langages de programmation utilisés, avec un accent particulier sur le Structured Text. Le document explique les principes de base des automates, la gestion des variables et des types de données, ainsi que l'utilisation de blocs fonctionnels de base comme R_TRIG et TON. Il inclut également des exercices pratiques pour renforcer la compréhension des concepts abordés. Des exemples de code et des diagrammes sont fournis pour illustrer les explications.
+Ce document est une introduction sur les automates programmables, PLC, et la norme **IEC 61131-3**. Il couvre les différents langages de programmation utilisés, avec un accent particulier sur le Structured Text. Le document explique les principes de base des automates, la gestion des variables et des types de données, ainsi que l'utilisation de blocs fonctionnels de base comme R_TRIG et TON. Il inclut également des exercices pratiques pour renforcer la compréhension des concepts abordés. Des exemples de code et des diagrammes sont fournis pour illustrer les explications.
 
 [Module 02 Quick Start DE](./AutB_MOD_02_PLC_Quick_Start/README_DE.md)
-Dieses Dokument ist eine Einführung in speicherprogrammierbare Steuerungen, SPS und den Standard IEC 61131-3. Es behandelt die verschiedenen verwendeten Programmiersprachen, mit besonderem Schwerpunkt auf Strukturiertem Text. Das Dokument erläutert die Grundprinzipien von Automaten, die Verwaltung von Variablen und Datentypen sowie die Verwendung grundlegender Funktionsblöcke wie R_TRIG und TON. Es enthält außerdem praktische Übungen zur Vertiefung des Verständnisses der behandelten Konzepte. Zur Veranschaulichung der Erklärungen werden Codebeispiele und Diagramme bereitgestellt.
+Dieses Dokument ist eine Einführung in speicherprogrammierbare Steuerungen, SPS und den Standard **IEC 61131-3**. Es behandelt die verschiedenen verwendeten Programmiersprachen, mit besonderem Schwerpunkt auf Strukturiertem Text. Das Dokument erläutert die Grundprinzipien von Automaten, die Verwaltung von Variablen und Datentypen sowie die Verwendung grundlegender Funktionsblöcke wie R_TRIG und TON. Es enthält außerdem praktische Übungen zur Vertiefung des Verständnisses der behandelten Konzepte. Zur Veranschaulichung der Erklärungen werden Codebeispiele und Diagramme bereitgestellt.
 
 ---
 
-[Module 03 Interface](./AutB_MOD_03_Interface/README.md): Les interfaces.
+[Module 03 Interface](./AutB_MOD_03_Interface/README.md): Les **interfaces**.
 Ce document est un guide d'introduction des interfaces pour l'automatisation industrielle, couvrant les principes de base, les types de processus industriels, et les modules d'entrée/sortie. Il explique les normes et les spécifications des signaux numériques et analogiques, ainsi que les bus de terrain et les interfaces standards. Le document inclut des exemples de mapping I/O et des structures de données pour la programmation en Structured Text. Il met l'accent sur l'importance de la modularité et de la réutilisabilité du code pour une meilleure gestion des projets d'automatisation.
 
-[Module 03 Interface DE](./AutB_MOD_03_Interface/README_DE.md): Verwaltung von SPS-Schnittstellen.
+[Module 03 Interface DE](./AutB_MOD_03_Interface/README_DE.md): Verwaltung von **SPS-Schnittstellen**.
 Dieses Dokument ist eine Einführung in Schnittstellen zur industriellen Automatisierung und behandelt Grundprinzipien, Arten industrieller Prozesse und Eingabe-/Ausgabemodule. Es erläutert die Standards und Spezifikationen digitaler und analoger Signale sowie Feldbusse und Standardschnittstellen. Das Dokument enthält Beispiele für E/A-Zuordnungen und Datenstrukturen für die strukturierte Textprogrammierung. Es betont die Bedeutung der Modularität und der Wiederverwendbarkeit des Codes für eine bessere Verwaltung von Automatisierungsprojekten.
 
 ---
@@ -49,9 +49,13 @@ Dieses Dokument ist ein Leitfaden zu Datenstrukturen in der Strukturierten Texts
 ---
 
 [Module 05 Operation and Instruction](./AutB_MOD_05_Operation_And_Instruction/README.md): Les opérations et instructions de base du langage IEC-61131-3.
+Ce chapitre couvre les opérations et instructions de base en Structured Text : les opérateurs avec leurs niveaux de priorité, les structures conditionnelles ``IF...ELSIF..ELSE..``, les boucles ``FOR...WHILE...REPEAT...``, et les machines d'état avec l'instruction ``CASE``. L'accent est mis sur l'utilisation d'énumérations pour les machines d'état plutôt que des nombres, et sur les bonnes pratiques de robustesse.
+
 
 
 [Module 05 Operation and Instruction](./AutB_MOD_05_Operation_And_Instruction/README_DE.md): Die grundlegenden Operationen und Anweisungen der Sprache IEC-61131-3.
+
+Dieses Kapitel behandelt grundlegende Operationen und Anweisungen für strukturierte Texte: Operatoren mit ihren Prioritätsstufen, bedingte Strukturen wie ``IF…ELSIF…ELSE…``, Schleifen wie ``FOR…WHILE…REPEAT…`` und Zustandsautomaten mit der ``CASE``-Anweisung. Der Schwerpunkt liegt auf der Verwendung von Aufzählungen anstelle von Zahlen für Zustandsautomaten sowie auf bewährten Methoden zur Gewährleistung robuster Programmierung.
 
 ---
 
@@ -65,23 +69,17 @@ Konkrete Beispiele und UML-Diagramme veranschaulichen die Organisation industrie
 
 ---
 
-[Révision modules 01 à 06](./AutB_MOD_06_Revision/README.md#révision-modules-01-à-06) : Contient les évaluations d'années précédentes comme source d'aide à la révision.
-
-[Wiederholung der Module 01 bis 06](./AutB_MOD_06_Revision/README.md#wiederholung-der-module-01-bis-06) : Enthält Beurteilungen aus früheren Jahren als Hilfestellung zur Wiederholung.
-
----
-
 [Module 07 Robust Programming with State Machine](./AutB_MOD_07_Robust_Programming_With_State_Machine/README.md): Ce module présente des techniques de programmation robuste basées sur les machines à états finis **FSM**. Il couvre la gestion des entrées, des sorties, des états, et des alarmes, tout en insistant sur l'importance d'appels continus des blocs fonctionnels. Les bonnes pratiques incluent l'utilisation d'énumérations, de transitions claires, et de diagnostics lisibles. Les alarmes sont abordées brièvement comme des événements critiques pour la fiabilité et la sécurité des systèmes et seront reprise dans le cadre du PackML.
 
 [Module 07 Robust Programming with State Machine](./AutB_MOD_07_Robust_Programming_With_State_Machine/README_DE.md): Dieses Modul stellt robuste Programmiertechniken basierend auf endlichen Zustandsmaschinen **FSM** vor. Es behandelt die Verwaltung von Eingängen, Ausgängen, Zuständen und Alarmen und betont gleichzeitig die Bedeutung kontinuierlicher Aufrufe von Funktionsblöcken. Zu den Best Practices gehören die Verwendung von Aufzählungen, klaren Übergängen und lesbaren Diagnosen. Alarme werden kurz als Ereignisse besprochen, die für die Systemzuverlässigkeit und -sicherheit von entscheidender Bedeutung sind, und im PackML-Framework behandelt.
 
 ---
 
-[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README.md): PackML
+[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README.md): **PackML**
 Ce module présente le standard PackML, une norme d'automatisation qui simplifie la conception et la gestion des machines en structurant leurs états et commandes. Il met l'accent sur l'importance d'une méthodologie rigoureuse pour garantir la robustesse et l'efficacité des systèmes automatisés. Les concepts clés incluent la machine d'état PackML, les commandes associées, et leur implémentation dans des environnements PLC.
 
 
-[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README_DE.md): PackML
+[Module 08 Introduction_To_Pack](./AutB_MOD_08_Introduction_To_Pack/README_DE.md): **PackML**
 Dieses Modul stellt den PackML-Standard vor, einen Automatisierungsstandard, der die Konstruktion und Verwaltung von Maschinen durch die Strukturierung ihrer Zustände und Befehle vereinfacht. Es betont die Bedeutung einer strengen Methodik, um die Robustheit und Effizienz automatisierter Systeme sicherzustellen. Zu den Schlüsselkonzepten gehören die PackML-Zustandsmaschine, zugehörige Befehle und ihre Implementierung in SPS-Umgebungen..
 
 ---
@@ -94,22 +92,22 @@ Präsentiert Antriebe in drei Kategorien: elektrisch, pneumatisch und hydraulisc
 
 ---
 
-[Module 09 Mechatronics Sécurité](./AutB_MOD_09_Safety_Mechatronics/README.md): Sécurité.
+[Module 09 Mechatronics Sécurité](./AutB_MOD_09_Safety_Mechatronics/README.md): **Sécurité machine**.
 Ce module traite des bases légales et normes de sécurité des machines, notamment ISO 12100 et ISO 13489, en mettant l'accent sur l'évaluation et la réduction des risques. Il aborde également la prévention des explosions, zones ATEX, et des technologies comme Ethernet-APL pour les environnements dangereux. 
 Des exemples pratiques et des outils comme SISTEMA sont mentionnés pour l'application des concepts.
 
 
-[Module 09 Mechatronics Sicherheit](./AutB_MOD_09_Safety_Mechatronics/README_DE.md): Sicherheit.
+[Module 09 Mechatronics Sicherheit](./AutB_MOD_09_Safety_Mechatronics/README_DE.md): **Maschinensicherheit**.
 Dieses Modul behandelt die gesetzlichen Grundlagen und Normen zur Maschinensicherheit, darunter ISO 12100 und ISO 13489, mit Schwerpunkt auf Risikobewertung und -minderung. Es deckt auch Explosionsschutz, ATEX-Zonen und Technologien wie Ethernet-APL für gefährliche Umgebungen ab.
 Zur Anwendung der Konzepte werden praktische Beispiele und Tools wie SISTEMA genannt.
 
 ---
 
-[Module 10 Motion Control avec PLCopen](./AutB_MOD_10_Motion_Control_With_PLCopen/README.md): PLCopen Motion Control
+[Module 10 Motion Control avec PLCopen](./AutB_MOD_10_Motion_Control_With_PLCopen/README.md): **PLCopen** Motion Control
 
 PLCopen standardise les blocs fonctionnels pour le contrôle de mouvement, facilitant l'interopérabilité et la maintenance dans l'automatisation industrielle. Ce document explore les concepts clés, comme les diagrammes d'état et les meilleures pratiques de programmation, tout en intégrant des exemples concrets. L'approche PackML est également abordée pour gérer la complexité des systèmes multi-modules.
 
-[Module 10 Motion Control mit PLCopen](./AutB_MOD_10_Motion_Control_With_PLCopen/README_DE.md):  PLCopen Motion Control
+[Module 10 Motion Control mit PLCopen](./AutB_MOD_10_Motion_Control_With_PLCopen/README_DE.md):  **PLCopen** Motion Control
 
 PLCopen standardisiert Funktionsblöcke für die Bewegungssteuerung und erleichtert so die Interoperabilität und Wartung in der industriellen Automatisierung. Dieses Dokument untersucht wichtige Konzepte wie Zustandsdiagramme und bewährte Programmiermethoden und integriert Beispiele aus der Praxis. Der PackML-Ansatz zur Bewältigung der Komplexität von Mehrmodulsystemen wird ebenfalls erläutert.
 
@@ -125,16 +123,22 @@ In diesem Dokument werden die Konzepte synchronisierter Bewegung und Echtzeit-Et
 
 ---
 
-[Module 12 OPC-UA and Node-RED](./AutB_MOD_12_OPC_UA/README.md): Doit être revu
+[Module 12 Node-RED](./AutB_MOD_12_OPC_UA/README.md): **Doit être revu**
 Un protocole standard et un outil pour accéder et visualiser les données
 
 ---
 
-[Module 13 Design Specification](./AutB_MOD_13_Design_Specification/README.md): URS User Request Specifications
+[Module 13 OT Security et OPC UA](./AutB_MOD_12_OPC_UA/README.md): **Doit être revu**
+Un protocole standard et un outil pour accéder et visualiser les données
+
+
+---
+
+[Module 14 Design Specification](./AutB_MOD_13_Design_Specification/README.md): **URS** User Request Specifications
 
 Ce module présente les étapes clés pour réussir un projet d'automatisation, de la définition des besoins URS à la validation finale PQ, en passant par la gestion des risques FMEA et la documentation qualité. Il insiste sur l'importance de la rigueur documentaire, de l'anticipation des tests et de la validation client à chaque étape. L'approche structurée GMP, GAMP5, V-Diagram garantit la conformité, la traçabilité et la pérennité des systèmes automatisés.
 
-[Module 13 Design Specification](./AutB_MOD_13_Design_Specification/README_DE.md): URS User Request Specifications
+[Module 14 Design Specification](./AutB_MOD_14_Design_Specification/README_DE.md): **URS** User Request Specifications
 
 Dieses Modul stellt die wichtigsten Schritte für ein erfolgreiches Automatisierungsprojekt vor, von der Definition der URS-Anforderungen bis zur abschließenden PQ-Validierung, einschließlich FMEA-Risikomanagement und Qualitätsdokumentation. Er betont, wie wichtig es ist, in jeder Phase die Dokumentation genau zu prüfen, Tests vorzubereiten und die Validierung durch den Kunden durchzuführen. Der strukturierte GMP-, GAMP5- und V-Diagramm-Ansatz garantiert die Konformität, Rückverfolgbarkeit und Nachhaltigkeit automatisierter Systeme.
 
@@ -165,32 +169,7 @@ La plupart des logiciels utilisés dans le laboratoire d'automation sont libres 
 Die meiste im Automatisierungslabor verwendete Software ist kostenlos oder in begrenzten Versionen verfügbar.
 [Auf der folgenden Seite finden Sie eine Liste der Software und wie Sie Ihren PC mit der Automatisierungszelle verbinden](./AutB_LAB/readme.md).
 
-## Description
 
-All student documents for the [HEI-Vs](https://hevs.ch/synd) Engineering Course Basic Automation Autb
-
-## How to use
-
-Simply clone or download the repository.
-
-### Windows
-
-  ```bash
-  mkdir -p c:/work
-  cd /d c:/work
-  git clone https://github.com/hei-synd-autb/autb-docs.git
-  cd autb-docs
-  ```
-
-### Linux & Mac
-
-  ```bash
-  # clone repo
-  mkdir -p ~/work
-  cd ~/work
-  git clone https://github.com/hei-synd-autb/autb-docs.git
-  cd autb-docs
-  ```
 
 ## Credits
 
