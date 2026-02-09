@@ -524,39 +524,6 @@ Actuellement ils reste difficile de déployer OPC-UA dans certains secteuts indu
 </figure> 
 
 ---
-# Node-RED en pratique
-Même si Node-RED est dit Low-Code. il peut être rapidement nécessaire de comprendre des notions élémentaires de java-script, même pour des cas d'utilisation relativement simple.
 
-### Définition d'une structure
 
-**Exemple**: `HEVS_PackTag_Parameter_String` en JavaScript pour une fonction Node-RED
-
-Dans une fonction Node-RED (type "function"), vous pouvez définir cette structure comme un objet JavaScript :
-
-```js
-let HEVS_PackTag_Parameter_String = {
-    ID: 0,              // équivalent DINT (Number)
-    Name: "",           // équivalent STRING
-    Unit: "",           // équivalent STRING(6), limité à 6 caractères si besoin
-    Value: ""           // équivalent STRING
-};
-
-// Exemple d'utilisation :
-HEVS_PackTag_Parameter_String.ID = 123;
-HEVS_PackTag_Parameter_String.Name = "Poids";
-HEVS_PackTag_Parameter_String.Unit = "kg";
-HEVS_PackTag_Parameter_String.Value = "25.0";
-```
-
-Pour garantir que `Unit` ne dépasse pas 6 caractères, vous pouvez ajouter une vérification :
-
-```js
-HEVS_PackTag_Parameter_String.Unit = (unitValue.length > 6) ? unitValue.substring(0, 6) : unitValue;
-```
-
-Dans Node-RED, vous pouvez retourner cet objet dans le payload :
-
-```js
-msg.payload = HEVS_PackTag_Parameter_String;
-return msg;
-```
+<!-- Fin de README.md -->
