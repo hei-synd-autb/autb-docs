@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="275px" preserveAspectRatio="none" style="width:1278px;height:275px;background:#FFFFFF;" version="1.1" viewBox="0 0 1278 275" width="1278px" zoomAndPan="magnify"><defs/><g><g id="elem_Unit"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="172" x="648.5" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="24" x="722.5" y="23.5332">Unit</text><line style="stroke:#181818;stroke-width:0.5;" x1="649.5" x2="819.5" y1="28.6094" y2="28.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="160" x="654.5" y="47.1426">Energy Drink Preparation</text></g><g id="elem_EM01"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="128" x="120.5" y="114"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="36" x="166.5" y="130.5332">EM01</text><line style="stroke:#181818;stroke-width:0.5;" x1="121.5" x2="247.5" y1="135.6094" y2="135.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="116" x="126.5" y="154.1426">Prepare Product 1</text></g><g id="elem_EM01_CM01"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="95" x="7" y="221"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81" x="14" y="237.5332">EM01_CM01</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="101" y1="242.6094" y2="242.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="13" y="261.1426">XV11</text></g><g id="elem_EM01_CM02"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="95" x="137" y="221"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81" x="144" y="237.5332">EM01_CM02</text><line style="stroke:#181818;stroke-width:0.5;" x1="138" x2="231" y1="242.6094" y2="242.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="143" y="261.1426">XV12</text></g><g id="elem_EM02"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="128" x="424.5" y="114"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="36" x="470.5" y="130.5332">EM02</text><line style="stroke:#181818;stroke-width:0.5;" x1="425.5" x2="551.5" y1="135.6094" y2="135.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="116" x="430.5" y="154.1426">Prepare Product 2</text></g><g id="elem_EM02_CM01"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="95" x="267" y="221"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81" x="274" y="237.5332">EM02_CM01</text><line style="stroke:#181818;stroke-width:0.5;" x1="268" x2="361" y1="242.6094" y2="242.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="273" y="261.1426">XV21</text></g><g id="elem_EM02_CM02"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="95" x="397" y="221"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81" x="404" y="237.5332">EM02_CM02</text><line style="stroke:#181818;stroke-width:0.5;" x1="398" x2="491" y1="242.6094" y2="242.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="403" y="261.1426">XV22</text></g><g id="elem_EM02_CM03"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="95" x="527" y="221"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81" x="534" y="237.5332">EM02_CM03</text><line style="stroke:#181818;stroke-width:0.5;" x1="528" x2="621" y1="242.6094" y2="242.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="533" y="261.1426">XV23</text></g><g id="elem_EM03"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="144" x="662.5" y="114"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="36" x="716.5" y="130.5332">EM03</text><line style="stroke:#181818;stroke-width:0.5;" x1="663.5" x2="805.5" y1="135.6094" y2="135.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="132" x="668.5" y="154.1426">Temperature Control</text></g><g id="elem_EM03_CM01"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="95" x="657" y="221"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81" x="664" y="237.5332">EM03_CM01</text><line style="stroke:#181818;stroke-width:0.5;" x1="658" x2="751" y1="242.6094" y2="242.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="663" y="261.1426">XV31</text></g><g id="elem_EM03_CM02"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="95" x="787" y="221"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81" x="794" y="237.5332">EM03_CM02</text><line style="stroke:#181818;stroke-width:0.5;" x1="788" x2="881" y1="242.6094" y2="242.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="793" y="261.1426">XV32</text></g><g id="elem_EM04"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="61" x="873" y="114"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="36" x="885.5" y="130.5332">EM04</text><line style="stroke:#181818;stroke-width:0.5;" x1="874" x2="933" y1="135.6094" y2="135.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="49" x="879" y="154.1426">Agitator</text></g><g id="elem_EM04_CM01"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="95" x="917" y="221"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81" x="924" y="237.5332">EM04_CM01</text><line style="stroke:#181818;stroke-width:0.5;" x1="918" x2="1011" y1="242.6094" y2="242.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="38" x="923" y="261.1426">SIC41</text></g><g id="elem_EM05"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="121" x="1034" y="114"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="36" x="1076.5" y="130.5332">EM05</text><line style="stroke:#181818;stroke-width:0.5;" x1="1035" x2="1154" y1="135.6094" y2="135.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="109" x="1040" y="154.1426">Transfer to bottle</text></g><g id="elem_EM05_CM01"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="95" x="1047" y="221"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81" x="1054" y="237.5332">EM05_CM01</text><line style="stroke:#181818;stroke-width:0.5;" x1="1048" x2="1141" y1="242.6094" y2="242.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="27" x="1053" y="261.1426">M51</text></g><g id="elem_EM05_CM02"><rect fill="#F1F1F1" height="47.2188" style="stroke:#181818;stroke-width:0.5;" width="95" x="1177" y="221"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81" x="1184" y="237.5332">EM05_CM02</text><line style="stroke:#181818;stroke-width:0.5;" x1="1178" x2="1271" y1="242.6094" y2="242.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="27" x="1183" y="261.1426">M52</text></g><!--MD5=[9ca6cbe4e150710e5dadad3b94f20f08]
+reverse link Unit to EM01--><g id="link_Unit_EM01"><path codeLine="52" d="M635.27,50.44 C523.13,71.85 343.89,106.07 248.73,124.24 " fill="none" id="Unit-backto-EM01" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="648.26,47.96,641.6184,45.1513,636.4712,50.2017,643.1129,53.0104,648.26,47.96" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[9f8a8e7da0116495e26fcebc03883b18]
+reverse link Unit to EM02--><g id="link_Unit_EM02"><path codeLine="53" d="M669.7,59.16 C629.76,76.21 579.17,97.8 541.61,113.83 " fill="none" id="Unit-backto-EM02" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="681.73,54.03,674.6404,52.7118,670.6969,58.7491,677.7865,60.0673,681.73,54.03" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[bb7c1438263d11d4b43241928d9850e3]
+reverse link Unit to EM03--><g id="link_Unit_EM03"><path codeLine="54" d="M734.5,67.34 C734.5,82.67 734.5,100.12 734.5,113.65 " fill="none" id="Unit-backto-EM03" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="734.5,54.03,730.5,60.03,734.5,66.03,738.5,60.03,734.5,54.03" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[ab27bafbed1ce37c4e5f470c46f86da1]
+reverse link Unit to EM04--><g id="link_Unit_EM04"><path codeLine="55" d="M781.94,60.97 C811.1,79.09 847.6,101.77 872.96,117.53 " fill="none" id="Unit-backto-EM04" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="770.75,54.03,773.7371,60.5933,780.9445,60.3603,777.9573,53.797,770.75,54.03" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[a9434634495d7f3427deda61a526195c]
+reverse link Unit to EM05--><g id="link_Unit_EM05"><path codeLine="56" d="M824.5,57.75 C889.83,76.81 976.47,102.08 1033.78,118.79 " fill="none" id="Unit-backto-EM05" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="811.73,54.03,816.3736,59.5469,823.2522,57.3824,818.6086,51.8655,811.73,54.03" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[b1fd1d2e67be151314a6671dfb1be205]
+reverse link EM01 to EM01_CM01--><g id="link_EM01_EM01_CM01"><path codeLine="58" d="M146.41,169.26 C126.06,185.7 101.43,205.6 82.79,220.65 " fill="none" id="EM01-backto-EM01_CM01" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="156.61,161.03,149.4291,161.6892,147.2757,168.5713,154.4566,167.9121,156.61,161.03" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[d0f89e313469f53756e7d4f40e8da85f]
+reverse link EM01 to EM01_CM02--><g id="link_EM01_EM01_CM02"><path codeLine="59" d="M184.5,174.34 C184.5,189.67 184.5,207.12 184.5,220.65 " fill="none" id="EM01-backto-EM01_CM02" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="184.5,161.03,180.5,167.03,184.5,173.03,188.5,167.03,184.5,161.03" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[dc2efb5f207ced8a4ad575423664544e]
+reverse link EM02 to EM02_CM01--><g id="link_EM02_EM02_CM01"><path codeLine="61" d="M439.72,167.94 C411.96,184.69 377.72,205.35 352.07,220.83 " fill="none" id="EM02-backto-EM02_CM01" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="451.17,161.03,443.9662,160.7047,440.8952,167.2291,448.099,167.5545,451.17,161.03" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[311b3f413c902cb013107eaf9dba1c2b]
+reverse link EM02 to EM02_CM02--><g id="link_EM02_EM02_CM02"><path codeLine="62" d="M473.87,173.4 C467.36,188.95 459.86,206.84 454.08,220.65 " fill="none" id="EM02-backto-EM02_CM02" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="479.06,161.03,473.0543,165.0214,474.4287,172.1003,480.4344,168.1089,479.06,161.03" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[9c0935b099ed1bd95b2081cb053bc0b6]
+reverse link EM02 to EM02_CM03--><g id="link_EM02_EM02_CM03"><path codeLine="63" d="M515.19,171.09 C528.35,187.16 543.91,206.15 555.78,220.65 " fill="none" id="EM02-backto-EM02_CM03" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="506.95,161.03,507.6597,168.2061,514.5567,170.311,513.847,163.1349,506.95,161.03" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[0feed952fc1e564fd3fd2fd0d755f36a]
+reverse link EM03 to EM03_CM01--><g id="link_EM03_EM03_CM01"><path codeLine="65" d="M724.39,173.87 C719.98,189.31 714.94,206.98 711.03,220.65 " fill="none" id="EM03-backto-EM03_CM01" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="728.06,161.03,722.5656,165.7003,724.7633,172.5683,730.2578,167.898,728.06,161.03" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[78c16179d2124deaac35d5b262615c53]
+reverse link EM03 to EM03_CM02--><g id="link_EM03_EM03_CM02"><path codeLine="66" d="M765.1,170.63 C780.49,186.79 798.8,206.01 812.74,220.65 " fill="none" id="EM03-backto-EM03_CM02" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="755.95,161.03,757.1935,168.1331,764.2285,169.7171,762.985,162.6141,755.95,161.03" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[2d9179d3f7fa2eae28abc0d29a79c70e]
+reverse link EM04 to EM04_CM01--><g id="link_EM04_EM04_CM01"><path codeLine="68" d="M923.24,172.47 C932.4,188.24 943.04,206.56 951.23,220.65 " fill="none" id="EM04-backto-EM04_CM01" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="916.59,161.03,916.1439,168.2273,922.6159,171.4073,923.0621,164.21,916.59,161.03" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[b7f973455052edbd8f82b8aa0ed92315]
+reverse link EM05 to EM05_CM01--><g id="link_EM05_EM05_CM01"><path codeLine="70" d="M1094.5,174.34 C1094.5,189.67 1094.5,207.12 1094.5,220.65 " fill="none" id="EM05-backto-EM05_CM01" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="1094.5,161.03,1090.5,167.03,1094.5,173.03,1098.5,167.03,1094.5,161.03" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[bf9f404016411fa777e3f5983a70c04d]
+reverse link EM05 to EM05_CM02--><g id="link_EM05_EM05_CM02"><path codeLine="71" d="M1132.59,169.26 C1152.94,185.7 1177.57,205.6 1196.21,220.65 " fill="none" id="EM05-backto-EM05_CM02" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="1122.39,161.03,1124.5434,167.9121,1131.7243,168.5713,1129.5709,161.6892,1122.39,161.03" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[4349cbce8ffc54609be9704fea65a663]
+@startuml
+object Unit
+Unit : Energy Drink Preparation
+
+object EM01
+EM01    :   Prepare Product 1
+
+object EM01_CM01
+EM01_CM01    :   XV11
+
+object EM01_CM02
+EM01_CM02    :   XV12
+
+object EM02
+EM02    :   Prepare Product 2
+
+object EM02_CM01
+EM02_CM01    :   XV21
+
+object EM02_CM02
+EM02_CM02    :   XV22
+
+object EM02_CM03
+EM02_CM03    :   XV23
+
+object EM03
+EM03    :   Temperature Control
+
+object EM03_CM01
+EM03_CM01    :   XV31
+
+object EM03_CM02
+EM03_CM02    :   XV32
+
+object EM04
+EM04    :   Agitator
+
+object EM04_CM01
+EM04_CM01    :   SIC41
+
+
+object EM05
+EM05    :   Transfer to bottle
+
+object EM05_CM01
+EM05_CM01    :   M51
+
+object EM05_CM02
+EM05_CM02    :   M52
+
+
+Unit *- - EM01
+Unit *- - EM02
+Unit *- - EM03
+Unit *- - EM04
+Unit *- - EM05
+
+EM01 *- - EM01_CM01
+EM01 *- - EM01_CM02
+
+EM02 *- - EM02_CM01
+EM02 *- - EM02_CM02
+EM02 *- - EM02_CM03
+
+EM03 *- - EM03_CM01
+EM03 *- - EM03_CM02
+
+EM04 *- - EM04_CM01
+
+EM05 *- - EM05_CM01
+EM05 *- - EM05_CM02
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 19:01:30 CEST 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: US
+--></g></svg>

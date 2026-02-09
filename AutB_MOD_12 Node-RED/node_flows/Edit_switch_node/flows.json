@@ -1,0 +1,227 @@
+[
+    {
+        "id": "663f27c8c0a40dce",
+        "type": "group",
+        "z": "0e5bbf7b29528cd4",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "03648b05a2076475",
+            "bfae2ddd9bd18f2b",
+            "a386a52cc0bd5f62",
+            "c333d22690f211b7",
+            "a1ac47c5714514f9",
+            "03506c42b593edc7",
+            "8590a086c2e94550",
+            "95a05facd0880a36"
+        ],
+        "x": 14,
+        "y": 99,
+        "w": 752,
+        "h": 302
+    },
+    {
+        "id": "03648b05a2076475",
+        "type": "switch",
+        "z": "0e5bbf7b29528cd4",
+        "g": "663f27c8c0a40dce",
+        "name": "Select Message",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 340,
+        "y": 220,
+        "wires": [
+            [
+                "bfae2ddd9bd18f2b"
+            ],
+            [
+                "a386a52cc0bd5f62"
+            ],
+            [
+                "c333d22690f211b7"
+            ]
+        ]
+    },
+    {
+        "id": "bfae2ddd9bd18f2b",
+        "type": "debug",
+        "z": "0e5bbf7b29528cd4",
+        "g": "663f27c8c0a40dce",
+        "name": "Message One",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "a386a52cc0bd5f62",
+        "type": "debug",
+        "z": "0e5bbf7b29528cd4",
+        "g": "663f27c8c0a40dce",
+        "name": "Message Two",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "c333d22690f211b7",
+        "type": "debug",
+        "z": "0e5bbf7b29528cd4",
+        "g": "663f27c8c0a40dce",
+        "name": "Message Three",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a1ac47c5714514f9",
+        "type": "inject",
+        "z": "0e5bbf7b29528cd4",
+        "g": "663f27c8c0a40dce",
+        "name": "Select One",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 140,
+        "y": 160,
+        "wires": [
+            [
+                "03648b05a2076475"
+            ]
+        ]
+    },
+    {
+        "id": "03506c42b593edc7",
+        "type": "inject",
+        "z": "0e5bbf7b29528cd4",
+        "g": "663f27c8c0a40dce",
+        "name": "Select Two",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 140,
+        "y": 220,
+        "wires": [
+            [
+                "03648b05a2076475"
+            ]
+        ]
+    },
+    {
+        "id": "8590a086c2e94550",
+        "type": "inject",
+        "z": "0e5bbf7b29528cd4",
+        "g": "663f27c8c0a40dce",
+        "name": "Select Three",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "3",
+        "payloadType": "num",
+        "x": 130,
+        "y": 280,
+        "wires": [
+            [
+                "03648b05a2076475"
+            ]
+        ]
+    },
+    {
+        "id": "95a05facd0880a36",
+        "type": "comment",
+        "z": "0e5bbf7b29528cd4",
+        "g": "663f27c8c0a40dce",
+        "name": "Select a message",
+        "info": "",
+        "x": 150,
+        "y": 360,
+        "wires": []
+    }
+]

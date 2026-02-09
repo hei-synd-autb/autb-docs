@@ -10,15 +10,11 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 10 OPC Unified Architecture (UA)
+# Module 14 OPC UA & Sécurité OT
 
 *Keywords:* [OPC UA](https://opcfoundation.org/)
 
 [Vous pourriez d'abord lire la présentation du réseau industriel](IndustrialNetwork.md)
-
-Ce module est une introduction à OPC UA.
-OPC UA sera utilisé sous forme paramétrable afin de comprendre son utilisation dans le cadre de l'automation, et plus généralement pour tout système qui requiert l'échange d'un grand nombre de données complexes dans un contexte sécurisé.
-Pour plus de détails sur les fonctions avancées de OPC UA, on se reportera au cours du 6ème semestre P&C.
 
 # Contexte
 ## Passerelle OT - IT
@@ -29,6 +25,19 @@ Pour plus de détails sur les fonctions avancées de OPC UA, on se reportera au 
 |-----------|-----------|
 |![](./img/OPC-UA-IT.png)|![](./img/OPC-UA-OT.png)|
 |Source: www.skyguide.ch|Source: Syngenta|
+
+Ce module est une introduction à OPC UA et la sécurité OT.
+
+Dans une certaine mesure, OPC UA et la sécurité OT sont liés. L'une des idées de l'OPC-UA est d'intégré l'entier d'un système de production dans une structure coéhrente, deplus le capteur jusqu'au cloud. Rechercher [OPC UA FX](https://opcfoundation.org/flc/) pour plus de détails.
+
+<div align="center">
+    <img src="./img/OPC UA FX connectivity use cases.png" 
+        alt="OPC UA FX connectivity use cases" 
+        width="600">
+    <p><em>OPC UA FX connectivity use cases. source: opcfoundation.org </em></p>
+</div>
+
+OPC-UA implique une communication entre tous les niveaux de l'automation, ce qui implique nécessairement à un moment ou à un autre des problème de sécurisation de l'information. OPC UA propose quelques bases de sécurisation de l'information. Mais ces bases ne seront pas toujours suffisantes.
 
 ## Nécessité de communiquer entre différentes machines.
 > M2M Machine To Machine

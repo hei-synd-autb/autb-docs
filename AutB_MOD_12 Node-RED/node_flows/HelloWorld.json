@@ -1,0 +1,85 @@
+[
+    {
+        "id": "c4abe2be0fc6d270",
+        "type": "group",
+        "z": "3f31cf57430bd5cb",
+        "name": "",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "d2b330ed93df35a0",
+            "81e48eeb776da060",
+            "4d5a8d75274a52cb"
+        ],
+        "env": [
+            {
+                "name": "This_Group",
+                "value": "4",
+                "type": "num"
+            }
+        ],
+        "x": 94,
+        "y": 99,
+        "w": 372,
+        "h": 162
+    },
+    {
+        "id": "d2b330ed93df35a0",
+        "type": "inject",
+        "z": "3f31cf57430bd5cb",
+        "g": "c4abe2be0fc6d270",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Hello !",
+        "payloadType": "str",
+        "x": 190,
+        "y": 140,
+        "wires": [
+            [
+                "81e48eeb776da060"
+            ]
+        ]
+    },
+    {
+        "id": "81e48eeb776da060",
+        "type": "debug",
+        "z": "3f31cf57430bd5cb",
+        "g": "c4abe2be0fc6d270",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "4d5a8d75274a52cb",
+        "type": "comment",
+        "z": "3f31cf57430bd5cb",
+        "g": "c4abe2be0fc6d270",
+        "name": "Node-RED says Hello !",
+        "info": "# Some documentation\n\nHere you should explain what you are doing.\n\n|A table|Label|\n|-------|-----|\n|N°1    |Example|\n\n```mermaid\nflowchart LR\n    Start --> Stop\n\n```",
+        "x": 220,
+        "y": 220,
+        "wires": []
+    }
+]
