@@ -123,14 +123,19 @@ In diesem Dokument werden die Konzepte synchronisierter Bewegung und Echtzeit-Et
 
 ---
 
-[Module 12 Node-RED](./AutB_MOD_12_OPC_UA/README.md): **Doit être revu**
-Un protocole standard et un outil pour accéder et visualiser les données
+[Module 12 Node-RED](./AutB_MOD_12%20Node-RED/README_FR.md): **Node-RED**
+Un protocole standard et un outil pour accéder et visualiser les données.
+
+[Module 12 Node-RED DE](./AutB_MOD_12%20Node-RED/README_DE.md): **Node-RED**
+Ein Standardprotokoll und ein Werkzeug für den Zugriff auf und die Visualisierung von Daten..
 
 ---
 
-[Module 13 OT Security et OPC UA](./AutB_MOD_12_OPC_UA/README.md): **Doit être revu**
-Un protocole standard et un outil pour accéder et visualiser les données
+[Module 13 OT Security et OPC UA](./AutB_MOD_13%20OPC-UA%20&%20OT%20Security/README.md): **OPC UA et Sécurité OT**
+Un protocole standard pour accéder aux données et quelques éléments de sécurité OT.
 
+[Modul 13 OT-Sicherheit und OPC UA](./AutB_MOD_13%20OPC-UA%20&%20OT%20Security/README_DE.md): **OPC UA und OT-Sicherheit**
+Ein Standardprotokoll für den Datenzugriff und einige OT-Sicherheitselemente.
 
 ---
 

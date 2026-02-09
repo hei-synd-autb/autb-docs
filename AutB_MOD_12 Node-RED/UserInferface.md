@@ -7,7 +7,7 @@
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 04 User Interfaces
+# Module 12, User Interface
 
 *Keywords:* **Dashboard 2**
 

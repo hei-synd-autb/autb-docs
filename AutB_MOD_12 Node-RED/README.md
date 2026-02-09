@@ -1,14 +1,15 @@
-<h1>
+<h1 align="left">
+  <br>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
-  <br> ADP
-    <h2>Flow Based Programming</h2>
+  <br>
+  Industrial Automation Base
   <br>
 </h1>
 
-Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
+Cours AutB
 
-# Module 11 Node-RED
-*Flow Based Programming*
+# Module 12 Node-RED
+*2ème partie Flow Based Programming*
 
 *Keywords:* **Flow / Node / Function / Context Data / Message / Payload**
 
@@ -18,6 +19,8 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
          width="400">
   <figcaption>OpenJS Foundation: <a href="https://openjsf.org/">OpenJS</a></figcaption>
 </figure>
+
+
 
 # Introduction
 :no_bell: *In the rest of this course, some paragraphs are marked with this symbol. This does not necessarily mean that the topic is unimportant, but rather that it will not be covered in detail.*
