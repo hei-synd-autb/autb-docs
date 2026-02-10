@@ -1,17 +1,17 @@
 <h1 align="left">
   <br>
-  <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
+  <img src="./img/hei-en.png" alt="Logo HEI-Vs" width="350">
   <br>
-  Industrial Automation Base
+  Base d'Automatisation Industrielle
   <br>
 </h1>
 
 Cours AutB
 
 # Module 12 Node-RED
-*2ème partie Flow Based Programming*
+*Programmation basée sur les événements*
 
-*Keywords:* **Flow / Node / Function / Context Data / Message / Payload**
+*Mots-clés:* **Flux / Nœud / Fonction / Données de contexte / Message / Charge utile**
 
 <figure>
     <img src="./img/openjs_foundation-logo.svg"
@@ -23,232 +23,193 @@ Cours AutB
 
 
 # Introduction
-:no_bell: *In the rest of this course, some paragraphs are marked with this symbol. This does not necessarily mean that the topic is unimportant, but rather that it will not be covered in detail.*
 
-## Java Script
-JavaScript is a high-level, interpreted programming language primarily used to create interactive effects within web browsers. It enables dynamic content, control over multimedia, animated images, and much more on web pages. JavaScript is a core technology of the World Wide Web, alongside HTML and CSS.
+Node-RED est à la base un projet Open-Source destiné à la communication IoT. Sa souplesse et sa simplificité d'utilisation font qu'il a été adopté depuis plusieurs années comme outil de communication pour accompagner certains systèmes d'automation. Dans le cadre de la [HEVS](https://www.hevs.ch), nous avons pu montrer lors d'un travail de Bachelor réalisé par Jonathan Marques qu'il est même possible d'utiliser Node-RED comme interface utilisateur complet pour un projet industriel réel.
 
-Originally developed for client-side scripting in browsers, JavaScript is now also widely used on the server side (notably with Node.js). It is known for its flexibility, event-driven programming model, and support for object-oriented, imperative, and functional programming styles.
+> Dans la pratique, Node-RED est beaucoup utilisé comme outil permettant le prototypage rapide d'interfaces utilisateur via son extension [FlowFuse Dashboard](https://flows.nodered.org/node/@flowfuse/node-red-dashboard). Il n'existe probablement pas d'autre outil autant efficace pour cette tâche.
 
-**Key features:**
-- Runs in all modern web browsers
-- Dynamically typed and prototype-based
-- Supports asynchronous programming, callbacks, promises, async/await.
-- Enables DOM manipulation and event handling
+> Ce module est une coure introduction à Node-RED, pour aller plus loin on pourra se référer à la vaste litérature existante sur le web ou au cours [Automation in Development and Automation](https://github.com/hei-dls-adp/adp-docs) de la HEVS.
 
-**Example:**
-```javascript
-console.log("Hello, world!");
-```
-
-## The V8 engine
-The **V8 engine** is an open-source JavaScript engine developed by Google. It is written in C++ and is used in Google Chrome and other Chromium-based browsers to execute JavaScript code. V8 compiles JavaScript directly to native machine code before executing it, which makes it extremely fast.
-
-**Key points about V8:**
-- Developed by Google for Chrome, but also used in Node.js.
-- Translates JavaScript into efficient machine code using Just-In-Time (JIT) compilation.
-- Provides high performance for both client-side, browsers, and server-side, Node.js JavaScript execution.
-- Continuously optimized for speed and memory efficiency.
-
-**Why is V8 important?**
-V8's performance and efficiency are a major reason why JavaScript can be used for large-scale, high-performance applications, both in browsers and on servers, via Node.js.
-
-<div align="center">
-<figure>
-    <img src="./img/Node_js_architecture.jpg"
-         alt="Node_js_architecture.jpg"
-         width="400">
-  <figcaption>Node.js architecture, Source: <a href="https://www.techanicinfotech.com//">Technic Infotech</a></figcaption>
-</figure>
-</div>
-
-## Node JS
-> We won't be diving into Node.js in this course, but we do consider it helpful to understand the underlying framework of the environment we'll be using. This can sometimes help you understand its behavior, take advantage of its benefits, and avoid its flaws.
-
-> We're going a little further, because in the previous module we covered **cyclic programming**, and now **asynchronous architecture** and **event-driven programming**. This is very different from what you could do by simply running Python a Python for data analysis.
-
-> In Python, you could do some asynchonous tasks with asyncio. Not being a Python expert, I don't want to venture into this debate. 
-
-Node.js is an open-source, cross-platform, single-threaded **runtime environment** designed for developing fast, scalable server and network applications. It runs on the V8 JavaScript engine and adopts a non-blocking, event-driven I/O architecture, making it efficient and suitable for real-time applications.
-
-> A **runtime environment** is the underlying platform or system that provides the necessary resources and services for a program to execute. In the context of Node.js, the runtime environment includes the V8 JavaScript engine, libraries, and APIs that allow JavaScript code to run outside of a web browser, interact with the file system, network, and other system resources.
-
-Traditionally, JavaScript only worked on the front-end, as the runtime was only available in web browsers like Google Chrome. The programming language can therefore be used to create a client-side application, much like a dynamic website.
-
-Ryan Dahl created Node.js in 2009 as a lightweight, responsive runtime environment for JavaScript. This software allows developers to use the scripting language as server-side code.
-
-Using server-side JavaScript allows developers to write both the front-end and back-end in the same language. This streamlines development and maintenance since they can reuse the same code.
-
-Furthermore, developing the back-end in JavaScript allows the application to benefit from Node.js's asynchronous programming model. This architecture, at its core, allows the web service to respond more efficiently to multiple user requests.
-
-### What means single-threaded ?
-A **single-threaded** environment means that all code execution happens on one main thread of the CPU, rather than using multiple threads to run tasks in parallel.
-
-In Node.js, this means:
-
-- Only one operation can execute JavaScript code at a time.
-- Node.js uses an event loop to handle many tasks, like I/O operations, asynchronously, so it can manage multiple connections efficiently without creating new threads for each one.
-- Heavy CPU-bound tasks can block the event loop, so Node.js is best suited for I/O-bound applications.
-
-💡 **Analogy:**  
-Think of a single-threaded system like a chef, the thread, in a kitchen. The chef can only cook one dish at a time, but can start a dish, put it in the oven, I/O, and while it bakes, start preparing another dish. The chef never duplicates himself, but manages many tasks by switching between them efficiently.
-
-⚠️ **Pitfall**
-If you run long-running, CPU-intensive code in Node.js, it will block the event loop and slow down all other operations. For such tasks, consider using worker threads or moving the work outside Node.js.
-
-> To understand how Node.js works, you need to understand the following important terms.
-> - Non-blocking I/O Model
-> - Asynchronous Architecture
-> - Event-driven
-
-## Non-blocking I/O Model
-
-To process a user request, traditional servers like Apache and Tomcat use a single thread that can serve one client at a time. When the maximum number of threads is reached, a new request must wait for existing threads to complete their tasks.
-
-Threads still processing user requests will block input from new clients and will not forward output to external services such as APIs or databases. This can lead to bottlenecks during traffic spikes with many concurrent connections.
-
-Non-blocking paradigms mean that a single Node.js thread can receive and transmit a new request without waiting for the current request to complete. This system is called an asynchronous architecture.
-
-## Asynchronous Architecture
-
-A synchronous architecture processes client requests in order, meaning that the web server completes the current operation before starting a new one.
-
-In contrast, **an application with an asynchronous architecture will begin a new operation while waiting for the results of other operations**. As soon as it receives a response, the web server returns the data to the client.
-
-Asynchronous architecture is suitable for applications that need to retrieve data from other services, such as application programming interfaces. **API**s or **databases**. Instead of remaining idle, the web server can process new requests while waiting for responses.
-
-While excellent for input/output, **I/O, tasks**, **this architecture makes Node.js more CPU-intensive** since it uses only a single thread to process multiple requests.
-
-## Event-driven
-
-In Node.js, events are signals indicating that a specific action has occurred. For example, they can trigger a **new operation** or the **completion** of a task.
-
-**Events are an integral part of the asynchronous model**. They operate in a loop, telling Node.js how to handle the flow of requests.
-
-When a new request is received from a client, the event loop starts. Node.js then forwards the request to the appropriate external service, such as an API. Once the server receives the data, a new event triggers a callback function.
-
-A callback function executes another function when a specific condition or asynchronous operation is completed. It allows the web server to process requests and send responses to the client.
-
-## Benefits of Using Node.js
-
-Now that we understand the mechanics of Node.js, let's see how this model can benefit your web application development.
-
-- **Speed**. Node.js's asynchronous architecture handles multiple I/O operations more efficiently, resulting in a more responsive application. It also allows for real-time execution of data.
-- **Error Handling Mechanism**. Built-in error objects provide users with greater flexibility in handling many issues. They allow developers to obtain more detailed information about the error for more efficient troubleshooting and processing.
-- **Development Efficiency**. Node.js allows developers to use JavaScript anywhere for comprehensive development. It facilitates development because the code runs seamlessly between the backend and frontend.
-- **A Rich Ecosystem**. Users can install various modules via the Node Package Manager (NPM) to easily add new features to their Node.js applications without having to write them from scratch.
-- **Flexibility and scalability**. Developers can use Node.js with other frameworks and operating systems. They can also evolve the runtime using different approaches, such as installing a load balancer or implementing microservices.
-- **Open source**. The Node.js source code is accessible to all users, and its creators advocate transparency, innovation, and customization. This runtime also benefits from significant community support.
-
-### What is Node.js written in?
-
-Node.js is developed in C, C++, and JavaScript.
-
-According to Wikipedia, Node.js is "a packaged compilation of Google's V8 JavaScript engine, the libuv platform abstraction layer, and a core library, primarily written in JavaScript."
-
-The runtime internally uses Chrome V8, which is the JavaScript runtime, itself written in C++. This allows Node.js to access internal system features, such as network management.
-
-### Node.js Architecture and Operation
-
-Node.js relies on an architecture called a **single-threaded event loop** to handle multiple clients simultaneously. Unlike other environments like Java, which use a multi-threaded model where each client request is handled by a separate thread from a thread pool, Node.js handles all requests on a single thread via an event loop. This allows for efficient handling of multiple concurrent connections without creating a separate thread for each client, improving performance and resource utilization.
-
-<div align="center">
-<figure>
-    <img src="./img/How node.js process incoming requests using the event loop.png"
-         alt="How node.js process incoming requests using the event loop"
-         width="400">
-  <figcaption>How node.js process incoming requests using the event loop, Source: <a href="https://kinsta.com/knowledgebase/what-is-node-js/">Kinsta</a></figcaption>
-</figure>
-</div>
-
+:no_bell: *Dans le reste de ce cours, certains paragraphes sont marqués avec ce symbole. Cela ne signifie pas nécessairement que le sujet est sans importance, mais plutôt qu'il ne sera pas couvert en détail.*
 
 # Node-RED
 <figure>
     <img src="./img/LogoNode-RED.png"
          alt="LogoNode-RED"
          width="100">
-  <figcaption>Low-code programming for event-driven applications <a href="https://nodered.org/">nodered.org</a></figcaption>
+  <figcaption>Programmation low-code pour les applications pilotées par les événements <a href="https://nodered.org/">nodered.org</a></figcaption>
 </figure>
 
 
-## A brief introduction to Node-RED
+## Une brève introduction à Node-RED
 
-Node-RED is a tool for building Internet of Things, IoT, applications with a focus on simplifying the **wiring together** of code blocks to carry out tasks. It uses a visual programming approach that allows developers to connect predefined code blocks, known as **nodes**, together to perform a task. The connected nodes, usually a combination of input nodes, processing nodes and output nodes, when wired together, make up a **flow**.
+Node-RED est un outil pour construire des applications Internet des Objets, IoT, en mettant l'accent sur la simplification du **câblage** de blocs de code pour accomplir des tâches. Il utilise une approche de programmation visuelle qui permet aux développeurs de connecter des blocs de code prédéfinis, connus sous le nom de **nœuds**, ensemble pour effectuer une tâche. Les nœuds connectés, généralement une combinaison de nœuds d'entrée, de nœuds de traitement et de nœuds de sortie, lorsqu'ils sont câblés ensemble, composent un **flux**.
 
-Originally developed as an open source project at IBM in late 2013, to meet their need to quickly connect hardware and devices to web services and other software – as a sort of glue for the IoT – it has quickly evolved to be a general purpose IoT programming tool. Importantly, Node-RED has rapidly developed a significant and growing user base and an active developer community who are contributing new nodes that allow programmers to reuse Node-RED code for a wide variety of tasks.
+Développé à l'origine en tant que projet open source chez IBM à la fin de 2013, pour répondre à leur besoin de connecter rapidement le matériel et les appareils aux services web et à d'autres logiciels - comme une sorte de colle pour l'IoT - il a rapidement évolué pour devenir un outil de programmation IoT à usage général. Notamment, Node-RED a rapidement développé une base d'utilisateurs importante et croissante et une communauté de développeurs active qui contribuent de nouveaux nœuds permettant aux programmeurs de réutiliser le code Node-RED pour une grande variété de tâches.
 
-Although Node-RED was originally designed to work with the Internet of Things, it has become useful for a range of applications and is now considered one of the pre-eminent low code/no code visual development tools.
+### Node.JS
+Node-RED est basé sur un environnement [Node.js](https://nodejs.org/).
 
-> Here at the HEVS, after having tested and validated Node-RED for use a User Interface for a prototype of filtering water, we use it as User Interafce for all the labs in Automation.
+Node.js est un environnement d’exécution JavaScript côté serveur, construit sur le [moteur V8 de Google Chrome](#quest-ce-que-le-moteur-javascript-v8-). Il permet d’exécuter du code JavaScript en dehors d’un navigateur, principalement pour créer des applications réseau rapides et scalables.
 
-## The Node-RED Interface
+### Différences principales avec PLC et Python
 
-Node-RED is a software program for managing event flows, sequences of processing to be performed following the reception of messages or events. It contains a number of basic features, but most of the features useful in our case will need to be installed later.
+| Aspect                | Node.js (JavaScript)         | PLC (Ladder, ST, etc.)         | Python                        |
+|-----------------------|-----------------------------|-------------------------------|-------------------------------|
+| **Paradigme**         | Événementiel, asynchrone    | Cyclique, temps réel           | Impératif, orienté objet      |
+| **Exécution**         | Interprété, non bloquant    | Temps réel, séquentiel         | Interprété, synchrone         |
+| **Utilisation typique** | Serveurs web, IoT, API      | Contrôle industriel, machines  | Scripts, data science, web    |
+| **Gestion des E/S**   | Asynchrone (callbacks, promesses) | Directe, via entrées/sorties physiques | Synchrone ou asynchrone |
+| **Langage**           | JavaScript                  | Langages IEC 61131-3           | Python                        |
 
-In Node-RED, a "feature" is represented as a node, an element that can be placed in your flow, connected to other nodes as inputs or outputs. The flow represents all the nodes. It is not linear, and a node connected to no other can still be activated if the conditions are met.
+### Points clés
+
+- **Node.js** est conçu pour gérer de nombreux événements en parallèle, par exemple, connexions réseau et interface utilisateur, grâce à sa boucle d’événements non bloquante.
+- **PLC** fonctionne en scannant cycliquement le programme, ce qui garantit la **réactivité en temps réel** mais limite la gestion d’événements multiples complexes.
+- **Python** est simple à apprendre, synchrone par défaut, mais peut aussi gérer l’asynchrone..
+
+**En résumé** : Node.js est particulièrement adapté aux applications nécessitant la gestion simultanée de nombreuses connexions ou événements, alors que les PLC sont optimisés pour le contrôle temps réel, et Python pour la polyvalence et la rapidité de développement.
+
+### Notion de programmation par événement, Event Driven
+
+<div align="center">
+
+```mermaid
+flowchart TD
+    A[Événement se produit<br> clic signal PLC...] --> B[Gestionnaire d'événement appelé]
+    B --> C[Exécution de la logique associée]
+    C --> D[Résultat affiché<br/> mise à jour UI, envoi commande PLC]
+    D --> E[Attente d'un nouvel événement]
+    E -.-> A
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bfb,stroke:#333,stroke-width:2px
+    style D fill:#ffb,stroke:#333,stroke-width:2px
+    style E fill:#eee,stroke:#333,stroke-width:2px
+```
+</div>
+
+
+Ce diagramme illustre le principe de la programmation événementielle : le système attend des événements, déclenche des gestionnaires spécifiques, exécute la logique, puis retourne en attente.
+
+### Comprendre la programmation événementielle
+
+La programmation événementielle est un paradigme dans lequel le déroulement d'un programme est déterminé par des événements tels que les actions de l'utilisateur, les notifications système ou la disponibilité des données. Dans Node.js, ce modèle permet aux développeurs d'écrire du code asynchrone et non bloquant qui réagit aux événements au fur et à mesure qu'ils se produisent, sans attendre la fin des opérations bloquantes.
+
+### Events and Event Emitters
+
+- **Événements** : Les événements sont des signaux indiquant qu'une action ou un changement d'état particulier s'est produit. Dans Node.js, les événements sont représentés par des chaînes, **event names** et des données associées, **event payload**.
+- **Émetteurs d'événements** : Un émetteur d'événements est un objet capable d'émettre des événements. Il fournit des méthodes pour enregistrer des écouteurs d'événements, event listenr, **callbacks** pour des événements spécifiques et les déclencher lorsque les événements correspondants se produisent.
+
+La programmation événementielle permet de synchroniser l'occurrence de plusieurs événements et de simplifier au maximum le programme. Les composants de base d'une programmation événementielle sont :
+
+-   Une fonction de rappel, **callback**, appelée gestionnaire d'événements est appelée lorsqu'un événement est déclenché ;
+-   Une boucle d'événements, **event loop**, qui écoute les déclencheurs d'événements, **triggers** et appelle le gestionnaire d'événements, **event handler** correspondant.
+
+<div align="center">
+  <img src="./img/geeksforgeeks_EventEmitter.png" alt="  <img src="./img/geeksforgeeks_EventEmitter.png" alt="OPC_UA_Netilion_solution-1" width="400">
+  <p><em>Event in Node.js, Source; https://www.geeksforgeeks.org</em></p>
+</div>   
+
+### Avantages de la programmation événementielle
+
+-   **Flexibilité**: Il est plus facile de modifier des sections de code selon les besoins.
+-   **Adaptation aux interfaces graphiques** : L'utilisateur peut sélectionner des outils (comme des boutons radio, etc.) directement depuis la barre d'outils.
+-   **Permet des programmes plus interactifs** : La programmation événementielle est utilisée dans presque toutes les applications UI récentes.
+-   **Utilisation d'interruptions matérielles** : Elle peut être réalisée via des interruptions matérielles, réduisant ainsi la consommation d'énergie de l'ordinateur.
+-   **Prise en charge des capteurs et autres matériels** : La programmation événementielle simplifie la communication entre les capteurs et autres matériels et les logiciels.
+
+### Inconvénients de la programmation événementielle
+-   **Complexe **: Les programmes simples deviennent inutilement complexes.
+-   **Moins logique et évident** : Le déroulement du programme est généralement moins logique et plus évident.
+-   **Difficile à trouver des erreurs** : Le débogage d'un programme événementiel est complexe.
+-   **Blocage **: Blocage complexe des opérations.
+
+> Pour résumer, **convient très bien pour des applications simples, telles que le pilotages de petites machines, voir les robots du laboratoire d'automation ou des bancs de test avec quelques dizaines de modules**. Nous n'avons pas d'expérience ou de cas d'utilisation pour des systèmes à grande échelle.
+
+### Qu'est-ce que le moteur JavaScript V8 ?
+
+V8 est un moteur d'exécution JavaScript développé par Google, principalement utilisé dans le navigateur Chrome et dans Node.js. Son rôle est de traduire le code JavaScript en instructions machine compréhensibles par le processeur, ce qui permet d'exécuter rapidement du JavaScript en dehors d'un navigateur.
+
+### Points clés pour un étudiant connaissant Java, Python et IEC 61131-3 :
+- **Comparable à la JVM pour Java** : Comme la Java Virtual Machine,
+  - JVM exécute du bytecode Java, 
+  - V8 exécute du code JavaScript.
+- **Compilation Just-In-Time, JIT** : V8 compile le JavaScript *à la volée* en code machine natif, ce qui améliore fortement les performances.
+- **Utilisé dans Node.js** : Grâce à V8, Node.js permet d'exécuter du JavaScript côté serveur, un peu comme Python avec son interpréteur.
+- **Indépendant du navigateur** : V8 peut être intégré dans d'autres applications pour fournir un moteur d'exécution JavaScript, **pas seulement dans les navigateurs**.
+
+> En résumé, V8 est au JavaScript ce que la JVM est à Java : un moteur qui rend possible l'exécution efficace du langage sur différentes plateformes.
+
+## L'interface Node-RED
+
+Node-RED est un logiciel pour gérer les flux d'événements, les séquences de traitement à effectuer après la réception de messages ou d'événements. Il contient un certain nombre de fonctionnalités de base, mais la plupart des fonctionnalités utiles dans notre cas devront être installées ultérieurement.
+
+Dans Node-RED, une "fonctionnalité" est représentée comme un nœud, un élément qui peut être placé dans votre flux, connecté à d'autres nœuds comme entrées ou sorties. Le flux représente tous les nœuds. Il n'est pas linéaire, et un nœud non connecté à un autre peut toujours être activé si les conditions sont remplies.
 
 <div align="center">
 <figure>
     <img src="./img/NodeRedInABrowser.png"
-         alt="Image Lost: NodeRedInABrowser.png"
+         alt="Image perdue: NodeRedInABrowser.png"
          width="500">
-  <figcaption>Node-RED is works in a Browser</figcaption>
+  <figcaption>Node-RED fonctionne dans un navigateur</figcaption>
 </figure>
 </div>
 
-The Node-RED interface consists of four parts:
+L'interface Node-RED se compose de quatre parties:
 
-### 🔹 On the left
-The list of available nodes. To place them on the flow, select the one you want and drag it to the desired location.
+### 🔹 À gauche
+La liste des nœuds disponibles. Pour les placer sur le flux, sélectionnez celui que vous voulez et glissez-le à l'emplacement souhaité.
 
-### 🔹 In the center
-The **flows**. You can open as many as you want; each flow is independent and cannot affect others. Concretly a **flow** is a tab, it can be seen a sub program with it own variables.
+### 🔹 Au centre
+Les **flux**. Vous pouvez en ouvrir autant que vous le souhaitez; chaque flux est indépendant et ne peut pas affecter les autres. Concrètement un **flux** est un onglet, on peut le voir comme un sous-programme avec ses propres variables.
 
-### 🔹 On the right
-Useful tabs.
-- The i tab provides detailed information on any selected node.
-- The debug tab, insect icon,  appears as soon as a debug node is placed and
-allows you to view debug messages.
-- The dashboard tab, graph icon, appears as soon as a dashboard node
-appears and allows you to access it.
-- Other tabs may appear depending on the nodes installed and placed.
+### 🔹 À droite
+Onglets utiles.
+- L'onglet i fournit des informations détaillées sur tout nœud sélectionné.
+- L'onglet débogage, icône de loupe, apparaît dès qu'un nœud de débogage est placé et
+vous permet de voir les messages de débogage.
+- L'onglet tableau de bord, icône de graphique, apparaît dès qu'un nœud de tableau de bord
+apparaît et vous permet d'y accéder.
+- D'autres onglets peuvent apparaître en fonction des nœuds installés et placés.
 
-### 🔹 Top
-The Deploy button allows you to **deploy** your flow and make it active. The
-menu button, parallel lines icon, opens a menu, which contains the following options:
-- View: Manage the view, display or hide the side menus. It also allows
-access to the debug or dashboard if active.
-- Import: Load a saved flow
-- Export: Save open flows
-- Manage Palette: Manage installed nodes and install new ones
-- Flows / Subflows: Create a new flow or subflow.
+### 🔹 En haut
+Le bouton Déployer vous permet de **déployer** votre flux et de le rendre actif. Le
+bouton menu, icône de lignes parallèles, ouvre un menu, qui contient les options suivantes:
+- Affichage: Gérez l'affichage, affichez ou masquez les menus latéraux. Il permet également
+accès au débogage ou tableau de bord s'il est actif.
+- Importer: Charger un flux enregistré
+- Exporter: Enregistrer les flux ouverts
+- Gérer la palette: Gérer les nœuds installés et en installer de nouveaux
+- Flux / Sous-flux: Créer un nouveau flux ou un nouveau sous-flux.
 
 ---
 
 
-## Common nodes
+## Nœuds courants
 
-Let's start with the basic nodes, common.
-Here's a list of memos with a reminder, in my words, of what they do.
+Commençons par les nœuds de base, courants.
+Voici une liste de mémos avec un rappel, en mes propres termes, de ce qu'ils font.
 
-### Examples
-There is a lot of integrated examples for each node. Looking at the examples is probably the best way to learn and understand Node-RED.
+### Exemples
+Il y a beaucoup d'exemples intégrés pour chaque nœud. Regarder les exemples est probablement la meilleure façon d'apprendre et de comprendre Node-RED.
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Lot_of_examples.png"
-     alt="Image lost : Lot_of_examples"
+     alt="Image perdue: Lot_of_examples"
      width = "400">
-  <figcaption>Load an example to understand a node !</figcaption>
+  <figcaption>Chargez un exemple pour comprendre un nœud!</figcaption>
 </figure>
 </div>
 
-### How to load an example
-Node-RED is finally only a big JSON file.
+### Comment charger un exemple
+Node-RED est finalement un grand fichier JSON.
 
-Below a first example.
+Ci-dessous un premier exemple.
 
-:bulb: You do not have to understand the JSON code below !
+:bulb: Vous n'avez pas besoin de comprendre le code JSON ci-dessous!
 
 ```json
 [
@@ -297,7 +258,7 @@ Below a first example.
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "Hello !",
+        "payload": "Bonjour!",
         "payloadType": "str",
         "x": 190,
         "y": 140,
@@ -329,8 +290,8 @@ Below a first example.
         "type": "comment",
         "z": "3f31cf57430bd5cb",
         "g": "c4abe2be0fc6d270",
-        "name": "Node-RED says Hello !",
-        "info": "# Some documentation\n\nHere you should explain what you are doing.\n\n|A table|Label|\n|-------|-----|\n|N°1    |Example|\n\n```mermaid\nflowchart LR\n    Start --> Stop\n\n```",
+        "name": "Node-RED dit Bonjour!",
+        "info": "# Quelques documentations\n\nIci vous devriez expliquer ce que vous faites.\n\n|Un tableau|Étiquette|\n|-------|-----|\n|N°1    |Exemple|\n\n```mermaid\nflowchart LR\n    Début --> Arrêt\n\n```",
         "x": 220,
         "y": 220,
         "wires": []
@@ -338,14 +299,14 @@ Below a first example.
 ]
 ```
 
-You could export this text in a JSON file, but you could simply insert it like that.
+Vous pourriez exporter ce texte dans un fichier JSON, mais vous pouvez simplement l'insérer comme cela.
 
 <div align="center">
 <figure>
     <img src="./img/Insert_Import_Node.png"
          alt="Insert_Import_Node"
          width="400">
-  <figcaption>Right click, Insert Import</figcaption>
+  <figcaption>Clic droit, Insérer Importer</figcaption>
 </figure>
 </div>
 
@@ -354,295 +315,296 @@ You could export this text in a JSON file, but you could simply insert it like t
     <img src="./img/Insert_Import_Code.png"
          alt="Insert_Import_Code"
          width="400">
-  <figcaption>Copy past the JSON text, current flow, Import</figcaption>
+  <figcaption>Copier coller le texte JSON, flux actuel, Importer</figcaption>
 </figure>
 </div>
 
-**Deploy !**
+**Déployer!**
 
-> Note that if you click on the comment : Node-RED says Hello!, you can read the block documentation by clicking the :information_source: button at the upper right corner of the window.
+> Notez que si vous cliquez sur le commentaire: Node-RED dit Bonjour!, vous pouvez lire la documentation du bloc en cliquant sur le bouton :information_source: en haut à droite de la fenêtre.
 ---
 
 
 
-### Inject
-Mainly for debugging, used to manually send a message.
+### Injecter
+Principalement pour le débogage, utilisé pour envoyer manuellement un message.
 
 <div style="text-align: left;">
 <figure>
   <img src="./img/Node_inject.png"
-     alt="Image lost : Node_inject"
+     alt="Image perdue: Node_inject"
      width = "200">
-  <figcaption>Node Inject</figcaption>
+  <figcaption>Nœud Injecter</figcaption>
 </figure>
 </div>
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Node_inject_Hello_World.png"
-     alt="Image lost : Node_inject_Hello_World"
+     alt="Image perdue: Node_inject_Hello_World"
      width = "400">
-  <figcaption>Inject Hello World !</figcaption>
+  <figcaption>Injecter Bonjour Monde!</figcaption>
 </figure>
 </div>
 
-:bulb: Can also be used to inject a message with a given delay or a selectable time interval.
+:bulb: Peut également être utilisé pour injecter un message avec un délai donné ou un intervalle de temps sélectionnable.
 
 
-### Debug
-Allows you to display a partial or complete message in the debug window.
+### Débogage
+Vous permet d'afficher un message partiel ou complet dans la fenêtre de débogage.
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Hello_World_Debug.png"
-     alt="Image lost Hello_World_Debug"
+     alt="Image perdue Hello_World_Debug"
      width = "400">
-  <figcaption>Debug Hello World !</figcaption>
+  <figcaption>Débogage Bonjour Monde!</figcaption>
 </figure>
 </div>
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Debug_Icon.png"
-     alt="Image lost Debug_Icon: Node_inject_Hello_World"
+     alt="Image perdue Debug_Icon: Node_inject_Hello_World"
      width = "400">
-  <figcaption>Click this icon for debug.</figcaption>
+  <figcaption>Cliquez sur cette icône pour déboguer.</figcaption>
 </figure>
 </div>
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Debug_Hello.png"
-     alt="Image lost Debug_Hello"
+     alt="Image perdue Debug_Hello"
      width = "400">
-  <figcaption>Debug window</figcaption>
+  <figcaption>Fenêtre de débogage</figcaption>
 </figure>
 </div>
 
-### complete 
-:no_bell: *for information only*
+### complet
+:no_bell: *pour information seulement*
 
 <div style="text-align: left;">
 <figure>
   <img src="./img/Node_complete.png"
-     alt="Image lost Node_complete"
+     alt="Image perdue Node_complete"
      width = "200">
-  <figcaption>Node complete</figcaption>
+  <figcaption>Nœud complet</figcaption>
 </figure>
 </div>
 
-I've used it very little so far.
-For more information: [What is the Complete Node?](https://flowfuse.com/node-red/core-nodes/complete/)
+Je l'ai très peu utilisé jusqu'à présent.
+Pour plus d'informations: [Qu'est-ce que le nœud complet?](https://flowfuse.com/node-red/core-nodes/complete/)
 
 
-### catch
-:no_bell: *for information only*
+### capture
+:no_bell: *pour information seulement*
 
 <div style="text-align: left;">
 <figure>
   <img src="./img/Node_catch.png"
-     alt="Image lost Node_catch"
+     alt="Image perdue Node_catch"
      width = "200">
-  <figcaption>Node catch</figcaption>
+  <figcaption>Nœud capture</figcaption>
 </figure>
 </div>
 
-I've used it very little so far.
-For more information:: [What is the Catch Node?](https://flowfuse.com/node-red/core-nodes/catch/)
+Je l'ai très peu utilisé jusqu'à présent.
+Pour plus d'informations:: [Qu'est-ce que le nœud de capture?](https://flowfuse.com/node-red/core-nodes/catch/)
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Node-RED catch.png"
-     alt="Image lost Node-RED catch"
+     alt="Image perdue Node-RED catch"
      width = "500">
-  <figcaption>Catch error message</figcaption>
+  <figcaption>Capturer le message d'erreur</figcaption>
 </figure>
 </div>
 
-In the example above, a text message, `Send invalid input`, is sent to a JavaScript function designed to process text.
+Dans l'exemple ci-dessus, un message textuel, `Entrée invalide envoyée`, est envoyé à une fonction JavaScript conçue pour traiter du texte.
 
-The catch node intercepts any type of error in the flow. We then write a text in the payload for `debug 2`.
+Le nœud de capture intercepte tout type d'erreur dans le flux. Nous écrivons alors un texte dans la charge utile pour `debug 2`.
 
-:memo: In the PLC world, the concept of an error most often doesn't exist. That's why we strive to write code with absolute robustness.
+:memo: Dans le monde des API, le concept d'erreur n'existe pas souvent. C'est pourquoi nous nous efforçons d'écrire du code avec une robustesse absolue.
 
-:warning: In the PLC world, we find the concept of an alarm. **This is fundamentally different**. When there is an alarm, it is not an error; quite the opposite; it means that the engineer anticipated the problem and programmed the machine's reaction to a particular case.
+:warning: Dans le monde des automates, nous trouvons le concept d'alarme. **C'est fondamentalement différent**. Lorsqu'il y a une alarme, ce n'est pas une erreur; tout le contraire; cela signifie que l'ingénieur a anticipé le problème et programmé la réaction de la machine à un cas particulier.
 
-### status
-:no_bell: *for information only*
+### statut
+:no_bell: *pour information seulement*
 
 <div style="text-align: left ;">
 <figure>
   <img src="./img/Node_status.png"
-     alt="Image lost Node_status"
+     alt="Image perdue Node_status"
      width = "200">
-  <figcaption>Node status</figcaption>
+  <figcaption>Nœud statut</figcaption>
 </figure>
 </div>
 
-[What's the Status node in Node-RED used for?](https://flowfuse.com/node-red/core-nodes/status/)
+[À quoi sert le nœud de statut dans Node-RED?](https://flowfuse.com/node-red/core-nodes/status/)
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Status_Example.png"
-     alt="Image lost Status_Example"
+     alt="Image perdue Status_Example"
      width = "500">
-  <figcaption>Status Example</figcaption>
+  <figcaption>Exemple de statut</figcaption>
 </figure>
 </div>
 
-In this case, two debug nodes are configured to send a status directly to the status node and not to the debug window
+Dans ce cas, deux nœuds de débogage sont configurés pour envoyer un statut directement au nœud de statut et non à la fenêtre de débogage
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Node_Status_Only.png"
-     alt="Image lost Node_Status_Only"
+     alt="Image perdue Node_Status_Only"
      width = "300">
-  <figcaption>Node status only</figcaption>
+  <figcaption>Nœud statut uniquement</figcaption>
 </figure>
 </div>
 
-### link nodes
-Link nodes let you create a flow that can jump between tabs in the editor - they add a virtual wire from the end of one flow to the start of another.
+### nœuds de lien
+Les nœuds de lien vous permettent de créer un flux qui peut sauter entre les onglets dans l'éditeur - ils ajoutent un fil virtuel de la fin d'un flux au début d'un autre.
 
-#### link out
+#### lien de sortie
 
 <div style="text-align: left;">
 <figure>
   <img src="./img/Node_link_out.png"
-     alt="Image lost Node_link_out"
+     alt="Image perdue Node_link_out"
      width = "200">
-  <figcaption>Node link out</figcaption>
+  <figcaption>Nœud lien de sortie</figcaption>
 </figure>
 </div>
 
-For example, you can send a message to an other flow. Or avoid to have to many links in the actual flow.
+Par exemple, vous pouvez envoyer un message à un autre flux. Ou éviter d'avoir trop de liens dans le flux actuel.
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Hello_to_flow_2.png"
-     alt="Image lost Hello_to_flow_2"
+     alt="Image perdue Hello_to_flow_2"
      width = "400">
-  <figcaption>link ou to other flow</figcaption>
+  <figcaption>lien de sortie vers un autre flux</figcaption>
 </figure>
 </div>
 
-#### link in
+#### lien d'entrée
 
 <div style="text-align: left;">
 <figure>
   <img src="./img/Node_link_in.png"
-     alt="Image lost Node_link_in"
+     alt="Image perdue Node_link_in"
      width = "200">
-  <figcaption>Node link in</figcaption>
+  <figcaption>Nœud lien d'entrée</figcaption>
 </figure>
 </div>
 
-In a link in, you can select the messages from other links sending message.
+Dans un lien d'entrée, vous pouvez sélectionner les messages d'autres liens envoyant des messages.
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Hello_from_link_1.png"
-     alt="Image lost Hello_from_link_1"
+     alt="Image perdue Hello_from_link_1"
      width = "400">
-  <figcaption>Get value from other flow</figcaption>
+  <figcaption>Obtenir une valeur d'un autre flux</figcaption>
 </figure>
 </div>
 
 
-#### link call
+#### appel de lien
+:no_bell: *pour information seulement*
 
-Calls a flow that starts with a link in node and passes on the response.
+Appelle un flux qui commence par un nœud de lien d'entrée et transmet la réponse.
 
 <div style="text-align: left;">
 <figure>
   <img src="./img/Node_call.png"
-     alt="Image lost Node_call"
+     alt="Image perdue Node_call"
      width = "200">
-  <figcaption>Node link call</figcaption>
+  <figcaption>Nœud appel de lien</figcaption>
 </figure>
 </div>
 
-This node must more be seen as a box for link verification than for a link.
-Below an example with some illustrations.
+Ce nœud doit plutôt être vu comme un boîtier pour la vérification du lien que pour un lien.
+Ci-dessous un exemple avec quelques illustrations.
 
-Here, the node **link call with name Test In** receive a timestamp, this stamp is sent to **link out** to the **Test function**, then **link in** - **dashed line** -  **link out** to the **green debug Test function**.
+Ici, le nœud **appel de lien avec le nom Test In** reçoit un horodatage, cet horodatage est envoyé à **lien de sortie** à la **fonction Test**, puis **lien d'entrée** - **ligne en pointillés** - **lien de sortie** au **débogage vert Test fonction**.
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Link_call_fails.png"
-     alt="Image lost Link_call_fails"
+     alt="Image perdue Link_call_fails"
      width = "600">
-  <figcaption>Test In linked to the input of Test function</figcaption>
+  <figcaption>Test In lié à l'entrée de la fonction Test</figcaption>
 </figure>
 </div>
 
-:warning: This cause a time out catched by the red node after **3 seconds**. Why ? 
+:warning: Cela provoque un dépassement de délai capturé par le nœud rouge après **3 secondes**. Pourquoi?
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Link_call_time_out.png"
   <img src="./img/Link_call_time_out.png"
-     alt="Image lost Link_call_fails"
+     alt="Image perdue Link_call_fails"
      width = "400">
-  <figcaption>Timeout after 3 seconds, link call fails</figcaption>
+  <figcaption>Dépassement de délai après 3 secondes, l'appel de lien échoue</figcaption>
 </figure>
 </div>
 
-:bulb: because the **link call** node wait a communication return. To do that, we have to edit the **link in** after the **function** to be in mode: **Return to calling link node**.
+:bulb: parce que le nœud **appel de lien** attend un retour de communication. Pour ce faire, nous devons modifier le **lien d'entrée** après la **fonction** pour être en mode: **Retour au nœud d'appel de lien*.
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Return_to_calling_link_node.png"
   <img src="./img/Link_call_time_out.png"
-     alt="Image lost Link_call_fails"
+     alt="Image perdue Link_call_fails"
      width = "400">
-  <figcaption>Timeout after 3 seconds</figcaption>
+  <figcaption>Dépassement de délai après 3 secondes</figcaption>
 </figure>
 </div>
 
-As a result, the link out icon change like below:
+En conséquence, l'icône de lien de sortie change comme ci-dessous:
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Link_call_success.png"
-     alt="Image lost Link_call_success"
+     alt="Image perdue Link_call_success"
      width = "600">
-  <figcaption>Link call sucessfull</figcaption>
+  <figcaption>Appel de lien réussi</figcaption>
 </figure>
 </div>
 
-What happens when we press on the timestamp ?
+Que se passe-t-il cuando nous appuyons sur l'horodatage?
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Link_call_success_path.png"
-     alt="Image lost Link_call_success_path"
+     alt="Image perdue Link_call_success_path"
      width = "600">
-  <figcaption>Link call sucessfull with path</figcaption>
+  <figcaption>Appel de lien réussi avec chemin</figcaption>
 </figure>
 </div>
 
-1.  We send a timestamp to **Test In**.
-2.  Link call in configured to send the message to the test function via **link out**.
-3.  The configured link send back the message to **Test In**.
-4.  If the message is received within the configured delay, the message pass to the Debug Call Three.
+1.  Nous envoyons un horodatage à **Test In**.
+2.  L'appel de lien est configuré pour envoyer le message à la fonction de test via **lien de sortie**.
+3.  Le lien configuré renvoie le message à **Test In**.
+4.  Si le message est reçu dans le délai configuré, le message passe au Débogage Appel Trois.
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/Link_call_some_test.png"
-     alt="Image lost Link_call_some_test"
+     alt="Image perdue Link_call_some_test"
      width = "600">
-  <figcaption>Some test to understand the message</figcaption>
+  <figcaption>Quelques tests pour comprendre le message</figcaption>
 </figure>
 </div>
 
-In the last image, we add a **delay of 5 seconds** after the Test function. By adding this delay, we can verify that the delay is to long and the catch node will send a message to the **Check Time Out**.
+Dans la dernière image, nous ajoutons un **délai de 5 secondes** après la fonction Test. En ajoutant ce délai, nous pouvons vérifier que le délai est trop long et le nœud de capture enverra un message au **Vérifier Le Dépassement De Délai**.
 
-You can add a debug node with name **To Check Id** and by configuring it with output: complete message object, as for **Debug Call Three**.
+Vous pouvez ajouter un nœud de débogage avec le nom **À Vérifier L'identifiant** et en le configurant avec sortie: objet message complet, comme pour **Débogage Appel Trois**.
 
-In the debug panel:
+Dans le panneau de débogage:
 
-**To Check Id**, check _msgid.
+**À Vérifier L'identifiant**, vérifiez _msgid.
 
 ```js
 {"_msgid":"45c782272fbc0a1b",
@@ -650,45 +612,45 @@ In the debug panel:
  "topic":""}
 ```
 
-**Debug Call Three**, check _msgid.
+**Débogage Appel Trois**, vérifiez _msgid.
 
 ```js
 {"_msgid":"45c782272fbc0a1b",
- "payload":"payload of test function",
+ "payload":"charge utile de la fonction de test",
  "topic":"",
  "_event":"node:8d2380bd9fd72ee5"}
 ```
 
-We can see that the payload has been modified by the function, but the **_msgid is the same from the beginning to the end**.
+Nous pouvons voir que la charge utile a été modifiée par la fonction, mais le **_msgid est le même du début à la fin**.
 
-:bulb: If you can fully understand the last image, you have taken a big step in understanding the principle of Node-RED.
+:bulb: Si vous pouvez pleinement comprendre la dernière image, vous avez fait un grand pas dans la compréhension du principe de Node-RED.
 
-### comment
+### commentaire
 
 <div style="text-align: left;">
 <figure>
   <img src="./img/Node_comment.png"
-     alt="Image lost Node_comment"
+     alt="Image perdue Node_comment"
      width = "200">
-  <figcaption>Node comment</figcaption>
+  <figcaption>Nœud commentaire</figcaption>
 </figure>
 </div>
 
-You can add mode detailled information in markdown format and display it in the Information tab.
+Vous pouvez ajouter des informations plus détaillées au format markdown et les afficher dans l'onglet Information.
 
 <div style="text-align: center;">
 <figure>
   <img src="./img/My_nice_comment_markdown_like.png"
-     alt="Image lost My_nice_comment_markdown_like"
+     alt="Image perdue My_nice_comment_markdown_like"
      width = "400">
-  <figcaption>My nice comment in the info tab</figcaption>
+  <figcaption>Mon beau commentaire dans l'onglet info</figcaption>
 </figure>
 </div>
 
 ### Annexe
 
 
-> About message Id, it is coded on 8 bytes. Here an example to get the 64 bit unsigned value of **_msgid**.
+> À propos de l'identifiant de message, il est codé sur 8 octets. Voici un exemple pour obtenir la valeur non signée de 64 bits de **_msgid**.
 
 ```js
 // var myHex = "d05a3b7f70b3e37f";
@@ -702,198 +664,133 @@ return msg;
 
 ---
 
-## Next
-In the learning path of Node-RED, it could be logical to continue with function. But, we want to have some understanding of the interfaces for the next practical work, lab. That's why we present a brif overview of some functions below.
+## Suivant
+Dans le parcours pédagogique de Node-RED, il serait logique de continuer avec la fonction. Mais, nous voulons avoir une compréhension de quelques interfaces pour les travaux pratiques suivants, laboratoire. C'est pourquoi nous présentons un bref aperçu de certaines fonctions ci-dessous.
 
-The functions in depth will be presented after the interface, / UI User interface.
+Les fonctions en profondeur seront présentées après l'interface, / UI Interface utilisateur.
 
 ---
 
-## Function nodes
+## Nœuds de fonction
 
-### Function
-Nodes allowing you to act on messages, modify their content, submit processing to them, and slightly influence the way they are delivered.
+### Fonction
+Nœuds vous permettant d'agir sur les messages, de modifier leur contenu, de les soumettre à un traitement et d'influencer légèrement la façon dont ils sont livrés.
 
 <figure>
     <img src="./img/node_function.png"
-         alt="Image lost: node_function.png"
+         alt="Image perdue: node_function.png"
          width="200">
-  <figcaption>Function Node <a href="https://nodered.org">nodered.org</a></figcaption>
+  <figcaption>Nœud de fonction <a href="https://nodered.org">nodered.org</a></figcaption>
 </figure>
-Allows you to create a function in JavaScript. Usefull for processing a received message to make it usable by an output node.
+Vous permet de créer une fonction en JavaScript. Utile pour traiter un message reçu pour le rendre utilisable par un nœud de sortie.
 
 
-> Function will be developped [in details in a subsequent module](../ADP_Module_05_Functions_Sub_Flows/README.md#function).
+> La fonction sera développée [en détail dans un module ultérieur](../ADP_Module_05_Functions_Sub_Flows/README.md#function).
 
-### Change
+### Changement
 
 <figure>
     <img src="./img/node_change.png"
-         alt="Image lost: node_change.png"
+         alt="Image perdue: node_change.png"
          width="200">
-  <figcaption>Change Node <a href="https://nodered.org">nodered.org</a></figcaption>
+  <figcaption>Nœud de changement <a href="https://nodered.org">nodered.org</a></figcaption>
 </figure>
 
-The Change node can be used to modify a message’s properties and set context properties without having to resort to a Function node.
+Le nœud de changement peut être utilisé pour modifier les propriétés d'un message et définir les propriétés de contexte sans avoir recours à un nœud de fonction.
 
-Each node can be configured with multiple operations that are applied in order. The available operations are:
+Chaque nœud peut être configuré avec plusieurs opérations qui sont appliquées dans l'ordre. Les opérations disponibles sont:
 
-- **Set** - set a property. The value can be a variety of different types, or can be taken from an existing message or context property.
-- **Change** - search and replace parts of a message property.
-- **Move** - move or rename a property.
-- **Delete** - delete a property.
+- **Définir** - définir une propriété. La valeur peut être de différents types, ou peut être tirée d'une propriété de message existante ou de contexte.
+- **Changer** - rechercher et remplacer des parties d'une propriété de message.
+- **Déplacer** - déplacer ou renommer une propriété.
+- **Supprimer** - supprimer une propriété.
 
 <div align="center">
 <figure>
     <img src="./img/Change_message_to_information.png"
-         alt="Image Lost: Change_message_to_information.png"
+         alt="Image perdue: Change_message_to_information.png"
          width="500">
-  <figcaption>Using change message to format payload</figcaption>
+  <figcaption>Utiliser le changement de message pour formater la charge utile</figcaption>
 </figure>
 </div>
 
 <div align="center">
 <figure>
     <img src="./img/Change_Set_Message.png"
-         alt="Image Lost: Node_SelectAMessage.png"
+         alt="Image perdue: Node_SelectAMessage.png"
          width="400">
-  <figcaption>Using Set in a change .</figcaption>
+  <figcaption>Utiliser Définir dans un changement.</figcaption>
 </figure>
 </div>
 
 <div align="center">
 <figure>
     <img src="./img/Change_Change_Message.png"
-         alt="Image Lost: Node_SelectAMessage.png"
+         alt="Image perdue: Node_SelectAMessage.png"
          width="400">
-  <figcaption>Using Change in a change .</figcaption>
+  <figcaption>Utiliser Changer dans un changement.</figcaption>
 </figure>
 </div>
 
-As a debug output:
+En guise de sortie de débogage:
 
 ```json
-"Information From Node-RED."
+"Information de Node-RED."
 ```
 
-### Switch
+### Commutateur
 
 <figure>
     <img src="./img/node_switch.png"
-         alt="Image lost: node_switch.png"
+         alt="Image perdue: node_switch.png"
          width="200">
-  <figcaption>Switch Node <a href="https://nodered.org">nodered.org</a></figcaption>
+  <figcaption>Nœud de commutateur <a href="https://nodered.org">nodered.org</a></figcaption>
 </figure>
 
-The Switch node allows messages to be routed to different branches of a flow by evaluating a set of rules against each message.
+Le nœud de commutateur permet d'acheminer les messages vers différentes branches d'un flux en évaluant un ensemble de règles par rapport à chaque message.
 
 <div align="center">
 <figure>
     <img src="./img/Node_SelectAMessage.png"
-         alt="Image Lost: Node_SelectAMessage.png"
+         alt="Image perdue: Node_SelectAMessage.png"
          width="500">
-  <figcaption>Node-RED select a message</figcaption>
+  <figcaption>Node-RED sélectionner un message</figcaption>
 </figure>
 </div>
 
-The name **switch** comes from the **switch statement** that is common to many programming languages. It is not a reference to a physical switch.
+Le nom **commutateur** vient de la **déclaration de commutation** qui est courante dans de nombreux langages de programmation. Ce n'est pas une référence à un commutateur physique.
 
-The node is configured with the property to test - which can be either a message property or a context property.
+Le nœud est configuré avec la propriété à tester - qui peut être soit une propriété de message soit une propriété de contexte.
 
 
-There are four types of rule:
+Il y a quatre types de règles:
 
-- **Value** rules are evaluated against the configured property
-- **Sequence** rules can be used on message sequences, such as those generated by the Split node
-- A JSONata **Expression** can be provided that will be evaluated against the whole message and will match if the expression returns a true value.
-- An **Otherwise** rule can be used to match if none of the preceding rules have matched.
+- Les règles de **valeur** sont évaluées par rapport à la propriété configurée
+- Les règles de **séquence** peuvent être utilisées sur des séquences de messages, telles que celles générées par le nœud de division
+- Une **expression** **JSONata** peut être fournie qui sera évaluée par rapport au message entier et correspondra si l'expression retourne une valeur true.
+- Une règle **sinon** peut être utilisée pour correspondre si aucune des règles précédentes n'a correspondulé.
 
 <div align="center">
 <figure>
     <img src="./img/Node_Edit_Switch_Node.png"
-         alt="Image Lost: Node_Edit_Switch_Node.png"
+         alt="Image perdue: Node_Edit_Switch_Node.png"
          width="400">
-  <figcaption>Node-RED Edit switch node</figcaption>
+  <figcaption>Node-RED Modifier le nœud de commutateur</figcaption>
 </figure>
 </div>
 
-In the example above, depending of the value of `payload`, the `switch` will send a `message` in on of the `debug node`.
+Dans l'exemple ci-dessus, en fonction de la valeur de `charge utile`, le `commutateur` enverra un `message` dans l'un des `nœuds de débogage`.
 
-The node will route a message to all outputs corresponding to matching rules. But it can also be configured to stop evaluating rules when it finds one that matches.
-
-## Sequence nodes
-:no_bell: *for information only*
-
-Nodes allowing you to act on the sequence of transmitted messages and thus influence the flow.
-
-### Node split
-
-<figure>
-    <img src="./img/Node-split.png"
-         alt="Image lost: Node-split.png"
-         width="200">
-  <figcaption>Node split</figcaption>
-</figure>
-
-### Node join
-
-<figure>
-    <img src="./img/Node-join.png"
-         alt="Image lost: Node-join.png"
-         width="200">
-  <figcaption>Node join</figcaption>
-</figure>
-
-### Node sort
-
-<figure>
-    <img src="./img/Node-sort.png"
-         alt="Image lost: Node-sort.png"
-         width="200">
-  <figcaption>Node sort</figcaption>
-</figure>
-
-### Node batch
-
-<figure>
-    <img src="./img/Node-batch.png"
-         alt="Image lost: Node-batch.png"
-         width="200">
-  <figcaption>Node batch</figcaption>
-</figure>
-
-
- Examples:
-
-Allows you to split an incoming message into multiple outgoing messages.
-
-Allows you to group multiple incoming messages into a single outgoing message.
-
-## Network nodes
-:no_bell: *for information only*
-
-Nodes for managing the network aspect of the flow, by configuring HTTP requests, websockets, and TCP or UDP messages. This category also includes MQTT (Mosquitto) nodes, if you install them.
-
-## Parser
-Nodes for processing formatted data and extracting JavaScript objects usable by other nodes, or for formatting a JavaScript object into a desired format. These nodes can handle HTML, CSV, JSON, XML, or YAML formatting.
-
-> Will be developped in a subsequent module
-
-## Storage
-Nodes for saving message data to files. They also allow you to monitor files for changes.
-This category also includes Influxdb and PostgreSQL nodes, if you install them.
-
-The i menu provides detailed explanations for each of these nodes.
-> Will be developped in a subsequent module
+Le nœud acheminera un message vers toutes les sorties correspondant aux règles correspondantes. Mais il peut également être configuré pour arrêter d'évaluer les règles lorsqu'il en trouve une qui correspond.
 
 ---
 
-## Working with message
-A Node-RED flow works by passing messages between nodes. The messages are simple JavaScript objects that can have any set of properties.
+## Travailler avec des messages
+Un flux Node-RED fonctionne en transmettant des messages entre les nœuds. Les messages sont des objets JavaScript simples qui peuvent avoir n'importe quel ensemble de propriétés.
 
-Messages usually have a payload property - this is the default property that most nodes will work with.
+Les messages ont généralement une propriété de charge utile - c'est la propriété par défaut avec laquelle la plupart des nœuds travailleront.
 
-Node-RED also adds a property called _msgid - this is an identifier for the message which can be used to trace its progress through a flow.
+Node-RED ajoute également une propriété appelée _msgid - c'est un identifiant pour le message qui peut être utilisé pour tracer sa progression dans un flux.
 
 ```json
 {
@@ -902,215 +799,118 @@ Node-RED also adds a property called _msgid - this is an identifier for the mess
 }
 ```
 
-The value of a property can be any valid JavaScript type, such as:
+La valeur d'une propriété peut être n'importe quel type JavaScript valide, tel que:
 
-- Boolean - true, false
-- Number - eg 0, 123.4
-- String - "hello"
-- Array - [1,2,3,4]
-- Object - { "a": 1, "b": 2}
-- Null
+- Booléen - true, false
+- Nombre - par exemple 0, 123.4
+- Chaîne - "bonjour"
+- Tableau - [1,2,3,4]
+- Objet - { "a": 1, "b": 2}
+- Nul
 
-[More information about JavaScript types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Data_structures)
+[Plus d'informations sur les types JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Data_structures)
 
-### Understanding the structure of a message
+### Comprendre la structure d'un message
 
-The easiest way to understand the structure of a message is to pass it to a Debug node and view it in the Debug sidebar.
+Le moyen le plus simple de comprendre la structure d'un message est de le transmettre à un nœud de débogage et de le visualiser dans la barre latérale de débogage.
 
-By default, the Debug node will display the msg.payload property, but can be configured to display any property or the whole message.
+Par défaut, le nœud de débogage affichera la propriété msg.payload, mais peut être configuré pour afficher n'importe quelle propriété ou le message entier.
 
-When displaying an Array or Object, the sidebar provides a structured view that can be used to explore the message.
+Lors de l'affichage d'un tableau ou d'un objet, la barre latérale fournit une vue structurée qui peut être utilisée pour explorer le message.
 
 <div align="center">
 <figure>
     <img src="./img/MessageInDebug.png"
-         alt="Image Lost: MessageInDebug.png"
+         alt="Image perdue: MessageInDebug.png"
          width="500">
-  <figcaption>Node-RED message in the debug window</figcaption>
+  <figcaption>Message Node-RED dans la fenêtre de débogage</figcaption>
 </figure>
 </div>
 
-The message is an object.
-- **topic** is the path to the variable of the PLC: `plc/app/Application/sym/PackTag/Command/Parameter_Lreal`
-- **payload** is the effective message to be passed. This is an object, and this object value is an array of 8 object with `ID`, `Name`, `Unit` and `Value`.
-- **type** of payload is an `object`.
-- and **timestamp**, **timestampFiletime** and finally: **_msgid**.
+Le message est un objet.
+- **topic** est le chemin d'accès à la variable de l'automate: `plc/app/Application/sym/PackTag/Command/Parameter_Lreal`
+- **payload** est le message effectif à transmettre. C'est un objet, et cet objet contient une valeur qui est un tableau de 8 objets avec `ID`, `Name`, `Unit` et `Value`.
+- **type** de charge utile est un `objet`.
+- et **timestamp**, **timestampFiletime** et enfin: **_msgid**.
 
 <div align="center">
 <figure>
     <img src="./img/MessageInDebugOverButton.png"
-         alt="Image Lost: MessageInDebugOverButton.png"
+         alt="Image perdue: MessageInDebugOverButton.png"
          width="500">
-  <figcaption>Node-RED tools in debug window</figcaption>
+  <figcaption>Outils Node-RED dans la fenêtre de débogage</figcaption>
 </figure>
 </div>
 
 <figure>
     <img src="./img/Node-RED_copy_path.png"
-         alt="Image lost: Node-RED_copy_path.png"
+         alt="Image perdue: Node-RED_copy_path.png"
          width="50">
-  <figcaption>Copy path</figcaption>
+  <figcaption>Copier le chemin</figcaption>
 </figure>
 
-Copies the path to the selected element to your clipboard. This allows you to quickly determine how to access a property in a Change or Function node
+Copie le chemin d'accès à l'élément sélectionné dans votre presse-papiers. Cela vous permet de déterminer rapidement comment accéder à une propriété dans un nœud de changement ou de fonction
 
 <figure>
     <img src="./img/Node-RED_copy_value.png"
-         alt="Image lost: Node-RED_copy_value.png"
+         alt="Image perdue: Node-RED_copy_value.png"
          width="50">
-  <figcaption>Copy value</figcaption>
+  <figcaption>Copier la valeur</figcaption>
 </figure>
 
-Copies the value of the element to your clipboard as a JSON string. Note that the sidebar truncates Arrays and Buffers over a certain length. Copying the value of such a property will copy the truncated version.
+Copie la valeur de l'élément dans votre presse-papiers sous forme de chaîne JSON. Notez que la barre latérale tronque les tableaux et tampons au-delà d'une certaine longueur. Copier la valeur d'une telle propriété copiera la version tronquée.
 
 <figure>
     <img src="./img/Node-RED_Pins.png"
-         alt="Image lost: Node-RED_Pins.png"
+         alt="Image perdue: Node-RED_Pins.png"
          width="50">
-  <figcaption>Pins</figcaption>
+  <figcaption>Épingles</figcaption>
 </figure>
 
-Pins the selected element so it is always displayed. When another message is received from the same Debug node, it is automatically expanded to show all pinned elements.
+Épingle l'élément sélectionné afin qu'il soit toujours affiché. Lorsqu'un autre message est reçu du même nœud de débogage, il est automatiquement développé pour afficher tous les éléments épinglés.
 
-### Working with JSON
+### Travailler avec JSON
 
-**JSON**, JavaScript Object Notation, is a standard way for representing a JavaScript object as a String. It is commonly used by web APIs to return data.
+**JSON**, JavaScript Object Notation, est un moyen standard de représenter un objet JavaScript sous forme de chaîne. Il est couramment utilisé par les API web pour retourner des données.
 
-If a message property contains a JSON string it must first be parsed to its equivalent JavaScript object before the properties it contains can be accessed. To determine whether a property contains a String or Object, the Debug node can be used.
+Si une propriété de message contient une chaîne JSON, elle doit d'abord être analysée pour son objet JavaScript équivalent avant que les propriétés qu'elle contient puissent être accessibles. Pour déterminer si une propriété contient une chaîne ou un objet, le nœud de débogage peut être utilisé.
 
-Node-RED provides a JSON node to do this conversion.
+Node-RED fournit un nœud JSON pour effectuer cette conversion.
 
-:bulb: if you come from Python world...
+:bulb: si vous venez du monde Python...
 
-#### JSON and Python: Similar but not identical
+#### JSON et Python: similaires mais pas identiques
 
 | Concept        | JSON                          | Python                   |
 | -------------- | ----------------------------- | ------------------------ |
-| Type           | Text format (string)          | In-memory data structure |
-| Main container | Object `{}`                   | Dictionary `dict`        |
-| Arrays         | `[ ... ]`                     | Lists `[ ... ]`          |
-| Strings        | `"text"`                      | `'text'` or `"text"`     |
-| Numbers        | No distinction (just numeric) | `int`, `float`, etc.     |
-| Booleans       | `true` / `false`              | `True` / `False`         |
-| Null           | `null`                        | `None`                   |
+| Type           | Format textuel (chaîne)       | Structure de données en mémoire |
+| Conteneur principal | Objet `{}`                   | Dictionnaire `dict`        |
+| Tableaux       | `[ ... ]`                     | Listes `[ ... ]`          |
+| Chaînes        | `"texte"`                     | `'texte'` ou `"texte"`     |
+| Nombres        | Pas de distinction (juste numérique) | `int`, `float`, etc.     |
+| Booléens       | `true` / `false`              | `True` / `False`         |
+| Nul            | `null`                        | `None`                   |
 
-So:
+Donc:
 
-#### A JSON object like
+#### Un objet JSON comme
 
 ```json
 {"name": "Alice", "age": 30}
 ```
 
-#### is equivalent to this Python dict:
+#### est équivalent à ce dictionnaire Python:
 
 ```python
 {"name": "Alice", "age": 30}
 ```
 
-### Changing message properties
+---
 
-A common task in a flow is to modify the properties of a message as it passes between nodes. For example, the result of an HTTP Request may be an object with many properties, of which only some are needed.
+## Votre travail
+Installez Node-RED sur votre ordinateur portable. Utilisez ce lien pour être guidé sur la procédure: [Exécution de Node-RED en local](https://nodered.org/docs/getting-started/local)
 
-There are two main nodes for modifying a message, the Function node and the Change node.
-
-The Function node allows you to run any JavaScript code against the message. This gives you complete flexibility in what you do with the message, but does require familiarity with JavaScript and is unnecessary for many simple cases. More information about writing Functions is available here.
-
-The Change node provides a lot of functionality without needing to write JavaScript code. Not only can it modify message properties, but it can also access flow- and global-context.
-
-It provides four basic operations:
-
-    Set a property to a value,
-    Change a String property by performing a search and replace,
-    Delete a property,
-    Move a property.
-
-For the set operation, you first identify what property you want to set, then the value you want it to have. That value can either be a hardcoded value, such as a string or number, or it can be taking from another message or flow/global context property. It also supports using the JSONata expression language to calculate a new value.
-
-For example, using the Debug node’s ability to determine a message element’s path, you can paste the path straight into the ‘to’ field, with msg. selected from the list. That will then set msg.payload to the value of msg.payload.Phone[2].type.
-
-
-Another example, using a JSONata expression, is to convert a temperature, held in msg.payload.temperature, from Fahrenheit to Celsius and store the result in a new message property msg.payload.temperature_c.
-
-### Message sequences
-
-A message sequence is an ordered series of messages that are related in some way. For example, the Split node can turn a single message whose payload is an Array, into a message sequence where each message has a payload corresponding to one of the array elements.
-
-Understanding msg.parts
-
-Each message in a sequence has a property called msg.parts. This is an object that contains information how the message fits in the sequence. It has the following properties:
-
-msg.parts.id
-    a unique identifier for the sequence
-msg.parts.index
-    the message's position within the sequence
-msg.parts.count
-    if known, the total number of messages in the sequence
-
-Note: the parts array may contain additional meta-data about the sequence. For example, the split node also attaches information that can be used by the join node to reassemble the sequence. See the split node’s documentation.
-
-### Working with sequences
-
-<figure>
-    <img src="./img/NodeRedSequence.png"
-         alt="Image lost: NodeRedSequence.png"
-         width="150">
-  <figcaption>Sequences</figcaption>
-</figure>
-
-There are a number of core nodes that can work across message sequences:
-
-#### Split
-
-Turns a single message into a sequence of messages.
-
-The exact behaviour of the node depends on the type of msg.payload:
-
-String/Buffer
-    the message is split using the specified character (default: `\n`), buffer sequence or into fixed lengths.
-Array
-    the message is split into either individual array elements, or arrays of a fixed-length.
-Object
-    a message is sent for each key/value pair of the object.
-
-#### Join
-
-Turns a sequence of messages into a single message.
-
-The node provides three modes of operation:
-
-Automatic
-    attempts to reverse the action of a previous Split node
-Manual
-    allows finer control on how the sequence should be joined
-Reduce
-    New in 0.18 - allows a JSONata expression to be run against each message in the sequence and the result accumulated to produce a single message.
-
-#### Sort
-
-New in 0.18
-
-Sorts the sequence based on a property value or JSONata expression result.
-
-#### Batch
-
-Creates new sequences of messages from those received.
-
-The node provides three modes of operation:
-
-Number of messages
-    groups messages into sequences of a given length. The overlap option specifies how many messages at the end of one sequence should be repeated at the start of the next sequence.
-Time interval
-    groups messages that arrive within the specified interval. If no messages arrive within the interval, the node can optionally send on an empty message.
-Concatenate Sequences
-    creates a message sequence by concatenating incoming sequences. Each sequence must have a msg.topic property to identify it. The node is configured with a list of topic values to identify the order sequences are concatenated. 
-
-## JSONata expression ?
-
-## Your job
-Install Node-RED on your laptop. Use this link to get guided about the procedure: [Running Node-RED locally](https://nodered.org/docs/getting-started/local)
-
-### About the tools
+### À propos des outils
 <figure>
     <img src="./img/Node_logo.png"
          alt="Node_logo"
@@ -1118,12 +918,12 @@ Install Node-RED on your laptop. Use this link to get guided about the procedure
   <figcaption>node js <a href="https://nodejs.org/en/">nodejs.org</a></figcaption>
 </figure>
 
-## Node JS version?
-[Check for supported version of node js for Node-RED here](https://nodered.org/docs/faq/node-versions).
+## Quelle version de Node JS?
+[Vérifiez la version prise en charge de node js pour Node-RED ici](https://nodered.org/docs/faq/node-versions).
 
-[Download for Node js](https://nodejs.org/en/download).
+[Télécharger pour Node js](https://nodejs.org/en/download).
 
-### About the tools
+### À propos des outils
 <figure>
     <img src="./img/npm.png"
          alt="npm"
@@ -1133,19 +933,19 @@ Install Node-RED on your laptop. Use this link to get guided about the procedure
 
 
 
-## What is npm?
-Node Package Manager, **NPM**, is a tool for installing software, such as modules or dependencies, for JavaScript applications. It helps improve the efficiency of Node.js development by allowing users to access additional components from a single location.
+## Qu'est-ce que npm?
+Node Package Manager, **NPM**, est un outil pour installer des logiciels, tels que des modules ou des dépendances, pour les applications JavaScript. Il contribue à améliorer l'efficacité du développement Node.js en permettant aux utilisateurs d'accéder à des composants supplémentaires à partir d'un seul endroit.
 
-**Important!** NPM can refer to either the utility developers use to download packages or the repository where users share their modules.
+**Important!** NPM peut faire référence soit à l'utilitaire que les développeurs utilisent pour télécharger des packages, soit au référentiel où les utilisateurs partagent leurs modules.
 
-The NPM repository currently contains millions of packages and modules.
+Le référentiel NPM contient actuellement des millions de packages et de modules.
 
-Downloading and managing packages from NPM uses your system's command-line interface. By default, this utility is automatically configured after Node.js installation.
+Le téléchargement et la gestion des packages à partir de NPM utilisent l'interface de ligne de commande de votre système. Par défaut, cet utilitaire est automatiquement configuré après l'installation de Node.js.
 
 ---
 
-# Dashboard 2.0 [User Interface](UserInferface.md)
+#  [Dashboard 2.0 Interface utilisateur](UserInferface_FR.md)
 
 
 
-<!-- End of README.md -->
+<!-- Fin du README.md -->

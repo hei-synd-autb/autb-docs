@@ -123,7 +123,7 @@ In diesem Dokument werden die Konzepte synchronisierter Bewegung und Echtzeit-Et
 
 ---
 
-[Module 12 Node-RED](./AutB_MOD_12%20Node-RED/README_FR.md): **Node-RED**
+[Module 12 Node-RED](./AutB_MOD_12%20Node-RED/README.md): **Node-RED**
 Un protocole standard et un outil pour accéder et visualiser les données.
 
 [Module 12 Node-RED DE](./AutB_MOD_12%20Node-RED/README_DE.md): **Node-RED**
