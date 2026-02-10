@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 14 OPC UA & Sécurité OT
+# Module 13 OPC UA & Sécurité OT
 
 Keywords: **OPC-UA, OT**.
 

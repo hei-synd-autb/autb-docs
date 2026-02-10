@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 13 Design Specification.
+# Module 14 Design Specification.
 
 *Keywords:* **GMP URS FS DS HDS SDS IQ OQ PQ FMEA Safety Risk Matrix V-Diagram**
 
@@ -18,7 +18,7 @@ Nous avons maintenant une base technique d'automatisation, il faut toutefois êt
 
 ## Sommaire
 
-- [Module 13 Design Specification.](#module-13-design-specification)
+- [Module 14 Design Specification.](#module-14-design-specification)
   - [Sommaire](#sommaire)
   - [Objectif](#objectif)
   - [A propos des documents en annexe](#a-propos-des-documents-en-annexe)
