@@ -108,109 +108,12 @@ Il existe plusieurs études et articles qui comparent les interfaces HMI (Human-
 - **Sécurité** : Les HMI industrielles intègrent des mécanismes de sécurité spécifiques à l'industrie, parfois absents ou différents dans les interfaces mobiles grand public.
 
 
-# Node-RED un peu de technique
-Node-RED est basé sur un environnement Node.js
-
-## Node.JS
-
-Node.js est un environnement d’exécution JavaScript côté serveur, construit sur le [moteur V8 de Google Chrome](#quest-ce-que-le-moteur-javascript-v8-). Il permet d’exécuter du code JavaScript en dehors d’un navigateur, principalement pour créer des applications réseau rapides et scalables.
-
-### Différences principales avec PLC et Python
-
-| Aspect                | Node.js (JavaScript)         | PLC (Ladder, ST, etc.)         | Python                        |
-|-----------------------|-----------------------------|-------------------------------|-------------------------------|
-| **Paradigme**         | Événementiel, asynchrone    | Cyclique, temps réel           | Impératif, orienté objet      |
-| **Exécution**         | Interprété, non bloquant    | Temps réel, séquentiel         | Interprété, synchrone         |
-| **Utilisation typique** | Serveurs web, IoT, API      | Contrôle industriel, machines  | Scripts, data science, web    |
-| **Gestion des E/S**   | Asynchrone (callbacks, promesses) | Directe, via entrées/sorties physiques | Synchrone ou asynchrone |
-| **Langage**           | JavaScript                  | Langages IEC 61131-3           | Python                        |
-
-### Points clés
-
-- **Node.js** est conçu pour gérer de nombreux événements en parallèle, par exemple, connexions réseau et interface utilisateur, grâce à sa boucle d’événements non bloquante.
-- **PLC** fonctionne en scannant cycliquement le programme, ce qui garantit la **réactivité en temps réel** mais limite la gestion d’événements multiples complexes.
-- **Python** est simple à apprendre, synchrone par défaut, mais peut aussi gérer l’asynchrone..
-
-**En résumé** : Node.js est particulièrement adapté aux applications nécessitant la gestion simultanée de nombreuses connexions ou événements, alors que les PLC sont optimisés pour le contrôle temps réel, et Python pour la polyvalence et la rapidité de développement.
-
-## Notion de programmation par événement, Event Driven
-
-<div align="center">
-
-```mermaid
-flowchart TD
-    A[Événement se produit<br> clic signal PLC...] --> B[Gestionnaire d'événement appelé]
-    B --> C[Exécution de la logique associée]
-    C --> D[Résultat affiché<br/> mise à jour UI, envoi commande PLC]
-    D --> E[Attente d'un nouvel événement]
-    E -.-> A
-
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#bfb,stroke:#333,stroke-width:2px
-    style D fill:#ffb,stroke:#333,stroke-width:2px
-    style E fill:#eee,stroke:#333,stroke-width:2px
-```
-</div>
-
-
-Ce diagramme illustre le principe de la programmation événementielle : le système attend des événements, déclenche des gestionnaires spécifiques, exécute la logique, puis retourne en attente.
-
-## Comprendre la programmation événementielle
-
-La programmation événementielle est un paradigme dans lequel le déroulement d'un programme est déterminé par des événements tels que les actions de l'utilisateur, les notifications système ou la disponibilité des données. Dans Node.js, ce modèle permet aux développeurs d'écrire du code asynchrone et non bloquant qui réagit aux événements au fur et à mesure qu'ils se produisent, sans attendre la fin des opérations bloquantes.
-
-## Events and Event Emitters
-
-- **Événements** : Les événements sont des signaux indiquant qu'une action ou un changement d'état particulier s'est produit. Dans Node.js, les événements sont représentés par des chaînes, **event names** et des données associées, **event payload**.
-- **Émetteurs d'événements** : Un émetteur d'événements est un objet capable d'émettre des événements. Il fournit des méthodes pour enregistrer des écouteurs d'événements, event listenr, **callbacks** pour des événements spécifiques et les déclencher lorsque les événements correspondants se produisent.
-
-La programmation événementielle permet de synchroniser l'occurrence de plusieurs événements et de simplifier au maximum le programme. Les composants de base d'une programmation événementielle sont :
-
--   Une fonction de rappel, **callback**, appelée gestionnaire d'événements est appelée lorsqu'un événement est déclenché ;
--   Une boucle d'événements, **event loop**, qui écoute les déclencheurs d'événements, **triggers** et appelle le gestionnaire d'événements, **event handler** correspondant.
-
-<div align="center">
-  <img src="./img/geeksforgeeks_EventEmitter.png" alt="  <img src="./img/geeksforgeeks_EventEmitter.png" alt="OPC_UA_Netilion_solution-1" width="700">
-  <p><em>Event in Node.js, Source; https://www.geeksforgeeks.org</em></p>
-</div>   
-
-## Avantages de la programmation événementielle
-
--   **Flexibilité**: Il est plus facile de modifier des sections de code selon les besoins.
--   **Adaptation aux interfaces graphiques** : L'utilisateur peut sélectionner des outils (comme des boutons radio, etc.) directement depuis la barre d'outils.
--   **Permet des programmes plus interactifs** : La programmation événementielle est utilisée dans presque toutes les applications UI récentes.
--   **Utilisation d'interruptions matérielles** : Elle peut être réalisée via des interruptions matérielles, réduisant ainsi la consommation d'énergie de l'ordinateur.
--   **Prise en charge des capteurs et autres matériels** : La programmation événementielle simplifie la communication entre les capteurs et autres matériels et les logiciels.
-
-## Inconvénients de la programmation événementielle
--   **Complexe **: Les programmes simples deviennent inutilement complexes.
--   **Moins logique et évident** : Le déroulement du programme est généralement moins logique et plus évident.
--   **Difficile à trouver des erreurs** : Le débogage d'un programme événementiel est complexe.
--   **Blocage **: Blocage complexe des opérations.
-
-> Pour résumer, **convient très bien pour des applications simples, telles que le pilotages de petites machines, voir les robots du laboratoire d'automation ou des bancs de test avec quelques dizaines de modules**. Nous n'avons pas d'expérience ou de cas d'utilisation pour des systèmes à grande échelle.
-
-## Qu'est-ce que le moteur JavaScript V8 ?
-
-V8 est un moteur d'exécution JavaScript développé par Google, principalement utilisé dans le navigateur Chrome et dans Node.js. Son rôle est de traduire le code JavaScript en instructions machine compréhensibles par le processeur, ce qui permet d'exécuter rapidement du JavaScript en dehors d'un navigateur.
-
-### Points clés pour un étudiant connaissant Java, Python et IEC 61131-3 :
-- **Comparable à la JVM pour Java** : Comme la Java Virtual Machine,
-  - JVM exécute du bytecode Java, 
-  - V8 exécute du code JavaScript.
-- **Compilation Just-In-Time, JIT** : V8 compile le JavaScript *à la volée* en code machine natif, ce qui améliore fortement les performances.
-- **Utilisé dans Node.js** : Grâce à V8, Node.js permet d'exécuter du JavaScript côté serveur, un peu comme Python avec son interpréteur.
-- **Indépendant du navigateur** : V8 peut être intégré dans d'autres applications pour fournir un moteur d'exécution JavaScript, **pas seulement dans les navigateurs**.
-
-En résumé, V8 est au JavaScript ce que la JVM est à Java : un moteur qui rend possible l'exécution efficace du langage sur différentes plateformes.
-
 ### Le rôle de OPC-UA
 OPC-UA peut interagir de différentes manières avec le PLC.
 
--   Il peut lire des information cycliquement.
+-   Il peut **lire** des information cycliquement.
 -   Lire des données seulement si elles sont modifiées, **Subscribe**.
--   Ecrire des informations sur événement.
+-   **Ecrire** des informations sur événement.
 
 ```mermaid
 sequenceDiagram
@@ -226,9 +129,33 @@ sequenceDiagram
 ```
 
 # OPC-UA
-Ce module est une introduction à OPC UA.
-OPC UA sera utilisé sous forme paramétrable afin de comprendre son utilisation dans le cadre de l'automation, et plus généralement pour tout système qui requiert l'échange d'un grand nombre de données complexes dans un contexte sécurisé.
-Pour plus de détails sur les fonctions avancées de OPC UA, on se reportera au cours du 6ème semestre P&C.
+Dans la pratique, OPC-UA est utilisé par l'automaticien au niveau PLC ou UI/HMI sous forme de variables à lier les unes aux autres.
+
+Le gros avantage de l'OPC UA, il est conçu pour piloter une usine. C'est aussi son principal inconvénient. Un système complet OPC-UA peut être complexe à mettre en place.
+
+Dans la pratique, dans le laboratoire d'automation, nous lions Node-RED à des variables du PLC via [Node-RED nodes for ctrlX AUTOMATION](https://flows.nodered.org/node/node-red-contrib-ctrlx-automation). Il existe aussi le même genre d'outil pour lier par exemple un système Bekchoff, [Beckhoff TwinCAT ADS client library for Node-RED](https://flows.nodered.org/node/node-red-contrib-ads-client).
+
+> Si ce qui se trouve sous le capot est différent, **les services offerts** pour lier les variables via ctrlX Data Layer, Beckhoff ADS ou OPC-UA **sont très similaires**.
+
+On peut:
+-   **lire** une variable, ou un objet via un événement.
+-   **Ecrire** une variable ou un objet via un évéenment.
+-   **S'abonner**, subscribe, à la modification d'une variable ou d'un objet.
+-   **Invoquer une méthode**, ce qui se traduit plus ou moins par appeler directement une fonction avec des paramètres sur le PLC..
+
+> Par contre, si l'on doit lier un PLC Beckhoff, un PLC CtrlX, un PLC Siemens via le même protocol tout en bénéficiant des mêmes services, **il faudra passer par OPC-UA**.
+
+> Il y a une deuxième raison justife OPC-UA, c'est qu'une des particularitéa de l'OPC-UA est d'inclure dans sa spécification de base les notions de sécurité, [IEC TR 62541-2:2020, PC Unified Architecture - Part 2: Security Model](https://webstore.iec.ch/en/publication/61110).
+
+-   OPC UA fournit un niveau de sécurité par nom d'utilisateur et mot de passe.
+-   OPC UA fournit un niveau de sécurité par échange de certificats.
+-   OPC UA fournit un service de cryptage de données.
+
+Cela ne signifie pas que OPC-UA est intrinsèquement sûr. Cela signifie qu'il sera probablement plus simple d'élaborer un concept de sécurité OT efficace en se basant uniquement sur OPC-UA, plutôt que de devoir gérer un ensemble hétéroclite de protocols.
+
+> Si on compare par exemple OPC UA avec un protocol de type MODBUS-TCP, aucun des trois niveaux de sécurité mentionné ci-dessus n'est spécifié par Modbus, ce qui signifie que n'importe qui poura accéder aux données d'un appareil équipé d'un serveur Modbus.
+
+> Des travaux sont en cours pour sécuriser le protocol Modbus.
 
 # Contexte
 ## Passerelle OT - IT
@@ -250,7 +177,8 @@ Dans l'image ci-dessous, on représente une ligne de production qui utilise Pack
 <div align="center">
 <figure>
     <img src="./img/OPC-UA-MachineToMachine.png"
-         alt="Lost image: OPC-UA-MachineToMachine">
+         alt="Lost image: OPC-UA-MachineToMachine"
+         width="500">
     <figcaption>Communication between machines. Source opcfoundation.org</figcaption>
 </figure>
 </div>
@@ -272,7 +200,8 @@ Vu son importance croissante dans le domaine de l’automation, la composante **
 <div align="center">
 <figure>
     <img src="./img/OPC_UA_ConnectedFactory.jpg"
-         alt="Lost image: OPC_UA_ConnectedFactory">
+         alt="Lost image: OPC_UA_ConnectedFactory"
+         width="500">
     <figcaption>The connected factory is creating a need to provide much higher levels of security than in the past. Source opcfoundation.org</figcaption>
 </figure> 
 </div>
@@ -282,10 +211,9 @@ Il n’est pas possible de parler de l’OPC UA sans aborder en deux mots son an
 
 ### Qu'est-ce que OPC Classic?
 
-La spécification OPC Classic d'origine est OPC DA (Data Access), qui définit une interface entre les applications client et serveur pour échanger des données de processus et de fabrication. Les autres spécifications importantes d'OPC Classic incluent OPC Alarms & Events (OPC AE) et OPC Historical Data Access (OPC HDA).
-Dans la pratique, c’est une technologie permettant le partage de variables sur un réseau TCP/IP entre un PLC: le serveur, et un client: le PC avec Windows.
+OPC Classic comprend OPC DA, **D**ata **A**ccess, OPC AE, **A**larms & **E**vents et OPC HDA, **H**istorical **D**ata **A**ccess. C'est une technologie permettant le partage de variables TCP/IP entre un serveur PLC et un client Windows. Pour l'automaticien, cela signifie configurer manuellement les liaisons de données via l'IDE du PLC et l'HMI, avec des complications supplémentaires lors du passage à travers les pare-feu, Firewall.
 
-Pour l’automaticien cela consiste à faire des click pour lier les données à l’OPC du côté de l’IDE du PLC, puis des clicks dans l’environnement de développement du client HMI implémenté sur une plateforme Windows. Y ajouter ensuite des pleurs et des grincements de dents à chaque fois que les données doivent transiter à travers un Firewall….
+> En 2025 on peut commencer à dire : **"A oublier"**.
 
 ### Qu’est-ce que OPC UA?
 **Open Platform Communications** / **Unified Architecture**
@@ -303,7 +231,8 @@ Sans entrer dans les détails.
 <div align="center">
 <figure>
     <img src="./img/OPC_UA_Layers.png"
-         alt="Lost image: OPC_UA_Layers">
+         alt="Lost image: OPC_UA_Layers"
+         width="400">
     <figcaption>OPC UA Layers</figcaption>
 </figure> 
 </div>
@@ -317,45 +246,50 @@ Une architecture peut regrouper une multitude d'appareils qui pourront être cli
 <div align="center">
 <figure>
     <img src="./img/OPC-UA.MultipleClientServer.webp"
-         alt="Lost image: MultipleClientServer">
+         alt="Lost image: MultipleClientServer"
+         width="500">
     <figcaption>Multiple OPC-UA Client Server Configuration</figcaption>
 </figure>
 </div>
 
 - Protocole ouvert et **indépendant de la plate-forme** pour la communication interprocessus et réseau.
-- Accès à Internet et communication via des pare-feu (Firewalls).
+- Accès à Internet et communication via des pare-feu  Firewalls.
 - Mécanismes intégrés de contrôle d'accès et de sécurité au niveau du protocole et de l'application.
-- Options de mappage étendues pour les modèles orientés objet. Les objets peuvent avoir des balises (tags) et des méthodes et déclencher des événements.
+- Options de mappage étendues pour les modèles orientés objet. Les objets peuvent avoir des balises, tags et des méthodes et déclencher des événements.
 - Système de type extensible pour les objets et les types de données complexes.
 - Les mécanismes de transport et les règles de modélisation constituent la base d'autres normes.
 - Évolutivité des petits systèmes embarqués aux applications d'entreprise et modèles complexes orientés objet.
 
-## Architecture
+---
+
+## Mini-glossaire
+
 Le terme **Unified Architecture** signifie que **OPC UA** est conçu pour couvrir l’ensemble de l’architecture d’un système d’automation, depuis un **ERP**, en passant par un **MES**, les systèmes **SCADA** et jusqu’au capteur.
 En d’autres termes, il est possible depuis une application sur le Cloud d’accéder de manière sécurisée aux informations d’un capteur.
 
-### ERP Enterprise resource planning.
-Un type de logiciel que les entreprises utilisent pour gérer leurs activités quotidiennes telles que la comptabilité, les achats, la gestion de projets, la gestion des risques et la conformité, ainsi que les opérations de supply chain, une chaîne qui relie le fournisseur du fournisseur au client.
+**ERP**, **E**nterprise **R**essource **P**lanning, Un type de logiciel que les entreprises utilisent pour gérer leurs activités quotidiennes telles que la comptabilité, les achats, la gestion de projets, la gestion des risques et la conformité, ainsi que les opérations de supply chain, une chaîne qui relie le fournisseur du fournisseur au client.
 
-### MES Manufacturing Execution System
-Un système informatique qui connecte, surveille et contrôle des systèmes de fabrication et flux de données complexes au niveau des ateliers
+**MES**, **M**anufacturing **E**xecution **S**ystem, Un système informatique qui connecte, surveille et contrôle des systèmes de fabrication et flux de données complexes au niveau des ateliers
 
-### SCADA Supervisory Control and Data Acquisition
-Système de supervision industrielle qui traite en temps réel un grand nombre de mesures et contrôle à distance les installations)
+**SCADA**, **S**upervisory **C**ontrol **A**nd **D**ata **A**cquisition, Système de supervision industrielle qui traite en temps réel un grand nombre de mesures et contrôle à distance les installations)
 
 <div align="center">
 <figure>
     <img src="./img/OPC_UA_Scope.png"
-         alt="Lost image: OPC_UA_Scope">
+         alt="Lost image: OPC_UA_Scope"
+         width="500">
     <figcaption>The Scope of OPC UA within an enterprise, Source reference.opcfoundation.org
 Fonctionnement de base Client Serveur</figcaption>
 </figure> 
 </div>
 
+---
+
 <div align="center">
 <figure>
     <img src="./img/OPC_UA_ClientServeur.png"
-         alt="Lost image: OPC_UA_ClientServeur">
+         alt="Lost image: OPC_UA_ClientServeur"
+         width="500">
     <figcaption>OPC UA Client Serveur</figcaption>
 </figure> 
 </div>
@@ -400,7 +334,8 @@ Une fois l'abonnement créé, le client envoie l’information Publish sur le se
 <div align="center">
 <figure>
     <img src="./img/OPC_UA_Subscription.png"
-         alt="Lost image: OPC_UA_Subscription">
+         alt="Lost image: OPC_UA_Subscription"
+         width="500">
     <figcaption>OPC UA Subscription</figcaption>
 </figure> 
 </div>
@@ -414,7 +349,8 @@ Les composants fondamentaux de l'architecture unifiée OPC sont les mécanismes 
 <div align="center">
 <figure>
     <img src="./img/OPC_UA_Infrastructure.jpg"
-         alt="Lost image: OPC_UA_Infrastructure">
+         alt="Lost image: OPC_UA_Infrastructure"
+         width="400">
     <figcaption>Infrastructure OPC UA, Source: https://opcfoundation.org</figcaption>
 </figure> 
 </div>
@@ -447,17 +383,19 @@ Cela signifie que pour un client, il sera possible, par exemple, de se connecter
 <div align="center">
 <figure>
     <img src="./img/OPC_UA_ObjectModel.png"
-         alt="Lost image: OPC_UA_ObjectModel">
+         alt="Lost image: OPC_UA_ObjectModel"
+         width="300">
     <figcaption>Object Model OPC UA, Source https://opcfoundation.org</figcaption>
 </figure> 
 </div>
 
-Malheureusement pour la compréhension de la spécification, la définition OPC UA n’utilise pas l’UML, mais sa propre notation.
+> Malheureusement pour la compréhension de la spécification, **la définition OPC UA n’utilise pas l’UML, mais sa propre notation**.
 
 <div align="center">
 <figure>
     <img src="./img/OPC_UA_ObjectInstance.png"
-         alt="Lost image: OPC_UA_ObjectInstance">
+         alt="Lost image: OPC_UA_ObjectInstance"
+         width="400">
     <figcaption>Objet and Instance in OPC UA style, Source reference.opcfoundation.org</figcaption>
 </figure> 
 </div>
@@ -465,7 +403,8 @@ Malheureusement pour la compréhension de la spécification, la définition OPC 
 <div align="center">
 <figure>
     <img src="./img/OPC_UA_ObjectSysML_UML.png"
-         alt="Lost image: OPC_UA_ObjectSysML_UML">
+         alt="Lost image: OPC_UA_ObjectSysML_UML"
+         width="400">
     <figcaption>Object and Instance in OPC UA style converted to SysML / UML</figcaption>
 </figure> 
 </div>
@@ -496,16 +435,7 @@ OPC UA est normalisé selon **IEC 62541**. La spécification de l’OPC UA est u
 
 A noter IEC 62451-13:2020 Norm number-Part:Year. Au moment de l’écriture de ce cours, la plupart des parties sont en **Pre-Release** c’est-à-dire en cours d’approbation finale.
 
-# OT Security
-Une des particularitéa de l'OPC-UA est d'inclure dans sa spécification de base les notions de sécurité, IEC TR 62541-2:2020. OPC unified architecture - Part 2, Security Model.
 
--   OPC UA fournit un niveau de sécurité par nom d'utilisateur et mot de passe.
--   OPC UA fournit un niveau de sécurité par échange de certificats.
--   OPC UA fournit un service de cryptage de données.
-
-> Si on compare par exemple OPC UA avec un protocol de type MODBUS-TCP, aucun des trois niveaux de sécurité mentionné ci-dessus n'est spécifié par Modbus, ce qui signifie que n'importe qui poura accéder aux données d'un appareil équipé d'un serveur Modbus.
-
-> Des travaux sont en cours pour sécuriser le protocol Modbus.
 
 # Ethernet APL, Advanced Physical Layer
 Actuellement ils reste difficile de déployer OPC-UA dans certains secteuts industriels, principalement en raison de sa dépendance à un réseaus Ethernet, couches 1 et 2. C'est une des raisons d'être de la nouvelle technologie Ethernet-APL. [Voir Industrial Network](IndustrialNetwork.md).
