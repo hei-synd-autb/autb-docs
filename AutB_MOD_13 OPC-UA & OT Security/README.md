@@ -57,14 +57,7 @@ Dans les années 90 et encore actuellement, un grand nombre d'applications d'int
 
 L'OPC Classic a été développé à partir de 1996 par la fondation OPC pour standardiser la communication entre les équipements industriels et les applications logicielles. Bien qu'il ait été largement adopté dans l'industrie, il tend aujourd'hui à être remplacé par OPC UA, Unified Architecture, qui offre plus de sécurité, de flexibilité et de compatibilité multiplateforme. Cependant, OPC Classic reste encore utilisé dans de nombreux systèmes existants, notamment pour des raisons de compatibilité avec des équipements plus anciens.
 
-### Durée de vie de Windows 95 et Windows NT
-
-- **Windows 95** : Lancé en août 1995, le support officiel de Microsoft a pris fin en décembre 2001.
-- **Windows NT 4.0** : Lancé en juillet 1996, le support principal a pris fin en juin 2002 et le support étendu en juin 2004.
-
-L'apparition de l'iPhone, qui apparait plus ou moins en même temps que HTML5 a passablement changé la donne. Depuis une quinzaine d'années, on utilise sans doute plus souvent des applications qui sont liées à un serveur que des applications autonomes qui travaillent sur des systèmes distribués. C'est à dire, qu'il y a plusieurs sources d'information. L'industrie de l'automation suit avec un certain retard cette évolution.
-
-Toujours est-il que l'automatisation est aujourd'hui extrèmement connectée.
+> En 2025 on peut commencer à dire : **"A oublier"**.
 
 ## User Interface
 Il est relativement compliqué de présenter la partie utilisateur d'un IACS, tant celui-ci dépend de chaque fournisseur de solution.

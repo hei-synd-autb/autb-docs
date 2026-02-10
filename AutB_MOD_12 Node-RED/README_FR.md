@@ -23,151 +23,21 @@ Cours AutB
 
 
 # Introduction
+
+Node-RED est à la base un projet Open-Source destiné à la communication IoT. Sa souplesse et sa simplificité d'utilisation font qu'il a été adopté depuis plusieurs années comme outil de communication pour accompagner certains systèmes d'automation. Dans le cadre de la [HEVS](https://www.hevs.ch), nous avons pu montrer lors d'un travail de Bachelor réalisé par Jonathan Marques qu'il est même possible d'utiliser Node-RED comme interface utilisateur complet pour un projet industriel réel.
+
+> Dans la pratique, Node-RED est beaucoup utilisé comme outil permettant le prototypage rapide d'interfaces utilisateur via son extension [FlowFuse Dashboard](https://flows.nodered.org/node/@flowfuse/node-red-dashboard). Il n'existe probablement pas d'autre outil autant efficace pour cette tâche.
+
+> Ce module est une coure introduction à Node-RED, pour aller plus loin on pourra se référer à la vaste litérature existante sur le web ou au cours [Automation in Development and Automation](https://github.com/hei-dls-adp/adp-docs) de la HEVS.
+
 :no_bell: *Dans le reste de ce cours, certains paragraphes sont marqués avec ce symbole. Cela ne signifie pas nécessairement que le sujet est sans importance, mais plutôt qu'il ne sera pas couvert en détail.*
-
-## Java Script
-JavaScript est un langage de programmation de haut niveau, interprété, principalement utilisé pour créer des effets interactifs dans les navigateurs web. Il permet le contenu dynamique, le contrôle du multimédia, les images animées et bien plus encore sur les pages web. JavaScript est une technologie fondamentale du Web mondial, aux côtés de HTML et CSS.
-
-Initialement développé pour l'écriture de scripts côté client dans les navigateurs, JavaScript est maintenant largement utilisé côté serveur (notamment avec Node.js). Il est connu pour sa flexibilité, son modèle de programmation piloté par les événements, et son support de la programmation orientée objet, impérative et fonctionnelle.
-
-**Caractéristiques principales:**
-- S'exécute dans tous les navigateurs web modernes
-- Typée dynamiquement et basée sur les prototypes
-- Supporte la programmation asynchrone, les callbacks, les promesses, async/await.
-- Permet la manipulation du DOM et la gestion des événements
-
-**Exemple:**
-```javascript
-console.log("Bonjour, le monde!");
-```
-
-## Le moteur V8
-Le **moteur V8** est un moteur JavaScript open-source développé par Google. Il est écrit en C++ et est utilisé dans Google Chrome et autres navigateurs basés sur Chromium pour exécuter du code JavaScript. V8 compile JavaScript directement en code machine natif avant de l'exécuter, ce qui le rend extrêmement rapide.
-
-**Points clés sur V8:**
-- Développé par Google pour Chrome, mais aussi utilisé dans Node.js.
-- Traduit JavaScript en code machine efficace en utilisant la compilation Just-In-Time (JIT).
-- Offre des performances élevées pour l'exécution JavaScript côté client, dans les navigateurs, et côté serveur, dans Node.js.
-- Continuellement optimisé pour la rapidité et l'efficacité mémoire.
-
-**Pourquoi V8 est-il important?**
-La performance et l'efficacité de V8 sont une raison majeure pour laquelle JavaScript peut être utilisé pour des applications à grande échelle et haute performance, à la fois dans les navigateurs et sur les serveurs, via Node.js.
-
-<div align="center">
-<figure>
-    <img src="./img/Node_js_architecture.jpg"
-         alt="Node_js_architecture.jpg"
-         width="400">
-  <figcaption>Architecture Node.js, Source: <a href="https://www.techanicinfotech.com//">Technic Infotech</a></figcaption>
-</figure>
-</div>
-
-## Node JS
-> Nous ne nous plongerons pas dans Node.js dans ce cours, mais nous considérons qu'il est utile de comprendre le framework sous-jacent de l'environnement que nous utiliserons. Cela peut parfois vous aider à comprendre son comportement, à tirer parti de ses avantages et à éviter ses défauts.
-
-> Nous allons un peu plus loin, car dans le module précédent nous avons couvert la **programmation cyclique**, et maintenant l'**architecture asynchrone** et la **programmation pilotée par les événements**. C'est très différent de ce que vous pourriez faire en exécutant simplement Python pour l'analyse de données.
-
-> En Python, vous pourriez faire des tâches asynchrones avec asyncio. N'étant pas expert en Python, je ne veux pas m'aventurer dans ce débat.
-
-Node.js est un environnement d'exécution **runtime** open-source, multiplateforme, monothread, conçu pour développer des applications serveur et réseau rapides et évolutives. Il s'exécute sur le moteur JavaScript V8 et adopte une architecture I/O non-bloquante, pilotée par les événements, ce qui le rend efficace et adapté aux applications en temps réel.
-
-> Un **environnement d'exécution** est la plateforme ou le système sous-jacent qui fournit les ressources et les services nécessaires à un programme pour s'exécuter. Dans le contexte de Node.js, l'environnement d'exécution inclut le moteur JavaScript V8, les bibliothèques et les API qui permettent au code JavaScript de s'exécuter en dehors d'un navigateur web, d'interagir avec le système de fichiers, le réseau et d'autres ressources système.
-
-Traditionnellement, JavaScript ne fonctionnait qu'en front-end, car le runtime n'était disponible que dans les navigateurs web comme Google Chrome. Le langage de programmation pouvait donc être utilisé pour créer une application côté client, un peu comme un site web dynamique.
-
-Ryan Dahl a créé Node.js en 2009 comme un environnement d'exécution léger et réactif pour JavaScript. Ce logiciel permet aux développeurs d'utiliser le langage de script comme code côté serveur.
-
-L'utilisation de JavaScript côté serveur permet aux développeurs d'écrire à la fois le front-end et le back-end dans le même langage. Cela rationalise le développement et la maintenance puisqu'ils peuvent réutiliser le même code.
-
-De plus, le développement du back-end en JavaScript permet à l'application de bénéficier du modèle de programmation asynchrone de Node.js. Cette architecture, à sa base, permet au service web de répondre plus efficacement à plusieurs demandes d'utilisateurs.
-
-### Qu'est-ce que monothread?
-Un environnement **monothread** signifie que toute l'exécution du code se fait sur un seul thread principal du CPU, plutôt que d'utiliser plusieurs threads pour exécuter des tâches en parallèle.
-
-Dans Node.js, cela signifie:
-
-- Une seule opération peut exécuter du code JavaScript à la fois.
-- Node.js utilise une boucle d'événements pour gérer de nombreuses tâches, comme les opérations I/O, de manière asynchrone, afin qu'il puisse gérer efficacement plusieurs connexions sans créer un nouveau thread pour chacune.
-- Les tâches intensives en CPU peuvent bloquer la boucle d'événements, donc Node.js est mieux adapté aux applications liées à l'I/O.
-
-💡 **Analogie:**  
-Pensez à un système monothread comme à un chef, le thread, dans une cuisine. Le chef ne peut préparer qu'un plat à la fois, mais peut commencer un plat, le mettre au four, I/O, et pendant qu'il cuit, commencer à préparer un autre plat. Le chef ne se duplique jamais, mais gère de nombreuses tâches en passant efficacement d'une à l'autre.
-
-⚠️ **Écueil**
-Si vous exécutez du code long, intensif en CPU dans Node.js, cela bloquera la boucle d'événements et ralentira toutes les autres opérations. Pour de telles tâches, envisagez d'utiliser des worker threads ou de déplacer le travail en dehors de Node.js.
-
-> Pour comprendre comment fonctionne Node.js, vous devez comprendre les termes importants suivants.
-> - Modèle I/O non-bloquant
-> - Architecture asynchrone
-> - Piloté par les événements
-
-## Modèle I/O non-bloquant
-
-Pour traiter une demande d'utilisateur, les serveurs traditionnels comme Apache et Tomcat utilisent un seul thread qui peut servir un client à la fois. Lorsque le nombre maximum de threads est atteint, une nouvelle demande doit attendre que les threads existants terminent leurs tâches.
-
-Les threads qui traitent encore les demandes d'utilisateurs bloqueront l'entrée de nouveaux clients et ne transmettront pas la sortie aux services externes tels que les API ou les bases de données. Cela peut entraîner des goulots d'étranglement lors des pics de trafic avec de nombreuses connexions simultanées.
-
-Les paradigmes non-bloquants signifient qu'un seul thread Node.js peut recevoir et transmettre une nouvelle demande sans attendre que la demande actuelle soit complète. Ce système s'appelle une architecture asynchrone.
-
-## Architecture asynchrone
-
-Une architecture synchrone traite les demandes des clients dans l'ordre, ce qui signifie que le serveur web termine l'opération actuelle avant de commencer une nouvelle.
-
-En revanche, **une application avec une architecture asynchrone commencera une nouvelle opération tout en attendant les résultats d'autres opérations**. Dès qu'elle reçoit une réponse, le serveur web retourne les données au client.
-
-L'architecture asynchrone est appropriée pour les applications qui doivent récupérer des données à partir d'autres services, tels que les interfaces de programmation d'application. Les **API** ou les **bases de données**. Au lieu de rester inactif, le serveur web peut traiter de nouvelles demandes tout en attendant les réponses.
-
-Bien qu'excellente pour les entrées/sorties, **les tâches I/O**, **cette architecture rend Node.js plus intensif en CPU** puisqu'elle utilise un seul thread pour traiter plusieurs demandes.
-
-## Piloté par les événements
-
-Dans Node.js, les événements sont des signaux indiquant qu'une action spécifique s'est produite. Par exemple, ils peuvent déclencher une **nouvelle opération** ou l'**achèvement** d'une tâche.
-
-**Les événements font partie intégrante du modèle asynchrone**. Ils fonctionnent dans une boucle, indiquant à Node.js comment gérer le flux des demandes.
-
-Lorsqu'une nouvelle demande est reçue d'un client, la boucle d'événements démarre. Node.js transmet ensuite la demande au service externe approprié, tel qu'une API. Une fois que le serveur reçoit les données, un nouvel événement déclenche une fonction de rappel.
-
-Une fonction de rappel exécute une autre fonction lorsqu'une condition spécifique ou une opération asynchrone est complétée. Elle permet au serveur web de traiter les demandes et d'envoyer les réponses au client.
-
-## Avantages de l'utilisation de Node.js
-
-Maintenant que nous comprenons la mécanique de Node.js, voyons comment ce modèle peut bénéficier à votre développement d'applications web.
-
-- **Vitesse**. L'architecture asynchrone de Node.js gère plus efficacement les opérations I/O multiples, ce qui entraîne une application plus réactive. Il permet également l'exécution en temps réel des données.
-- **Mécanisme de gestion des erreurs**. Les objets d'erreur intégrés offrent aux utilisateurs une plus grande flexibilité dans la gestion de nombreux problèmes. Ils permettent aux développeurs d'obtenir des informations plus détaillées sur l'erreur pour un dépannage et un traitement plus efficaces.
-- **Efficacité du développement**. Node.js permet aux développeurs d'utiliser JavaScript n'importe où pour un développement complet. Il facilite le développement car le code s'exécute sans problème entre le backend et le frontend.
-- **Un écosystème riche**. Les utilisateurs peuvent installer divers modules via Node Package Manager (NPM) pour ajouter facilement de nouvelles fonctionnalités à leurs applications Node.js sans avoir à les écrire à partir de zéro.
-- **Flexibilité et évolutivité**. Les développeurs peuvent utiliser Node.js avec d'autres frameworks et systèmes d'exploitation. Ils peuvent également faire évoluer le runtime en utilisant différentes approches, telles que l'installation d'un équilibreur de charge ou l'implémentation de microservices.
-- **Open source**. Le code source de Node.js est accessible à tous les utilisateurs, et ses créateurs plaident pour la transparence, l'innovation et la personnalisation. Ce runtime bénéficie également d'un soutien communautaire important.
-
-### En quoi Node.js est-il écrit?
-
-Node.js est développé en C, C++ et JavaScript.
-
-Selon Wikipedia, Node.js est "une compilation emballée du moteur JavaScript V8 de Google, la couche d'abstraction de plateforme libuv, et une bibliothèque principale, écrite principalement en JavaScript."
-
-Le runtime utilise en interne Chrome V8, qui est le runtime JavaScript, lui-même écrit en C++. Cela permet à Node.js d'accéder aux fonctionnalités système internes, telles que la gestion du réseau.
-
-### Architecture et fonctionnement de Node.js
-
-Node.js repose sur une architecture appelée **boucle d'événements monothread** pour gérer plusieurs clients simultanément. Contrairement à d'autres environnements comme Java, qui utilisent un modèle multi-thread où chaque demande client est traitée par un thread séparé d'un pool de threads, Node.js gère toutes les demandes sur un seul thread via une boucle d'événements. Cela permet une gestion efficace de plusieurs connexions simultanées sans créer un thread séparé pour chaque client, améliorant les performances et l'utilisation des ressources.
-
-<div align="center">
-<figure>
-    <img src="./img/How node.js process incoming requests using the event loop.png"
-         alt="Comment node.js traite les demandes entrantes en utilisant la boucle d'événements"
-         width="400">
-  <figcaption>Comment node.js traite les demandes entrantes en utilisant la boucle d'événements, Source: <a href="https://kinsta.com/knowledgebase/what-is-node-js/">Kinsta</a></figcaption>
-</figure>
-</div>
-
 
 # Node-RED
 <figure>
     <img src="./img/LogoNode-RED.png"
          alt="LogoNode-RED"
          width="100">
-  <figcaption>Programmation bas-code pour les applications pilotées par les événements <a href="https://nodered.org/">nodered.org</a></figcaption>
+  <figcaption>Programmation low-code pour les applications pilotées par les événements <a href="https://nodered.org/">nodered.org</a></figcaption>
 </figure>
 
 
@@ -177,9 +47,100 @@ Node-RED est un outil pour construire des applications Internet des Objets, IoT,
 
 Développé à l'origine en tant que projet open source chez IBM à la fin de 2013, pour répondre à leur besoin de connecter rapidement le matériel et les appareils aux services web et à d'autres logiciels - comme une sorte de colle pour l'IoT - il a rapidement évolué pour devenir un outil de programmation IoT à usage général. Notamment, Node-RED a rapidement développé une base d'utilisateurs importante et croissante et une communauté de développeurs active qui contribuent de nouveaux nœuds permettant aux programmeurs de réutiliser le code Node-RED pour une grande variété de tâches.
 
-Bien que Node-RED ait été à l'origine conçu pour fonctionner avec l'Internet des Objets, il est devenu utile pour une gamme d'applications et est maintenant considéré comme l'un des outils de développement visuel bas-code/sans-code les plus éminents.
+### Node.JS
+Node-RED est basé sur un environnement [Node.js](https://nodejs.org/).
 
-> Ici à la HEVS, après avoir testé et validé Node-RED pour utilisation comme interface utilisateur pour un prototype de filtrage d'eau, nous l'utilisons comme interface utilisateur pour tous les laboratoires en Automatisation.
+Node.js est un environnement d’exécution JavaScript côté serveur, construit sur le [moteur V8 de Google Chrome](#quest-ce-que-le-moteur-javascript-v8-). Il permet d’exécuter du code JavaScript en dehors d’un navigateur, principalement pour créer des applications réseau rapides et scalables.
+
+### Différences principales avec PLC et Python
+
+| Aspect                | Node.js (JavaScript)         | PLC (Ladder, ST, etc.)         | Python                        |
+|-----------------------|-----------------------------|-------------------------------|-------------------------------|
+| **Paradigme**         | Événementiel, asynchrone    | Cyclique, temps réel           | Impératif, orienté objet      |
+| **Exécution**         | Interprété, non bloquant    | Temps réel, séquentiel         | Interprété, synchrone         |
+| **Utilisation typique** | Serveurs web, IoT, API      | Contrôle industriel, machines  | Scripts, data science, web    |
+| **Gestion des E/S**   | Asynchrone (callbacks, promesses) | Directe, via entrées/sorties physiques | Synchrone ou asynchrone |
+| **Langage**           | JavaScript                  | Langages IEC 61131-3           | Python                        |
+
+### Points clés
+
+- **Node.js** est conçu pour gérer de nombreux événements en parallèle, par exemple, connexions réseau et interface utilisateur, grâce à sa boucle d’événements non bloquante.
+- **PLC** fonctionne en scannant cycliquement le programme, ce qui garantit la **réactivité en temps réel** mais limite la gestion d’événements multiples complexes.
+- **Python** est simple à apprendre, synchrone par défaut, mais peut aussi gérer l’asynchrone..
+
+**En résumé** : Node.js est particulièrement adapté aux applications nécessitant la gestion simultanée de nombreuses connexions ou événements, alors que les PLC sont optimisés pour le contrôle temps réel, et Python pour la polyvalence et la rapidité de développement.
+
+### Notion de programmation par événement, Event Driven
+
+<div align="center">
+
+```mermaid
+flowchart TD
+    A[Événement se produit<br> clic signal PLC...] --> B[Gestionnaire d'événement appelé]
+    B --> C[Exécution de la logique associée]
+    C --> D[Résultat affiché<br/> mise à jour UI, envoi commande PLC]
+    D --> E[Attente d'un nouvel événement]
+    E -.-> A
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bfb,stroke:#333,stroke-width:2px
+    style D fill:#ffb,stroke:#333,stroke-width:2px
+    style E fill:#eee,stroke:#333,stroke-width:2px
+```
+</div>
+
+
+Ce diagramme illustre le principe de la programmation événementielle : le système attend des événements, déclenche des gestionnaires spécifiques, exécute la logique, puis retourne en attente.
+
+### Comprendre la programmation événementielle
+
+La programmation événementielle est un paradigme dans lequel le déroulement d'un programme est déterminé par des événements tels que les actions de l'utilisateur, les notifications système ou la disponibilité des données. Dans Node.js, ce modèle permet aux développeurs d'écrire du code asynchrone et non bloquant qui réagit aux événements au fur et à mesure qu'ils se produisent, sans attendre la fin des opérations bloquantes.
+
+### Events and Event Emitters
+
+- **Événements** : Les événements sont des signaux indiquant qu'une action ou un changement d'état particulier s'est produit. Dans Node.js, les événements sont représentés par des chaînes, **event names** et des données associées, **event payload**.
+- **Émetteurs d'événements** : Un émetteur d'événements est un objet capable d'émettre des événements. Il fournit des méthodes pour enregistrer des écouteurs d'événements, event listenr, **callbacks** pour des événements spécifiques et les déclencher lorsque les événements correspondants se produisent.
+
+La programmation événementielle permet de synchroniser l'occurrence de plusieurs événements et de simplifier au maximum le programme. Les composants de base d'une programmation événementielle sont :
+
+-   Une fonction de rappel, **callback**, appelée gestionnaire d'événements est appelée lorsqu'un événement est déclenché ;
+-   Une boucle d'événements, **event loop**, qui écoute les déclencheurs d'événements, **triggers** et appelle le gestionnaire d'événements, **event handler** correspondant.
+
+<div align="center">
+  <img src="./img/geeksforgeeks_EventEmitter.png" alt="  <img src="./img/geeksforgeeks_EventEmitter.png" alt="OPC_UA_Netilion_solution-1" width="400">
+  <p><em>Event in Node.js, Source; https://www.geeksforgeeks.org</em></p>
+</div>   
+
+### Avantages de la programmation événementielle
+
+-   **Flexibilité**: Il est plus facile de modifier des sections de code selon les besoins.
+-   **Adaptation aux interfaces graphiques** : L'utilisateur peut sélectionner des outils (comme des boutons radio, etc.) directement depuis la barre d'outils.
+-   **Permet des programmes plus interactifs** : La programmation événementielle est utilisée dans presque toutes les applications UI récentes.
+-   **Utilisation d'interruptions matérielles** : Elle peut être réalisée via des interruptions matérielles, réduisant ainsi la consommation d'énergie de l'ordinateur.
+-   **Prise en charge des capteurs et autres matériels** : La programmation événementielle simplifie la communication entre les capteurs et autres matériels et les logiciels.
+
+### Inconvénients de la programmation événementielle
+-   **Complexe **: Les programmes simples deviennent inutilement complexes.
+-   **Moins logique et évident** : Le déroulement du programme est généralement moins logique et plus évident.
+-   **Difficile à trouver des erreurs** : Le débogage d'un programme événementiel est complexe.
+-   **Blocage **: Blocage complexe des opérations.
+
+> Pour résumer, **convient très bien pour des applications simples, telles que le pilotages de petites machines, voir les robots du laboratoire d'automation ou des bancs de test avec quelques dizaines de modules**. Nous n'avons pas d'expérience ou de cas d'utilisation pour des systèmes à grande échelle.
+
+### Qu'est-ce que le moteur JavaScript V8 ?
+
+V8 est un moteur d'exécution JavaScript développé par Google, principalement utilisé dans le navigateur Chrome et dans Node.js. Son rôle est de traduire le code JavaScript en instructions machine compréhensibles par le processeur, ce qui permet d'exécuter rapidement du JavaScript en dehors d'un navigateur.
+
+### Points clés pour un étudiant connaissant Java, Python et IEC 61131-3 :
+- **Comparable à la JVM pour Java** : Comme la Java Virtual Machine,
+  - JVM exécute du bytecode Java, 
+  - V8 exécute du code JavaScript.
+- **Compilation Just-In-Time, JIT** : V8 compile le JavaScript *à la volée* en code machine natif, ce qui améliore fortement les performances.
+- **Utilisé dans Node.js** : Grâce à V8, Node.js permet d'exécuter du JavaScript côté serveur, un peu comme Python avec son interpréteur.
+- **Indépendant du navigateur** : V8 peut être intégré dans d'autres applications pour fournir un moteur d'exécution JavaScript, **pas seulement dans les navigateurs**.
+
+> En résumé, V8 est au JavaScript ce que la JVM est à Java : un moteur qui rend possible l'exécution efficace du langage sur différentes plateformes.
 
 ## L'interface Node-RED
 
@@ -550,6 +511,7 @@ Dans un lien d'entrée, vous pouvez sélectionner les messages d'autres liens en
 
 
 #### appel de lien
+:no_bell: *pour information seulement*
 
 Appelle un flux qui commence par un nœud de lien d'entrée et transmet la réponse.
 
@@ -821,71 +783,6 @@ Dans l'exemple ci-dessus, en fonction de la valeur de `charge utile`, le `commut
 
 Le nœud acheminera un message vers toutes les sorties correspondant aux règles correspondantes. Mais il peut également être configuré pour arrêter d'évaluer les règles lorsqu'il en trouve une qui correspond.
 
-## Nœuds de séquence
-:no_bell: *pour information seulement*
-
-Nœuds vous permettant d'agir sur la séquence des messages transmis et ainsi d'influencer le flux.
-
-### Nœud de division
-
-<figure>
-    <img src="./img/Node-split.png"
-         alt="Image perdue: Node-split.png"
-         width="200">
-  <figcaption>Nœud de division</figcaption>
-</figure>
-
-### Nœud de jointure
-
-<figure>
-    <img src="./img/Node-join.png"
-         alt="Image perdue: Node-join.png"
-         width="200">
-  <figcaption>Nœud de jointure</figcaption>
-</figure>
-
-### Nœud de tri
-
-<figure>
-    <img src="./img/Node-sort.png"
-         alt="Image perdue: Node-sort.png"
-         width="200">
-  <figcaption>Nœud de tri</figcaption>
-</figure>
-
-### Nœud de lot
-
-<figure>
-    <img src="./img/Node-batch.png"
-         alt="Image perdue: Node-batch.png"
-         width="200">
-  <figcaption>Nœud de lot</figcaption>
-</figure>
-
-
- Exemples:
-
-Permet de diviser un message entrant en plusieurs messages sortants.
-
-Permet de regrouper plusieurs messages entrants en un seul message sortant.
-
-## Nœuds réseau
-:no_bell: *pour information seulement*
-
-Nœuds pour gérer l'aspect réseau du flux, en configurant les requêtes HTTP, les websockets et les messages TCP ou UDP. Cette catégorie inclut également les nœuds MQTT (Mosquitto), si vous les installez.
-
-## Analyseur
-Nœuds pour traiter les données formatées et extraire les objets JavaScript utilisables par d'autres nœuds, ou pour formater un objet JavaScript dans le format souhaité. Ces nœuds peuvent gérer le formatage HTML, CSV, JSON, XML ou YAML.
-
-> Sera développé dans un module ultérieur
-
-## Stockage
-Nœuds pour enregistrer les données de messages dans des fichiers. Ils vous permettent également de surveiller les fichiers pour détecter les modifications.
-Cette catégorie inclut également les nœuds Influxdb et PostgreSQL, si vous les installez.
-
-Le menu i fournit des explications détaillées pour chacun de ces nœuds.
-> Sera développé dans un module ultérieur
-
 ---
 
 ## Travailler avec des messages
@@ -1008,104 +905,7 @@ Donc:
 {"name": "Alice", "age": 30}
 ```
 
-### Modification des propriétés du message
-
-Une tâche commune dans un flux est de modifier les propriétés d'un message au fur et à mesure qu'il passe entre les nœuds. Par exemple, le résultat d'une requête HTTP peut être un objet avec de nombreuses propriétés, dont seules certaines sont nécessaires.
-
-Il y a deux nœuds principaux pour modifier un message, le nœud de fonction et le nœud de changement.
-
-Le nœud de fonction vous permet d'exécuter n'importe quel code JavaScript par rapport au message. Cela vous donne une flexibilité complète dans ce que vous faites avec le message, mais nécessite une familiarité avec JavaScript et est inutile pour de nombreux cas simples. Plus d'informations sur la création de fonctions sont disponibles ici.
-
-Le nœud de changement fournit beaucoup de fonctionnalités sans avoir besoin d'écrire du code JavaScript. Non seulement il peut modifier les propriétés du message, mais il peut également accéder au contexte de flux et global.
-
-Il fournit quatre opérations de base:
-
-    Définir une propriété à une valeur,
-    Modifier une propriété de chaîne en effectuant une recherche et un remplacement,
-    Supprimer une propriété,
-    Déplacer une propriété.
-
-Pour l'opération de définition, vous identifiez d'abord la propriété que vous souhaitez définir, puis la valeur que vous souhaitez qu'elle ait. Cette valeur peut soit être une valeur codée en dur, comme une chaîne ou un nombre, soit être tirée d'une autre propriété de message ou de contexte de flux/global. Il supporte également l'utilisation du langage d'expression JSONata pour calculer une nouvelle valeur.
-
-Par exemple, en utilisant la capacité du nœud de débogage à déterminer le chemin d'accès d'un élément de message, vous pouvez coller le chemin directement dans le champ 'to', avec msg. sélectionné dans la liste. Cela définirait alors msg.payload à la valeur de msg.payload.Phone[2].type.
-
-
-Un autre exemple, utilisant une expression JSONata, est de convertir une température, contenue dans msg.payload.temperature, de Fahrenheit à Celsius et de stocker le résultat dans une nouvelle propriété de message msg.payload.temperature_c.
-
-### Séquences de messages
-
-Une séquence de messages est une série ordonnée de messages qui sont liés d'une certaine manière. Par exemple, le nœud de division peut transformer un seul message dont la charge utile est un tableau en une séquence de messages où chaque message a une charge utile correspondant à l'un des éléments du tableau.
-
-Comprendre msg.parts
-
-Chaque message d'une séquence a une propriété appelée msg.parts. C'est un objet qui contient des informations sur la façon dont le message s'inscrit dans la séquence. Il possède les propriétés suivantes:
-
-msg.parts.id
-    un identifiant unique pour la séquence
-msg.parts.index
-    la position du message dans la séquence
-msg.parts.count
-    si connu, le nombre total de messages dans la séquence
-
-Remarque: le tableau parts peut contenir des métadonnées supplémentaires sur la séquence. Par exemple, le nœud de division attache également des informations qui peuvent être utilisées par le nœud de jointure pour réassembler la séquence. Voir la documentation du nœud de division.
-
-### Travailler avec les séquences
-
-<figure>
-    <img src="./img/NodeRedSequence.png"
-         alt="Image perdue: NodeRedSequence.png"
-         width="150">
-  <figcaption>Séquences</figcaption>
-</figure>
-
-Il y a un certain nombre de nœuds centraux qui peuvent fonctionner sur des séquences de messages:
-
-#### Division
-
-Transforme un seul message en une séquence de messages.
-
-Le comportement exact du nœud dépend du type de msg.payload:
-
-Chaîne/Tampon
-    le message est divisé en utilisant le caractère spécifié (par défaut: `\n`), la séquence de tampon ou en longueurs fixes.
-Tableau
-    le message est divisé en éléments de tableau individuels ou en tableaux de longueur fixe.
-Objet
-    un message est envoyé pour chaque paire clé/valeur de l'objet.
-
-#### Jointure
-
-Transforme une séquence de messages en un seul message.
-
-Le nœud fournit trois modes d'opération:
-
-Automatique
-    tente d'inverser l'action d'un nœud de division précédent
-Manuel
-    permet un meilleur contrôle sur la façon dont la séquence doit être jointe
-Réduire
-    Nouveau dans 0.18 - permet l'exécution d'une expression JSONata sur chaque message de la séquence et l'accumulation du résultat pour produire un seul message.
-
-#### Tri
-
-Nouveau dans 0.18
-
-Trie la séquence en fonction de la valeur d'une propriété ou du résultat de l'expression JSONata.
-
-#### Lot
-
-Crée de nouvelles séquences de messages à partir de ceux reçus.
-
-Le nœud fournit trois modes d'opération:
-
-Nombre de messages
-    groupe les messages en séquences d'une longueur donnée. L'option de chevauchement spécifie combien de messages à la fin d'une séquence doivent être répétés au début de la séquence suivante.
-Intervalle de temps
-    groupe les messages arrivant dans l'intervalle spécifié. Si aucun message n'arrive dans l'intervalle, le nœud peut éventuellement envoyer un message vide.
-Concaténer les séquences
-    crée une séquence de messages en concaténant les séquences entrantes. Chaque séquence doit avoir une propriété msg.topic pour l'identifier. Le nœud est configuré avec une liste de valeurs de topic pour identifier l'ordre des séquences concaténées.
-
-## Expression JSONata?
+---
 
 ## Votre travail
 Installez Node-RED sur votre ordinateur portable. Utilisez ce lien pour être guidé sur la procédure: [Exécution de Node-RED en local](https://nodered.org/docs/getting-started/local)

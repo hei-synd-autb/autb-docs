@@ -20,166 +20,127 @@ Kurs AutB
   <figcaption>OpenJS Foundation: <a href="https://openjsf.org/">OpenJS</a></figcaption>
 </figure>
 
-
-
 # Einführung
-:no_bell: *Im weiteren Verlauf dieses Kurses sind einige Absätze mit diesem Symbol markiert. Dies bedeutet nicht unbedingt, dass das Thema unwichtig ist, sondern eher, dass es nicht im Detail behandelt wird.*
 
-## Java Script
-JavaScript ist eine hochwertige, interpretierte Programmiersprache, die hauptsächlich zur Erstellung interaktiver Effekte in Webbrowsern verwendet wird. Es ermöglicht dynamische Inhalte, Steuerung von Multimedia, animierte Bilder und vieles mehr auf Webseiten. JavaScript ist eine Kerntechnologie des World Wide Web, neben HTML und CSS.
+Node-RED ist grundsätzlich ein Open-Source-Projekt zur IoT-Kommunikation. Seine Flexibilität und Benutzerfreundlichkeit führten dazu, dass es seit mehreren Jahren als Kommunikationswerkzeug zur Unterstützung bestimmter Automatisierungssysteme eingeführt wurde. Im Rahmen der [HEVS](https://www.hevs.ch) konnten wir in einer von Jonathan Marques durchgeführten Bachelor-Arbeit zeigen, dass es sogar möglich ist, Node-RED als vollständige Benutzeroberfläche für ein echtes Industrieprojekt zu verwenden.
 
-Ursprünglich für die clientseitige Skripterstellung in Browsern entwickelt, wird JavaScript jetzt auch häufig auf der Serverseite verwendet (besonders mit Node.js). Es ist bekannt für seine Flexibilität, sein ereignisgesteuertes Programmiermodell und die Unterstützung objektorientierter, zwingender und funktionaler Programmierkonzepte.
+> In der Praxis wird Node-RED häufig als Werkzeug zur schnellen Prototypisierung von Benutzeroberflächen über seine Erweiterung [FlowFuse Dashboard](https://flows.nodered.org/node/@flowfuse/node-red-dashboard) verwendet. Es gibt wahrscheinlich kein anderes Werkzeug, das für diese Aufgabe so effizient ist.
 
-**Hauptmerkmale:**
-- Läuft in allen modernen Webbrowsern
-- Dynamisch typisiert und prototypbasiert
-- Unterstützt asynchrone Programmierung, Callbacks, Promises, async/await.
-- Ermöglicht DOM-Manipulation und Ereignisbehandlung
+> Dieses Modul ist eine kurze Einführung in Node-RED. Für weitere Informationen können Sie auf die umfangreiche Literatur im Internet oder auf den [Automation in Development and Automation](https://github.com/hei-dls-adp/adp-docs) Kurs der HEVS verweisen.
 
-**Beispiel:**
-```javascript
-console.log("Hallo, Welt!");
-```
-
-## Die V8-Engine
-Die **V8-Engine** ist eine quelloffene JavaScript-Engine, die von Google entwickelt wurde. Sie ist in C++ geschrieben und wird in Google Chrome und anderen Chromium-basierten Browsern verwendet, um JavaScript-Code auszuführen. V8 kompiliert JavaScript direkt in nativen Maschinencode, bevor er ihn ausführt, was ihn extrem schnell macht.
-
-**Wichtige Punkte zu V8:**
-- Von Google für Chrome entwickelt, wird aber auch in Node.js verwendet.
-- Übersetzt JavaScript in effizienten Maschinencode mit Just-In-Time (JIT)-Kompilierung.
-- Bietet hohe Leistung für die clientseitige Ausführung in Browsern und die serverseitige Ausführung in Node.js-JavaScript.
-- Kontinuierlich optimiert für Geschwindigkeit und Speichereffizienz.
-
-**Warum ist V8 wichtig?**
-V8s Leistung und Effizienz sind ein Hauptgrund dafür, dass JavaScript für großflächige, hochperformante Anwendungen verwendet werden kann, sowohl in Browsern als auch auf Servern über Node.js.
-
-<div align="center">
-<figure>
-    <img src="./img/Node_js_architecture.jpg"
-         alt="Node_js_architecture.jpg"
-         width="400">
-  <figcaption>Node.js-Architektur, Quelle: <a href="https://www.techanicinfotech.com//">Technic Infotech</a></figcaption>
-</figure>
-</div>
-
-## Node JS
-> Wir werden uns in diesem Kurs nicht eingehend mit Node.js befassen, aber wir halten es für hilfreich, das zugrunde liegende Framework der Umgebung zu verstehen, die wir nutzen werden. Dies kann Ihnen manchmal helfen, sein Verhalten zu verstehen, von seinen Vorteilen zu profitieren und seine Mängel zu vermeiden.
-
-> Wir gehen etwas weiter, denn im vorherigen Modul haben wir die **zyklische Programmierung** behandelt, und jetzt die **asynchrone Architektur** und die **ereignisgesteuerte Programmierung**. Dies unterscheidet sich sehr von dem, was Sie durch einfaches Ausführen von Python für die Datenanalyse tun könnten.
-
-> In Python könnten Sie einige asynchrone Aufgaben mit asyncio ausführen. Da ich kein Python-Experte bin, möchte ich mich nicht in diese Debatte einmischen.
-
-Node.js ist eine quelloffene, plattformübergreifende, einthread-basierte **Laufzeitumgebung**, die für die Entwicklung schneller, skalierbarer Server- und Netzwerkanwendungen konzipiert ist. Sie wird auf der V8-JavaScript-Engine ausgeführt und nutzt eine nicht blockierende, ereignisgesteuerte I/O-Architektur, was sie effizient und für Echtzeitanwendungen geeignet macht.
-
-> Eine **Laufzeitumgebung** ist die zugrunde liegende Plattform oder das System, das die erforderlichen Ressourcen und Dienste für die Programmausführung bereitstellt. Im Kontext von Node.js umfasst die Laufzeitumgebung die V8-JavaScript-Engine, Bibliotheken und APIs, die es JavaScript-Code ermöglichen, außerhalb eines Webbrowsers auszuführen und mit dem Dateisystem, dem Netzwerk und anderen Systemressourcen zu interagieren.
-
-Traditionell funktionierte JavaScript nur im Front-End, da die Laufzeitumgebung nur in Webbrowsern wie Google Chrome verfügbar war. Die Programmiersprache könnte daher verwendet werden, um eine clientseitige Anwendung zu erstellen, ähnlich einer dynamischen Website.
-
-Ryan Dahl erstellte 2009 Node.js als leichte, reaktionsschnelle Laufzeitumgebung für JavaScript. Diese Software ermöglicht es Entwicklern, die Skriptsprache als serverseitigen Code zu verwenden.
-
-Die Verwendung von JavaScript auf der Serverseite ermöglicht es Entwicklern, sowohl das Front-End als auch das Back-End in derselben Sprache zu schreiben. Dies rationalisiert Entwicklung und Wartung, da sie denselben Code wiederverwenden können.
-
-Darüber hinaus ermöglicht die Back-End-Entwicklung in JavaScript der Anwendung, von Node.js' asynchronem Programmiermodell zu profitieren. Diese Architektur ermöglicht es dem Webservice im Kern, effizienter auf mehrere Benutzeranfragen zu reagieren.
-
-### Was bedeutet Einthread-Umgebung?
-Eine **Einthread-Umgebung** bedeutet, dass alle Code-Ausführungen auf einem Haupt-Thread der CPU stattfinden, anstatt mehrere Threads zu verwenden, um Aufgaben parallel auszuführen.
-
-In Node.js bedeutet dies:
-
-- Immer nur eine Operation kann JavaScript-Code gleichzeitig ausführen.
-- Node.js verwendet eine Event-Loop zur Verwaltung vieler Aufgaben, wie E/A-Operationen, asynchron, sodass es mehrere Verbindungen effizient verwalten kann, ohne für jede einen neuen Thread zu erstellen.
-- CPU-intensive Aufgaben können die Event-Loop blockieren, daher ist Node.js am besten für E/A-gebundene Anwendungen geeignet.
-
-💡 **Analogie:**  
-Denken Sie an ein Einthread-System wie an einen Chef, den Thread, in einer Küche. Der Chef kann immer nur ein Gericht zubereiten, kann aber ein Gericht starten, es in den Ofen schieben, E/A, und während es backt, mit der Zubereitung eines anderen Gerichts beginnen. Der Chef dupliziert sich nie selbst, verwaltet aber viele Aufgaben, indem er effizient zwischen ihnen wechselt.
-
-⚠️ **Fallstrick**
-Wenn Sie lange laufenden, CPU-intensiven Code in Node.js ausführen, blockiert er die Event-Loop und verlangsamt alle anderen Operationen. Für solche Aufgaben erwägen Sie die Verwendung von Worker-Threads oder verschieben Sie die Arbeit außerhalb von Node.js.
-
-> Um zu verstehen, wie Node.js funktioniert, müssen Sie die folgenden wichtigen Begriffe verstehen.
-> - Blockierungsfreies E/A-Modell
-> - Asynchrone Architektur
-> - Ereignisgesteuert
-
-## Blockierungsfreies E/A-Modell
-
-Um eine Benutzeranfrage zu verarbeiten, verwenden traditionelle Server wie Apache und Tomcat einen einzelnen Thread, der jeweils einen Client bedienen kann. Wenn die maximale Anzahl von Threads erreicht ist, muss eine neue Anfrage warten, bis bestehende Threads ihre Aufgaben abschließen.
-
-Threads, die noch Benutzeranfragen verarbeiten, blockieren Eingaben von neuen Clients und leiten Ausgaben nicht an externe Dienste wie APIs oder Datenbanken weiter. Dies kann während Verkehrsspitzen mit vielen gleichzeitigen Verbindungen zu Engpässen führen.
-
-Blockierungsfreie Paradigmen bedeuten, dass ein einzelner Node.js-Thread eine neue Anfrage empfangen und übertragen kann, ohne auf die Fertigstellung der aktuellen Anfrage zu warten. Dieses System wird asynchrone Architektur genannt.
-
-## Asynchrone Architektur
-
-Eine synchrone Architektur verarbeitet Clientanfragen der Reihe nach, was bedeutet, dass der Webserver die aktuelle Operation abschließt, bevor er eine neue startet.
-
-Im Gegensatz dazu wird **eine Anwendung mit asynchroner Architektur eine neue Operation starten, während sie auf die Ergebnisse anderer Operationen wartet**. Sobald sie eine Antwort erhält, gibt der Webserver die Daten an den Client zurück.
-
-Asynchrone Architektur eignet sich für Anwendungen, die Daten aus anderen Diensten abrufen müssen, wie z.B. Anwendungsprogrammierschnittstellen. **APIs** oder **Datenbanken**. Anstatt untätig zu bleiben, kann der Webserver neue Anfragen verarbeiten, während er auf Antworten wartet.
-
-Während ausgezeichnet für Ein-/Ausgabe, **E/A-Aufgaben**, **macht diese Architektur Node.js CPU-intensiver**, da sie nur einen einzelnen Thread zur Verarbeitung mehrerer Anfragen verwendet.
-
-## Ereignisgesteuert
-
-In Node.js sind Ereignisse Signale, die angeben, dass eine bestimmte Aktion stattgefunden hat. Sie können beispielsweise eine **neue Operation** oder den **Abschluss** einer Aufgabe auslösen.
-
-**Ereignisse sind ein wesentlicher Bestandteil des asynchronen Modells**. Sie arbeiten in einer Schleife und teilen Node.js mit, wie es den Anfragenstrom bewältigen soll.
-
-Wenn eine neue Anfrage von einem Client empfangen wird, startet die Event-Loop. Node.js leitet die Anfrage dann an den entsprechenden externen Dienst wie eine API weiter. Sobald der Server die Daten erhält, löst ein neues Ereignis eine Callback-Funktion aus.
-
-Eine Callback-Funktion führt eine andere Funktion aus, wenn eine bestimmte Bedingung oder eine asynchrone Operation abgeschlossen ist. Es ermöglicht dem Webserver, Anfragen zu verarbeiten und Antworten an den Client zu senden.
-
-## Vorteile der Verwendung von Node.js
-
-Nun, da wir die Mechanik von Node.js verstehen, schauen wir uns an, wie dieses Modell Ihre Webentwicklung zugute kommen kann.
-
-- **Geschwindigkeit**. Die asynchrone Architektur von Node.js verarbeitet mehrere E/A-Operationen effizienter, was zu einer responsiveren Anwendung führt. Es ermöglicht auch die Echtzeit-Datenausführung.
-- **Fehlerbehandlungsmechanismus**. Integrierte Fehlerobjekte bieten Benutzern größere Flexibilität bei der Behandlung vieler Probleme. Sie ermöglichen es Entwicklern, detailliertere Informationen zum Fehler zu erhalten, um eine effizientere Fehlerbehebung und Verarbeitung zu ermöglichen.
-- **Entwicklungseffizienz**. Node.js ermöglicht Entwicklern, überall JavaScript für eine umfassende Entwicklung zu verwenden. Es erleichtert die Entwicklung, da der Code nahtlos zwischen Backend und Frontend läuft.
-- **Ein reichhaltiges Ökosystem**. Benutzer können verschiedene Module über den Node Package Manager (NPM) installieren, um problemlos neue Funktionen zu ihren Node.js-Anwendungen hinzuzufügen, ohne sie von Grund auf neu zu schreiben.
-- **Flexibilität und Skalierbarkeit**. Entwickler können Node.js mit anderen Frameworks und Betriebssystemen verwenden. Sie können auch die Laufzeitumgebung unter Verwendung verschiedener Ansätze weiterentwickeln, z.B. durch Installation eines Last-Balancers oder Implementierung von Microservices.
-- **Open Source**. Der Node.js-Quellcode ist für alle Benutzer zugänglich, und seine Ersteller befürworten Transparenz, Innovation und Anpassung. Diese Laufzeitumgebung profitiert auch von erheblicher Community-Unterstützung.
-
-### Woraus ist Node.js entwickelt?
-
-Node.js wird in C, C++ und JavaScript entwickelt.
-
-Laut Wikipedia ist Node.js "eine verpackte Kompilation von Googles V8-JavaScript-Engine, der libuv-Plattform-Abstraktionsschicht und einer Kernbibliothek, hauptsächlich in JavaScript geschrieben."
-
-Die Laufzeitumgebung nutzt intern Chrome V8, die JavaScript-Laufzeitumgebung, selbst in C++ geschrieben. Dies ermöglicht Node.js den Zugriff auf interne Systemfunktionen wie Netzwerkverwaltung.
-
-### Node.js-Architektur und -Betrieb
-
-Node.js basiert auf einer Architektur namens **Single-Thread-Event-Loop**, um mehrere Clients gleichzeitig zu verwalten. Im Gegensatz zu anderen Umgebungen wie Java, die ein Multi-Thread-Modell verwenden, bei dem jede Client-Anfrage von einem separaten Thread aus einem Thread-Pool verarbeitet wird, verarbeitet Node.js alle Anfragen auf einem einzelnen Thread über eine Event-Loop. Dies ermöglicht eine effiziente Verarbeitung mehrerer gleichzeitiger Verbindungen ohne Erstellung eines separaten Threads für jeden Client, verbesserte Leistung und Ressourcennutzung.
-
-<div align="center">
-<figure>
-    <img src="./img/How node.js process incoming requests using the event loop.png"
-         alt="Wie node.js eingehende Anfragen mit der Event-Loop verarbeitet"
-         width="400">
-  <figcaption>Wie node.js eingehende Anfragen mit der Event-Loop verarbeitet, Quelle: <a href="https://kinsta.com/knowledgebase/what-is-node-js/">Kinsta</a></figcaption>
-</figure>
-</div>
-
+:no_bell: *Im Rest dieses Kurses sind einige Absätze mit diesem Symbol gekennzeichnet. Dies bedeutet nicht unbedingt, dass das Thema unwichtig ist, sondern vielmehr, dass es nicht im Detail behandelt wird.*
 
 # Node-RED
 <figure>
-    <img src="./img/LogoNode-RED.png"
-         alt="LogoNode-RED"
-         width="100">
+  <img src="./img/LogoNode-RED.png"
+     alt="LogoNode-RED"
+     width="100">
   <figcaption>Low-Code-Programmierung für ereignisgesteuerte Anwendungen <a href="https://nodered.org/">nodered.org</a></figcaption>
 </figure>
 
 
 ## Eine kurze Einführung in Node-RED
 
-Node-RED ist ein Werkzeug zum Erstellen von Internet-of-Things-(IoT-)Anwendungen mit Fokus auf die Vereinfachung der **Verdrahtung** von Codeblöcken zur Ausführung von Aufgaben. Es nutzt einen visuellen Programmieransatz, der es Entwicklern ermöglicht, vordefinierte Codeblöcke zu verbinden, die als **Knoten** bekannt sind, um eine Aufgabe auszuführen. Die verbundenen Knoten, normalerweise eine Kombination aus Eingabeknoten, Verarbeitungsknoten und Ausgabeknoten, bilden zusammen einen **Fluss**.
+Node-RED ist ein Werkzeug zum Erstellen von Internet-der-Dinge-Anwendungen (IoT) mit dem Schwerpunkt auf die Vereinfachung der **Verkabelung** von Codeblöcken zur Erfüllung von Aufgaben. Es verwendet einen visuellen Programmieransatz, der es Entwicklern ermöglicht, vordefinierte Codeblöcke, bekannt als **Knoten**, zu verbinden, um eine Aufgabe auszuführen. Die verbundenen Knoten, typischerweise eine Kombination aus Eingabeknoten, Verarbeitungsknoten und Ausgabeknoten, bilden zusammen einen **Fluss**.
 
-Ursprünglich als Open-Source-Projekt bei IBM Ende 2013 entwickelt, um ihre Anforderung zu erfüllen, Hardware und Geräte schnell mit Webdiensten und anderer Software zu verbinden - eine Art Klebstoff für das IoT - hat es sich schnell zu einem universellen IoT-Programmierwerkzeug entwickelt. Wichtig ist, dass Node-RED schnell eine umfangreiche und wachsende Benutzerbasis und eine aktive Entwickler-Community etabliert hat, die neue Knoten beitragen, die es Programmierern ermöglichen, Node-RED-Code für eine Vielzahl von Aufgaben wiederzuverwenden.
+Node-RED wurde ursprünglich Ende 2013 als Open-Source-Projekt bei IBM entwickelt, um den Bedarf zu erfüllen, Hardware und Geräte schnell mit Webdiensten und anderen Softwareanwendungen zu verbinden – als eine Art „Klebstoff" für das IoT. Es hat sich schnell zu einem universellen IoT-Programmierungswerkzeug entwickelt. Node-RED hat schnell eine große und wachsende Benutzerbasis sowie eine aktive Entwickler-Community entwickelt, die neue Knoten beiträgt, die es Programmierern ermöglichen, Node-RED-Code für eine Vielzahl von Aufgaben wiederzuverwenden.
 
-Obwohl Node-RED ursprünglich für die Arbeit mit dem Internet der Dinge konzipiert war, ist es mittlerweile für eine Reihe von Anwendungen nützlich geworden und wird jetzt als eines der führenden Low-Code-/No-Code-Visualentwicklungswerkzeuge betrachtet.
+### Node.JS
+Node-RED basiert auf einer [Node.js](https://nodejs.org/) Umgebung.
 
-> Hier bei HEVS verwenden wir Node-RED nach Tests und Validierung als Benutzeroberfläche für einen Prototyp zur Wasserfiltration und setzen es als Benutzeroberfläche für alle Labore in der Automatisierung ein.
+Node.js ist eine serverseitige JavaScript-Laufzeitumgebung, die auf Googles [V8-Motor](#was-ist-die-javascript-v8-engine-) aufgebaut ist. Sie ermöglicht die Ausführung von JavaScript-Code außerhalb eines Browsers, hauptsächlich zur Erstellung schneller und skalierbarer Netzwerkanwendungen.
+
+### Hauptunterschiede zwischen SPS und Python
+
+| Aspekt                | Node.js (JavaScript)         | SPS (Ladder, ST, etc.)         | Python                        |
+|-----------------------|-----------------------------|-------------------------------|-------------------------------|
+| **Paradigma**         | Ereignisgesteuert, asynchron    | Zyklisch, Echtzeit           | Imperativ, objektorientiert      |
+| **Ausführung**         | Interpretiert, nicht blockierend    | Echtzeit, sequenziell         | Interpretiert, synchron         |
+| **Typische Verwendung** | Webserver, IoT, API      | Industrielle Steuerung, Maschinen  | Skripte, Data Science, Web    |
+| **E/A-Verwaltung**   | Asynchron (Callbacks, Promises) | Direkt, über physische Ein-/Ausgänge | Synchron oder asynchron |
+| **Sprache**           | JavaScript                  | IEC 61131-3 Sprachen           | Python                        |
+
+### Wichtigste Punkte
+
+- **Node.js** ist für die Verarbeitung vieler Ereignisse parallel konzipiert, z. B. Netzwerkverbindungen und Benutzeroberfläche, dank seiner nicht blockierenden Event-Loop.
+- **SPS** funktioniert durch zyklisches Scannen des Programms, was **Echtzeitreaktivität** garantiert, aber die Verwaltung komplexer Mehrfachereignisse einschränkt.
+- **Python** ist leicht zu erlernen, standardmäßig synchron, kann aber auch asynchron arbeiten.
+
+**Zusammenfassend**: Node.js ist besonders geeignet für Anwendungen, die die gleichzeitige Verwaltung vieler Verbindungen oder Ereignisse erfordern, während SPS für die Echtzeitsteuerung optimiert sind und Python für Vielseitigkeit und schnelle Entwicklung geeignet ist.
+
+### Konzept der ereignisgesteuerten Programmierung (Event Driven)
+
+<div align="center">
+
+```mermaid
+flowchart TD
+  A[Ereignis tritt auf<br> Klick, SPS-Signal...] --> B[Ereignishandler aufgerufen]
+  B --> C[Ausführung der zugeordneten Logik]
+  C --> D[Ergebnis angezeigt<br/> UI aktualisiert, SPS-Befehl gesendet]
+  D --> E[Warten auf neues Ereignis]
+  E -.-> A
+
+  style A fill:#f9f,stroke:#333,stroke-width:2px
+  style B fill:#bbf,stroke:#333,stroke-width:2px
+  style C fill:#bfb,stroke:#333,stroke-width:2px
+  style D fill:#ffb,stroke:#333,stroke-width:2px
+  style E fill:#eee,stroke:#333,stroke-width:2px
+```
+</div>
+
+Dieses Diagramm zeigt das Prinzip der ereignisgesteuerten Programmierung: Das System wartet auf Ereignisse, löst spezifische Handler aus, führt die Logik aus und kehrt dann in den Wartezustand zurück.
+
+### Ereignisgesteuerte Programmierung verstehen
+
+Ereignisgesteuerte Programmierung ist ein Paradigma, bei dem der Ablauf eines Programms durch Ereignisse wie Benutzeraktionen, Systembenachrichtigungen oder Datenverfügbarkeit bestimmt wird. In Node.js ermöglicht dieses Modell Entwicklern, asynchronen und nicht blockierenden Code zu schreiben, der auf Ereignisse reagiert, wenn sie auftreten, ohne auf den Abschluss blockierender Operationen zu warten.
+
+### Events und Event Emitters
+
+- **Ereignisse**: Ereignisse sind Signale, die anzeigen, dass eine bestimmte Aktion oder Zustandsänderung aufgetreten ist. In Node.js werden Ereignisse durch Zeichenketten, **Ereignisnamen** und zugeordnete Daten, **Ereignis-Payload**, dargestellt.
+- **Ereignisemitter**: Ein Ereignisemitter ist ein Objekt, das Ereignisse ausstrahlen kann. Er bietet Methoden zum Registrieren von Ereignislistenern, **Event Listener**, **Callbacks** für spezifische Ereignisse und zum Auslösen dieser, wenn entsprechende Ereignisse auftreten.
+
+Ereignisgesteuerte Programmierung ermöglicht die Synchronisierung mehrerer Ereignisse und vereinfacht das Programm maximal. Die Grundkomponenten der ereignisgesteuerten Programmierung sind:
+
+- Eine Rückruffunktion, **Callback**, genannt Ereignishandler wird aufgerufen, wenn ein Ereignis ausgelöst wird;
+- Eine Event-Loop, **Event Loop**, die auf Ereignisauslöser, **Trigger**, wartet und den entsprechenden Ereignishandler, **Event Handler**, aufruft.
+
+<div align="center">
+  <img src="./img/geeksforgeeks_EventEmitter.png" alt="OPC_UA_Netilion_solution-1" width="400">
+  <p><em>Event in Node.js, Quelle: https://www.geeksforgeeks.org</em></p>
+</div>   
+
+### Vorteile der ereignisgesteuerten Programmierung
+
+- **Flexibilität**: Es ist einfacher, Codeabschnitte nach Bedarf zu ändern.
+- **Anpassung an grafische Benutzeroberflächen**: Der Benutzer kann Tools (wie Radiobuttons usw.) direkt aus der Werkzeugleiste auswählen.
+- **Ermöglicht interaktivere Programme**: Ereignisgesteuerte Programmierung wird in fast allen modernen UI-Anwendungen verwendet.
+- **Verwendung von Hardware-Interrupts**: Sie können über Hardware-Interrupts realisiert werden und reduzieren damit den Energieverbrauch des Computers.
+- **Unterstützung für Sensoren und andere Hardware**: Ereignisgesteuerte Programmierung vereinfacht die Kommunikation zwischen Sensoren und anderer Hardware sowie Software.
+
+### Nachteile der ereignisgesteuerten Programmierung
+- **Komplex**: Einfache Programme werden unnötig komplex.
+- **Weniger logisch und offensichtlich**: Der Programmablauf ist in der Regel weniger logisch und offensichtlich.
+- **Fehler schwer zu finden**: Das Debuggen eines ereignisgesteuerten Programms ist komplex.
+- **Blockierung**: Komplexe Blockierung von Operationen.
+
+> Zusammenfassend gilt: **Sehr gut geeignet für einfache Anwendungen, wie die Steuerung kleiner Maschinen, insbesondere der Roboter im Automatisierungslabor oder Testbänke mit wenigen Dutzend Modulen**. Wir haben keine Erfahrung oder Anwendungsfälle für großflächige Systeme.
+
+### Was ist die JavaScript-Engine V8?
+
+V8 ist eine JavaScript-Ausführungs-Engine, die von Google entwickelt wurde und hauptsächlich in Chrome-Browsern und Node.js verwendet wird. Ihre Aufgabe besteht darin, JavaScript-Code in vom Prozessor verständliche Maschinenanweisungen zu übersetzen, was die schnelle Ausführung von JavaScript außerhalb eines Browsers ermöglicht.
+
+### Wichtigste Punkte für einen Studierenden, der Java, Python und IEC 61131-3 kennt:
+- **Vergleichbar mit der JVM für Java**: Wie die Java Virtual Machine,
+  - JVM führt Java-Bytecode aus,
+  - V8 führt JavaScript-Code aus.
+- **Just-In-Time Compilation, JIT**: V8 kompiliert JavaScript *im Handumdrehen* zu nativem Maschinencode, was die Leistung erheblich verbessert.
+- **In Node.js verwendet**: Dank V8 ermöglicht Node.js die Ausführung von JavaScript auf der Serverseite, ähnlich wie Python mit seinem Interpreter.
+- **Browser-unabhängig**: V8 kann in anderen Anwendungen integriert werden, um eine JavaScript-Execution-Engine bereitzustellen, **nicht nur in Browsern**.
+
+> Zusammenfassend: V8 ist für JavaScript das, was die JVM für Java ist: ein Motor, der die effiziente Ausführung der Sprache auf verschiedenen Plattformen ermöglicht.
+
+---
+
 
 ## Die Node-RED-Oberfläche
 
@@ -551,6 +512,8 @@ In einem Link-Eingang können Sie Nachrichten von anderen Links auswählen, die 
 
 #### Link-Aufruf
 
+:no_bell: *pour information seulement*
+
 Ruft einen Fluss auf, der mit einem Link-Eingabe-Knoten beginnt und gibt die Antwort weiter.
 
 <div style="text-align: left;">
@@ -821,70 +784,6 @@ Im obigen Beispiel wird der `Schalter` abhängig vom Wert von `Nutzlast` eine `N
 
 Der Knoten leitet eine Nachricht an alle Ausgaben weiter, die den Regeln entsprechen. Er kann aber auch so konfiguriert werden, dass er die Regelauswertung stoppt, wenn er eine Übereinstimmung findet.
 
-## Sequenz-Knoten
-:no_bell: *nur zur Information*
-
-Knoten, mit denen Sie auf die Sequenz übertragener Nachrichten wirken und so den Fluss beeinflussen können.
-
-### Split-Knoten
-
-<figure>
-    <img src="./img/Node-split.png"
-         alt="Bild verloren: Node-split.png"
-         width="200">
-  <figcaption>Split-Knoten</figcaption>
-</figure>
-
-### Join-Knoten
-
-<figure>
-    <img src="./img/Node-join.png"
-         alt="Bild verloren: Node-join.png"
-         width="200">
-  <figcaption>Join-Knoten</figcaption>
-</figure>
-
-### Sort-Knoten
-
-<figure>
-    <img src="./img/Node-sort.png"
-         alt="Bild verloren: Node-sort.png"
-         width="200">
-  <figcaption>Sort-Knoten</figcaption>
-</figure>
-
-### Batch-Knoten
-
-<figure>
-    <img src="./img/Node-batch.png"
-         alt="Bild verloren: Node-batch.png"
-         width="200">
-  <figcaption>Batch-Knoten</figcaption>
-</figure>
-
-
- Beispiele:
-
-Ermöglicht das Aufteilen einer eingehenden Nachricht in mehrere ausgehende Nachrichten.
-
-Ermöglicht das Gruppieren mehrerer eingehender Nachrichten in eine einzelne ausgehende Nachricht.
-
-## Netzwerk-Knoten
-:no_bell: *nur zur Information*
-
-Knoten zur Verwaltung des Netzwerkaspekts des Flusses durch Konfiguration von HTTP-Anfragen, Websockets und TCP- oder UDP-Nachrichten. Diese Kategorie umfasst auch MQTT-Knoten (Mosquitto), falls Sie diese installieren.
-
-## Parser
-Knoten zur Verarbeitung formatierter Daten und Extraktion von JavaScript-Objekten, die von anderen Knoten verwendet werden können, oder zur Formatierung eines JavaScript-Objekts in ein gewünschtes Format. Diese Knoten können HTML-, CSV-, JSON-, XML- oder YAML-Formatierung verarbeiten.
-
-> Wird in einem nachfolgenden Modul entwickelt
-
-## Speicherung
-Knoten zum Speichern von Nachrichtendaten in Dateien. Sie ermöglichen auch die Überwachung von Dateien auf Änderungen.
-Diese Kategorie umfasst auch Influxdb- und PostgreSQL-Knoten, falls Sie diese installieren.
-
-Das i-Menü bietet detaillierte Erklärungen für jeden dieser Knoten.
-> Wird in einem nachfolgenden Modul entwickelt
 
 ---
 
@@ -1008,104 +907,7 @@ So:
 {"name": "Alice", "age": 30}
 ```
 
-### Ändern von Nachrichteneigenschaften
-
-Eine häufige Aufgabe in einem Fluss ist es, die Eigenschaften einer Nachricht zu ändern, wenn sie zwischen Knoten übertragen wird. Beispielsweise kann das Ergebnis einer HTTP-Anfrage ein Objekt mit vielen Eigenschaften sein, von denen nur einige benötigt werden.
-
-Es gibt zwei Hauptknoten zum Ändern einer Nachricht: den Funktions-Knoten und den Änderungs-Knoten.
-
-Der Funktions-Knoten ermöglicht es Ihnen, beliebigen JavaScript-Code für die Nachricht auszuführen. Dies gibt Ihnen vollständige Flexibilität, was Sie mit der Nachricht tun, erfordert aber Vertrautheit mit JavaScript und ist für viele einfache Fälle unnötig. Weitere Informationen zum Erstellen von Funktionen finden Sie hier.
-
-Der Änderungs-Knoten bietet viele Funktionen ohne Code-Schreiben in JavaScript. Er kann nicht nur Nachrichteneigenschaften ändern, sondern auch auf Fluss- und Global-Kontext zugreifen.
-
-Er bietet vier grundlegende Operationen:
-
-    Eine Eigenschaft auf einen Wert setzen,
-    Eine Zeichenketten-Eigenschaft durch Suchen und Ersetzen ändern,
-    Eine Eigenschaft löschen,
-    Eine Eigenschaft verschieben.
-
-Für die Set-Operation identifizieren Sie zunächst die Eigenschaft, die Sie setzen möchten, und dann den Wert, den sie haben soll. Dieser Wert kann entweder ein fest codierter Wert, wie eine Zeichenkette oder Zahl, oder einer anderen Nachrichts- oder Fluss-/Global-Kontext-Eigenschaft sein. Es unterstützt auch die Verwendung der JSONata-Ausdruckssprache zur Berechnung eines neuen Wertes.
-
-Sie können zum Beispiel die Fähigkeit des Debug-Knoten nutzen, den Pfad des Elements einer Nachricht zu ermitteln, und den Pfad direkt in das Feld 'to' einfügen, wobei msg. aus der Liste ausgewählt ist. Dadurch wird dann msg.payload auf den Wert von msg.payload.Phone[2].type gesetzt.
-
-
-Ein weiteres Beispiel, die Verwendung eines JSONata-Ausdrucks, besteht darin, eine Temperatur aus msg.payload.temperature von Fahrenheit nach Celsius umzuwandeln und das Ergebnis in einer neuen Nachrichteneigenschaft msg.payload.temperature_c zu speichern.
-
-### Nachrichtensequenzen
-
-Eine Nachrichtensequenz ist eine geordnete Reihe von Nachrichten, die irgendwie miteinander verbunden sind. Beispielsweise kann der Split-Knoten eine einzelne Nachricht, deren Nutzlast ein Array ist, in eine Nachrichtensequenz umwandeln, wobei jede Nachricht eine Nutzlast hat, die einem Element des Arrays entspricht.
-
-Verstehen msg.parts
-
-Jede Nachricht in einer Sequenz hat eine Eigenschaft namens msg.parts. Dies ist ein Objekt, das Informationen darüber enthält, wie die Nachricht in die Sequenz passt. Es besitzt die folgenden Eigenschaften:
-
-msg.parts.id
-    ein eindeutiger Identifikator für die Sequenz
-msg.parts.index
-    die Position der Nachricht in der Sequenz
-msg.parts.count
-    falls bekannt, die Gesamtzahl der Nachrichten in der Sequenz
-
-Hinweis: Das Parts-Array kann zusätzliche Metadaten zur Sequenz enthalten. Beispielsweise fügt der Split-Knoten auch Informationen an, die vom Join-Knoten zum Wiederzusammensetzen der Sequenz verwendet werden können. Siehe die Dokumentation des Split-Knotens.
-
-### Arbeiten mit Sequenzen
-
-<figure>
-    <img src="./img/NodeRedSequence.png"
-         alt="Bild verloren: NodeRedSequence.png"
-         width="150">
-  <figcaption>Sequenzen</figcaption>
-</figure>
-
-Es gibt eine Reihe von Kern-Knoten, die über Nachrichtensequenzen hinweg arbeiten können:
-
-#### Split
-
-Wandelt eine einzelne Nachricht in eine Nachrichtensequenz um.
-
-Das genaue Verhalten des Knotens hängt vom Typ von msg.payload ab:
-
-Zeichenkette/Puffer
-    die Nachricht wird mit dem angegebenen Zeichen (Standard: `\n`), der Puffersequenz oder mit festen Längen aufgeteilt.
-Array
-    die Nachricht wird in einzelne Array-Elemente oder Arrays mit fester Länge aufgeteilt.
-Objekt
-    eine Nachricht wird für jedes Schlüssel-Wert-Paar des Objekts gesendet.
-
-#### Join
-
-Wandelt eine Nachrichtensequenz in eine einzelne Nachricht um.
-
-Der Knoten bietet drei Betriebsmodi:
-
-Automatisch
-    versucht, die Aktion eines vorherigen Split-Knotens umzukehren
-Manuell
-    ermöglicht eine bessere Kontrolle über die Zusammenführung der Sequenz
-Reduzieren
-    Neu in 0.18 - ermöglicht, dass ein JSONata-Ausdruck für jede Nachricht in der Sequenz ausgeführt wird und das Ergebnis kumuliert wird, um eine einzelne Nachricht zu erzeugen.
-
-#### Sort
-
-Neu in 0.18
-
-Sortiert die Sequenz basierend auf einem Eigenschaftswert oder JSONata-Ausdrucksergebnis.
-
-#### Batch
-
-Erstellt neue Sequenzen von Nachrichten aus empfangenen.
-
-Der Knoten bietet drei Betriebsmodi:
-
-Anzahl der Nachrichten
-    gruppiert Nachrichten in Sequenzen einer bestimmten Länge. Die Überlap-Option gibt an, wie viele Nachrichten am Ende einer Sequenz am Anfang der nächsten Sequenz wiederholt werden sollen.
-Zeitintervall
-    gruppiert Nachrichten, die in dem angegebenen Intervall ankommen. Wenn keine Nachrichten in dem Intervall ankommen, kann der Knoten optional eine leere Nachricht senden.
-Sequenzen zusammenführen
-    erstellt eine Nachrichtensequenz durch Zusammenführung eingehender Sequenzen. Jede Sequenz muss eine msg.topic-Eigenschaft haben, um sie zu identifizieren. Der Knoten wird mit einer Themen-Wertliste konfiguriert, um die Reihenfolge zusammengeführter Sequenzen anzugeben.
-
-## JSONata-Ausdruck?
+---
 
 ## Ihre Aufgabe
 Installieren Sie Node-RED auf Ihrem Laptop. Verwenden Sie diesen Link für die Anleitung zum Verfahren: [Ausführen von Node-RED lokal](https://nodered.org/docs/getting-started/local)
@@ -1145,7 +947,5 @@ Das Herunterladen und Verwalten von Paketen von NPM erfolgt über die Befehlszei
 ---
 
 # [Dashboard 2.0 Benutzeroberfläche](UserInferface_DE.md)
-
-
 
 <!-- Ende von README_DE.md -->
