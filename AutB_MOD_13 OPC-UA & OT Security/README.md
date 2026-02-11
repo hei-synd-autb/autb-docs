@@ -15,27 +15,25 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 Keywords: **OPC-UA, OT**.
 
 
-## Contexte
-Dans un cas simple, et c'est le cas pour une grande partie des systèmes IACS, industrial automation and control systems, le coeur sera composé d'un PLC, qui peut fonctionner en parfaite autonomie.
 
-Dans des cas plus complexe, le PLC devra interagir avec un utilisateur, humain ou pas. Les cas les plus courants sont:
+## Contexte
+Dans un cas simple, et c'est le cas pour une grande partie des systèmes IACS, industrial automation and control systems, le cœur sera composé d'un PLC, qui peut fonctionner en parfaite autonomie.
+
+Dans des cas plus complexes, le PLC devra interagir avec un utilisateur, humain ou pas. Les cas les plus courants sont :
 -   Statut de la machine.
 -   Diagnostic de la machine.
 -   Modification des paramètres de la machine.
 -   Activation manuelle de certains éléments de la machine.
-
-
 
 ## Objectif
 -   Fournir les bases d'un outil qui permette simplement de :
     -   Lire des informations depuis un PLC et les afficher sur une interface graphique.
     -   Lire, modifier, enregistrer et restaurer un set de paramètres.
     -   Enregistrer une série d'actions et d'événements, qu'ils proviennent du PLc ou de l'interface graphique.
-
 -   Comprendre le concept de base de la programmation par événement.
--   Savoir ce qu'est OPU-UA et à quoi il est destiné.
+-   Savoir ce qu'est OPC-UA et à quoi il est destiné.
     -   Communication entre différentes plateforme
-    -   Dépendance à Ethernet et par extension comprendre l'intérêt de [Etheret APL](https://www.ethernet-apl.org/).
+    -   Dépendance à Ethernet et par extension comprendre l'intérêt de [Ethernet APL](https://www.ethernet-apl.org/).
 
 ## A savoir
 -   Les concepts de base de l'OPC-UA
@@ -46,7 +44,7 @@ Dans des cas plus complexe, le PLC devra interagir avec un utilisateur, humain o
     -   Orienté objet, il inclut des mécanismes de découverte du réseau.
     -   Economie de bande passante grâce au mécanisme de communication par abonnement, subscribe.
     -   Inconvénient majeur: **en constante évolution, les fonctionnalités disponibles peuvent beaucoup varier d'un fournisseur de solution à l'autre**.
-- Qu'est ce que Node-RED et à quoi peut-on l'utiliser.
+- Qu'est-ce que Node-RED et à quoi peut-on l'utiliser.
   - Les caractéristiques de base de la programmation pour événement.
 
 
@@ -61,7 +59,7 @@ L'OPC Classic a été développé à partir de 1996 par la fondation OPC pour st
 
 ## User Interface
 Il est relativement compliqué de présenter la partie utilisateur d'un IACS, tant celui-ci dépend de chaque fournisseur de solution.
-Il existe non seulement les fournisseurs de PLC qui complètent leur offre avec des outils intégrés de visualisation, mais il existe aussi des fournisseur qui ne proposent que des outils de visualisation. Ces outils peuvent être extrèmement complexes car il sont conçus non seulement pour piloter une simple machine, mais une usine entière.
+Il existe non seulement les fournisseurs de PLC qui complètent leur offre avec des outils intégrés de visualisation, mais il existe aussi des fournisseurs qui ne proposent que des outils de visualisation. Ces outils peuvent être extrêmement complexes car ils sont conçus non seulement pour piloter une simple machine, mais une usine entière.
 
 ### SCADA
 <div align="center">
@@ -86,6 +84,23 @@ Ces éléments travaillent ensemble pour permettre la supervision, le contrôle 
   <img src="./img/simatic-wincc-v8-visual-landscape_small.webp" alt="simatic-wincc-v8-visual-landscape_small" width="700">
   <p><em>Source Siemens</em></p>
 </div>
+
+### Module Type Package
+Actuellement plusieurs acteurs du monde du process voir [classes de processus industriels](../AutB_MOD_03_Interface/README.md#classes-de-processus-industriels), ABB, Siemens, Merck.... s'orientent vers la technologie **MTP**. Ci-dessous, une image tirée d'une publication de [Yokogawa](https://www.yokogawa.com).
+
+<div align="center">
+  <img src="./img/MTP_Solution_With_OPC_UA.png" 
+       alt="Yokogawa MTP Solution"
+       width="700">
+  <p><em>Yokogawa MTP Solution</em></p>
+</div>
+
+-   En quelques mots, le principe MTP s'apparente au principe des Equipments Modules que nous avons vu dans le monde ISA-88.
+Ici, on va un pas plus loin dans l'intégration. Chaque **PEA**, **P**rocess **E**quipment **A**ssembly génère automatiquement les informations nécessaires à son pilotage, y compris la partie UI/HMI. -    Il n'y a donc plus de travail nécessaire pour dessiner l'interface utilisateur de grand-papa style diagramme P&ID.
+
+-   La couche supérieure, **POL**, pour **P**rocess **O**rechstration **L**ayer coordonne les différents PEA.
+
+-   A noter: le protocole utilisé: **OPC-UA**.
 
 ## OPC-UA
 
@@ -151,9 +166,9 @@ On peut:
 -   OPC UA fournit un niveau de sécurité par échange de certificats.
 -   OPC UA fournit un service de cryptage de données.
 
-Cela ne signifie pas que OPC-UA est intrinsèquement sûr. Cela signifie qu'il sera probablement plus simple d'élaborer un concept de sécurité OT efficace en se basant uniquement sur OPC-UA, plutôt que de devoir gérer un ensemble hétéroclite de protocols.
+Cela ne signifie pas que OPC-UA est intrinsèquement sûr. Cela signifie qu'il sera probablement plus simple d'élaborer un concept de sécurité OT efficace en se basant uniquement sur OPC-UA, plutôt que de devoir gérer un ensemble hétéroclite de protocoles.
 
-> Si on compare par exemple OPC UA avec un protocol de type MODBUS-TCP, aucun des trois niveaux de sécurité mentionné ci-dessus n'est spécifié par Modbus, ce qui signifie que n'importe qui poura accéder aux données d'un appareil équipé d'un serveur Modbus.
+> Si on compare par exemple OPC UA avec un protocole de type MODBUS-TCP, aucun des trois niveaux de sécurité mentionnés ci-dessus n'est spécifié par Modbus, ce qui signifie que n'importe qui pourra accéder aux données d'un appareil équipé d'un serveur Modbus.
 
 > Des travaux sont en cours pour sécuriser le protocol Modbus.
 
@@ -252,8 +267,8 @@ Une architecture peut regrouper une multitude d'appareils qui pourront être cli
 </figure>
 </div>
 
-- Protocole ouvert et **indépendant de la plate-forme** pour la communication interprocessus et réseau.
-- Accès à Internet et communication via des pare-feu  Firewalls.
+- Protocole ouvert et **indépendant de la plateforme** pour la communication interprocessus et réseau.
+- Accès à Internet et communication via des pare-feu.
 - Mécanismes intégrés de contrôle d'accès et de sécurité au niveau du protocole et de l'application.
 - Options de mappage étendues pour les modèles orientés objet. Les objets peuvent avoir des balises, tags et des méthodes et déclencher des événements.
 - Système de type extensible pour les objets et les types de données complexes.
@@ -358,7 +373,7 @@ Les composants fondamentaux de l'architecture unifiée OPC sont les mécanismes 
 ### Transport
 Le transport définit différents mécanismes optimisés pour différents cas d'utilisation. La première version d'OPC UA définit un protocole TCP binaire optimisé pour la communication intranet haute performance ainsi qu'un mappage aux normes Internet acceptées telles que les services Web, XML et HTTP pour une communication Internet compatible avec le pare-feu. Les deux transports utilisent le même modèle de sécurité basé sur les messages connu des services Web et le modèle de communication abstrait ne dépend pas des mécanismes de transport.
 
-> OPC UA définit différents protocoles, mais surtout il intègre des mécanismes de sécurité ainsi que des mécanismes compatibles avec les pare-feu, Firewall.
+> OPC UA définit différents protocoles, mais surtout il intègre des mécanismes de sécurité ainsi que des mécanismes compatibles avec les pare-feu.
 
 
 ### Modélisation, orienté objet
@@ -438,15 +453,49 @@ A noter IEC 62451-13:2020 Norm number-Part:Year. Au moment de l’écriture de c
 
 
 # Ethernet APL, Advanced Physical Layer
-Actuellement ils reste difficile de déployer OPC-UA dans certains secteuts industriels, principalement en raison de sa dépendance à un réseaus Ethernet, couches 1 et 2. C'est une des raisons d'être de la nouvelle technologie Ethernet-APL. [Voir Industrial Network](IndustrialNetwork.md).
+Actuellement il reste difficile de déployer OPC-UA dans certains secteurs industriels, **principalement en raison de sa dépendance à un réseau Ethernet**, couches 1 et 2. C'est une des raisons d'être de la nouvelle technologie Ethernet APL. [Voir Industrial Network](IndustrialNetwork.md).
 
+<div align="center">
 <figure>
     <img src="./img/IndustrialNetwork_Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png"
-         alt="Lost image: IndustrialNetwork_Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr">
+         alt="Lost image: IndustrialNetwork_Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr"
+         width="400">
     <figcaption>Ethernet-APL</figcaption>
 </figure> 
+</div>
 
 ---
 
+# Quelques mots sur la sécurité OT.
+*La notion de sécurité OT est principalement normée par IEC 64443*.
+
+Le principe de base de la sécurité OT reprends quelques principes vus dans le [Module 9, Safety Mechatronics](../AutB_MOD_09_Mechatronics/README.md). 
+
+1.  Nous identifions un système sous considération, **SuC** ou **System Under Consideration** dans le monde IEC 62443. Par exemple, l'ensemble d'un réseau connecté via OPC-UA comme dans l'image du [MTP](#module-type-package).
+2.  Nous procédonts à une évaluation initiale des risques de cybersécurité. Qui tient compte d'une part d'une probabilité et d'un impact. Qui peut être au niveau humain, environnemental, financier ou autre.
+
+<div align="center">
+<figure>
+    <img src="./img/Risk_Matrix_Example.png"
+         alt="Lost image: IndustrialNetwork_Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr"
+         width="600">
+    <figcaption>Ethernet-APL</figcaption>
+</figure> 
+</div>
+
+3.  On découpe notre système en zones et conduites. Les conduites étant les canaux de communication entre les zones. 
+
+<div align="center">
+<figure>
+    <img src="./img/zones_and_conduits-diagram.png"
+         alt="Lost image: zones_and_conduits-diagram"
+         width="400">
+    <figcaption>Zones and Conduits Diagram, Source: https://www.sichere-industrie.de/ </figcaption>
+</figure> 
+</div>
+
+4. On effectue une évaluation détaillée des risques de cybersécurité.
+
+En fonction d'un risque. 
 
 <!-- Fin de README.md -->
