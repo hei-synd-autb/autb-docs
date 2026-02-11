@@ -471,19 +471,38 @@ Actuellement il reste difficile de déployer OPC-UA dans certains secteurs indus
 
 Le principe de base de la sécurité OT reprends quelques principes vus dans le [Module 9, Safety Mechatronics](../AutB_MOD_09_Mechatronics/README.md). 
 
-1.  Nous identifions un système sous considération, **SuC** ou **System Under Consideration** dans le monde IEC 62443. Par exemple, l'ensemble d'un réseau connecté via OPC-UA comme dans l'image du [MTP](#module-type-package).
-2.  Nous procédonts à une évaluation initiale des risques de cybersécurité. Qui tient compte d'une part d'une probabilité et d'un impact. Qui peut être au niveau humain, environnemental, financier ou autre.
+## 1 .Identifier les limites du système
+Nous identifions un système sous considération, **SuC** ou **System Under Consideration** dans le monde IEC 62443. Par exemple, l'ensemble d'un réseau connecté via OPC-UA comme dans l'image du [MTP](#module-type-package).
+<br>
+
+## 2. Identifier le risque initial
+Nous procédonts à une évaluation initiale des risques de cybersécurité. Qui tient compte d'une part d'une probabilité et d'un impact. Qui peut être au niveau humain, environnemental, financier ou autres, tels que:
+
+-   Identifier les menaces potentielles, accès non autorisé, malware, sabotage, erreur humaine.
+
+-   Identifier les vulnérabilités existantes, architecture, configuration, absence de segmentation..
+
+-   Évaluer l’impact potentiel, sécurité des personnes, production, environnement, réputation, conformité.
+
+-   Estimer le niveau de risque initial afin de définir un Target Security Level **SL-T** ou des mesures de protection adaptées.
 
 <div align="center">
 <figure>
     <img src="./img/Risk_Matrix_Example.png"
-         alt="Lost image: IndustrialNetwork_Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr"
+         alt="Lost image: Risk_Matrix_Example"
          width="600">
-    <figcaption>Ethernet-APL</figcaption>
+    <figcaption>OT security Risk Matrix Example</figcaption>
 </figure> 
 </div>
+<br>
 
-3.  On découpe notre système en zones et conduites. Les conduites étant les canaux de communication entre les zones. 
+> En claire, on définit le risque acceptable. Celui-ci peut être variable, typiquement si le risque est une perte de production, il appartient à l'entreprise de déterminer jusqu'à quel niveau une perte de production est acceptable.
+
+## 3. Identifier les zones
+On découpe notre système en zones et conduites. Les conduites étant les canaux de communication entre les zones. 
+-   Typiquement, les zones de bas niveau en organge sont celles où se situent le process et le PLC avec éventuellement un HMI pour les opérateurs.
+-   La zone rouge est celle où se situe la gestion de la production, typiquement le local de supervision d'un bâtiment de production.
+-   La zone bleue, souvent gérée par le service IT est plus dédiée à l'administration.
 
 <div align="center">
 <figure>
@@ -493,9 +512,80 @@ Le principe de base de la sécurité OT reprends quelques principes vus dans le 
     <figcaption>Zones and Conduits Diagram, Source: https://www.sichere-industrie.de/ </figcaption>
 </figure> 
 </div>
+<br>
 
-4. On effectue une évaluation détaillée des risques de cybersécurité.
+> La définition de **SL-T**, **Target** va être faite **pour chaque zone** Typiquement, une menace qui vise l'administration du site n'aura pas le même impact que la menace qui pourrait conduire à des dégats sur les personnes au niveau du site de production.
 
-En fonction d'un risque. 
+### SL, Security Level
+
+| Security Level | Type de menace visée                                 | Profil d’attaquant                                                    |
+| -------------- | ---------------------------------------------------- | --------------------------------------------------------------------- |
+| **SL-1**       | Protection contre violation accidentelle ou fortuite | Erreur humaine, action non intentionnelle                             |
+| **SL-2**       | Protection contre attaque intentionnelle simple      | Faibles ressources, compétences génériques, faible motivation         |
+| **SL-3**       | Protection contre attaque sophistiquée               | Ressources modérées, compétences IACS spécifiques, motivation modérée |
+| **SL-4**       | Protection contre attaque très sophistiquée          | Ressources étendues, compétences IACS élevées, forte motivation       |
+
+> **Pour donner un ordre de grandeur**, un IACS de type CtrlX Core correctement configuré peut permettre d'atteindre un niveau SL-2. Ce qui signifie globalement un mot de passe unique pour chaque utilisateur.
+
+<br>
+
+> Pour atteindre un niveau **SL-3**, il faudrait passer par une authentification multifacteur dans une zone particulière. Pour un **SL-4**, il faudrait passer par une authentification multifacteurs pour l'ensembles des zones et réseaux définis dans l'[ensemble du système](#1-identifier-les-limites-du-système).
+
+
+## 4. Comparer le risque initial au risque tolérable.
+
+Consiste à réaliser une analyse de risques à haut niveau en s’appuyant sur :
+
+-   Le [modèle de zones et conduits](#3-identifier-les-zones).
+
+-   Le Security Level désigné, SL-T – Target Security Level, c'est à dire le niveau de sécurité voulu pour chaque zone et conduit.
+
+-   Identifier si le risque dépasse le niveau acceptable..
+
+Si le niveau de risque dépasse le risque acceptable, dans une zone on passe au [point 5](#5-evaluation-détaillée-des-risques-de-cybersécurité), sinon on passe au [point 6](#6-documentation).
+<br>
+## 5. Evaluation détaillée des risques de cybersécurité
+En résumé :
+-   On vérifie, à un niveau global d’architecture, si la segmentation en zones et conduits permet d’atteindre le niveau de sécurité requis.
+-   Si le risque résiduel dépasse le niveau acceptable, des mesures supplémentaires doivent être définies, segmentation, firewall, authentification renforcée.
+
+> L'évaluation détaillée devient un domaine de spécialiste qui sort largement du domaine de ce cours.
+
+<br>
+
+## 6. Documentation
+Documenter les exigences, les hypothèses et les contraintes en matière de cybersécurité. Typiquement:
+
+-   Description du **SuC**, System under Consideration.
+-   Plans de zones et de conduits.
+
+## 7. Approbation du client.
+Dans le vocabulaire IEC 62443, le client devient propriétaire des actifs, ou **Asset Owner**.
+
+*Les responsables du propriétaire des actifs, garants de la sécurité, de l'intégrité et de la fiabilité du processus contrôlé par le SUC, doivent examiner et approuver les résultats de l'évaluation des risques*.
+
+> En fin de compte, c'est le responsable de l'installation finale qui doit répondre de la validité du système.
+
+# Ce qu'il faut retenir
+Il existe un, et un seul protocole de communication largement adopté dans l'automation industrielle. Hors cas particulier, ce protocole est conçu pour travailler sur les couches TCP/IP, en simplifiant, **Ethernet**, c'est [OPC-UA](https://opcfoundation.org).
+
+L'environnement OPC-UA permet de faire communiquer l'ensemble du système d'automation d'une usine. A l'échelle de l'automatistion de base, cela signifie aussi communiquer avec un module d'équipement ou Equipment Module selon ISA-88 ou encore Process Equipment Assembly dans le language MTP.
+
+Ci-dessous, un système de dosage de poudre pour remplir des futs dans l'industrie du Process. Réalisé en 2024 dans le cadre d'un travai de bachelor qui correspond bien à ce que pourrait être un Process Equipment Assembly.
+
+<div align="center">
+<figure>
+    <img src="./img/BUCSmartFlow_2_0.png"
+         alt="Lost image: BUCSmartFlow_2_0"
+         width="400">
+    <figcaption>BUCsmartFlow Travail de Bachelor de Nicolas Sterren en 2024</figcaption>
+</figure> 
+</div>
+<br>
+
+Cette machine pourrait être reliée à une infrasrtucture OPC-UA et le PLC Siemens intégré dans l'analyse de sécurité OT.
+
+> Si le PLC intégré est certifié **SL-1** ou **SL-2** selon **IEC 62443**, il sera relativement simple de procéder à une intégration. Par contre, si le processeur est une sorte de Rasberry Pi à 25 dollars  commandé sur E-Bay il n'est pas exclu qu'il soit nécessaire de recommancer tout le travail depuis le départ.
+
 
 <!-- Fin de README.md -->
