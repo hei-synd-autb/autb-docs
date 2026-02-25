@@ -2,18 +2,16 @@
   <br>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
   <br>
-  HEI-Vs Engineering School <h2>AAut Advanced Automation </h2>
+  HEI-Vs Engineering School <h2>AutB / Base Automation </h2>
   <br>
 </h1>
 
-[Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
+Author : [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 # Annex 01 /  System Engineering
 
-## Overview
-This module presents the basic tools for modeling an automation system inspired by [SysML](https://sysml.org/).
-
-It also presents a series of open-source tools that allow you to apply the theory using current tools freely available within the framework of the courses offered by HEVS.
+## Todo first
+:bulb: To load and read the course directly on VS-Code on your computer, you need Git, see [Git Install](https://git-scm.com/install/) and [Visual Studio Code](https://code.visualstudio.com/). Below you will find [the extensions used for the redaction of this course on VS-Code](#extensions-used-for-visual-studio-code).
 
 
 ## Key Takeaways
@@ -77,7 +75,9 @@ I am keeping my bet on the IEC 61131-3 code because the standard was revised in 
 
 > In object-oriented programming, we talk about **classes** and **objects**. This distinction is not really relevant in PLC programming, since there is no dynamic allocation.
 
-# Extensions used for Visual Studio Code
+---
+
+## Extensions used for Visual Studio Code
 The extensions used in this course on VScode are:
 
 - [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot): GitHub Copilot is an AI-powered code completion tool that helps you write code faster and with fewer errors by suggesting whole lines or blocks of code as you type.
@@ -91,6 +91,8 @@ The extensions used in this course on VScode are:
 - [Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid): This extension adds support for rendering Mermaid diagrams in the Markdown preview, allowing you to visualize flowcharts, sequence diagrams, and more directly within VS Code.
 
 - [Structured Text Language Support](https://marketplace.visualstudio.com/items?itemName=Serhioromano.vscode-st): This extension provides syntax highlighting, IntelliSense, and other language support features for Structured Text, a programming language used in industrial automation.
+
+---
 
 # [Mermaid Flowchart](https://mermaid.js.org/syntax/flowchart.html)
 This type of diagram should primarily be viewed as a communication diagram. It allows you to validate the functionality of a process before proceeding to coding.
@@ -222,7 +224,7 @@ Used to model the program.
 
 > In the case of the jam recipe, we can use the activity diagram to create a state diagram.
 
-# [Class Diagram](https://mermaid.js.org/syntax/classDiagram.html)
+## [Class Diagram](https://mermaid.js.org/syntax/classDiagram.html)
 This type of diagram allows us to represent the program's architecture.
 
 
@@ -339,7 +341,7 @@ This diagram illustrates an inheritance hierarchy where different types of motor
 
 - Similarly, it guarantees that whatever type of motor is implemented in the program, it must be able to receive these three commands.
 
-# [State Diagram](https://mermaid.js.org/syntax/stateDiagram.html)
+## [State Diagram](https://mermaid.js.org/syntax/stateDiagram.html)
 The state diagram contains only two types of objects. We disregard the starting black dot and the circle with a dot at the end.
 
 - The starting black dot represents the program's start during the first cycle. In some PLCs, a final cycle can be defined when the PLC is shut down. The start and end points are not states, however, they can define the initial state; below is the first state.
