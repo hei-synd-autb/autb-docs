@@ -32,6 +32,7 @@ classDiagram
 
     EM_RobotAxis *-- CM_LinearAxis
     EM_RobotAxis *-- CM_Gripper
+    EM_RobotAxis *-- CM_RotaryAxis
 
 
 ```
