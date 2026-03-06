@@ -14,7 +14,6 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 ## Table des matières
 
-
 - [Principe](#principe)
     - [Classes de processus industriels](#classes-de-processus-industriels)
         - [Pourquoi parler des types de processus ?](#pourquoi-parler-des-types-de-processus-)
