@@ -15,3 +15,5 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 This file has no definitive content, it is intended for various tests, for example for use of Copilot or Mermaid state diagram.
 
 you can write or delete anything you want to.
+
+
