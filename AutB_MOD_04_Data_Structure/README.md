@@ -28,7 +28,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 - [ARRAY, les tableaux de données](#array-les-tableaux-de-données)
     - [Définir les constantes dans: ```GVL_ARRAY_SIZE```.](#définir-les-constantes-dans-gvl_array_size)
     - [Définir les tableaux à l'aide des constantes.](#définir-les-tableaux-à-laide-des-constantes)
-    - [Utilser les boucles avec les constantes.](#utilser-les-boucles-avec-les-constantes)
+    - [Utiliser les boucles avec les constantes.](#utiliser-les-boucles-avec-les-constantes)
   - [Dans la pratique](#dans-la-pratique)
     - [Définir un tableau sous forme de type utilisateur.](#définir-un-tableau-sous-forme-de-type-utilisateur)
     - [Définir un tableau de types](#définir-un-tableau-de-types)
@@ -118,7 +118,7 @@ Le caractère **statique** des variables dans un programme rédigé en IEC-61131
 ## Data User Type
 Dans certains langages comme Matlab, un type n’est qu’une classe parmi d’autres. En langage IEC 61131-3, nous avons des types de base, par exemple INT, REAL, BOOL. Mais aussi la possibilité de définir des types composés qui correspondent aux besoins de l’utilisateur.
 
-En mathématiques, on utilise aussi des types d’une certaines manière. Si l’on veut utiliser des nombres complexes pour travailler, par exemple, avec un oscillateur RLC on pourra définir un type utilisateur particulier.
+En mathématiques, on utilise aussi des types d’une certaine manière. Si l’on veut utiliser des nombres complexes pour travailler, par exemple, avec un oscillateur RLC on pourra définir un type utilisateur particulier.
 
 ```ìecst
 (*
@@ -153,7 +153,7 @@ De manière plus générale dans la suite de ce cours, on utilisera principaleme
 
 
 # Type conversion
-Le Structured Text (du moins son compilateur) est exigeant et contraignant en terme de conversion de types. **A raison !**
+Le Structured Text (du moins son compilateur) est exigeant et contraignant en termes de conversion de types. **A raison !**
 
 Exemple
 ```iecst
@@ -173,12 +173,12 @@ Exemple
 
 > Dans les deux cas, le résultat sera ```-1```. Dans le premier cas, le compilateur met en garde contre le risque. Dans le deuxième cas, le résultat sera le même, mais on peut supposer que le programmeur en implémentant explicitement la fonction de conversion aura pris conscience du risque d'un résultat qui pourrait être non désiré.
 
-L'environnement de développement propose des fonctions de conversion pour presque toutes les figures de conversion de données. C'est une bonne pratique de les utiliser systématiquement afin d'éviter une mulitplications des **Warning**.
+L'environnement de développement propose des fonctions de conversion pour presque toutes les figures de conversion de données. C'est une bonne pratique de les utiliser systématiquement afin d'éviter une multiplication des **Warning**.
 
 > Il n'est pas rare, et même très courant de constater que certains programmes génèrent beaucoup de **Warning**. Dans la plupart des cas, aucun ne sera critique. Le risque est toutefois de laisser passer **celui qui provoquera un crash**.
 
 # ARRAY, les tableaux de données
-On peut utiliser des données de 1, 2 voir 3 dimensions.
+On peut utiliser des données de 1, 2 voire 3 dimensions.
 > Les trois dimensions sont valables pour le compilateur Codesys. Pour d'autres types de compilateurs, ceci demande à être vérifié.
 
 ```iecst
@@ -200,9 +200,9 @@ FOR iMyLoop := 1 TO 10 BY 1 DO
     i_Array[iMyLoop] := iMyLoop;
 END_FOR
 ```
-> Le code ci-dessus, si il est parfaitement correct, ne devrait pas être utilisé, il n'est pas robuste ! Une bonne pratique consiste à utiliser des ```VAR GLOBAL CONSTANT``` pour les dimensions des tableaux, celles-ci seront réutilisées dans les boucles.
+> Le code ci-dessus, s'il est parfaitement correct, ne devrait pas être utilisé, il n'est pas robuste ! Une bonne pratique consiste à utiliser des ```VAR GLOBAL CONSTANT``` pour les dimensions des tableaux, celles-ci seront réutilisées dans les boucles.
 
-> Remarquez que, même pour une tâche autant simple qu'une boucle, on évite un variable du type **i**. Il s'agit ici d'une bonne pratique, et non d'une obligation. Raison: un variable i est compliquée à identifier dans le code.
+> Remarquez que, même pour une tâche autant simple qu'une boucle, on évite un variable du type **i**. Il s'agit ici d'une bonne pratique, et non d'une obligation. Raison: une variable i est compliquée à identifier dans le code.
 
 ### Définir les constantes dans: ```GVL_ARRAY_SIZE```.
 ```iecst
@@ -225,7 +225,7 @@ VAR
 ```
 > Les constantes sont définies dans un fichier séparé ```GVL_ARRAY_SIZE``` et demandent un accès sous la forme ```GVL_ARRAY_SIZE.MY_CONSTANT```. C'est un peu plus long à écrire, mais cela améliore la robustesse et la structure du programme.
 
-### Utilser les boucles avec les constantes.
+### Utiliser les boucles avec les constantes.
 ```iecst
 FOR iMyLoop := 1 TO GVL_ARRAY_SIZE.I_MAX_SIZE BY 1 DO
     i_Array[iMyLoop] := iMyLoop;
@@ -245,7 +245,7 @@ FOR iMyLoop := 1 TO GVL_ARRAY_SIZE.I_MAX_SIZE BY 1 DO
     END_FOR
 END_FOR
 ```
-> Attention au **temps de cylce** ! Une boucle **trop longue** peut provoque le **crash** du PLC. Si la marge est relativement élévé pour un processeur puissant, la limite peut être rapidement atteinte sur un PLC d'entrée de gamme.
+> Attention au **temps de cycle** ! Une boucle **trop longue** peut provoquer le **crash** du PLC. Si la marge est relativement élevée pour un processeur puissant, la limite peut être rapidement atteinte sur un PLC d'entrée de gamme.
 
 ## Dans la pratique
 Je n'utiliser presque jamais de tableaux à plusieurs dimensions, je privilégie les ```STRUCT``` qui sont développés un peu plus loin dans le cours.
@@ -290,7 +290,7 @@ Le **DUT**, **Data User Type**, en particulier la structure **[STRUCT](#structur
 > Un autre outil fondamental de la programmation orientée objet et l'utilisation du language **UML**, dans notre cas nous disposons du diagramme de classe éditable facilement avec **Mermaid Class Diagram**, voir un [exemple ci-dessous](#instanciation).
 
 # Data User Type, DUT
-Quel que soit l'environnement dans lequel est intégré un compilateur Codesys, on a la posibilité de sélection un **Add DUT**
+Quel que soit l'environnement dans lequel est intégré un compilateur Codesys, on a la possibilité de sélectionner un **Add DUT**
 - Structure
 - Enumeration
 - Alias
@@ -304,7 +304,7 @@ Quel que soit l'environnement dans lequel est intégré un compilateur Codesys, 
 
 # Structure
 Une structure permet d'organiser les variables par sujet de manière hiérarchiques.
-Contrairement à un **ARRAY** qui est une liste d'objets identiques, un structure peut contenir des variables différentes.
+Contrairement à un **ARRAY** qui est une liste d'objets identiques, une structure peut contenir des variables différentes.
 
 ## Forme simple d'une structure pour un axe.
 ### Définition de la structure
@@ -325,7 +325,7 @@ END_TYPE
 
 ### Valeur initiale
 
-> Si la grandeur est pertinente il est conseillé de donner une grandeur intiale. Une information du type **'Axe de base'** sera préférable à **' '**.
+> Si la grandeur est pertinente il est conseillé de donner une grandeur initiale. Une information du type **'Axe de base'** sera préférable à **' '**.
 
 ```iecst
 TYPE ST_AxisInfo :
@@ -424,7 +424,7 @@ STRUCT
 END_STRUCT
 END_TYPE
 ```
-Ci dessous, la représentation UML de ```ST_AxisInfo``` **composé** avec ```ST_AxisLimits```.
+Ci-dessous, la représentation UML de ```ST_AxisInfo``` **composé** avec ```ST_AxisLimits```.
 
 ```mermaid
 classDiagram
@@ -462,7 +462,7 @@ classDiagram
 
 > La définition des structures doit être une des premières étapes de tout programme PLC.
 - Cela permet de fixer rapidement la structure du programme. *Phase de spécification*
-- Cela accélére la phase de codage *Gain en productivité*
+- Cela accélère la phase de codage *Gain en productivité*
 - Cela simplifie la lisibilité du programme *Phase de maintenance*.
 
 ## Structure Extends
@@ -497,7 +497,7 @@ classDiagram
 
 La notion de Structure Extends permet de créer une structure existante à partir d'une nouvelle. En termes de programmation Orientée Objet, **OOP**, on parle d'héritage.
 
-Le but de cours n'est pas de rentrer dans les subtilités de l'approche orientée objet, mais d'en mentionner certaines caractéristiques quand elle facilite un programmation **Classique**.
+Le but de cours n'est pas de rentrer dans les subtilités de l'approche orientée objet, mais d'en mentionner certaines caractéristiques quand elle facilite une programmation **Classique**.
 
 ### Définition de la structure
 Dans l'exemple ci-dessous, le programmeur veut utiliser la structure ```ST_AxisInfo```, mais il veut simplement plus d'entrées à disposition et les ajoute à une nouvelle structure ```ST_AxisInfo_MoreInputs```.
@@ -514,7 +514,7 @@ END_TYPE
 
 
 ### Codage de structures avec Extends
-L'utilisation de Extends ne change strictement rien en termes de codage.
+L'utilisation de ``Extends`` ne change strictement rien en termes de codage.
 
 ```iecst
 VAR
@@ -723,17 +723,17 @@ TYPE EN_TrafficLight_typ :
 END_TYPE
 ```
 
-> Noter Idle à 99, c'est que si l'Enum n'est pas initalisé, il ne fonctionnera pas.
+> Noter Idle à 99, c'est que si l'Enum n'est pas initialisé, il ne fonctionnera pas.
 
 > Noter ) ``WORD`` := Rouge; **WORD** permet ici de forcer le type de base à utiliser pour l'Enum, par exemple pour un traitement numérique ou logique.
 
-> Noter qu'il est possible de fixer une valeur d'initilisation pour l'Enum. Ici: **Rouge**.
+> Noter qu'il est possible de fixer une valeur d'initialisation pour l'Enum. Ici: **Rouge**.
 
 # Alias
 Un alias est un type de données défini par l'utilisateur qui peut être utilisé pour créer un nom alternatif pour un type de données ou un bloc fonctionnel.
 
-Example:
-*On délare une chaine de 50 caractères *ascii**
+Exemple:
+*On déclare une chaine de 50 caractères *ascii**
 
 ```iecst
 TYPE T_Message : STRING[50];
@@ -868,7 +868,7 @@ END_VAR
 ## Exercice 1, Min/Max/RMS of ioBuffer
 Nous avons en variable globale un buffer de 50 valeurs venant d'un convertisseur 16 bits, valeurs positives ou négatives.
 La taille du buffer est fixée par une constante.
-A chaque cycle, le système fait l'aquisition de 50 valeurs, sampling rate 50 [kHz] avec un bus temps réel à 1 [kHz].
+A chaque cycle, le système fait l'acquisition de 50 valeurs, sampling rate 50 [kHz] avec un bus temps réel à 1 [kHz].
 A chaque cycle, nous voulons obetenir:
 -   ```iMinSampleValue```, la grandeur minimum.
 -   ```iMaxSampleValue```, la grandeur maximum.
@@ -957,7 +957,7 @@ L'axe X était instancié sous la forme suivante:
  fbStopAxis_X(ioAxisInfo := stAxisInfo);
 ```
 
-[Solution Exerice 4](#solution-exerice-4-var_in_out-with-extends)
+[Solution Exercice 4](#solution-exerice-4-var_in_out-with-extends)
 
 # Solution des exercices
 
@@ -1001,11 +1001,11 @@ FOR iBufferLoop := 1 TO GVL_IO_BUFFER.IO_BUFFER_SIZE BY 1 DO
     iSumRMSValue := iSumRMSValue + (GVL_IO_BUFFER.ioBuffer[iBufferLoop] * GVL_IO_BUFFER.ioBuffer[iBufferLoop]);
 END_FOR
 
-// Values with 16 bits suppose no informatino lost
+// Values with 16 bits suppose no information lost
 iRMSValue := LREAL_TO_INT(SQRT(LINT_TO_LREAL(iSumRMSValue/GVL_IO_BUFFER.IO_BUFFER_SIZE)));
 ```
 ### Test
-Avec tous les échantillons à 0, sauf:
+Avec tous les échantillons à 0, sauf :
 - un échantillon à 50
 - un échantillon à -50
 
