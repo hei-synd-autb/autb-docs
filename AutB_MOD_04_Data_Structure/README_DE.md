@@ -70,24 +70,25 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
     - [Ein Typ für die Konvertierung von zwei Modbus-Wörtern 2 Float](#ein-typ-für-die-konvertierung-von-zwei-modbus-wörtern-2-float)
   - [Big Endian gegen Little Endian](#big-endian-gegen-little-endian)
     - [Endianness](#endianness)
-- [Übungen](#übungen)
-  - [Übung 1, Min/Max/RMS von ioBuffer](#übung-1-minmaxrms-von-iobuffer)
-  - [Übung 2, State Machine](#übung-2-state-machine)
-    - [Einschränkungen:](#einschränkungen)
-  - [Übung 3, Modbus avec ```Endianess```](#übung-3-modbus-avec-endianess)
-  - [Übung 4, VAR\_IN\_OUT with Extends](#übung-4-var_in_out-with-extends)
-- [Lösung der Übungen](#lösung-der-übungen)
-  - [Lösung Übung 1, Min/Max/RMS of ioBuffer](#lösung-übung-1-minmaxrms-of-iobuffer)
-    - [Codage](#codage)
-    - [Test](#test)
-  - [Lösung Übung  2, State Machine](#lösung-übung--2-state-machine)
-    - [Codage](#codage-1)
-  - [Lösung Übung 3, Modbus mit ```Endianess```](#lösung-übung-3-modbus-mit-endianess)
-    - [Liste der Konstanten in der Datei ``GVL_Modbus``.](#liste-der-konstanten-in-der-datei-gvl_modbus)
-    - [Definition von Gewerkschaft ```U_SolveModbus```](#definition-von-gewerkschaft-u_solvemodbus)
-    - [Definition der allgemeinen Struktur](#definition-der-allgemeinen-struktur)
-    - [Program](#program)
-  - [Lösung Übung 4, VAR\_IN\_OUT with Extends](#lösung-übung-4-var_in_out-with-extends)
+  - [Übungen](#übungen)
+    - [Übung 1, Min/Max/RMS von ioBuffer](#übung-1-minmaxrms-von-iobuffer)
+    - [Übung 2, State Machine](#übung-2-state-machine)
+      - [Einschränkungen:](#einschränkungen)
+    - [Übung 3, Modbus avec ```Endianess```](#übung-3-modbus-avec-endianess)
+    - [Übung 4, VAR\_IN\_OUT with Extends](#übung-4-var_in_out-with-extends)
+  - [Lösung der Übungen](#lösung-der-übungen)
+    - [Lösung Übung 1, Min/Max/RMS of ioBuffer](#lösung-übung-1-minmaxrms-of-iobuffer)
+      - [Codage](#codage)
+      - [Test](#test)
+    - [Lösung Übung  2, State Machine](#lösung-übung--2-state-machine)
+      - [Enum](#enum)
+      - [Codage](#codage-1)
+    - [Lösung Übung 3, Modbus mit ```Endianess```](#lösung-übung-3-modbus-mit-endianess)
+      - [Liste der Konstanten in der Datei ``GVL_Modbus``.](#liste-der-konstanten-in-der-datei-gvl_modbus)
+      - [Definition von Gewerkschaft ```U_SolveModbus```](#definition-von-gewerkschaft-u_solvemodbus)
+      - [Definition der allgemeinen Struktur](#definition-der-allgemeinen-struktur)
+      - [Program](#program)
+    - [Lösung Übung 4, VAR\_IN\_OUT with Extends](#lösung-übung-4-var_in_out-with-extends)
 
 # Präambel
 ## Tippen
@@ -836,20 +837,26 @@ END_VAR
     myByte[4] := 16#0;
 ```
 
-# Übungen
+> Directly, **TCP/IP**, like most protocols, uses **big-endian** encoding due to the standardization done by [RFC 1700](https://www.rfc-editor.org/rfc/rfc1700). 
 
-## Übung 1, Min/Max/RMS von ioBuffer
-Als globale Variable haben wir einen Puffer mit 50 Werten, die von einem 16-Bit-Konverter stammen, positive oder negative Werte.
-Die Größe des Puffers wird durch eine Konstante festgelegt.
-Bei jedem Zyklus erfasst das System 50 Werte, Abtastrate 50 [kHz] mit einem Echtzeitbus bei 1 [kHz].
-Bei jedem Zyklus möchten wir Folgendes erhalten:
-- ``iMinSampleValue``, die Mindestgröße.
-- ``iMaxSampleValue``, die maximale Größe.
-- ``iRMSSampleValue``, die RMS-Menge.
+---
+
+## Übungen
+
+### Übung 1, Min/Max/RMS von ioBuffer
+1. Als globale Variable haben wir einen Puffer mit 50 Werten, die von einem 16-Bit-Konverter stammen, positive oder negative Werte.
+1. Die Größe des Puffers wird durch eine Konstante festgelegt.
+1. Bei jedem Zyklus erfasst das System 50 Werte, Abtastrate 50 [kHz] mit einem Echtzeitbus bei 1 [kHz].
+1. Bei jedem Zyklus möchten wir Folgendes erhalten:
+   1. ``iMinSampleValue``, die Mindestgröße.
+   2. ``iMaxSampleValue``, die maximale Größe.
+   3. ``iRMSSampleValue``, die RMS-Menge.
 
 [Lösung Übung 1](#lösung-übung-1-minmaxrms-of-iobuffer)
 
-## Übung 2, State Machine
+---
+
+### Übung 2, State Machine
 Schreiben Sie die Struktur ``Enum`` und ``CASE_OF``, d. h. nur die Zustände ohne die Zustandsmaschinenübergänge unten.
 
 ```mermaid
@@ -870,16 +877,18 @@ stateDiagram-v2
     ERROR_OR_READY_STEP --> [*]
 
 ```
-### Einschränkungen:
-- Der erste Zustand hat den Wert 999.
-- Die anderen Zustände haben einen festen Wert.
-- Die Aufzählung ist vom Typ ``UDINT``.
-- Der Ausgangszustand wird auf ``WAIT_RISING_EDGE`` erzwungen
-- Die Statusvariable von ``CASE_OF`` ist ``stateCsv``.
+#### Einschränkungen:
+1. Der erste Zustand hat den Wert 999.
+1. Die anderen Zustände haben einen festen Wert.
+1. Die Aufzählung ist vom Typ ``UDINT``.
+1. Der Ausgangszustand wird auf ``WAIT_RISING_EDGE`` erzwungen
+1. Die Statusvariable von ``CASE_OF`` ist ``stateCsv``.
 
 [Lösung Übung 2](#lösung-übung-2-state-machine)
 
-## Übung 3, Modbus avec ```Endianess```
+---
+
+### Übung 3, Modbus avec ```Endianess```
 Une série de registres Modbus sont donnés avec les informations suivantes.
 Format ```Big-Endian```.
 |Register      |Type      |Unit      |Description      |
@@ -897,7 +906,9 @@ Wir müssen den obigen Frame mit einem Intel **Little-Endian**-Prozess lesen, um
 
 [Lösung Übung 3](#lösung-übung-3-modbus-mit-endianess) 
 
-## Übung 4, VAR_IN_OUT with Extends
+---
+
+### Übung 4, VAR_IN_OUT with Extends
 Deklarieren, instanziieren und kodieren Sie das obige Beispiel mit ``ST_AxisTwoEncoder``.
 
 ```mermaid
@@ -931,10 +942,13 @@ Die X-Achse wurde in folgender Form instanziiert:
 
 [Lösung Übung 4](#lösung-übung-4-var_in_out-with-extends)
 
-# Lösung der Übungen
+---
 
-## Lösung Übung 1, Min/Max/RMS of ioBuffer
+## Lösung der Übungen
+
+### Lösung Übung 1, Min/Max/RMS of ioBuffer
 Datei ``GVL_IO_BUFFER`` zur Deklaration globaler Variablen.
+
 ```iecst
 VAR_GLOBAL
     ioBuffer        : ARRAY[1..IO_BUFFER_SIZE] OF INT;
@@ -944,7 +958,7 @@ VAR_GLOBAL CONSTANT
     IO_BUFFER_SIZE  : UDINT := 50;
 END_VAR
 ```
-### Codage
+#### Codage
 ```iecst
 PROGRAM PRG_MinMaxMean
 VAR
@@ -976,7 +990,7 @@ END_FOR
 // Values with 16 bits suppose no informatino lost
 iRMSValue := LREAL_TO_INT(SQRT(LINT_TO_LREAL(iSumRMSValue/GVL_IO_BUFFER.IO_BUFFER_SIZE)));
 ```
-### Test
+#### Test
 Mit allen Samples auf 0, außer:
 - eine Stichprobe von 50
 - eine Probe bei -50
@@ -985,25 +999,26 @@ iMinValue := -50
 iMaxValue := 50
 iRMSValue := 10
 
-## Lösung Übung  2, State Machine
+### Lösung Übung  2, State Machine
+
+#### Enum
 ```iecst
-### Enum
 TYPE EN_CSV_WriteSteps :
 (
-	WAIT_RISING_EDGE := 0,
-	GENERATE_FILENAME := 21,
-	OPEN_SOURCE_FILE := 1,
-	WAIT_OPEN_NOT_BUSY := 2,
-	CONVERT_ONE_CSV_RECORD := 3,
-	WRITE_RECORD_TO_FILE := 4,
-	WAIT_UNTIL_WRITE_NOT_BUSY := 5,
-	CLOSE_SOURCE_FILE := 10,
-	WAIT_UNTIL_CLOSE_NOT_BUSY := 11,
-	ERROR_OR_READY_STEP := 100
+   WAIT_RISING_EDGE := 0,
+   GENERATE_FILENAME := 21,
+   OPEN_SOURCE_FILE := 1,
+   WAIT_OPEN_NOT_BUSY := 2,
+   CONVERT_ONE_CSV_RECORD := 3,
+   WRITE_RECORD_TO_FILE := 4,
+   WAIT_UNTIL_WRITE_NOT_BUSY := 5,
+   CLOSE_SOURCE_FILE := 10,
+   WAIT_UNTIL_CLOSE_NOT_BUSY := 11,
+   ERROR_OR_READY_STEP := 100
 ) UDINT := WAIT_RISING_EDGE;
 END_TYPE
 ```
-### Codage
+#### Codage
 ```iecst
 VAR
     stateCsv    : EN_CSV_WriteSteps; 
@@ -1033,8 +1048,8 @@ CASE stateCsv OF
 END_CASE
 ```
 
-## Lösung Übung 3, Modbus mit ```Endianess```
-### Liste der Konstanten in der Datei ``GVL_Modbus``.
+### Lösung Übung 3, Modbus mit ```Endianess```
+#### Liste der Konstanten in der Datei ``GVL_Modbus``.
 ```iecst
 VAR_GLOBAL CONSTANT
     MB_FRAME_SIZE     : INT := 12;
@@ -1042,7 +1057,7 @@ VAR_GLOBAL CONSTANT
     TYPE_SIZE_IN_BYTE : INT := 4;
 END_VAR
 ```
-### Definition von Gewerkschaft ```U_SolveModbus```
+#### Definition von Gewerkschaft ```U_SolveModbus```
 ```iecst
 TYPE U_SolveModbus :
 UNION
@@ -1051,7 +1066,7 @@ UNION
 END_UNION
 END_TYPE
 ```
-### Definition der allgemeinen Struktur
+#### Definition der allgemeinen Struktur
 ```iecst
 TYPE ST_SolveModbus :
 STRUCT
@@ -1062,7 +1077,7 @@ STRUCT
 END_STRUCT
 END_TYPE
 ```
-### Program
+#### Program
 ```iecst
 VAR
     modBusFrame : ARRAY[1..GVL_Modbus.MB_FRAME_SIZE] OF BYTE := [0, 8, 143, 237, 0, 41, 3, 189, 255, 254, 21, 231];
@@ -1099,6 +1114,39 @@ stResult.TotalReactiveEnergy_VARh := stResult.arMyRegisters[2].diMyResult;
 stResult.TotalApparentEnergy_VAh := stResult.arMyRegisters[3].diMyResult;
 ```
 
-## Lösung Übung 4, VAR_IN_OUT with Extends
+### Lösung Übung 4, VAR_IN_OUT with Extends
 
-To be completed
+Erklärung der Strukturen
+
+```iecst
+TYPE ST_SecondEncoder
+STRUCT
+   ActualPosition  : REAL;
+   ActualVelocity  : REAL := 0;
+   bAxisStopped    : BOOL;
+END_STRUCT
+END_TYPE
+```
+
+```iecst
+TYPE ST_AxisTwoEncoder EXTENDS ST_AxisInfo :
+STRUCT
+   stSecondEncoder : ST_SecondEncoder;
+END_STRUCT
+END_TYPE
+```
+Instanciation des variables
+```iecst
+VAR
+   fbStopAxisTwoEncoder : FB_StopAxis;
+   stAxisTwoEncoder     : ST_AxisTwoEncoder;
+END_VAR
+```
+
+Appel du FB
+```iecst
+ (* With ST_AxisTwoEncoder *)
+ fbStopAxisTwoEncoder(ioAxisInfo := stAxisTwoEncoder);
+```
+
+<!-- End of file -->
