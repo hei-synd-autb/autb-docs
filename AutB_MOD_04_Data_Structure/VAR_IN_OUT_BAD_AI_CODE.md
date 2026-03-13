@@ -88,7 +88,7 @@ Active := Enable;
 PROGRAM Main
 VAR
     myPump              : DM_Pump; // Instance de la structure
-    PtrToMyData         : POINTER TO DM_Pump; // Pointeur vers la structure
+    pPump               : POINTER TO DM_Pump; // Pointeur vers la structure
     fbPumpOnOffControl  : FB_PumpOnOffControl;
     myCondition         : BOOL;
 END_VAR
@@ -97,7 +97,7 @@ END_VAR
 ### Core of the program
 ```iecst
 // Obtention d'un pointeur vers la structure
-myPump := ADR(myPump);
+pPump := ADR(myPump);
 
 // Appel de la fonction avec le pointeur
 fbPumpOnOffControl(Enable := myCondition,
@@ -107,13 +107,14 @@ fbPumpOnOffControl(Enable := myCondition,
 
 <h3 style="color:red">Problem</h3>
 
-With a pointer, you could write the following code that would be accepted by your compiler. This code would most likely lead to a program crash, **which is why it would be considered a gross programming error**.
+With a pointer, you could write the following code that would be accepted by your compiler. This code would most likely lead to a program crash, **which is why it would be considered a serious programming error**.
 
 ```iecst
 // Getting a pointer to the structure
 myPump := ADR(myPump);
 
 // Calling the function with the pointer
+// As this is a pointer and not an VAR_IN_OUT, the compiler does not raise an error.
 fbPumpOnOffControl(Enable := myCondition);
 
 ```
