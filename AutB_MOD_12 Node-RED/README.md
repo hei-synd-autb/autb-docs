@@ -8,7 +8,7 @@
 
 Cours AutB
 
-# Module 12 Node-RED
+# Module 12.1 Node-RED
 *Programmation basée sur les événements*
 
 *Mots-clés:* **Flux / Nœud / Fonction / Données de contexte / Message / Charge utile**
@@ -323,7 +323,6 @@ Vous pourriez exporter ce texte dans un fichier JSON, mais vous pouvez simplemen
 
 > Notez que si vous cliquez sur le commentaire: Node-RED dit Bonjour!, vous pouvez lire la documentation du bloc en cliquant sur le bouton :information_source: en haut à droite de la fenêtre.
 ---
-
 
 
 ### Injecter
@@ -664,13 +663,6 @@ return msg;
 
 ---
 
-## Suivant
-Dans le parcours pédagogique de Node-RED, il serait logique de continuer avec la fonction. Mais, nous voulons avoir une compréhension de quelques interfaces pour les travaux pratiques suivants, laboratoire. C'est pourquoi nous présentons un bref aperçu de certaines fonctions ci-dessous.
-
-Les fonctions en profondeur seront présentées après l'interface, / UI Interface utilisateur.
-
----
-
 ## Nœuds de fonction
 
 ### Fonction
@@ -684,8 +676,34 @@ Nœuds vous permettant d'agir sur les messages, de modifier leur contenu, de les
 </figure>
 Vous permet de créer une fonction en JavaScript. Utile pour traiter un message reçu pour le rendre utilisable par un nœud de sortie.
 
+**Exemple :**
 
-> La fonction sera développée [en détail dans un module ultérieur](../ADP_Module_05_Functions_Sub_Flows/README.md#function).
+```js
+// Core of function for a PLC method
+// PLC method access thru a READ WITH ARG
+var newMsg = {};
+
+flow.get('rLimitOpen_mm')
+
+newMsg.payload = {
+    type: "object",
+    value: {
+        "rLimitOpen_mm": flow.get('rLimitOpen_mm'),
+        "udiTimeOut_ms":flow.get('udiTimeOut_ms')
+    }
+}
+return newMsg;
+```
+
+Nous avons créé un objet java-script qui sous format json qui ressemble à:
+
+```js
+{"type":"object",
+ "value": {"rLimitOpen_mm":1,
+           "udiTimeOut_ms":300
+          }
+}
+```
 
 ### Changement
 

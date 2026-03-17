@@ -1,13 +1,13 @@
 <h1>
   <img src="./img/hei-en.png" alt="Logo HEI-Vs" width="350">
-  <br> ADP
+  <br>  Base d'Automatisation Industrielle
     <h2>Interfaces</h2>
   <br>
 </h1>
 
 Auteur : [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 12 Interfaces Utilisateur
+# Module 12.2 Interfaces Utilisateur
 
 *Mots-clés :* **Dashboard 2**
 

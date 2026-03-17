@@ -1,13 +1,13 @@
 <h1>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
-  <br> ADP
+  <br> Grundlagen der Industrieautomation
     <h2>Schnittstellen</h2>
   <br>
 </h1>
 
 Autor: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Modul 04 Benutzeroberflächen
+# Modul 12.2 Benutzeroberflächen
 
 *Schlüsselwörter:* **Dashboard 2**
 

@@ -8,7 +8,7 @@
 
 Kurs AutB
 
-# Modul 12 Node-RED
+# Modul 12.1 Node-RED
 *2. Teil Flussbasierte Programmierung*
 
 *Stichwörter:* **Fluss / Knoten / Funktion / Kontextdaten / Nachricht / Nutzlast**
@@ -665,13 +665,6 @@ return msg;
 
 ---
 
-## Nächstes
-Im Lernpfad von Node-RED wäre es logisch, mit der Funktion fortzufahren. Aber wir wollen ein Verständnis der Schnittstellen für die nächsten praktischen Arbeiten, Labore, haben. Deshalb präsentieren wir einen kurzen Überblick über einige Funktionen unten.
-
-Die Funktionen im Detail werden nach der Oberfläche, / UI Benutzeroberfläche präsentiert.
-
----
-
 ## Funktions-Knoten
 
 ### Funktion
@@ -685,8 +678,36 @@ Knoten, mit denen Sie auf Nachrichten wirken, deren Inhalte ändern, Verarbeitun
 </figure>
 Ermöglicht es Ihnen, eine Funktion in JavaScript zu erstellen. Nützlich für die Verarbeitung einer empfangenen Nachricht, um sie von einem Ausgabe-Knoten nutzbar zu machen.
 
+<br>
 
-> Die Funktion wird [im Detail in einem nachfolgenden Modul](../ADP_Module_05_Functions_Sub_Flows/README.md#function) entwickelt.
+**Beispiel :**
+
+```js
+// Core of function for a PLC method
+// PLC method access thru a READ WITH ARG
+var newMsg = {};
+
+flow.get('rLimitOpen_mm')
+
+newMsg.payload = {
+    type: "object",
+    value: {
+        "rLimitOpen_mm": flow.get('rLimitOpen_mm'),
+        "udiTimeOut_ms":flow.get('udiTimeOut_ms')
+    }
+}
+return newMsg;
+```
+
+Wir haben ein JavaScript-Objekt im JSON-Format erstellt, das folgendermaßen aussieht:
+
+```js
+{"type":"object",
+ "value": {"rLimitOpen_mm":1,
+           "udiTimeOut_ms":300
+          }
+}
+```
 
 ### Ändern
 
