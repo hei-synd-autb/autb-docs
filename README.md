@@ -165,6 +165,7 @@ Some tools used to write UML graphics in Visual Studio Code.
 - [autb-lab-05](https://github.com/hei-synd-autb/autb-lab-05_2025) Commissioning of an electric axis coupled with a mechanical drive
 - [autb-lab-06](https://github.com/hei-synd-autb/autb-lab-06_2025) Gestion d'un mouvement discret, MC_MoveAbsolute, basé sur PLCopen motion control.
 - [autb-lab-07](https://github.com/hei-synd-autb/autb-lab-07_2025) Asynchronous programming with Node-RED for user interface.
+- [Lab-report-template](./Lab_Report_Template/README.md).
 
 # The LAB.
 <figure>
