@@ -30,6 +30,9 @@ Your summary in some lines
 4.  Any other document than md file or image in **documents** folder.
 5.  Any other page with link to the page.
 6.  Any diagram, i.e. UML, state machine or other in mermaid form. Do not forger ```mermaid tags```
+    1.  Mermaid [state diagrams](https://mermaid.ai/open-source/syntax/stateDiagram.html).
+    2.   Mermaid [class diagrams](https://mermaid.ai/open-source/syntax/classDiagram.html).
+    3.   Mermaid [flowcharts - basic syntax](https://mermaid.ai/open-source/syntax/flowchart.html).
 
 **Finally**: zip all documents with last name of all authors as ``zip_name.zip`` and upload them in cyberlearn, *by mail if problems with cyberlearn*.
 
