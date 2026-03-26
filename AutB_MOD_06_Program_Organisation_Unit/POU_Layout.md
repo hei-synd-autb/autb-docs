@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 04 / Layout
+# Module 06 / Layout
 
 [Program Layout](#program-layout)
 
@@ -18,8 +18,11 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
 [Function Layout](#function-layout)
 
+---
+
 ## Program Layout
-Exemple de structure d'un programme / Beispiel einer Programmstruktur..
+Exemple de structure d'un programme / Beispiel einer Programmstruktur.
+
 ```iecst
 (*
     Some information about the program here...
@@ -66,6 +69,8 @@ IF fbSourceSpectrum.bError THEN
                        sErrSource:='Ca_Overlap_IO.fbSourceSpectrum');   
 END_IF
 ```
+
+---
 
 ## Function Block Layout
 Exemple de structure du code d'un Function Block / Beispiel für die Codestruktur eines Funktionsblocks
@@ -126,6 +131,8 @@ FOR nSamples := 1 TO cOversamples DO
 END_FOR
 ```
 
+---
+
 ## Function Layout
 Exemple de structure du code d'une fonction / Beispiel für die Codestruktur einer Funktion..
 
@@ -153,10 +160,10 @@ VAR_IN_OUT
 END_VAR
 
 VAR
-    Scaled : LREAL;
-    nShift: BYTE :=8;
-    pt:POINTER TO ULINT;
-    myInput :ULINT;
+    Scaled  : LREAL;
+    nShift  : BYTE :=8;
+    pt      : POINTER TO ULINT;
+    myInput : ULINT;
 END_VAR
 
 (*****************************************************************************
@@ -186,3 +193,5 @@ pOutput[7] :=  ULINT_TO_BYTE(16#FF AND myInput);
 // Function done
 FC_Hevs_LREAL_TO_BYTES := TRUE;
 ```
+
+<!-- End of code -->
