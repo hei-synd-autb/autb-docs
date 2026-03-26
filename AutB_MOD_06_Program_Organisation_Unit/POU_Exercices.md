@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1 align="left">
   <br>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
   <br>
@@ -10,10 +10,10 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Module 04 / Exercices
+# Module 06 / Exercises
 
-## Exercice *Understand Variables in Function Block*
-Vous avez le Function Block dont le code est donné ci-dessous
+## Exercise *Understand Variables in Function Block*
+You have the Function Block whose code is given below.
 ### FB_VarValue
 ```iecst
 FUNCTION_BLOCK FB_VarValue
@@ -33,7 +33,8 @@ ResultOne := Temp + ValueIn;
 ResultTwo := 5 + ValueIn;
 Temp := Temp + 1;
 ```
-Ce Function Block est utilisé dans un programme de la manière suivante:
+This Function Block is used in a program in the following way:
+
 ```iecst
 PROGRAM PLC_PRG
 VAR
@@ -56,7 +57,7 @@ fbVarValue_Four.ValueIn := 1;
 ```
 
 ### Question
-Quels sont les valeurs de variables suivante, avant le premier cycle, après le 1er et 2ème cycle ?
+What are the values ​​of the following variables, before the first cycle, after the 1st and 2nd cycles?
 
 |Variable                  |T0   |T1   |T2   |
 |--------------------------|-----|-----|-----|
@@ -71,8 +72,10 @@ Quels sont les valeurs de variables suivante, avant le premier cycle, après le 
 
 [Solution Understand Variables in Function Block](#solution-understand-variables-in-function-block)
 
-## Exercice *Understand Variables in Function*
-Soit la fonction avec l'implémentation suivante:
+---
+
+## Exercise *Understand Variables in Function*
+Consider the function with the following implementation:
 ```iecst
 FUNCTION FC_Operation : DINT
 VAR_INPUT
@@ -87,7 +90,8 @@ END_VAR
 FC_Operation := Temp + InputOne + InputTwo;
 Temp := Temp + 5;
 ```
-Et l'utilisation suivante:
+And the following use:
+
 ```iecst
 PROGRAM PLC_PRG
 VAR
@@ -100,7 +104,8 @@ resultOne := FC_Operation(3,6);
 resultTwo := FC_Operation(InputOne := 7, InputTwo := 2);
 resultThree := FC_Operation(InputOne := 6, InputTwo := 2);
 ```
-Donner le résultat des variables après un cycle, puis trois cycles.
+Give the result of the variables after one cycle, then three cycles.
+
 |Variable   |T1   |T3   |
 |-----------|-----|-----|
 |resultOne  |     |     |
@@ -110,8 +115,10 @@ Donner le résultat des variables après un cycle, puis trois cycles.
 
 [Solution Understand Variables in Function](#solution-understand-variables-in-function)
 
-## Exercice *Function with more than one output*
-En reprenant le code donné dans [Fonction avec sorties supplémentaire](./README.md#fonction-avec-sorties-supplémentaire), remplir le vecteur arResults du code suivant:
+---
+
+## Exercise *Function with more than one output*
+Using the code given in [Function with additional outputs](./README.md#fonction-avec-sorties-supplémentaire), fill in the ``arResults`` vector of the following code:
 
 ```iecst
 PROGRAM PLC_PRG
@@ -140,13 +147,15 @@ arResults[7] := FC_AddSubMult();
 
 [Result Function with more than one output](#solution-function-with-more-than-one-output)
 
-## Exercice *Work on data structure with VAR_IN_OUT*
-Nous avons une structure de données selon le format suivant:
+---
+
+## Exercise *Work on data structure with VAR_IN_OUT*
+We have a data structure in the following format:
 ```iecst
 (*
 	www.hevs.ch
 	Institut Systemes Industriels
-	Project: 	Exercice Module 04
+	Project: 	Exercise Module 04
 	Author:		Cedric Lenoir
 	Date:		2023 December 20
 	
@@ -162,12 +171,18 @@ END_STRUCT
 END_TYPE
 ```
 ### Part 1, get max value
--   Ecrire un Function Block qui calcule la valeur maximum de ``listOfValues``.
--   Les entrées du Function Block sont données.
--   Sur le flanc montant de ``Execute`` uniquement, le calcul est effectué sur un cycle.
--   ``Done`` passe à ``TRUE`` à la fin du calcul et revient à ``FALSE`` si Execute est ``FALSE``.
--   Noter la taille fixe de ``listOfValues``, *10 valeurs*.
--   Ajouter les variables internes nécessaires.
+- Write a Function Block that calculates the maximum value of ``listOfValues``.
+
+- The Function Block's inputs are provided.
+
+- Only on the rising edge of ``Execute`, the calculation is performed in one cycle.
+
+- ``Done`` changes to ``TRUE`` at the end of the calculation and returns to `FALSE` if `Execute` is `FALSE`.
+
+- Note the fixed size of ``listOfValues`, *10 values*.
+
+- Add the necessary internal variables.
+
 ```iecst
 FUNCTION_BLOCK FB_GetMaxValue
 VAR_INPUT
@@ -183,19 +198,20 @@ VAR
 END_VAR
 ```
 ### Part 2, get min value
-Sur le même model que [Part 1](#part-1-get-max-value), calculer la valeur minimum de ``listOfValues``.
+Following the same model as[Part 1](#part-1-get-max-value), calculate the minimum value of ``listOfValues``.
 
 Function Block ``FB_GetMinValue``.
 
 ### Part 3, get rms value
-Sur le même model que [Part 1](#part-1-get-max-value), calculer la valeur RMS de ``listOfValues``.
+Following the same model as [Part 1](#part-1-get-max-value), calculate the RMS value of ``listOfValues``.
 
 $x_{rms} = \sqrt{\dfrac{1}{n}({x_1}^2+{x_2}^2+...+{x_n}^2)}$
 
 Function Block ``FB_GetRMSValue``.
 
 ### Part 4, call FB with VAR_IN_OUT
-Ecrire un programme qui calcul les valeur max, min et rms de la structure ioDataStructure_typ en utilisant les Function Block des parties 1 à 3.
+Write a program that calculates the max, min and rms values ​​of the ioDataStructure_typ structure using the Function Block from parts 1 to 3.
+
 ```iecst
 PROGRAM PRG_IN_OUT
 VAR
@@ -205,20 +221,22 @@ END_VAR
 
 [Solution Work on data structure with VAR_IN_OUT](#solution-work-on-data-structure-with-var_in_out)
 
-## Exercice *Square generator*
-Ecrire le code d'un générateur de signal carré basic.
+---
+
+## Exercise *Square generator*
+Write the code for a basic square wave generator.
 <figure>
     <img src="./puml/Square_Signal_200ms/Square_Signal_200ms.svg"
          alt="Image lost, Square Signal 200ms">
     <figcaption>Square Signal 200[ms]</figcaption>
 </figure>
 
-### Principe
--   Le générateur travaille dans une tâche dont le temps de cycle est fixe: $20 [ms]$
--   Vous définissez si nécessaire la ou les variables internes utiles.
--   Si ``Enable`` est ``FALSE``, alors le ``Signal`` est toujours ``FALSE``.
+### Principle
+-   The generator works in a task with a fixed cycle time: $20 [ms]$
+-   You define, if necessary, the relevant internal variable/s.
+-   If ``Enable`` is ``FALSE``, then the ``Signal`` is always ``FALSE``.
 
-### Base de travail / header
+### Working basis / header
 ```iecst
 FUNCTION_BLOCK FB_Square_200_ms
 VAR_INPUT
@@ -233,7 +251,9 @@ END_VAR
 ```
 [Solution Square generator](#solution-square-generator)
 
-# Solution des exercices
+---
+
+# Solution of Exercises
 ## Solution *Understand Variables in Function Block*
 |Variable                  |T0   |T1   |T2   |
 |--------------------------|-----|-----|-----|
@@ -246,7 +266,10 @@ END_VAR
 |fbVarValue_Four.ResultOne |4    |4    |4    |
 |fbVarValue_Four.ResultTwo |0    |0    |0    |
 
+---
+
 ## Solution *Understand Variables in Function*
+
 |Variable   |T1   |T3   |
 |-----------|-----|-----|
 |resultOne  |9    |9    |
@@ -254,16 +277,20 @@ END_VAR
 |resultThree|8    |8    |
 |resultFour |8    |8    |
 
-> Note: l'écriture ``FC_Operation(3,6)`` fonctionne, mais est n'est pas conseillée pour une question de lisibilité du code.
+> Note: the writing ``FC_Operation(3,6)`` works, but is not recommended for code readability reasons.
 
-> Noter dans resultFour := ``FC_Operation(InputTwo := 6, InputOne := 2);`` que l'ordre de déclaration des variables n'est pas importante, dans la mesure où elles sont nommées, ce qui n'est pas le cas de ``FC_Operation(3,6)``. 
+> Note in resultFour := ``FC_Operation(InputTwo := 6, InputOne := 2);`` that the order of declaration of variables is not important, as long as they are named, which is not the case for ``FC_Operation(3,6)``.
+
+---
 
 ## Solution *Function with more than one output*
 |             |x:=1 |x:=2 |x:=3 |x:=4 |x:=5 |x:=6 |x:=7 |
 |-------------|-----|-----|-----|-----|-----|-----|-----|
 |arResults[x] |12   |2    |35   |17   |5    |66   |0    |
 
-## *Solution Work on data structure with VAR_IN_OUT*
+---
+
+## Solution *Work on data structure with VAR_IN_OUT*
 ### Code for FB_GetMaxValue
 ```iecst
 FUNCTION_BLOCK FB_GetMaxValue
@@ -300,6 +327,7 @@ IF NOT Execute THEN
     Done := FALSE;
 END_IF
 ```
+
 ### Code for FB_GetMinValue
 ```iecst
 FUNCTION_BLOCK FB_GetMinValue
@@ -373,7 +401,8 @@ IF NOT Execute THEN
 END_IF
 ```
 ### Code for PRG_IN_OUT
-*Notez les valeurs de test*
+*Note the test values*
+
 ```iecst
 PROGRAM PRG_IN_OUT
 VAR
@@ -395,18 +424,20 @@ fbGetMinValue(Execute := ExecuteAll,
 fbGetRMSValue(Execute := ExecuteAll,
               data := ioData); 
 ```
-#### Pour info
-Le code suivant généré avec Matlab Script permet de vérifier les calculs.
+#### For your information
+The following code, generated with Matlab Script, allows us to verify the calculations.
+
 ```
 listOfValues = [-3, 4, 7, 9, -5, -2, -15, 6, -3, 21]
 max(listOfValues)   % = 21
 min(listOfValues)   % = -15
 rms(listOfValues)   % = 9.4604
 ```
+---
 
 ## Solution *Square generator*
 ```iecst
-// Solution exercice Square generator
+// Solution Exercise Square generator
 IF NOT Enable THEN
     Signal := FALSE;
     diCount := 0;
@@ -422,7 +453,8 @@ ELSE
     END_IF
 END_IF
 ```
-> Une Variante parmi d'autres
+> One variant among others
+
 ```iecst
 IF NOT Enable THEN
     diCount := 0;
@@ -436,11 +468,13 @@ END_IF
 Signal := (diCount > 5) AND Enable;
 ```
 
-## Pour information, obtenir le temps de cycle de la tâche.
+---
 
-> Nécessite l'installation de la librairie SysTask
+## For your information, obtain the cycle time of the task.
 
-> La tâche dans laquelle s'exécute le programme est retournée en $ [\mu s] $ 
+> Requires library installation SysTask
+
+> The task in which the program runs is returned in $ [\mu s] $ 
 
 ```iecst
 PROGRAM PLC_PRG
@@ -457,3 +491,5 @@ SysTaskGetCurrent(ADR(hTask));
 // get task interval
 SysTaskGetInterval(hTask, udiInterval_us);
 ```
+
+<!-- End of file -->
