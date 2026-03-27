@@ -672,7 +672,7 @@ note for FB_ConveyorSimulator "Memory for EM_ConveyorThreeStations_typ is
 ```
 
 #### Notes sur l'utilisation de ```VAR_IN_OUT```
-Une variable de type ``VAR_IN_OUT`` **ne possède aucune mémoire propre**. Elle utilise la mémoire réservée par la strucuture passée en paramètre. Ci-dessus : ``SetSimulator``.
+Une variable de type ``VAR_IN_OUT`` **ne possède aucune mémoire propre**. Elle utilise la mémoire réservée par la structure passée en paramètre. Ci-dessus : ``SetSimulator``.
 
 Le Function Block travaille directement sur la mémoire réservée pour ``SetSimulator``.
 
