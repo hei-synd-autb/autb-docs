@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1 align="left">
   <br>
   <img src="./img/hei-en.png" alt="HEI-Vs Logo" width="350">
   <br>
@@ -10,7 +10,7 @@ Cours AutB
 
 Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
-# Modul 05 Robuste Programmierung *Übungen*
+# Modul 07 Robuste Programmierung *Übungen*
 
 # Übungen
 

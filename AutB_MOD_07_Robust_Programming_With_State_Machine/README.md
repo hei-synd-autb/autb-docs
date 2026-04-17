@@ -46,6 +46,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 - [On insiste sur l'appel en continu](#on-insiste-sur-lappel-en-continu)
   - [Un premier exemple qui peut poser problème](#un-premier-exemple-qui-peut-poser-problème)
   - [Un deuxième exemple qui peut poser, ou posera obligatoirement un problème](#un-deuxième-exemple-qui-peut-poser-ou-posera-obligatoirement-un-problème)
+  - [Un troisième exemple](#un-troisième-exemple)
 - [Autres pratiques utiles](#autres-pratiques-utiles)
   - [State nm1, état précédent](#state-nm1-état-précédent)
   - [Texte des états](#texte-des-états)
@@ -160,7 +161,7 @@ fbAlarm(Enable := (selector = E_Color.red));
 
 
 # Modèles de Enable et Execute
-En utilisant la programmation orientée objet, il existerait plusieurs variantes possible. Dont celle qui consiste à utiliser l'héritage, les interfaces et les méthodes pour définir des blocs fonctionnels de base avec un comportement commun. Voir [ci-dessous, Pour aller un peu plus loin](#pour-aller-un-peu-plus-loin). Les deux références mentionnées dépassent toutefois le cadre de ce cour, *de base*, ils permettent de montrer que le IEC 61131-3 dans sa version actuelle permet de structurer du code avec une architecture complexe et ne sont pas commentés.
+En utilisant la programmation orientée objet, il existerait plusieurs variantes possibles. Dont celle qui consisterait à utiliser l'héritage, les interfaces et les méthodes pour définir des blocs fonctionnels de base avec un comportement commun. Voir [ci-dessous, Pour aller un peu plus loin](#pour-aller-un-peu-plus-loin), ou le cours [Advanced Automation de la HEVS](https://github.com/hei-synd-aaut/aaut-docs). Les références mentionnées dépassent toutefois le cadre de ce cour, *de base*, ils permettent de montrer que le IEC 61131-3 dans sa version actuelle permet de structurer du code avec une architecture complexe et ne sont pas commentés.
 
 La conception par bloc fonctionnels reprend toutefois le premier principe de la programmation orientée objet, **l’encapsulation**. **Pour être précis, Le Function Block est une classe, sont instance est un objet**. Par contre nous ne parlerons ni héritage ni polymorphismes. Ceci est précisé pour signifier que les blocs fonctionnels ne sont pas activés par des méthodes, mais par des signaux boolean, BOOL que l’on peut classer en deux principales catégories, ``Execute`` et ``Enable``.
 
@@ -310,7 +311,7 @@ Noter que les sorties sont ici construites à partir des états.
 > Les cours de logiques combinatoire, machines d'état et tables de Karnaugh vus dans les semestres précédents sont directement applicables pour la gestion des sorties. Si le nombre d'états sont trop nombreux pour être gérés simplement via les tables de Karnaugh, il sera nécessaire de penser à décomposer le problème en plusieurs sous-ensembles.
 
 ## Modèle Execute Done
-Les blocs fonctionnels de ce type sont utilisés pour des tâches non récurrentes nécessitant un traitement temps de plusieurs cycles. par exemple, l'initialisation d'un matériel.
+Les blocs fonctionnels de ce type sont utilisés pour des tâches nécessitant un traitement de plusieurs cycles. par exemple, l'initialisation d'un matériel ou un mouvement d'axe.
 
 Dans l'exemple ci-dessous, MC_RESET un utilisé dans les application de Motion Control pour sortir d'un état ERROR_STOP qui a stoppé l'axe, par exemple en raison d'un écart de poursuite trop important.
 
@@ -596,7 +597,7 @@ END_IF
 2.  La valeur trigIdleToInit.Q indique une transition de ``STATE_IDLE`` vers ``STATE_INIT``.
 
 ## Texte des états
-Même si les énumérations utilisées dans la machine d'état sont autant explicites que possible, elle sont souvent difficilement lisibles par un système externe, y compris OPC-UA, et probablement peut compréhensibles pour un opérateur ou un technicien de maintenance qui doit pouvoir comprendre facilement l'état du programme afin d'intervenir rapidement.
+Même si les énumérations utilisées dans la machine d'état sont autant explicites que possible, elles sont souvent difficilement lisibles par un système externe, y compris OPC-UA, et probablement peu compréhensibles pour un opérateur ou un technicien de maintenance qui doit pouvoir comprendre rapidement l'état du programme lors d'une intervention.
 
 Il existe une pratique relativement simple pour aider au diagnostique de la machine, c'est fournir une information légèrement détaillée, par légèrement détaillée, nous entendons, une seule phrase.
 
