@@ -17,10 +17,10 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 # Préambule
 Dans la suite des modules, nous allons aborder en pratique et en théorie, le pilotage d'axes électriques.
 
-L'une des particularités du pilotage d'axes, est que le niveau de complexité augmente légérement et demande rapidement une méthodologie rigoureuse afin de garantir la robustesse du système piloté, mais aussi afin de gagner en efficacité lors du codage. C'est la raison pour laquelle nous présentons **PackML** dans ce cours. Nous n'aborderons qu'une partie de l'ensemble de PackML, celle dédiée à la gestion des états de la machine. 
+L'une des particularités du pilotage d'axes, est que le niveau de complexité augmente légèrement et demande rapidement une méthodologie rigoureuse afin de garantir la robustesse du système piloté, mais aussi afin de gagner en efficacité lors du codage. C'est la raison pour laquelle nous présentons **PackML** dans ce cours. Nous n'aborderons qu'une partie de l'ensemble de PackML, celle dédiée à la gestion des états de la machine. 
 
 ## Déjà vu
-Le PackML est déjà utilisé dans les laboratoire N°3 et N°4. C'est cet environnement qui gère les états de fonctionnement des axes en mode manuel ou automatique. Dans le laboratoire N° 4, nous utiliserons des alarmes. Ces alarmes servent à générer des commandes de type PackML en cas de problème, par exemple pour générer une commande **Stop**, tout en informant l'utilisateur.
+Le PackML est déjà utilisé dans les laboratoires N°3 et N°4. C'est cet environnement qui gère les états de fonctionnement des axes en mode manuel ou automatique. Dans le laboratoire N° 4, nous utiliserons des alarmes. Ces alarmes servent à générer des commandes de type PackML en cas de problème, par exemple pour générer une commande **Stop**, tout en informant l'utilisateur.
 
 ## Aperçu
 La conception d'une unité au sens ISA-88, ou d'une machine du point de vue logicielle est un processus complexe. Partir d'une feuille blanche est un pari risqué, même pour un ingénieur expérimenté. L'idée est donc de partir d'un modèle.
@@ -29,12 +29,12 @@ La conception d'une unité au sens ISA-88, ou d'une machine du point de vue logi
 -   Il y a de fortes chances qu'une partie de cette information soit partiellement liée au standard PackML. C'est ce standard que nous allons présenter.
 
 ## Ce qu'il faut retenir
--   Il est très peu probable de réussir à concevoir une machine complète utilisable dans l'industrie et en respectant des délais raisonables sans partir d'une modèle.
+-   Il est très peu probable de réussir à concevoir une machine complète utilisable dans l'industrie et en respectant des délais raisonnables sans partir d'un modèle.
 -   Le concept PackML qui est développé ci-dessous, même si il est initialement développé pour des machines du type **Discrete parts manufacturing processes**, est parfaitement utilisable comme base pour des processus du type **Batch** ou **Continuous Manufacturing**.
 
 ## Ce qu'il faut savoir
--   Etre capable de créer le modèles de l'architecture d'une machine à l'aide de PackML.
--   Etre capable de déterminer les différents états et modes de fonctionnement d'une machine selon le standard PackML.
+-   Être capable de créer le modèle de l'architecture d'une machine à l'aide de PackML.
+-   Être capable de déterminer les différents états et modes de fonctionnement d'une machine selon le standard PackML.
 -   Comprendre et implémenter quelques éléments simples basés sur le standard PackML dans un environnement de développement PLC.
 
 ## Mots clés
@@ -45,7 +45,7 @@ La conception d'une unité au sens ISA-88, ou d'une machine du point de vue logi
 -   **OEM**, An Original Equipment Manufacturer or OEM is a company that manufactures and sells products or parts of a product that their buyer, another company, sells to its own customers while putting the products under its own branding. / Un fabricant d'équipement d'origine ou OEM est une entreprise qui fabrique et vend des produits ou des pièces d'un produit que son acheteur, une autre entreprise, vend à ses propres clients tout en mettant les produits sous sa propre marque.
 
 # Introduction
-> Le standard PackML est normalisé sous l'appelation [ISA-TR88.00.02-2022, Machine and Unit States: An implementation example of ISA-88.00.01](https://www.isa.org/products/isa-tr88-00-02-2022-machine-and-unit-states-an-imp). Comme la plupart des documents de normalisation, ces documents ne sont pas libres de droit. 180 USD au 28 janvier 2025. Il n'est donc pas possible de mettre à disposition librement ce document dans le cadre de ce cours. **Dans ce document nous utiliserons principalement le terme machine, mais les termes machine et unité sont interchangeables dans le cadre de PackML**.
+> Le standard PackML est normalisé sous l'appellation  [ISA-TR88.00.02-2022, Machine and Unit States: An implementation example of ISA-88.00.01](https://www.isa.org/products/isa-tr88-00-02-2022-machine-and-unit-states-an-imp). Comme la plupart des documents de normalisation, ces documents ne sont pas libres de droit. 180 USD au 28 janvier 2025. Il n'est donc pas possible de mettre à disposition librement ce document dans le cadre de ce cours. **Dans ce document nous utiliserons principalement le terme machine, mais les termes machine et unité sont interchangeables dans le cadre de PackML**.
 
 Par contre, il existe de nombreuses implémentations basées sur ce standard.
 
@@ -53,21 +53,21 @@ Par contre, il existe de nombreuses implémentations basées sur ce standard.
 
 > Dans le monde Schneider Electric, qui utilise le même type de compilateur Codesys que ceux utilisés dans les cours d'automation de la HEVS. [EcoStruxure Machine Expert - PackML, Library Guide](https://www.se.com/sg/en/download/document/EIO0000002809/)
 
-> Il existe un base [chez Codesys, mais un peu rudimentaire](https://store.codesys.com/de/omac-packml-state-machine.html).
+> Il existe une base [chez Codesys, mais un peu rudimentaire](https://store.codesys.com/de/omac-packml-state-machine.html).
 
 > Ou finalement encore chez Beckhoff. [TwinCAT 3 | PLC Library: Tc3_PackML_V2](https://infosys.beckhoff.com/english.php?content=../content/1033/tcplclib_tc3_packml_v2/index.html&id=)
 
 #    PackML
 Dans le laboratoire d'automation nous utilisons une base PackML développée par la HEVS, entièrement ouverte et libre de droits.
 
-## Finalement qu'est ce que PackML ?
-A la base, PackML pour Packaging Machine Language, n'est pas un language, mais une approche qui doit simplifier et accélérer la conception du système d'automation d'une machine.
+## Finalement qu'est-ce que PackML ?
+A la base, PackML pour Packaging Machine Language, n'est pas un langage, mais une approche qui doit simplifier et accélérer la conception du système d'automation d'une machine.
 
 > Cette simplification se fait dans deux directions:
 
 ### Au niveau de la machine,
 
-Cela permet à l'ingénieur de se concentrer sur le processus au coeur de la machine, plutôt que son environnement. Dans l'exemple ci-dessous, le coeur du processus est constitué de l'état **Execute**.
+Cela permet à l'ingénieur de se concentrer sur le processus au cœur de la machine, plutôt que son environnement. Dans l'exemple ci-dessous, le cœur du processus est constitué de l'état **Execute**.
 
 <div style="text-align: center;">
   <figure>
@@ -167,7 +167,7 @@ namespace B{
 
 
 ### Entre les machines
-elle facilite la communication entre machines ce qui facilite leur intégration.   
+Elle facilite la communication entre machines ce qui facilite leur intégration.   
 
 <div style="text-align: center;">
   <figure>
@@ -198,17 +198,17 @@ elle facilite la communication entre machines ce qui facilite leur intégration.
 </div>
 <br>
 
-Il est sans doute plus simple de chercher à comprendre les différents equipements d'une machine à partir de quelques exemples tirés de l'industrie.
+Il est sans doute plus simple de chercher à comprendre les différents équipements d'une machine à partir de quelques exemples tirés de l'industrie.
 
 La machine [Mikron G05](https://www.mikron.com/en/automation/systems/platforms-technologies/high-volume/g05) est une machine d'assemblage. On trouve notamment les équipements suivants:
 -   Un convoyeur en entrée.
 -   Un convoyeur en sortie.
--   Une série de stations de travail qui exécutent exactement une phase de travai que l'on considère comme des équipements.
+-   Une série de stations de travail qui exécutent exactement une phase de travail que l'on considère comme des équipements.
 -   Un système de transfert qui fait passer des palettes de travail d'une unité à l'autre.
 
-> Les équipements peux exécuter plusieurs types de phase, comme **visser**, **souder**, **sertir**, **contrôler**.
+> Les équipements peuvent exécuter plusieurs types de phase, comme **visser**, **souder**, **sertir**, **contrôler**.
 
-> Les equipements peuvent être constitués de plusieur **Control Module**, un module [Pick and Place](#pick-and-place), d'un gripper, une visseuse, une soudeuse, un module de mesure, etc....
+> Les équipements peuvent être constitués de plusieurs **Control Module**, un module [Pick and Place](#pick-and-place), d'un gripper, une visseuse, une soudeuse, un module de mesure, etc....
 
 <div style="text-align: center;">
   <figure>
@@ -234,9 +234,9 @@ Les modules Pick and Place sont équipés de bras robotiques ou de mécanismes s
 
 <br>
 
-Un autre example de machine, ici, un palettiseur / dépalettiseur. Cette machine sert à envoyer des composants sur une ligne d'assemblage à partir de composants situés sur la droite, puis quand ces composants sont assemblés, on les ressort de la machine sur la gauche. Un robot au mileu permet de charger ou décharger les composants qui seront envoyés vers la machine via un convoyeur.
+Un autre example de machine, ici, un palettiseur / dépalettiseur. Cette machine sert à envoyer des composants sur une ligne d'assemblage à partir de composants situés sur la droite, puis quand ces composants sont assemblés, on les ressort de la machine sur la gauche. Un robot au milieu permet de charger ou décharger les composants qui seront envoyés vers la machine via un convoyeur.
 
-On notera l'intérêt ici d'une construction modulaire. Le module central peut être utilisé en toute indépendance comme simple Pick and Place. Il peux être accompagné soit du module de droite, soit du module de gauche, soit des deux.
+On notera l'intérêt ici d'une construction modulaire. Le module central peut être utilisé en toute indépendance comme simple Pick and Place. Il peut être accompagné soit du module de droite, soit du module de gauche, soit des deux.
 
 <div style="text-align: center;">
   <figure>
@@ -311,7 +311,7 @@ title: From Execute to Held
 
 Une commande SC State Complete est émise lorsque tous les modules définis de la machine ont terminé leur propre phase de l'état actif dans lequel la machine se trouve.
 
-Dans l'exemple ci-dessous, trois axes, X, Y et Z doivent se sychroniser avant de passer en Execute.
+Dans l'exemple ci-dessous, trois axes, X, Y et Z doivent se synchroniser avant de passer en Execute.
 
 > Ici, on imagine synchroniser 3 axes électromécaniques indépendants qui doivent ensuite pouvoir être déplacés ensemble dans un espace à trois dimensions.
 
@@ -363,7 +363,7 @@ stateDiagram-v2
 ```
 
 ### Minimum state machine
-La norme ISA-88 décrit aussi un machine d'état. Les états sont approximativement les mêmes et si vous avez compris le principe de la machine d'état du PackML, vous aurez compris la machine d'état de ISA 88.
+La norme ISA-88 décrit aussi une machine d'état. Les états sont approximativement les mêmes et si vous avez compris le principe de la machine d'état du PackML, vous aurez compris la machine d'état de ISA 88.
 
 Dans ce même esprit, il est fort probable que votre machine ne nécessite pas l'utilisation d'autant d'états. Ce n'est pas un problème, la norme permet de supprimer un certain nombre d'états, **mais pas d'en rajouter**.
 
@@ -385,11 +385,11 @@ De manière générale, pendant un **Wait state**, rien ne se passe, ou du moins
 -   Lorsque tous les modules ont terminé leur séquence et activé leur statut **SC**, **State Complete**, et seulement à cet instant, tous les modules passent à l’état suivant.
 
 ##	Le PackML Interface State Model
-Il est recommandé d’implémenter l’ensemble des **17 états du State Model**. Le guide OMAC, dit que l' utilisateur final peuvent accepter une déviation de ses 17 états. Dans la plupart des implémentations, et c'est le cas de la version **HEVS**, la machine d'état est configurable. C'est à dire qu'**il est possible de désactiver certaines états**.
+Il est recommandé d’implémenter l’ensemble des **17 états du State Model**. Le guide OMAC, dit que l'utilisateur final peuvent accepter une déviation de ses 17 états. Dans la plupart des implémentations, et c'est le cas de la version **HEVS**, la machine d'état est configurable. C'est à dire qu'**il est possible de désactiver certaines états**.
 
 ###	Suppression d’états
 -   Les 17 états sont implémentés.
--   Selon les implémentation, il est possible de désactiver certains états, parmi lesquels Complete, Completing, Suspending, Suspended, Unsupending, Holding, Held et Unholding, notamment en mode manuel.
+-   Selon les implémentations, il est possible de désactiver certains états, parmi lesquels Complete, Completing, Suspending, Suspended, Unsupending, Holding, Held et Unholding, notamment en mode manuel.
 
 Certaines implémentations, comme Siemens, permettent de configurer les états actifs.
 Dans le plus simple cas, uniquement les états Stopped et Execute sont implémentés.
@@ -437,9 +437,9 @@ La différence entre **Held** et **Suspended** est surtout à comprendre du poin
 </div>
 <br>
 
-Dans le cas du **Suspended**, la machine est en attente de conditions externes. Par exemple, alimentation en produit, machine en amont ou en aval pas prête. Cela signifie que quand on analyse la performance de la machine, même si la machine passe 50% de son temps en Suspended, la machine, l’unité elle-même n’est pas en cause.
+Dans le cas du **Suspended**, la machine est en attente de conditions externes. Par exemple, alimentation en produit, machine en amont ou en aval pas prête. Cela signifie que quand on analyse la performance de la machine, même si la machine passe 50% de son temps en **Suspended**, la machine, l’unité elle-même n’est pas en cause.
 
-Dans le cas du **Held**, cela signifie en général qu’un des élément de la machine a produit un évènement qui a emmené la machine dans cet état. Si la machine passe 50% de son temps en **Held**, il sera sans doute nécessaire d’analyser la cause de cet état.
+Dans le cas du **Held**, cela signifie en général qu’un des éléments de la machine a produit un évènement qui a emmené la machine dans cet état. Si la machine passe 50% de son temps en **Held**, il sera sans doute nécessaire d’analyser la cause de cet état.
 
  
 ##	En détail
@@ -472,7 +472,7 @@ Initié par une commande d'état pour effacer les défauts qui ont pu se produir
 </div>
 <br>
 
-> Remarque : dans le cas de commandes d’entrainement électriques, l’état **Aborted** signifie souvent que les moteurs sont mis hors couple, **STO**, **Safe Torque Off** qui signifie une absence de couple, donc de courant, par le circuit de sécurité. Une des activité de la commande **Clearing** peut être de remettre les moteurs sous tension.
+> Remarque : dans le cas de commandes d’entrainement électriques, l’état **Aborted** signifie souvent que les moteurs sont mis hors couple, **STO**, **Safe Torque Off** qui signifie une absence de couple, donc de courant, par le circuit de sécurité. Une des activités de la commande **Clearing** peut être de remettre les moteurs sous tension.
 
 
 ###	Stopped
@@ -529,7 +529,7 @@ State Type: <span style="color:red; font-weight:bold">Wait</span>
 </div>
 <br>
 
-C'est un état qui indique que la **Resetting** est terminée. Cet état maintient les conditions de la machine qui ont été atteintes pendant l'état de **Resetting** et effectue les opérations requises lorsque la machine est au repos.
+C'est un état qui indique que le **Resetting** est terminée. Cet état maintient les conditions de la machine qui ont été atteintes pendant l'état de **Resetting** et effectue les opérations requises lorsque la machine est au repos.
 
 ###	Starting
 > State Type: <span style="color:green; font-weight:bold">Acting</span>
@@ -573,7 +573,7 @@ State Type: <span style="color:green; font-weight:bold">Acting</span>
 
 Il s'agit principalement d'une cause interne à la machine qui ne nécessite pas de la stopper, pour résoudre le problème.
 
-Remarque : Une des difficulté de l’état **Holding** est d’amener la machine dans un état suffisamment stable pour permettre un retour à l’état **Execute** sans devoir repasser par une phase d’initialisation, **Resetting**.
+Remarque : Une des difficultés de l’état **Holding** est d’amener la machine dans un état suffisamment stable pour permettre un retour à l’état **Execute** sans devoir repasser par une phase d’initialisation, **Resetting**.
 
 La commande Holding **doit** être activée par l'opérateur, elle **ne peut pas être automatique**.
 
@@ -693,7 +693,7 @@ State Type: <span style="color:green; font-weight:bold">Acting</span>
 
 
 Cet état exécute la logique qui amène la machine à un arrêt contrôlé tel que reflété par l'état **STOPPED**.
-Remarque : dans le domaine de la sécurité des entraînements, on retrouve la notion de **SOS**, Safe Operating Stop. **SOS** est à différentier du **STO**, Safe Operating Stop de l’arrêt d’urgence ou commande Abort qui implique en général une mise « hors couple » des entraînements.
+Remarque : dans le domaine de la sécurité des entraînements, on retrouve la notion de **SOS**, Safe Operating Stop. **SOS** est à différentier du **STO**, Safe Operating Stop de l’arrêt d’urgence ou commande **Abort** qui implique en général une mise « hors couple » des entraînements.
 
 ###	Aborting
 State Type: <span style="color:green; font-weight:bold">Acting</span>
@@ -708,7 +708,7 @@ State Type: <span style="color:green; font-weight:bold">Acting</span>
 
 L'état **ABORTED** peut être entré à tout moment en réponse à la commande Abort ou à l'apparition d'un défaut machine. La logique d'**ABORTING** amènera la machine à un arrêt sûr et rapide. Le fonctionnement de l'arrêt d'urgence entraînera le déclenchement de la machine par son système de sécurité. Il fournira également un signal pour déclencher l'état **ABORTING**.
 
-> **Remarque** : Dans le domaine des entrainements électriques, la commande Abort amène en général les entraînement dans l’état STO, Safe Operating Stop. Voir aussi la remarque pour Stopping.
+> **Remarque** : Dans le domaine des entrainements électriques, la commande Abort amène en général les entraînements dans l’état **STO**, Safe Operating Stop. Voir aussi la remarque pour Stopping.
 Au niveau de la logique interne du système, l’état **ABORTING** devrait avoir passé par la même logique que l’état **STOPPING**, ceci afin d’arrêter les axes de manière contrôlée.
 Le délai accordé par le système pour exécuter l’état **ABORTING** dépend de critères de sécurité.
 
@@ -777,7 +777,7 @@ Un diagnostic rapide de la bonne qualité de la gestion de la machine d’état 
 
 L’arrêt d’une installation via un arrêt d’urgence est une procédure normale qui doit être maitrisée. Si un ou plusieurs éléments se trouvent dans un état signalant une erreur après une procédure d’arrêt d’urgence, c’est que cette procédure est mal maîtrisée.
 
-Dans le cas d’entrainements avec des masses ou des inerties importantes, un mise hors couple mal maîtrisée peut s’avérer plus dangereuse que l’évènement ayant généré la commande Abort.
+Dans le cas d’entrainements avec des masses ou des inerties importantes, une mise hors couple mal maîtrisée peut s’avérer plus dangereuse que l’évènement ayant généré la commande Abort.
 
 Un opérateur usant et abusant régulièrement de la commande Abort pour arrêter ou réinitialiser sa machine en cas d’erreur est aussi un symptôme malheureusement trop fréquent d’une machine d’état mal maîtrisée.
 
@@ -786,7 +786,7 @@ Une unité / machine peut être dans différents modes, par exemple Production, 
 
 Un mode de contrôle d'unité est un sous-ensemble ordonné d'états et de commandes qui détermine la stratégie à exécuter par le processus unité / machine.
 
-Cela signifie que le modèle d'état de l'interface PackML ci-dessus peut être représenté différemment dans différents modes. Le modèle d'état de l'interface PackML doit être entièrement implémenté pour le mode Production et peut être partiellement implémenté pour les modes manuel et maintenance. En mode manuel, toutes les communications avec les systèmes externes qui peuvent manipuler l'unité / la machine sont désactivées. En mode manuel, l'opérateur peut prendre le contrôle de l'unité via le HMI de l'unité sans connexion à un système externe.
+Cela signifie que le modèle d'état de l'interface PackML ci-dessus peut être représenté différemment dans différents modes. Le modèle d'état de l'interface PackML doit être entièrement implémenté pour le mode Production et peut être partiellement implémenté pour les modes: manuel et maintenance. En mode manuel, toutes les communications avec les systèmes externes qui peuvent manipuler l'unité / la machine sont désactivées. En mode manuel, l'opérateur peut prendre le contrôle de l'unité via le HMI de l'unité sans connexion à un système externe.
 
 Le fournisseur de la machine doit spécifier les modes disponibles en plus de la production, du manuel et de la maintenance.
 
@@ -839,7 +839,7 @@ Le mode manuel n’est pas un mode « Debug », il permet d’exécuter des proc
 ###	Timing
 Dans certaines implémentations, on trouve des limites de temps qui déclenchent des évènements lors du passage d’un état à un autre, ou d’un mode à un autre.
 
-La surveillance du temps d’un module pour activer le SC peut permettre de détecter rapidement un défaut lors d’une phase de démarrage, surtout dans les cas imprévus qui ne serait pas liés à une alarmes particulière.
+La surveillance du temps d’un module pour activer le SC peut permettre de détecter rapidement un défaut lors d’une phase de démarrage, surtout dans les cas imprévus qui ne serait pas liés à une alarme particulière.
 
 ##	PackTag, Automated Machine Functional Tag Description
 ###	Introduction
@@ -875,9 +875,9 @@ Nous supposons une machine d'état partielle du PackML.
 Dans ce cas particulier, nous supposons qu'une erreur critique est détectée sur un axe, par exemple une surchauffe du moteur et que cela demande un arrêt d'urgence de la machine, commande ``Abort``.
 
 > Le code ci-dessous est repris volontairement d'un exemple relativement complexe.
-> > Il montre que le traitement d'un simple arrêt d'urgence nécessite un codage relativment complexe, pour que la machine puisse s'arrêter proprement. Il ne s'agit pas d'activer un simple contact.
-> > Pour que l'axe puisse être mis hors tension, il faudra en priorité l'ammener à vitesse zéro à l'aide d'une commande Stop.
-> > Il faudra tenir compte que si l'axe n'a pas pu s'arrêter dans le délais imposé par un relais de sécurité temporisé, il va se mettre dans une situation d'erreur et qu'il faudra lui faire un *reset*, pour l'amener enfin dans une situation stable.
+> > Il montre que le traitement d'un simple arrêt d'urgence nécessite un codage relativement complexe, pour que la machine puisse s'arrêter proprement. Il ne s'agit pas d'activer un simple contact.
+> > Pour que l'axe puisse être mis hors tension, il faudra en priorité l'amener à vitesse zéro à l'aide d'une commande Stop.
+> > Il faudra tenir compte que si l'axe n'a pas pu s'arrêter dans le délai imposé par un relais de sécurité temporisé, il va se mettre dans une situation d'erreur et qu'il faudra lui faire un *reset*, pour l'amener enfin dans une situation stable.
 
 La commande ``Abort`` amène la machine d'état gérée par un FB ``FB_PackMasterState`` dans l'état ``Aborting``.
 
@@ -930,7 +930,7 @@ ELSE
 END_IF
 ```
 
-Notons ci-dessous, que la machine d'état de Aborting utilise quatre bloques fonctionnels différents.
+Notons ci-dessous, que la machine d'état de Aborting utilise quatre blocs fonctionnels différents.
 
 ```iecst
 mcReadStatus(Axis := axisRef,
@@ -1029,7 +1029,7 @@ END_IF
 ```
 
 ## Execute
-L'activité principale de la machine sera programmée uniquement dans la partie ``Execute``. On pourra ainsi se concentrer sur cette portion de code sans devoir se soucier de la gestions de tous les autres états de la machines telle que la phase d'initialisation ou la gestion des différents cas de figure qui pourraient interrompre l'activité de la machine.
+L'activité principale de la machine sera programmée uniquement dans la partie ``Execute``. On pourra ainsi se concentrer sur cette portion de code sans devoir se soucier de la gestion de tous les autres états de la machine telle que la phase d'initialisation ou la gestion des différents cas de figure qui pourraient interrompre l'activité de la machine.
 
 > Dans l'exemple ci-dessous, la machine d'état travaillera uniquement en **mode manuel**, ``PackTag.Status.UnitModeCurrent = E_PackModes.Manual``. Il s'agit d'une sorte de jog des axes, qui est en fait un pilotage cyclique de trois axes avec des mouvements absolus.
 
@@ -1082,7 +1082,7 @@ END_IF
 ```
 
 # Conclusion
-Il existe plusieurs bonne raisons d'utiliser PackML. Si il ne faut en garder qu'une, c'est que si vous avez pu expérimenter une fois l'utilisation de plusieurs commandes d'axe avec et sans PackML, vous ne voudrez plus jamais vous en passer.
+Il existe plusieurs bonnes raisons d'utiliser PackML. Si il ne faut en garder qu'une, c'est que si vous avez pu expérimenter une fois l'utilisation de plusieurs commandes d'axe avec et sans PackML, vous ne voudrez plus jamais vous en passer.
 
 Accessoirement, il est aussi possible d'utiliser PackML pour des machines très simples avec uniquement deux ou trois états.
 
