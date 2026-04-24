@@ -380,7 +380,7 @@ Nachfolgend sind die Mindestzustände gemäß PackML aufgeführt:
 
 Im Allgemeinen passiert während eines **Wartezustands** nichts, oder zumindest gibt es keine Maschinenaktion auf der **prozeduralen** Ebene. Es gibt jedoch nichts, was ein Zufuhrband daran hindern würde, weiterzulaufen oder sogar anzuhalten, wenn der Stoppbefehl intern im Modul erfolgt, das es steuert.
 
-- Es reicht aus, wenn ein einzelnes Modul einen Befehl startet, zum Beispiel **Start**, damit alle Module gleichzeitig in den nächsten Zustand wechseln.
+- Es reicht aus, wenn ein einzelnes Modul einen Befehl startet, zum Beispiel **Stop** durch einen Alarm, damit alle Module gleichzeitig in den nächsten Zustand wechseln.
 - Wenn sich die Module im **Aktionszustand** befinden, haben wir eine konkrete Aktion der Module, sie führen die für diesen Zustand programmierte Sequenz aus. Beispielsweise positionieren sich die verschiedenen Aktuatoren während des **Startens** aus dem **Leerlauf** heraus, um für die **Ausführung** bereit zu sein.
 - Wenn alle Module ihre Sequenz abgeschlossen und ihren **SC**-Status, **Status abgeschlossen**, aktiviert haben, und nur in diesem Moment, wechseln alle Module in den nächsten Status.
 
@@ -714,9 +714,11 @@ Der Zustand **ABORTED** kann jederzeit als Reaktion auf den Abbruchbefehl oder d
 Auf der internen Logikebene des Systems sollte der Zustand **ABORTING** dieselbe Logik durchlaufen haben wie der Zustand **STOPPING**, um die Achsen kontrolliert anzuhalten.
 Die vom System zur Ausführung des Zustands **ABORTING** gewährte Zeit hängt von Sicherheitskriterien ab.
 
+---
+
 ## Die Befehle
-**Es gibt 9 Befehle / Commands**. Sehen Sie sich einfach die Abbildung des PackML-Zustandsmodells an.
-Jede weitere Beschreibung erscheint überflüssig. In der PackTag-Formalisierung reicht ihr Wert von 0 (kein Befehl) bis 9.
+**Es gibt 10 Befehle / Commands**. Sehen Sie sich einfach die Abbildung des PackML-Zustandsmodells an.
+Jede weitere Beschreibung erscheint überflüssig. In der PackTag-Formalisierung reicht ihr Wert von 0 (kein Befehl) bis 10 mit ``DINT``.
 
 Die folgende Tabelle dient nur zu Informationszwecken.
 
@@ -738,7 +740,29 @@ Zur Erinnerung: In einer Maschine muss jeder Alarm eine eindeutige Identifikatio
 |Unsuspend	|7|
 |Abort	|8|
 |Clear	|9|
+|Complete |10|
 
+:bulb: Dieses Beispiel verdeutlicht, warum es notwendig ist, ein Nummerierungssystem und einen Standardtyp für ``ENUM``-Typen festzulegen. In unserem Programm verwenden wir ``ENUM``, wir müssen die Informationen aber auch mit einem anderen System teilen können, das ``ENUM`` nicht interpretieren kann.
+
+```iecst
+TYPE E_PackCmd :
+(
+    eUndefined := 0,
+    eReset     := 1,
+    eStart     := 2,
+    eStop      := 3,
+    eHold      := 4,
+    eUnhold    := 5,
+    eSuspend   := 6,
+    eUnsuspend := 7,
+    eAbort     := 8,
+    eClear     := 9,
+    eComplete  := 10
+) DINT := eUndefined;
+END_TYPE
+```
+
+---
 
 ###	PACKML STATE MODEL
 

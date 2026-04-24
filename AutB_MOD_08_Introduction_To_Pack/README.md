@@ -380,7 +380,7 @@ Ci-dessous, les états minimaux selon PackML:
 
 De manière générale, pendant un **Wait state**, rien ne se passe, ou du moins, il n’y a pas d’action de la machine au niveau **Procedural**. Cependant, rien n’empêche qu’une bande d’alimentation continue à avancer, et même qu’elle s’arrête, si la commande d’arrêt est interne au module qui la contrôle.
 
--   Il suffit qu’un seul module lance une commande, par exemple **Start**, pour que tous les modules passent dans l’état suivant en même temps.
+-   Il suffit qu’un seul module lance une commande, par exemple **Stop** via une alarme, pour que tous les modules passent dans l’état suivant en même temps.
 -   Lorsque les modules sont en **Acting State**, on a une action concrète des modules, ils exécutent la séquence programmée pour cet état. Par exemple, depuis **Idle** les différents actionneurs se positionnent pendant le **Starting** pour être prêt pour le **Execute**.
 -   Lorsque tous les modules ont terminé leur séquence et activé leur statut **SC**, **State Complete**, et seulement à cet instant, tous les modules passent à l’état suivant.
 
@@ -712,9 +712,11 @@ L'état **ABORTED** peut être entré à tout moment en réponse à la commande 
 Au niveau de la logique interne du système, l’état **ABORTING** devrait avoir passé par la même logique que l’état **STOPPING**, ceci afin d’arrêter les axes de manière contrôlée.
 Le délai accordé par le système pour exécuter l’état **ABORTING** dépend de critères de sécurité.
 
+---
+
 ##	Les commandes
-**Les commandes sont au nombre de 9**. Il suffit de se référer à la figure du PackML State Model. 
-Toute description supplémentaire semble superflue. Dans la formalisation du PackTag, leur valeur va de 0, pas de commande, à 9.
+**Les commandes sont au nombre de 10**. Il suffit de se référer à la figure du PackML State Model. 
+Toute description supplémentaire semble superflue. Dans la formalisation du PackTag, leur valeur va de 0, pas de commande, à 10 en ``DINT``.
 
 Le tableau ci-dessous est donné à titre indicatif.
 
@@ -736,7 +738,28 @@ Pour rappel, dans une machine, chaque alarme doit posséder un numéro d’ident
 |Unsuspend	|7|
 |Abort	|8|
 |Clear	|9|
+|Complete |10|
 
+:bulb: Ceci est un exemple qui montre pourquoi il est nécessaire de spécifier une numérotation et un type par défaut pour les types ``ENUM``. Dans notre programme nous utilisons des ``ENUM``, mais il faudra aussi pouvoir partager l'information avec un autre système qui ne saurait pas interpréter un ``ENUM``.
+
+```iecst
+TYPE E_PackCmd :
+(
+    eUndefined := 0,
+    eReset     := 1,
+    eStart     := 2,
+    eStop      := 3,
+    eHold      := 4,
+    eUnhold    := 5,
+    eSuspend   := 6,
+    eUnsuspend := 7,
+    eAbort     := 8,
+    eClear     := 9,
+    eComplete  := 10
+) DINT := eUndefined;
+END_TYPE
+```
+---
 
 ###	PACKML STATE MODEL
 
