@@ -144,7 +144,8 @@ Pour plus d'informations, vous pouvez consulter les ressources officielles ou le
 
 
 <div align="center">
-  <img src="./img//AITrends_Lonza_VispSwitzerlandLab-1068x696.jpg" alt="AITrends_Lonza_VispSwitzerlandLab" width="700">
+  <img src="./img//AITrends_Lonza_VispSwitzerlandLab-1068x696.jpg" 
+       alt="AITrends_Lonza_VispSwitzerlandLab" width="700">
   <p><em>Source Lonza Visp</em></p>
 </div>
 
