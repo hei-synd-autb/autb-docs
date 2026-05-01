@@ -161,3 +161,5 @@ Write(Output)
 
 # Abschluss
 Wenn Sie wissen, wie man einen PI-Regler schreibt, könnten Sie theoretisch auch Ihr eigenes Optimierungssystem schreiben, um ein bestimmtes Problem zu kompensieren.
+
+<!-- End of file -->

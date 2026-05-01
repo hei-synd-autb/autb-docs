@@ -476,4 +476,6 @@ Les éléments mécanique nécessitent des interventions de maintenance comme la
 ## Intelligence artificielle
 Une des premières applications de l'intelligence artificielle dans le domaine de l'automation actuellement consiste à tenter d'identifier l'usure des roullements à bille sur les moteurs par analyse des vibrations mesurées à l'aide d'un accéléromètre.
 
-[Module 08 le drive, software](README_DriveSoft.md)
+[Module 09 le drive, software](README_DriveSoft.md)
+
+<!-- End of file -->
