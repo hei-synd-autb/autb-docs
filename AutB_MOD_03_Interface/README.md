@@ -255,11 +255,13 @@ flowchart LR
 ## Un centre de communication.
 Un automate moderne est avant tout un centre de communication qui permet dans un environnement donné d’utiliser une large gamme de protocoles et de matériel.
 
+<div align="center"> 
 <figure>
     <img src="img/Internal Block Diagram of a PLC.png"
          alt="Internal Block Diagram of a PLC">
     <figcaption>Internal Block Diagram of a PLC</figcaption>
 </figure>
+</div>
 
 ### Un automate permet en particulier:
 - De communiquer avec un opérateur via un **HMI** Human Machine Interface,
@@ -306,11 +308,13 @@ Les aspects mathématiques de traitement numériques des signaux seront traités
 ### Hypervisor
 Il n'est pas du tout dans l'objectif de ce cours de rentrer dans les détails du mécanisme qui permet à un système d'exploitation temps réels, **RTOS** de partager le processeur et l'espace mémoire d'un même système avec un système d'exploitation de type Windows ou Linux.
 
+<div align="center"> 
 <figure>
     <img src="img/Bare Metal Hypervisor.png"
          alt="Bare Metal Hypervisor" width="300">
     <figcaption>PLC et OS de type Windows ou Linux sur le même hardware</figcaption>
 </figure>
+</div>
 
 ## Des interfaces standards
  
@@ -336,19 +340,34 @@ La norme IEC 61131-2 définit principalement les niveaux des signaux et la limit
 
 Il ne s'agit pas ici de rentrer dans le détail des types de signaux, mais d'attirer l'attention sur les nombreuses variantes existantes au sein même de la norme IEC 61131-2.
 
-### Digital Input [Source Siemens 2015](https://cache.industry.siemens.com/dl/files/921/109477921/att_862667/v3/109477921_Compliance_IEC_61131-2_DI_module_de.pdf)
+---
+
+### Digital Input
+*Selon IEC 61131-2:2017*
+
 |Signal range     |Type 1|Type 2|Type 3|
 |-----------------|------|------|------|
 |24 [Vdc]	      |...   |...   |...   |
-|120 [Vac]	      |...   |...   |...   |
 |230 [Vac]	      |...   |...   |...   |
 
-A ma connaissance, le signal 5 [Vdc] ne fait pas partie de la spécification en entrée, mais on trouve ce niveau de tension disponible chez certains fabricants, par exemple [Beckhoff EL1124](https://www.beckhoff.com/en-en/products/i-o/ethercat-terminals/el1xxx-digital-input/el1124.html).
+:bulb: Le type concerne principalement le courant minimum pour activer l'entrée. Le type 1, le plus ancien nécessite le courant le plus élevé. Il existe encore d'autres tensions, continu ou alternatif, comme 48 Vac ou Vdc. **En pratique il faut considérer le type 3 en 24 Vdc comme le standard pour l'automation industrielle**. Exception: les application pour lesquelles on veut travailler directment avec la tension du réseau électrique en 230 Vac.
+
+:warning: *Le type 2 est considéré comme obsolète.*
+
+:warning: *Le signal 5 Vdc ne fait pas partie de la spécification en entrée, mais on trouve ce niveau de tension disponible chez certains fabricants, par exemple [Beckhoff EL1124](https://www.beckhoff.com/en-en/products/i-o/ethercat-terminals/el1xxx-digital-input/el1124.html).*
+
+:bulb: Le type 3-d, nouveau sur la norme 2017, ajoute une fonction de diagnostic. Il est conçu pour minimiser la consommation d'énergie.
+
+---
 
 ### Digital Output
-Pas de source générale disponible liée à IEC 61131-2
+*Selon IEC 61131-2:2017*
+
+Les mêmes niveaux de tension que pour les entrées sont disponibles. **En pratique il faut considérer le type 3 en 24 Vdc comme le standard pour l'automation industrielle**.
 
 ### Analog Input
+*Selon IEC 61131-2:2017*
+
 |Signal range     |Input impedance limits|
 |-----------------|----------------------|
 |± 10 [V]	|≥ 10 [kΩ]|
@@ -356,13 +375,31 @@ Pas de source générale disponible liée à IEC 61131-2
 |1-5 [V]	|≥ 5 [kΩ]|
 |4-20 [mA]	|≤ 300 [Ω]|
 
+:warning: *Il existait le 0..20 [mA], mais il est considéré comme obsolète. A ne pas utiliser pour de nouveaux développements*.
+
+---
+
 ### Analog Output
-|Signal range     |Input impedance limits|
+*Selon IEC 61131-2:2017*
+
+|Signal range     |Load impedance limits|
 |-----------------|----------------------|
 |± 10 [V]	|≥ 1000 [Ω]|
 |0-10 [V]	|≥ 1000 [Ω]|
 |1-5 [V]	|≥ 500 [Ω]|
 |4-20 [mA]	|≤ 600 [Ω]|
+
+:warning: *Comme pour les entrées analogiques, le 0..20 [mA] est considéré comme obsolète.*
+
+---
+
+### Divers
+
+On trouve aussi en standard des entrées dédiées aux mesure de température, par exemple capteur PT100. Le reste de la norme concerne principalement des contrainte de compatibilité environnementale en milieu industriel, température, résistance aux chocs et aux vibrations.
+
+:bulb: Le label IEC 61131-2 est donc aussi, **si ce n'est principalement**, un label de robustesse.
+
+---
 
 ### Indice de protection IP
 **IP**, **Ingress Protection**, existe le plus souvent en IP20 et IP67.
@@ -408,6 +445,8 @@ EL1008 | EtherCAT Terminal, 8-channel digital input, 24 V DC, 3 ms
 
 #### Un mauvais exemple
 Chercher une carte permettant de faire l’acquisition de signaux à 1MHz.
+
+---
 
 ## Les bus de terrain, ou bus industriels
 
@@ -474,7 +513,8 @@ Actuellement une nouvelle technologie est en phase d'essais pilote par différen
 <div align="center">
 <figure>
     <img src="./img/Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png"
-         alt="Image lost Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png">
+         alt="Image lost Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png"
+         width=400>
     <figcaption>Ethernet-APL</figcaption>
 </figure>
 </div>
@@ -483,12 +523,15 @@ Actuellement une nouvelle technologie est en phase d'essais pilote par différen
 ### Les normes
 Dans le cas des bus de terrain, même si des normes existent, série IEC 61784 et IEC 61800, elles ne résolvent rien, car des variantes des normes ont été écrites pour la majorité des principaux types de bus de terrain.
 La situation en 2023 selon une publication de HMS une entreprise spécialisée dans le développement de produits pour les bus industriels. Le graphique de HMS est réalisé à l’échelle mondiale et les zones géographiques montreraient des réalités différentes. Noter aussi la croissance des réseaux sans fil, wireless.
- 
+
+<div align="center"> 
 <figure>
     <img src="img/Field Bus Market Share www hms networks com 2023.jpg"
-         alt="Field Bus Market Share www hms networks com 2023">
+         alt="Field Bus Market Share www hms networks com 2023"
+         width=400>
     <figcaption>Field Bus Market Share Source: <a href="https://www.hms-networks.com/news-and-insights/news-from-hms/2023/05/05/industrial-network-market-shares-2023">www.hms-networks-com 2023</a></figcaption>
 </figure>
+</div>
  
 Idéalement
 Sous l’égide de la fondation OPC, opcfoundation.org, un groupe de travail à l’harmonisation des réseaux industriels sous la dénomination OPC UA Field Level Communications (FLC). En 2023 les produits développés selon cette harmonisation en sont au stade de démonstrateurs.
@@ -511,12 +554,14 @@ Dans l’exemple ci-dessous, on peut voir que, à partir du même automate il ex
 
 *Il n'y a aucune source sur l'origine d'IO-Link, mais IO-Link est maintenu par l'organisation [PI International](https://www.profibus.com) comme Profinet et Profibus...*
 
+<div align="center"> 
 <figure>
     <img src="img/Pyramide IO-Link Source Balluff.jpg"
          alt="Pyramide IO-Link Source Balluff">
     <figcaption>Pyramide IO-Link Source Balluff Source: <a href="https://www.balluff.com">www.balluff.com</a>
     </figcaption>
 </figure>
+</div>
 
 ### Conclusion
 Il est très important de retenir les informations suivantes :

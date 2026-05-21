@@ -153,11 +153,13 @@ classDiagram
 ### Physikalisches ISA-88-Physical Model
 ISA-88 bietet ein Modell, das es ermöglicht, einen industriellen Prozess nach einem generischen Modell darzustellen. Obwohl es sich bei ISA-88 ursprünglich um einen Standard handelt, der für die **Stapelverarbeitung** entwickelt wurde, kann er auch zur Modellierung anderer Arten von Prozessen verwendet werden, sodass wir diesen Kurs als allgemeinen Ansatz präsentieren können, der für andere Arten von Prozessen gilt, die automatisiert werden können.
 
+<div align="center"> 
 <figure>
     <img src="./img/S88_Physical_Model_UML_Generic.svg"
          alt="lost image S88_Physical_Model_UML_Generic">
     <figcaption>ISA-88 Physical Model Generic vesion UML</figcaption>
 </figure>
+</div>
 
 - Zusammenfassend lässt sich sagen, dass sich eine Maschine auf der Ebene **Einheit** befindet.
 - Im Rahmen dieses Kurses beschränken wir uns auf ein Element dieser Maschine, ein **Gerätemodul**
@@ -228,11 +230,13 @@ Eine Operation könnte zum Beispiel sein:
 
 #### Das vollständige ISA-88-Modell
 
+<div align="center"> 
 <figure>
     <img src="./img/S88_Relations.svg"
          alt="Lost image S88_Relations">
     <figcaption>Beziehung zwischen verschiedenen ISA-88-Elementen</figcaption>
 </figure>
+</div>
 
 # Eingabe-Ausgabe-Module, I/O
 Die Ein- und Ausgänge ermöglichen uns die Steuerung und Überwachung der physischen Elemente von der SPS aus.
@@ -263,11 +267,13 @@ flowchart LR
 ## Ein Kommunikationszentrum.
 Eine moderne SPS ist vor allem ein Kommunikationszentrum, das den Einsatz verschiedenster Protokolle und Hardware in einer gegebenen Umgebung ermöglicht.
 
+<div align="center"> 
 <figure>
     <img src="img/Internal Block Diagram of a PLC.png"
          alt="Internal Block Diagram of a PLC">
     <figcaption>Internal Block Diagram of a PLC</figcaption>
 </figure>
+</div>
 
 ### Ein Automat erlaubt insbesondere:
 - Um mit einem Bediener über eine **HMI** Mensch-Maschine-Schnittstelle zu kommunizieren,
@@ -314,17 +320,20 @@ Die mathematischen Aspekte der digitalen Signalverarbeitung werden je nach Branc
 ### Hypervisor
 Es ist keineswegs das Ziel dieses Kurses, auf die Einzelheiten des Mechanismus einzugehen, der es einem Echtzeitbetriebssystem, **RTOS**, ermöglicht, den Prozessor und Speicherplatz desselben Systems mit einem Windows- oder Linux-Betriebssystem zu teilen System.
 
+<div align="center"> 
 <figure>
     <img src="img/Bare Metal Hypervisor.png"
          alt="Bare Metal Hypervisor">
     <figcaption>PLC et OS de type Windows ou Linux sur le même hardware</figcaption>
 </figure>
+</div>
 
 ## Standardschnittstellen
  
 Anbieter von SPS-Lösungen bieten Ein-/Ausgabemodule an, die spezifisch für ihre Produktpalette sind und in der Regel nicht mit denen anderer Hersteller kompatibel sind, angefangen bei ihren mechanischen Eigenschaften.
 
 ### Beispiel für Eingabemodule
+
 |Herkunft Beckhoff | Herkunft Siemens|
 |:-----------------:|:--------------:|
 |![](img/IO%20Module%20Beckhoff.jpg) |![](img/IO%20Module%20Siemens.png)|
@@ -344,19 +353,34 @@ Die Norm IEC 61131-2 definiert hauptsächlich die Signalpegel und die Impedanzgr
 
 Dabei geht es nicht darum, detailliert auf die Art der Signale einzugehen, sondern auf die zahlreichen Variationen innerhalb der Norm IEC 61131-2 selbst aufmerksam zu machen.
 
-### Digital Input [Source Siemens 2015](https://cache.industry.siemens.com/dl/files/921/109477921/att_862667/v3/109477921_Compliance_IEC_61131-2_DI_module_de.pdf)
+---
+
+### Digital Input
+*Gemäß IEC 61131-2:2017*
+
 |Signal range     |Type 1|Type 2|Type 3|
 |-----------------|------|------|------|
 |24 [Vdc]	      |...   |...   |...   |
-|120 [Vac]	      |...   |...   |...   |
 |230 [Vac]	      |...   |...   |...   |
 
-Meines Wissens ist das Signal 5 [Vdc] nicht Teil der Eingangsspezifikation, aber dieser Spannungspegel ist von einigen Herstellern verfügbar, zum Beispiel [Beckhoff EL1124](https://www.beckhoff.com/en -en/products/ i-o/ethercat-terminals/el1xxx-digital-input/el1124.html).
+:bulb: Der Typ bezieht sich primär auf den Mindeststrom, der zum Aktivieren des Eingangs erforderlich ist. Typ 1, der älteste Typ, benötigt den höchsten Strom. Es gibt weitere Spannungen, sowohl Gleich- als auch Wechselspannung, z. B. 48 Vac oder 48 Vdc. **In der Praxis gilt Typ 3 mit 24 Vdc als Standard für die industrielle Automatisierung.** Ausnahme: Anwendungen, die einen direkten Anschluss an die Netzspannung von 230 Vac erfordern.
 
-### Digitaler Ausgang
-Es ist keine allgemeine Quelle für IEC 61131-2 verfügbar
+:warning: *Typ 2 gilt als veraltet.*
+
+:warning: *Das 5 Vdc-Signal ist nicht Teil der Eingangsspezifikation, diese Spannung ist jedoch von einigen Herstellern erhältlich, z. B. vom [Beckhoff EL1124](https://www.beckhoff.com/en-en/products/i-o/ethercat-terminals/el1xxx-digital-input/el1124.html).*
+
+:bulb: Die im Standard von 2017 neu eingeführte 3-d-Variante verfügt über eine zusätzliche Diagnosefunktion. Sie ist auf minimalen Energieverbrauch ausgelegt.
+
+---
+
+### Digital Output
+*Gemäß IEC 61131-2:2017*
+
+Es stehen die gleichen Spannungspegel wie für die Eingänge zur Verfügung. **In der Praxis sollte Typ 3 mit 24 Vdc als Standard für die industrielle Automatisierung betrachtet werden.**
 
 ### Analog Input
+*Gemäß IEC 61131-2:2017*
+
 |Signal range     |Input impedance limits|
 |-----------------|----------------------|
 |± 10 [V]	|≥ 10 [kΩ]|
@@ -364,13 +388,31 @@ Es ist keine allgemeine Quelle für IEC 61131-2 verfügbar
 |1-5 [V]	|≥ 5 [kΩ]|
 |4-20 [mA]	|≤ 300 [Ω]|
 
+Warnung: *Es gab zwar eine Version mit 0,20 mA, diese gilt jedoch als veraltet. Verwenden Sie sie nicht für neue Entwicklungen.*
+
+---
+
 ### Analog Output
-|Signal range     |Input impedance limits|
+*Gemäß IEC 61131-2:2017*
+
+|Signal range     |Load impedance limits|
 |-----------------|----------------------|
 |± 10 [V]	|≥ 1000 [Ω]|
 |0-10 [V]	|≥ 1000 [Ω]|
 |1-5 [V]	|≥ 500 [Ω]|
 |4-20 [mA]	|≤ 600 [Ω]|
+
+:warning: *Wie bei analogen Eingängen gilt der Bereich 0..20 [mA] als veraltet.*
+
+---
+
+### Sonstiges
+
+Spezielle Eingänge für die Temperaturmessung, z. B. für einen PT100-Sensor, sind standardmäßig enthalten. Der Rest der Norm betrifft hauptsächlich die Anforderungen an die Umweltverträglichkeit in industriellen Umgebungen, die Temperaturbeständigkeit sowie die Stoß- und Vibrationsfestigkeit.
+
+:bulb: Das IEC 61131-2-Label ist daher **wenn nicht sogar in erster Linie** ein Gütesiegel für Robustheit.
+
+---
 
 ### IP-Schutzart
 **IP**, **Ingress Protection**, gibt es am häufigsten in IP20 und IP67.
@@ -417,6 +459,8 @@ EL1008 | EtherCAT Terminal, 8-channel digital input, 24 V DC, 3 ms
 #### Ein schlechtes Beispiel
 Suchen Sie nach einer Karte, mit der Sie Signale mit 1 MHz erfassen können.
 
+---
+
 ## Feldbusse oder Industriebusse
 
 <div align="center"> 
@@ -461,6 +505,7 @@ flowchart TB
 
 </div>
 
+
 ### Was ist ein Feldbus?
 Ein Feldbus oder Industriebus ist ein Kommunikationssystem, das einen physischen Träger, das Kabel, einen physischen elektronischen Teil und einen Softwareteil umfasst, der die Kommunikation zwischen Sensoren, Aktoren und Industriesteuerungen ermöglicht.
 #### Wofür ?
@@ -479,22 +524,28 @@ Es gibt geschäftliche Entscheidungen. Wenn ein großes Unternehmen wie Nestlé 
 #### Neu für 2023-2024
 Derzeit befindet sich eine neue Technologie in der Pilottestphase bei verschiedenen Anbietern. [Ethernet-APL](https://www.ethernet-apl.org) Erweiterte physikalische Schicht. Diese Technologie soll Profibus-PA in der sogenannten Prozess-, Chemie- und Biotechnologieindustrie ersetzen. Für Ingenieure, die in dieser Branche tätig sind, lohnt es sich, diesen Bustyp bei jedem neuen Projekt in Betracht zu ziehen. Diese Technologie ist darauf ausgelegt, die physikalischen Medien alter Anlagen nutzen zu können und ist daher auch für Renovierungsprojekte relevant.
 
-<Abbildung>
+<div align="center">
+<figure>
      <img src="./img/Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png"
-          alt="Bild verloren Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png">
+          alt="Bild verloren Logo-Ethernet-APL-rectangle-RGB_1.0_white_backgr.png"
+          width=400> 
      <figcaption>Ethernet-APL</figcaption>
 </figure>
+</div>
 
 
 ### Standards
 Im Fall von Feldbussen lösen die Standards, selbst wenn sie in der Reihe IEC 61784 und IEC 61800 existieren, nichts, da für die meisten Haupttypen von Feldbussen Varianten der Standards geschrieben wurden.
 Die Situation im Jahr 2023 geht aus einer Veröffentlichung von HMS hervor, einem Unternehmen, das sich auf die Entwicklung von Produkten für Industriebusse spezialisiert hat. Das HMS-Diagramm wird im globalen Maßstab erstellt und geografische Gebiete würden unterschiedliche Realitäten zeigen. Beachten Sie auch das Wachstum drahtloser Netzwerke.
- 
+
+<div align="center"> 
 <figure>
     <img src="img/Field Bus Market Share www hms networks com 2023.jpg"
-         alt="Field Bus Market Share www hms networks com 2023">
+         alt="Field Bus Market Share www hms networks com 2023"
+         width=400>
     <figcaption>Field Bus Market Share Source: <a href="https://www.hms-networks.com/news-and-insights/news-from-hms/2023/05/05/industrial-network-market-shares-2023">www.hms-networks-com 2023</a></figcaption>
 </figure>
+</div>
  
 ### Im Idealfall
 Unter der Schirmherrschaft der OPC Foundation gründete opcfoundation.org eine Arbeitsgruppe zur Harmonisierung industrieller Netzwerke unter dem Namen OPC UA Field Level Communications (FLC). Im Jahr 2023 werden sich die nach dieser Harmonisierung entwickelten Produkte im Demonstratorstadium befinden.
@@ -517,12 +568,14 @@ Im folgenden Beispiel sehen wir, dass es von derselben SPS aus eine Vielzahl von
 
 *Es gibt keine Quelle zum Ursprung von IO-Link, aber IO-Link wird von der Organisation [PI International](https://www.profibus.com) wie Profinet und Profibus gepflegt... *
 
+<div align="center"> 
 <figure>
     <img src="img/Pyramide IO-Link Source Balluff.jpg"
          alt="Pyramide IO-Link Source Balluff">
     <figcaption>Pyramide IO-Link Source Balluff Source: <a href="https://www.balluff.com">www.balluff.com</a>
     </figcaption>
 </figure>
+</div>
 
 ### Abschluss
 Es ist sehr wichtig, sich die folgenden Informationen zu merken:
