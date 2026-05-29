@@ -55,7 +55,7 @@ Node.js ist eine serverseitige JavaScript-Laufzeitumgebung, die auf Googles [V8-
 | Aspekt                | Node.js (JavaScript)         | SPS (Ladder, ST, etc.)         | Python                        |
 |-----------------------|-----------------------------|-------------------------------|-------------------------------|
 | **Paradigma**         | Ereignisgesteuert, asynchron    | Zyklisch, Echtzeit           | Imperativ, objektorientiert      |
-| **Ausführung**         | Interpretiert, nicht blockierend    | Echtzeit, sequenziell         | Interpretiert, synchron         |
+| **Ausführung**         | JIT,, nicht blockierend    | Echtzeit, sequenziell         | Interpretiert, synchron         |
 | **Typische Verwendung** | Webserver, IoT, API      | Industrielle Steuerung, Maschinen  | Skripte, Data Science, Web    |
 | **E/A-Verwaltung**   | Asynchron (Callbacks, Promises) | Direkt, über physische Ein-/Ausgänge | Synchron oder asynchron |
 | **Sprache**           | JavaScript                  | IEC 61131-3 Sprachen           | Python                        |

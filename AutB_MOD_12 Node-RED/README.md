@@ -57,7 +57,7 @@ Node.js est un environnement d’exécution JavaScript côté serveur, construit
 | Aspect                | Node.js (JavaScript)         | PLC (Ladder, ST, etc.)         | Python                        |
 |-----------------------|-----------------------------|-------------------------------|-------------------------------|
 | **Paradigme**         | Événementiel, asynchrone    | Cyclique, temps réel           | Impératif, orienté objet      |
-| **Exécution**         | Interprété, non bloquant    | Temps réel, séquentiel         | Interprété, synchrone         |
+| **Exécution**         | JIT, non bloquant    | Temps réel, séquentiel         | Interprété, synchrone         |
 | **Utilisation typique** | Serveurs web, IoT, API      | Contrôle industriel, machines  | Scripts, data science, web    |
 | **Gestion des E/S**   | Asynchrone (callbacks, promesses) | Directe, via entrées/sorties physiques | Synchrone ou asynchrone |
 | **Langage**           | JavaScript                  | Langages IEC 61131-3           | Python                        |
