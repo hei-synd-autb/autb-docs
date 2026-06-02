@@ -33,8 +33,11 @@ Your summary in some lines
     1.  Mermaid [state diagrams](https://mermaid.ai/open-source/syntax/stateDiagram.html).
     2.   Mermaid [class diagrams](https://mermaid.ai/open-source/syntax/classDiagram.html).
     3.   Mermaid [flowcharts - basic syntax](https://mermaid.ai/open-source/syntax/flowchart.html).
+7. For PLC code, if you define a type, it's better to mention it in this report.
 
 **Finally**: zip all documents with last name of all authors as ``zip_name.zip`` and upload them in cyberlearn, *by mail if problems with cyberlearn*.
+
+<div align="center">
 
 ```mermaid
 stateDiagram
@@ -48,10 +51,12 @@ stateDiagram
 
 ```
 
+</div>
+
 ---
 
 ## Length of the document
-About 150 to 200 lines, check your vs-code editor.
+About 150 to 200 lines, check your vs-code editor. With PLC code it could be more.
 
 ---
 
@@ -93,6 +98,8 @@ END_FOR
 |Axis regulation|Modified parameters|Quality of regulation|Oscillations|
 |...|...|...|...|
 
+:bulb: Tests are as important as the code itself.
+
 --- 
 ## What you have learned 
 In one sentence. 
@@ -103,7 +110,7 @@ In one sentence.
 
 ---
 
-# About project
+## About project
 If you have to write or complete a project, please add it in the **documents folder**.
 -   **If** this is a lab with Node-RED, add the flows.json.
 -   **It** this is a lab with PLC, export the PLC project with File :arrow_right: ProjectArchive :arrow_right: SaveArchive and **unselect the referenced libraries**.
