@@ -101,5 +101,25 @@ In one sentence.
 ### What you did not understand.
 In one sentence.
 
+---
+
+# About project
+If you have to write or complete a project, please add it in the **documents folder**.
+-   **If** this is a lab with Node-RED, add the flows.json.
+-   **It** this is a lab with PLC, export the PLC project with File :arrow_right: ProjectArchive :arrow_right: SaveArchive and **unselect the referenced libraries**.
+
+<div align="center">
+    <img src="./img/File-ProjectArchive-SaveArchive.png" alt="File-ProjectArchive-SaveArchive"
+    width="300"/>
+    <p>Save as archive</p>
+</div>
+
+<div align="center">
+    <img src="./img/ProjectArchive.png" alt="ProjectArchive"
+    width="300"/>
+    <p>Unselect Referenced libraries</p>
+</div>
+
+The PLC project should have a size of **about 4000 kB**.
 
 <!-- end of file. This document has 102 lines, written in about 45 minutes-->

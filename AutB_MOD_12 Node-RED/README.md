@@ -121,7 +121,7 @@ La programmation événementielle permet de synchroniser l'occurrence de plusieu
 -   **Prise en charge des capteurs et autres matériels** : La programmation événementielle simplifie la communication entre les capteurs et autres matériels et les logiciels.
 
 ### Inconvénients de la programmation événementielle
--   **Complexe **: Les programmes simples deviennent inutilement complexes.
+-   **Complexe**: Les programmes simples deviennent inutilement complexes.
 -   **Moins logique et évident** : Le déroulement du programme est généralement moins logique et plus évident.
 -   **Difficile à trouver des erreurs** : Le débogage d'un programme événementiel est complexe.
 -   **Blocage **: Blocage complexe des opérations.
