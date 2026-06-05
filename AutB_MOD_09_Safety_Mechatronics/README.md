@@ -177,6 +177,8 @@ La base légale est constituée par l'ordonnance du 2 avril 2008 sur la sécurit
 > La Machinery Regulation EU 2023/1230 est une réglementation européenne qui remplace la directive Machines 2006/42/CE. Elle vise à moderniser les exigences de sécurité pour les machines en tenant compte des avancées technologiques, notamment en matière de connectivité et d'intelligence artificielle.
 > > La Machinery Regulation EU 2023/1230 a été adoptée en 2023 et entrera en application à partir du **14 janvier 2027**. Les fabricants de machines doivent se conformer à cette réglementation pour pouvoir commercialiser leurs produits dans l'Union européenne. Voir: [Nouveau règlement machines : quelles évolutions ?](https://www.inrs.fr/publications/juridique/focus-juridiques/nouveau-reglement-machines.html)
 
+:bulb: Voir aussi le [document annexe de la SUVA](./documentation/AT13_Vock_2024_-_Reglement_sur_les_machines_UE_20231230_nouvelles_obligations_pour_les_responsables_de_la_mise_sur_le_marche_de_machines.pdf). Règlement sur les machines (UE) 2023/1230.
+
 ###	Selon source SUVA
 [Comment les fabricants peuvent-ils garantir la sécurité des machines?](https://www.suva.ch/fr-ch/prevention/themes-specialises/securite-des-machines-et-commandes-de-machines)
 ####	Sécurité des machines et commandes de machines

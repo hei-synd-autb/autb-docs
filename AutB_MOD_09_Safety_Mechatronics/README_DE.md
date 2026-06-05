@@ -161,6 +161,9 @@ Die [Maschinenverordnung](http://www.admin.ch/ch/f/sr/c819_14.html) regelt das I
 > Die Maschinenverordnung **EU 2023/1230** ist eine europäische Verordnung, die die Maschinenrichtlinie 2006/42/EG ersetzt. Ziel ist es, die Sicherheitsanforderungen für Maschinen unter Berücksichtigung des technologischen Fortschritts, insbesondere in den Bereichen Konnektivität und künstliche Intelligenz, zu modernisieren.
 > > Die Maschinenverordnung EU 2023/1230 wurde 2023 verabschiedet und tritt ab **14. Januar 2027** in Kraft. Maschinenhersteller müssen diese Verordnung einhalten, um ihre Produkte in der Europäischen Union vermarkten zu dürfen. Siehe: [Neue Maschinenverordnung: Was ist neu (Auf französische, wird so schnell wie möglich aktualisiert.)](https://www.inrs.fr/publications/juridique/focus-juridiques/nouveau-reglement-machines.html)
 
+:bulb: Siehe auch das [SUVA-Anhangsdokument](./documentation/AT13_Vock_d_2024_-_Maschinenverordnung_EU_20231230_Neue_Pflichten_fuer_Inverkehrbringer_von_Maschinen.pdf). Maschinenverordnung (EU) 2023/1230:
+Neue Pflichten für Inverkehrbringer von Maschinen.
+
 #### CFST-Richtlinie 6512 „Arbeitsmittel“
 Die [CFST-Richtlinie, Arbeitsmittel](https://www.suva.ch/fr-ch/prevention/themes-specialises/securite-des-machines-et-commandes-de-machines#uxlibrary-material=dd14bcc187d79ec7b2d9d3d85279d94c) gibt vor, wie die Anforderungen an die Sicherheit und den Gesundheitsschutz der Arbeitnehmer im Zusammenhang mit der Beschäftigung, Verwendung und Wartung von Arbeitsmitteln eingehalten werden können.
 

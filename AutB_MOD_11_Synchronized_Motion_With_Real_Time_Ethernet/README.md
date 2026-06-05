@@ -55,7 +55,7 @@ Author: [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
     - [Concrètement ?](#concrètement-)
     - [Limitations](#limitations)
     - [Cas d'utilisation de l'Ethernet temps réel](#cas-dutilisation-de-lethernet-temps-réel)
-    - [Avantages d'Ethernet en temps réel (basé sur EtherCAT)](#avantages-dethernet-en-temps-réel-basé-sur-ethercat)
+    - [Avantages d'Ethernet en temps réel, basé sur EtherCAT.](#avantages-dethernet-en-temps-réel-basé-sur-ethercat)
   - [Deux mots à propos de Ethernet-APL](#deux-mots-à-propos-de-ethernet-apl)
   - [Deux mots à propos de la technologie TSN](#deux-mots-à-propos-de-la-technologie-tsn)
 - [EtherCAT](#ethercat)
@@ -120,7 +120,7 @@ Pour rappel, selon la directive machine CE 2006/42, du point de vue sécurité:
 
 Nous avons bien à faire à une machine.
 
-:bulb: La directive machine CE 2006/42 est remplacée par le Règlement (UE) 2023/1230 sur les machines à partir du 20 janvier 2027.
+:bulb: La directive machine CE 2006/42 est remplacée par le[ Règlement (UE) 2023/1230 sur les machines](https://eur-lex.europa.eu/eli/reg/2023/1230/oj?locale=fr) à partir du 20 janvier 2027.
 
 ---
 
@@ -310,7 +310,7 @@ $$\ cycle \: time \: \delta t  \approx 1 [ms]$$
 La liste de points liée à la résolution impose plusieurs contraintes-
 
 ### Erreur de poursuite
-Quand l'axe est utilisé, par exemple pour une machine^.outil, la commande d'axe fournit souvent un paramètre d'erreur de poursuite sous forme de limite critique. On trouve en anglais la notion de **lag error** ou **Following distance**.
+Quand l'axe est utilisé, par exemple pour une machine-outil, la commande d'axe fournit souvent un paramètre d'erreur de poursuite sous forme de limite critique. On trouve en anglais la notion de **lag error** ou **Following distance**.
 L'erreur de poursuite est la différence entre la **position commandée** et la **position mesurée**. Si cette différence est trop importante, la commande d'axe génère une erreur et stop l'axe dans les meilleurs délais.
 
 > Problème pour l'ingénieur: **la différence de position entre deux points de la trajectoire est limitée**.
@@ -319,7 +319,7 @@ L'erreur de poursuite est la différence entre la **position commandée** et la 
 $\ v = dp/dt$ La vitesse de l'axe est limitée. Il existe plusieurs types de limites, ici, il faut ajouter la restriction due à la précision souhaitée. Si l'on veut améliorer la résolution, on utilisera la formule précédente sous sa forme $\ dp = v * dt$ et on limitera la vitesse.
 
 ### Limite de couple/force
-$\ F = dv/dt$ ou $dp / {dt}^2 $ le profil sera contraint par le couple ou la force maximal admissible par la machine, l'axe ou le moteur.
+$\ F = dv/dt$ ou $dp / {dt}^2$ le profil sera contraint par le couple ou la force maximal admissible par la machine, l'axe ou le moteur.
 
 ## Type de trajectoire
 Il existe plusieurs types de trajectoires. Dans le cadre de ce module, nous présentons une trajectoire de type polynomiale car sa forme s'adapte bien à ce que nous pouvons calculer facilement et rapidement dans un PLC.
@@ -516,7 +516,7 @@ Si l'on compare Ethernet Real-Time à un bus de terrain classique, son avantage 
     <p><em>Baumer IO-Link Master PROFINET, 8-Port, IP67</em></p>
 </div>
 
-### Avantages d'Ethernet en temps réel (basé sur EtherCAT)
+### Avantages d'Ethernet en temps réel, basé sur [EtherCAT](https://www.ethercat.org/default.htm).
 **Hautes performances** 
 - EtherCAT atteint des temps de cycle de l'ordre de la microseconde, permettant un contrôle précis de systèmes complexes. 
 - En pratique de l'ordre de quelques centaines de nous, la plupart des machines équipées de commandes de moteur fonctionnent parfaitement avec un temps de cycle de l'ordre de 1 à 4 ms.
@@ -635,11 +635,13 @@ Principales caractéristiques / avantages
 
 > Ce genre de produits est relativement à la mode pour des analyses de vibrations et, couplé à des logiciels de **Machine Learning** est utilisé pour des applications de maintenance préventive dans des systèmes industriels.
 
+---
+
 ## EtherCAT en détails
 
 Une grande partie de ce qui suit provient directement du [site de présentation de EtherCAT](https://www.ethercat.org.cn/en/technology.html)
 
-<div style="color:red;"><b>La suite du paragraphe EtherCAT est à titre d'information générale. A lire, mais pas à connaitre par coeur.
+<div style="color:red;"><b>La suite du paragraphe EtherCAT est à titre d'information générale.
 </b>
 </div>
 
