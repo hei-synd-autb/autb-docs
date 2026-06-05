@@ -123,6 +123,10 @@ Zur Erinnerung: Aus Sicherheitsgründen gilt gemäß der Maschinenrichtlinie EG 
 
 Wir haben es mit einer Maschine zu tun.
 
+:bulb: Die EG-Maschinenrichtlinie 2006/42 wird ab dem 20. Januar 2027 durch die Verordnung (EU) 2023/1230 über Maschinen ersetzt.
+
+---
+
 Derzeit werden auf vielen Maschinen noch mechanische Kurvenscheiben eingesetzt. Sie sind wahrscheinlich effizienter als ihre elektrischen Pendants, aber nur, wenn sie die Flugbahn nicht ändern müssen.
 
 <div align="center">

@@ -120,6 +120,10 @@ Pour rappel, selon la directive machine CE 2006/42, du point de vue sécurité:
 
 Nous avons bien à faire à une machine.
 
+:bulb: La directive machine CE 2006/42 est remplacée par le Règlement (UE) 2023/1230 sur les machines à partir du 20 janvier 2027.
+
+---
+
 Actuellement, les systèmes à came mécanique sont encore utilisés sur de nombreuses machines. Ils sont probablement plus efficaces que leurs équivalents électriques, mais à condition de ne pas devoir modifier la trajectoire.
 
 <div align="center">
